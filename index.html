@@ -1,402 +1,562 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MnM — we write code the internet actually uses.</title>
-<meta name="description" content="Two CS students. Unreasonable output. Building at the speed of thought and shipping before you're ready.">
-<link rel="preconnect" href="https://api.fontshare.com">
-<link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500&f[]=commit-mono@400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MnM — we write code the internet actually uses.</title>
+  <meta name="description"
+    content="Two CS students. Unreasonable output. Building at the speed of thought and shipping before you're ready.">
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link
+    href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500&f[]=commit-mono@400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<div id="cursor-inner"></div>
-<div id="cursor-outer"><span id="cursor-label"></span></div>
-<div id="preloader">
-  <div id="preloader-line">
-    <div id="preloader-progress"></div>
-  </div>
-  <div id="preloader-text">MNM_SYSTEM_V2.0</div>
-</div>
-<nav id="navbar">
-  <div class="nav-inner">
-    <span class="nav-logo">MnM</span>
-    <div class="nav-links">
-      <a href="#work" class="nav-link" data-section="work">work</a>
-      <a href="#about" class="nav-link" data-section="about">about</a>
-      <a href="#contact" class="nav-link" data-section="contact">contact</a>
+  <div id="cursor-inner"></div>
+  <div id="cursor-outer"><span id="cursor-label"></span></div>
+  <div id="preloader">
+    <div id="preloader-line">
+      <div id="preloader-progress"></div>
     </div>
-    <a href="#contact" class="nav-cta magnetic">get in touch</a>
+    <div id="preloader-text">Loading...</div>
   </div>
-</nav>
-<main id="main">
-  <section id="hero">
-    <canvas id="hero-canvas"></canvas>
-    <div class="hero-grain"></div>
-    <div class="hero-layout">
-      <div class="hero-text-col">
-        <span class="hero-label">MnM — 2024</span>
-        <h1 class="hero-heading" id="hero-heading">
-          <span class="hero-line">we write code</span>
-          <span class="hero-line">the internet</span>
-          <span class="hero-line">actually uses<span class="lime-period">.</span></span>
-        </h1>
-        <p class="hero-sub">
-          two people. unreasonable output.<br>
-          building at the speed of thought —<br>
-          and shipping before you're ready.
+  <nav id="navbar" class="navbar-island">
+    <div class="navbar-inner">
+      <a href="#" class="navbar-brand">
+        <span class="navbar-logo">
+          <img src="/logo.png" alt="MnM logo" class="navbar-logo-img">
+        </span>
+        <span class="navbar-brand-text">MnM</span>
+      </a>
+      <ul class="navbar-links">
+        <li><a href="#work" class="nav-link" data-section="work">work</a></li>
+        <li><a href="#about" class="nav-link" data-section="about">about</a></li>
+        <li><a href="#stack" class="nav-link" data-section="stack">tech stack</a></li>
+      </ul>
+      <a href="#contact" class="navbar-cta magnetic">Contact</a>
+    </div>
+  </nav>
+  <main id="main">
+    <section id="hero">
+      <canvas id="hero-canvas"></canvas>
+      <div class="hero-grain"></div>
+      <div class="hero-layout">
+        <div class="hero-text-col">
+          <span class="hero-label">MnM — 2026</span>
+          <h1 class="hero-heading" id="hero-heading">
+            <span class="hero-line">we write code</span>
+            <span class="hero-line">to create</span>
+            <span class="hero-line">an impact<span class="lime-period"> .</span></span>
+          </h1>
+          <p class="hero-sub">
+            two people. unreasonable output.<br>
+            building at the speed of thought<br>
+            and shipping before you're ready.
+          </p>
+          <div class="hero-cta-row">
+            <button class="btn-pill magnetic" id="hero-cta">see what we built</button>
+            <a href="#about" class="hero-text-link">who we are <span class="arrow">↓</span></a>
+          </div>
+        </div>
+        <div class="hero-3d-col">
+          <div id="hero-3d"></div>
+        </div>
+      </div>
+      <div class="scroll-indicator">
+        <span class="scroll-text">scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+    <section id="marquee-band">
+      <div class="text-marquee-viewport">
+        <div class="text-marquee-inner">
+          <div class="text-marquee-track">
+            <span>WE BUILD</span><span class="marquee-dot">✦</span>
+            <span>WE SHIP</span><span class="marquee-dot">✦</span>
+            <span class="marquee-lime">WE WIN</span><span class="marquee-dot">✦</span>
+            <span>THEN WE BUILD AGAIN</span><span class="marquee-dot">✦</span>
+            <span>WE BUILD</span><span class="marquee-dot">✦</span>
+            <span>WE SHIP</span><span class="marquee-dot">✦</span>
+            <span class="marquee-lime">WE WIN</span><span class="marquee-dot">✦</span>
+            <span>THEN WE BUILD AGAIN</span><span class="marquee-dot">✦</span>
+            <span>WE BUILD</span><span class="marquee-dot">✦</span>
+            <span>WE SHIP</span><span class="marquee-dot">✦</span>
+            <span class="marquee-lime">WE WIN</span><span class="marquee-dot">✦</span>
+            <span>THEN WE BUILD AGAIN</span><span class="marquee-dot">✦</span>
+            <span>WE BUILD</span><span class="marquee-dot">✦</span>
+            <span>WE SHIP</span><span class="marquee-dot">✦</span>
+            <span class="marquee-lime">WE WIN</span><span class="marquee-dot">✦</span>
+            <span>THEN WE BUILD AGAIN</span><span class="marquee-dot">✦</span>
+            <span>WE BUILD</span><span class="marquee-dot">✦</span>
+            <span>WE SHIP</span><span class="marquee-dot">✦</span>
+            <span class="marquee-lime">WE WIN</span><span class="marquee-dot">✦</span>
+            <span>THEN WE BUILD AGAIN</span><span class="marquee-dot">✦</span>
+          </div>
+          <div class="text-marquee-track" aria-hidden="true">
+            <span>WE BUILD</span><span class="marquee-dot">✦</span>
+            <span>WE SHIP</span><span class="marquee-dot">✦</span>
+            <span class="marquee-lime">WE WIN</span><span class="marquee-dot">✦</span>
+            <span>THEN WE BUILD AGAIN</span><span class="marquee-dot">✦</span>
+            <span>WE BUILD</span><span class="marquee-dot">✦</span>
+            <span>WE SHIP</span><span class="marquee-dot">✦</span>
+            <span class="marquee-lime">WE WIN</span><span class="marquee-dot">✦</span>
+            <span>THEN WE BUILD AGAIN</span><span class="marquee-dot">✦</span>
+            <span>WE BUILD</span><span class="marquee-dot">✦</span>
+            <span>WE SHIP</span><span class="marquee-dot">✦</span>
+            <span class="marquee-lime">WE WIN</span><span class="marquee-dot">✦</span>
+            <span>THEN WE BUILD AGAIN</span><span class="marquee-dot">✦</span>
+            <span>WE BUILD</span><span class="marquee-dot">✦</span>
+            <span>WE SHIP</span><span class="marquee-dot">✦</span>
+            <span class="marquee-lime">WE WIN</span><span class="marquee-dot">✦</span>
+            <span>THEN WE BUILD AGAIN</span><span class="marquee-dot">✦</span>
+            <span>WE BUILD</span><span class="marquee-dot">✦</span>
+            <span>WE SHIP</span><span class="marquee-dot">✦</span>
+            <span class="marquee-lime">WE WIN</span><span class="marquee-dot">✦</span>
+            <span>THEN WE BUILD AGAIN</span><span class="marquee-dot">✦</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="about">
+      <div class="about-text-col">
+        <span class="section-label">// who we are</span>
+        <h2 class="about-heading">
+          <span class="about-line">yeah.</span>
+          <span class="about-line">we're those</span>
+          <span class="about-line">people.</span>
+        </h2>
+        <p class="about-body">
+          The ones who stay after the workshop ends.<br>
+          Who actually finish the side project.<br>
+          Who read the documentation.
         </p>
-        <div class="hero-cta-row">
-          <button class="btn-pill magnetic" id="hero-cta">see what we built</button>
-          <a href="#about" class="hero-text-link">who we are <span class="arrow">↓</span></a>
+      </div>
+      <div class="about-photo-wrap">
+        <img src="1000147107.png" alt="M and Manna" class="about-photo">
+      </div>
+      <div class="person-card" id="card-aditya">
+        <canvas class="card-water-canvas" id="water-canvas-0"></canvas>
+        <div class="card-inner">
+          <span class="card-tag">// Manu</span>
+          <span class="card-person-name">Aditya Verma</span>
+          <span class="card-role">BCA @LPU, Punjab</span>
         </div>
       </div>
-      <div class="hero-3d-col">
-        <div id="hero-3d"></div>
+      <div class="person-card" id="card-manika">
+        <canvas class="card-water-canvas" id="water-canvas-1"></canvas>
+        <div class="card-inner">
+          <span class="card-tag">// Manna</span>
+          <span class="card-person-name">Manika Kutiyal</span>
+          <span class="card-role">BCA @Eternal University, Himachal Pradesh</span>
+        </div>
       </div>
-    </div>
-    <div class="scroll-indicator">
-      <span class="scroll-text">scroll</span>
-      <div class="scroll-line"></div>
-    </div>
-  </section>
-  <section id="marquee-band">
-    <div class="marquee-viewport" id="marquee-viewport">
-      <div class="marquee-inner" id="marquee-inner">
-        <span>WE BUILD</span>
-        <span class="marquee-dot">✦</span>
-        <span>WE SHIP</span>
-        <span class="marquee-dot">✦</span>
-        <span class="marquee-lime">WE WIN</span>
-        <span class="marquee-dot">✦</span>
-        <span>THEN WE BUILD AGAIN</span>
-        <span class="marquee-dot">✦</span>
-        <span>WE BUILD</span>
-        <span class="marquee-dot">✦</span>
-        <span>WE SHIP</span>
-        <span class="marquee-dot">✦</span>
-        <span class="marquee-lime">WE WIN</span>
-        <span class="marquee-dot">✦</span>
-        <span>THEN WE BUILD AGAIN</span>
-        <span class="marquee-dot">✦</span>
+    </section>
+    <section id="stack">
+      <div class="stack-hero">
+        <div class="stack-hero-text">
+          <span class="section-label lime-label">// our arsenal</span>
+          <h2 class="stack-heading">
+            <span class="stack-line">we didn't</span>
+            <span class="stack-line">just learn it ,</span>
+            <span class="stack-line">we used it .</span>
+          </h2>
+        </div>
+        <div class="stack-cube-wrap">
+          <canvas id="stack-canvas"></canvas>
+          <div class="stack-cube-ring" id="stack-cube-ring">
+
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
-  <section id="about">
-    <div class="about-text-col">
-      <span class="section-label">// who we are</span>
-      <h2 class="about-heading">
-        <span class="about-line">yeah.</span>
-        <span class="about-line">we're those</span>
-        <span class="about-line">people.</span>
-      </h2>
-      <p class="about-body">
-        The ones who stay after the workshop ends.<br>
-        Who actually finish the side project.<br>
-        Who read the documentation.
-      </p>
-    </div>
-    <div class="about-photo-wrap">
-      <img src="1000147107.png" alt="M and Manna" class="about-photo">
-    </div>
-    <div class="person-card" id="card-aditya">
-      <canvas class="card-water-canvas" id="water-canvas-0"></canvas>
-      <div class="card-inner">
-        <span class="card-tag">// M</span>
-        <span class="card-person-name">Aditya Verma</span>
-        <span class="card-role">CS · Hackathon finalist</span>
+      <div class="stack-marquee-viewport">
+        <div class="stack-marquee-inner">
+
+          <div class="stack-marquee-track">
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"
+                class="tech-svg"><span>Python</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+                alt="TypeScript" class="tech-svg"><span>TypeScript</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                alt="JavaScript" class="tech-svg"><span>JavaScript</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"
+                class="tech-svg"><span>Java</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++"
+                class="tech-svg"><span>C++</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB"
+                class="tech-svg"><span>MongoDB</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express"
+                class="tech-svg invert-icon"><span>Express</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"
+                class="tech-svg"><span>React</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js"
+                class="tech-svg"><span>Node.js</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch"
+                class="tech-svg"><span>PyTorch</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy"
+                class="tech-svg"><span>NumPy</span></div>
+            <div class="tech-icon-card"><span class="emoji-icon">🤗</span><span>Hugging Face</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI"
+                class="tech-svg"><span>FastAPI</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis"
+                class="tech-svg"><span>Redis</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+                alt="PostgreSQL" class="tech-svg"><span>PostgreSQL</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js"
+                class="tech-svg invert-icon"><span>Next.js</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
+                alt="Tailwind CSS" class="tech-svg"><span>Tailwind CSS</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"
+                class="tech-svg"><span>HTML5</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"
+                class="tech-svg"><span>Docker</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg"
+                alt="Google Cloud" class="tech-svg"><span>Google Cloud</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"
+                class="tech-svg"><span>Git</span></div>
+          </div>
+
+          <div class="stack-marquee-track" aria-hidden="true">
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"
+                class="tech-svg"><span>Python</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+                alt="TypeScript" class="tech-svg"><span>TypeScript</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                alt="JavaScript" class="tech-svg"><span>JavaScript</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"
+                class="tech-svg"><span>Java</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++"
+                class="tech-svg"><span>C++</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB"
+                class="tech-svg"><span>MongoDB</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express"
+                class="tech-svg invert-icon"><span>Express</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"
+                class="tech-svg"><span>React</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js"
+                class="tech-svg"><span>Node.js</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch"
+                class="tech-svg"><span>PyTorch</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy"
+                class="tech-svg"><span>NumPy</span></div>
+            <div class="tech-icon-card"><span class="emoji-icon">🤗</span><span>Hugging Face</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI"
+                class="tech-svg"><span>FastAPI</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis"
+                class="tech-svg"><span>Redis</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+                alt="PostgreSQL" class="tech-svg"><span>PostgreSQL</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js"
+                class="tech-svg invert-icon"><span>Next.js</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
+                alt="Tailwind CSS" class="tech-svg"><span>Tailwind CSS</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"
+                class="tech-svg"><span>HTML5</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"
+                class="tech-svg"><span>Docker</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg"
+                alt="Google Cloud" class="tech-svg"><span>Google Cloud</span></div>
+            <div class="tech-icon-card"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"
+                class="tech-svg"><span>Git</span></div>
+          </div>
+
+        </div>
       </div>
-    </div>
-    <div class="person-card" id="card-manika">
-      <canvas class="card-water-canvas" id="water-canvas-1"></canvas>
-      <div class="card-inner">
-        <span class="card-tag">// Manna</span>
-        <span class="card-person-name">Manika Kutiyal</span>
-        <span class="card-role">CS · Hackathon finalist</span>
+    </section>
+    <section id="projects">
+      <div class="projects-pin-wrap">
+        <div class="projects-header container">
+          <span class="section-label">// selected work</span>
+          <h2 class="projects-heading">
+            <span class="proj-word-light">things we</span><br>
+            <span class="proj-word-light">actually</span> <span class="proj-word-bold">shipped.</span>
+          </h2>
+        </div>
+        <div class="projects-track" id="projects-track">
+          <div class="project-card featured magnetic-card" data-cursor="view">
+            <canvas class="card-canvas" id="card-canvas-0"></canvas>
+            <div class="card-body">
+              <div class="card-top-row">
+                <span class="card-index commit-mono">01</span>
+                <span class="card-badge">— best work</span>
+              </div>
+              <h3 class="card-name">RouteWave</h3>
+              <p class="card-tagline">Real-time GPS route player with cinematic map animation</p>
+              <div class="card-chips">
+                <span class="chip dark">React</span>
+                <span class="chip dark">Leaflet</span>
+                <span class="chip dark">WebSockets</span>
+              </div>
+              <div class="card-links">
+                <a href="#" class="card-link">live ↗</a>
+                <a href="#" class="card-link">code ↗</a>
+              </div>
+            </div>
+          </div>
+          <div class="project-card magnetic-card" data-cursor="view">
+            <canvas class="card-canvas" id="card-canvas-1"></canvas>
+            <div class="card-body">
+              <div class="card-top-row">
+                <span class="card-index commit-mono">02</span>
+              </div>
+              <h3 class="card-name">NeuralFlow</h3>
+              <p class="card-tagline">ML pipeline visualizer — train, inspect, deploy</p>
+              <div class="card-chips">
+                <span class="chip dark">Python</span>
+                <span class="chip dark">PyTorch</span>
+                <span class="chip dark">FastAPI</span>
+              </div>
+              <div class="card-links">
+                <a href="#" class="card-link">live ↗</a>
+                <a href="#" class="card-link">code ↗</a>
+              </div>
+            </div>
+          </div>
+          <div class="project-card magnetic-card" data-cursor="view">
+            <canvas class="card-canvas" id="card-canvas-2"></canvas>
+            <div class="card-body">
+              <div class="card-top-row">
+                <span class="card-index commit-mono">03</span>
+              </div>
+              <h3 class="card-name">Axiom API</h3>
+              <p class="card-tagline">Zero-latency backend infrastructure at university scale</p>
+              <div class="card-chips">
+                <span class="chip dark">Go</span>
+                <span class="chip dark">Redis</span>
+                <span class="chip dark">Docker</span>
+              </div>
+              <div class="card-links">
+                <a href="#" class="card-link">live ↗</a>
+                <a href="#" class="card-link">code ↗</a>
+              </div>
+            </div>
+          </div>
+          <div class="project-card magnetic-card" data-cursor="view">
+            <canvas class="card-canvas" id="card-canvas-3"></canvas>
+            <div class="card-body">
+              <div class="card-top-row">
+                <span class="card-index commit-mono">04</span>
+              </div>
+              <h3 class="card-name">HackOS</h3>
+              <p class="card-tagline">The hackathon project that won three times in a row</p>
+              <div class="card-chips">
+                <span class="chip dark">Next.js</span>
+                <span class="chip dark">Supabase</span>
+                <span class="chip dark">OpenAI</span>
+              </div>
+              <div class="card-links">
+                <a href="#" class="card-link">live ↗</a>
+                <a href="#" class="card-link">code ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="projects-nav">
+          <button class="proj-arrow" id="proj-prev" aria-label="Previous">←</button>
+          <div class="proj-dots" id="proj-dots">
+            <span class="proj-dot active"></span>
+            <span class="proj-dot"></span>
+            <span class="proj-dot"></span>
+            <span class="proj-dot"></span>
+          </div>
+          <button class="proj-arrow" id="proj-next" aria-label="Next">→</button>
+        </div>
       </div>
-    </div>
-  </section>
-  <section id="stack">
-    <div class="stack-inner">
-      <div class="stack-left">
-        <span class="section-label lime-label">// our arsenal</span>
-        <h2 class="stack-heading">
-          <span class="stack-line">we didn't</span>
-          <span class="stack-line">just learn it.</span>
-          <span class="stack-line">we used it.</span>
+    </section>
+    <section id="hackathons">
+      <div class="container">
+        <span class="section-label">// competition record</span>
+        <h2 class="hack-heading">
+          <span class="hack-line">we enter.</span>
+          <span class="hack-line">we compete.</span>
+          <span class="hack-line">occasionally</span>
+          <span class="hack-line">we <span class="hack-destroy">destroy.</span></span>
         </h2>
       </div>
-      <div class="stack-right">
-        <canvas id="stack-canvas"></canvas>
-        <div class="stack-face-label" id="stack-face-label">Frontend</div>
-        <div class="stack-chips" id="stack-chips">
-          <span class="chip">React</span>
-          <span class="chip">Next.js</span>
-          <span class="chip">Tailwind</span>
-          <span class="chip">GSAP</span>
-          <span class="chip">Three.js</span>
+      <div class="hack-timeline-wrap">
+        <div class="hack-watermark" id="hack-watermark">8</div>
+        <div class="hack-timeline-scroll" id="hack-timeline-scroll">
+          <div class="hack-timeline-line"></div>
+          <div class="hack-entries" id="hack-entries">
+            <div class="hack-entry" data-place="1">
+              <div class="hack-stem"></div>
+              <div class="hack-card">
+                <div class="hack-card-name">HackIndia 2024</div>
+                <div class="hack-card-meta commit-mono">Delhi · Mar 2024 · 36hrs</div>
+                <span class="hack-badge win">1st Place</span>
+                <div class="hack-card-desc">Built an AI triage system for emergency rooms.</div>
+              </div>
+            </div>
+            <div class="hack-entry" data-place="1">
+              <div class="hack-stem"></div>
+              <div class="hack-card">
+                <div class="hack-card-name">DevSprint 2023</div>
+                <div class="hack-card-meta commit-mono">Bangalore · Dec 2023 · 24hrs</div>
+                <span class="hack-badge win">1st Place</span>
+                <div class="hack-card-desc">Real-time fraud detection at 50k transactions/sec.</div>
+              </div>
+            </div>
+            <div class="hack-entry" data-place="2">
+              <div class="hack-stem"></div>
+              <div class="hack-card">
+                <div class="hack-card-name">MLFest 2023</div>
+                <div class="hack-card-meta commit-mono">Mumbai · Sep 2023 · 48hrs</div>
+                <span class="hack-badge win">2nd Place</span>
+                <div class="hack-card-desc">Generative model for medical image segmentation.</div>
+              </div>
+            </div>
+            <div class="hack-entry" data-place="f">
+              <div class="hack-stem"></div>
+              <div class="hack-card">
+                <div class="hack-card-name">Smart India 2023</div>
+                <div class="hack-card-meta commit-mono">National · Aug 2023 · 36hrs</div>
+                <span class="hack-badge finalist">Finalist</span>
+                <div class="hack-card-desc">Crop yield prediction from satellite imagery.</div>
+              </div>
+            </div>
+            <div class="hack-entry" data-place="1">
+              <div class="hack-stem"></div>
+              <div class="hack-card">
+                <div class="hack-card-name">CodeStorm 2023</div>
+                <div class="hack-card-meta commit-mono">Chennai · May 2023 · 24hrs</div>
+                <span class="hack-badge win">1st Place</span>
+                <div class="hack-card-desc">Decentralized identity verification on-chain.</div>
+              </div>
+            </div>
+            <div class="hack-entry" data-place="f">
+              <div class="hack-stem"></div>
+              <div class="hack-card">
+                <div class="hack-card-name">TechThrash 2022</div>
+                <div class="hack-card-meta commit-mono">Pune · Nov 2022 · 30hrs</div>
+                <span class="hack-badge finalist">Finalist</span>
+                <div class="hack-card-desc">Low-power IoT mesh for rural connectivity.</div>
+              </div>
+            </div>
+            <div class="hack-entry" data-place="2">
+              <div class="hack-stem"></div>
+              <div class="hack-card">
+                <div class="hack-card-name">BuildFast 2022</div>
+                <div class="hack-card-meta commit-mono">Hyderabad · Jul 2022 · 24hrs</div>
+                <span class="hack-badge win">2nd Place</span>
+                <div class="hack-card-desc">Supply chain transparency on a public ledger.</div>
+              </div>
+            </div>
+            <div class="hack-entry" data-place="f">
+              <div class="hack-stem"></div>
+              <div class="hack-card">
+                <div class="hack-card-name">HackJSS 2022</div>
+                <div class="hack-card-meta commit-mono">Mysuru · Mar 2022 · 48hrs</div>
+                <span class="hack-badge finalist">Finalist</span>
+                <div class="hack-card-desc">AR navigation system for visually impaired users.</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-  <section id="projects">
-    <div class="projects-pin-wrap">
-      <div class="projects-header container">
-        <span class="section-label">// selected work</span>
-        <h2 class="projects-heading">
-          <span class="proj-word-light">things we</span><br>
-          <span class="proj-word-light">actually</span> <span class="proj-word-bold">shipped.</span>
+    </section>
+    <section id="stats">
+      <div class="stats-grid">
+        <div class="stat-cell">
+          <span class="stat-num" data-target="12" id="stat-0">0</span>
+          <span class="stat-label">projects shipped</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-num" data-target="8" id="stat-1">0</span>
+          <span class="stat-label">hackathons entered</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-num" data-target="3000" id="stat-2" data-suffix="+">0</span>
+          <span class="stat-label">lines/day</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-num" data-target="36" id="stat-3" data-suffix="hrs">0</span>
+          <span class="stat-label">longest build session</span>
+        </div>
+      </div>
+    </section>
+    <section id="manifesto">
+      <div class="manifesto-inner">
+        <p class="manifesto-line" data-line="1">&ldquo;the best time</p>
+        <p class="manifesto-line" data-line="2">to start building</p>
+        <p class="manifesto-line" data-line="3">was yesterday.</p>
+        <p class="manifesto-gap">&nbsp;</p>
+        <p class="manifesto-line" data-line="4">we started</p>
+        <p class="manifesto-line" data-line="5">the day before.&rdquo;</p>
+        <div class="manifesto-rule" id="manifesto-rule"></div>
+        <span class="manifesto-credit commit-mono">— M &amp; M &nbsp;·&nbsp; 2026</span>
+      </div>
+    </section>
+    <section id="contact">
+      <div class="container">
+        <h2 class="contact-heading">
+          <span class="contact-line">let's make</span>
+          <span class="contact-line">something worth</span>
+          <span class="contact-line">shipping.</span>
         </h2>
-      </div>
-      <div class="projects-track" id="projects-track">
-        <div class="project-card featured magnetic-card" data-cursor="view">
-          <canvas class="card-canvas" id="card-canvas-0"></canvas>
-          <div class="card-body">
-            <div class="card-top-row">
-              <span class="card-index commit-mono">01</span>
-              <span class="card-badge">— best work</span>
-            </div>
-            <h3 class="card-name">RouteWave</h3>
-            <p class="card-tagline">Real-time GPS route player with cinematic map animation</p>
-            <div class="card-chips">
-              <span class="chip dark">React</span>
-              <span class="chip dark">Leaflet</span>
-              <span class="chip dark">WebSockets</span>
-            </div>
-            <div class="card-links">
-              <a href="#" class="card-link">live ↗</a>
-              <a href="#" class="card-link">code ↗</a>
-            </div>
-          </div>
+        <div class="contact-links">
+          <a href="https://github.com" target="_blank" class="contact-row" data-cursor="open">
+            <span class="contact-row-name">GitHub</span>
+            <span class="contact-row-arrow">→</span>
+            <div class="contact-row-fill"></div>
+          </a>
+          <a href="mailto:mnm@email.com" class="contact-row" data-cursor="open">
+            <span class="contact-row-name">Email</span>
+            <span class="contact-row-arrow">→</span>
+            <div class="contact-row-fill"></div>
+          </a>
+          <a href="https://linkedin.com" target="_blank" class="contact-row" data-cursor="open">
+            <span class="contact-row-name">LinkedIn</span>
+            <span class="contact-row-arrow">→</span>
+            <div class="contact-row-fill"></div>
+          </a>
         </div>
-        <div class="project-card magnetic-card" data-cursor="view">
-          <canvas class="card-canvas" id="card-canvas-1"></canvas>
-          <div class="card-body">
-            <div class="card-top-row">
-              <span class="card-index commit-mono">02</span>
-            </div>
-            <h3 class="card-name">NeuralFlow</h3>
-            <p class="card-tagline">ML pipeline visualizer — train, inspect, deploy</p>
-            <div class="card-chips">
-              <span class="chip dark">Python</span>
-              <span class="chip dark">PyTorch</span>
-              <span class="chip dark">FastAPI</span>
-            </div>
-            <div class="card-links">
-              <a href="#" class="card-link">live ↗</a>
-              <a href="#" class="card-link">code ↗</a>
-            </div>
-          </div>
-        </div>
-        <div class="project-card magnetic-card" data-cursor="view">
-          <canvas class="card-canvas" id="card-canvas-2"></canvas>
-          <div class="card-body">
-            <div class="card-top-row">
-              <span class="card-index commit-mono">03</span>
-            </div>
-            <h3 class="card-name">Axiom API</h3>
-            <p class="card-tagline">Zero-latency backend infrastructure at university scale</p>
-            <div class="card-chips">
-              <span class="chip dark">Go</span>
-              <span class="chip dark">Redis</span>
-              <span class="chip dark">Docker</span>
-            </div>
-            <div class="card-links">
-              <a href="#" class="card-link">live ↗</a>
-              <a href="#" class="card-link">code ↗</a>
-            </div>
-          </div>
-        </div>
-        <div class="project-card magnetic-card" data-cursor="view">
-          <canvas class="card-canvas" id="card-canvas-3"></canvas>
-          <div class="card-body">
-            <div class="card-top-row">
-              <span class="card-index commit-mono">04</span>
-            </div>
-            <h3 class="card-name">HackOS</h3>
-            <p class="card-tagline">The hackathon project that won three times in a row</p>
-            <div class="card-chips">
-              <span class="chip dark">Next.js</span>
-              <span class="chip dark">Supabase</span>
-              <span class="chip dark">OpenAI</span>
-            </div>
-            <div class="card-links">
-              <a href="#" class="card-link">live ↗</a>
-              <a href="#" class="card-link">code ↗</a>
-            </div>
-          </div>
-        </div>
+        <p class="footer-credit commit-mono">MnM · 2024 · built with conviction and questionable sleep schedules</p>
       </div>
-      <div class="projects-nav">
-        <button class="proj-arrow" id="proj-prev" aria-label="Previous">←</button>
-        <div class="proj-dots" id="proj-dots">
-          <span class="proj-dot active"></span>
-          <span class="proj-dot"></span>
-          <span class="proj-dot"></span>
-          <span class="proj-dot"></span>
-        </div>
-        <button class="proj-arrow" id="proj-next" aria-label="Next">→</button>
-      </div>
-    </div>
-  </section>
-  <section id="hackathons">
-    <div class="container">
-      <span class="section-label">// competition record</span>
-      <h2 class="hack-heading">
-        <span class="hack-line">we enter.</span>
-        <span class="hack-line">we compete.</span>
-        <span class="hack-line">occasionally</span>
-        <span class="hack-line">we <span class="hack-destroy">destroy.</span></span>
-      </h2>
-    </div>
-    <div class="hack-timeline-wrap">
-      <div class="hack-watermark" id="hack-watermark">8</div>
-      <div class="hack-timeline-scroll" id="hack-timeline-scroll">
-        <div class="hack-timeline-line"></div>
-        <div class="hack-entries" id="hack-entries">
-          <div class="hack-entry" data-place="1">
-            <div class="hack-stem"></div>
-            <div class="hack-card">
-              <div class="hack-card-name">HackIndia 2024</div>
-              <div class="hack-card-meta commit-mono">Delhi · Mar 2024 · 36hrs</div>
-              <span class="hack-badge win">1st Place</span>
-              <div class="hack-card-desc">Built an AI triage system for emergency rooms.</div>
-            </div>
-          </div>
-          <div class="hack-entry" data-place="1">
-            <div class="hack-stem"></div>
-            <div class="hack-card">
-              <div class="hack-card-name">DevSprint 2023</div>
-              <div class="hack-card-meta commit-mono">Bangalore · Dec 2023 · 24hrs</div>
-              <span class="hack-badge win">1st Place</span>
-              <div class="hack-card-desc">Real-time fraud detection at 50k transactions/sec.</div>
-            </div>
-          </div>
-          <div class="hack-entry" data-place="2">
-            <div class="hack-stem"></div>
-            <div class="hack-card">
-              <div class="hack-card-name">MLFest 2023</div>
-              <div class="hack-card-meta commit-mono">Mumbai · Sep 2023 · 48hrs</div>
-              <span class="hack-badge win">2nd Place</span>
-              <div class="hack-card-desc">Generative model for medical image segmentation.</div>
-            </div>
-          </div>
-          <div class="hack-entry" data-place="f">
-            <div class="hack-stem"></div>
-            <div class="hack-card">
-              <div class="hack-card-name">Smart India 2023</div>
-              <div class="hack-card-meta commit-mono">National · Aug 2023 · 36hrs</div>
-              <span class="hack-badge finalist">Finalist</span>
-              <div class="hack-card-desc">Crop yield prediction from satellite imagery.</div>
-            </div>
-          </div>
-          <div class="hack-entry" data-place="1">
-            <div class="hack-stem"></div>
-            <div class="hack-card">
-              <div class="hack-card-name">CodeStorm 2023</div>
-              <div class="hack-card-meta commit-mono">Chennai · May 2023 · 24hrs</div>
-              <span class="hack-badge win">1st Place</span>
-              <div class="hack-card-desc">Decentralized identity verification on-chain.</div>
-            </div>
-          </div>
-          <div class="hack-entry" data-place="f">
-            <div class="hack-stem"></div>
-            <div class="hack-card">
-              <div class="hack-card-name">TechThrash 2022</div>
-              <div class="hack-card-meta commit-mono">Pune · Nov 2022 · 30hrs</div>
-              <span class="hack-badge finalist">Finalist</span>
-              <div class="hack-card-desc">Low-power IoT mesh for rural connectivity.</div>
-            </div>
-          </div>
-          <div class="hack-entry" data-place="2">
-            <div class="hack-stem"></div>
-            <div class="hack-card">
-              <div class="hack-card-name">BuildFast 2022</div>
-              <div class="hack-card-meta commit-mono">Hyderabad · Jul 2022 · 24hrs</div>
-              <span class="hack-badge win">2nd Place</span>
-              <div class="hack-card-desc">Supply chain transparency on a public ledger.</div>
-            </div>
-          </div>
-          <div class="hack-entry" data-place="f">
-            <div class="hack-stem"></div>
-            <div class="hack-card">
-              <div class="hack-card-name">HackJSS 2022</div>
-              <div class="hack-card-meta commit-mono">Mysuru · Mar 2022 · 48hrs</div>
-              <span class="hack-badge finalist">Finalist</span>
-              <div class="hack-card-desc">AR navigation system for visually impaired users.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section id="stats">
-    <div class="stats-grid">
-      <div class="stat-cell">
-        <span class="stat-num" data-target="12" id="stat-0">0</span>
-        <span class="stat-label">projects shipped</span>
-      </div>
-      <div class="stat-cell">
-        <span class="stat-num" data-target="8" id="stat-1">0</span>
-        <span class="stat-label">hackathons entered</span>
-      </div>
-      <div class="stat-cell">
-        <span class="stat-num" data-target="3000" id="stat-2" data-suffix="+">0</span>
-        <span class="stat-label">lines/day</span>
-      </div>
-      <div class="stat-cell">
-        <span class="stat-num" data-target="36" id="stat-3" data-suffix="hrs">0</span>
-        <span class="stat-label">longest build session</span>
-      </div>
-    </div>
-  </section>
-  <section id="manifesto">
-    <div class="manifesto-inner">
-      <p class="manifesto-line" data-line="1">&ldquo;the best time</p>
-      <p class="manifesto-line" data-line="2">to start building</p>
-      <p class="manifesto-line" data-line="3">was yesterday.</p>
-      <p class="manifesto-gap">&nbsp;</p>
-      <p class="manifesto-line" data-line="4">we started</p>
-      <p class="manifesto-line" data-line="5">the day before.&rdquo;</p>
-      <div class="manifesto-rule" id="manifesto-rule"></div>
-      <span class="manifesto-credit commit-mono">— M &amp; Manna &nbsp;·&nbsp; 2024</span>
-    </div>
-  </section>
-  <section id="contact">
-    <div class="container">
-      <h2 class="contact-heading">
-        <span class="contact-line">let's make</span>
-        <span class="contact-line">something worth</span>
-        <span class="contact-line">shipping.</span>
-      </h2>
-      <div class="contact-links">
-        <a href="https://github.com" target="_blank" class="contact-row" data-cursor="open">
-          <span class="contact-row-name">GitHub</span>
-          <span class="contact-row-arrow">→</span>
-          <div class="contact-row-fill"></div>
-        </a>
-        <a href="mailto:mnm@email.com" class="contact-row" data-cursor="open">
-          <span class="contact-row-name">Email</span>
-          <span class="contact-row-arrow">→</span>
-          <div class="contact-row-fill"></div>
-        </a>
-        <a href="https://linkedin.com" target="_blank" class="contact-row" data-cursor="open">
-          <span class="contact-row-name">LinkedIn</span>
-          <span class="contact-row-arrow">→</span>
-          <div class="contact-row-fill"></div>
-        </a>
-      </div>
-      <p class="footer-credit commit-mono">MnM · 2024 · built with conviction and questionable sleep schedules</p>
-    </div>
-  </section>
-</main>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-<script src="main.js"></script>
+    </section>
+  </main>
+  <script type="module" src="/main.js"></script>
 </body>
+
 </html>
