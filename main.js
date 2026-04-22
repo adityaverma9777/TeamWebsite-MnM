@@ -392,6 +392,7 @@ function initProjectCards() {
   if (track) {
     let trackScrollSpeed = 0;
     track.addEventListener('mousemove', (e) => {
+      if (window.innerWidth <= 960) return;
       const rect = track.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const width = rect.width;
@@ -442,6 +443,7 @@ function initHackathons() {
   if (scrollContainer) {
     let scrollSpeed = 0;
     scrollContainer.addEventListener('mousemove', (e) => {
+      if (window.innerWidth <= 960) return;
       const rect = scrollContainer.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const width = rect.width;
@@ -696,6 +698,7 @@ function initHeroThreeJS() {
 
   let mouseX = 0, mouseY = 0, hover = 0;
   container.addEventListener('mousemove', (e) => {
+    if (window.innerWidth <= 960) return;
     const rect = container.getBoundingClientRect();
     mouseX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
     mouseY = -((e.clientY - rect.top) / rect.height) * 2 + 1;
