@@ -703,6 +703,5 @@ window.addEventListener('load', () => {
   initHeroThreeJS();
   initAboutThreeJS();
   initStackThreeJS();
-  initCardThreeJS();
 });
 
