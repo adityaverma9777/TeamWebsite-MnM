@@ -893,10 +893,8 @@ a, button {
   gap: 32px;
   padding: 40px 80px 40px;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  scroll-behavior: smooth;
 }
 .projects-track::-webkit-scrollbar { display: none; }
 .project-card {
@@ -908,7 +906,6 @@ a, button {
   padding: 0;
   display: flex;
   flex-direction: column;
-  scroll-snap-align: start;
   will-change: transform;
   position: relative;
   overflow: hidden;
@@ -925,7 +922,9 @@ a, button {
   flex-shrink: 0;
 }
 .card-image {
-  object-fit: cover;
+  object-fit: contain;
+  padding: 16px;
+  box-sizing: border-box;
 }
 .card-body {
   flex: 1;
@@ -1090,11 +1089,30 @@ a, button {
 }
 .hack-timeline-scroll::-webkit-scrollbar { display: none; }
 .hack-timeline-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 1px;
   background: var(--border);
-  position: relative;
-  margin-bottom: 0;
+  margin: 0;
 }
+.edge-scroll-hint {
+  font-size: 11px;
+  color: var(--ghost);
+  margin-top: 24px;
+  padding-bottom: 24px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+  animation: blinkHint 2.5s infinite ease-in-out;
+}
+@keyframes blinkHint {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.8; }
+}
+.mobile-hint { display: none; }
 .hack-entries {
   display: flex;
   position: relative;
@@ -1106,20 +1124,35 @@ a, button {
   align-items: center;
   width: 290px;
   flex-shrink: 0;
+  cursor: pointer;
+}
+.hack-entry:hover .hack-stem {
+  background: var(--lime) !important;
+}
+.hack-entry:hover .hack-card {
+  border-color: var(--lime);
+  box-shadow: 0 12px 32px rgba(200, 255, 0, 0.15);
 }
 .hack-stem {
   width: 1px;
   background: var(--border);
   transform-origin: top;
   transform: scaleY(0);
+  transition: background 0.35s;
 }
 .hack-entry[data-place="1"] .hack-stem,
-.hack-entry[data-place="2"] .hack-stem {
+.hack-entry[data-place="9"] .hack-stem {
   background: var(--lime);
 }
 .hack-entry[data-place="1"] .hack-stem { height: 180px; }
-.hack-entry[data-place="2"] .hack-stem { height: 120px; }
-.hack-entry[data-place="f"] .hack-stem { height: 80px; }
+.hack-entry[data-place="9"] .hack-stem { height: 130px; }
+.hack-entry[data-place="2"] .hack-stem { height: 110px; }
+.hack-entry[data-place="3"] .hack-stem { height: 150px; }
+.hack-entry[data-place="4"] .hack-stem { height: 80px; }
+.hack-entry[data-place="5"] .hack-stem { height: 160px; }
+.hack-entry[data-place="6"] .hack-stem { height: 100px; }
+.hack-entry[data-place="7"] .hack-stem { height: 140px; }
+.hack-entry[data-place="8"] .hack-stem { height: 60px; }
 .hack-card {
   background: var(--white);
   border: 0.5px solid var(--border);
@@ -1131,6 +1164,7 @@ a, button {
   gap: 8px;
   opacity: 0;
   transform: translateY(10px);
+  transition: border-color 0.35s, box-shadow 0.35s;
 }
 .hack-card-name {
   font-family: 'Clash Display', sans-serif;

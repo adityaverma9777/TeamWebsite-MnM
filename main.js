@@ -75,7 +75,7 @@ function initPreloader() {
   tl.to('#preloader-text', { opacity: 1, duration: 0.1 }, 0.5);
   tl.to('#preloader-text', {
     duration: 0.4,
-    text: { value: 'MNM_SYSTEM_V2.0', delimiter: '' },
+    text: { value: 'loading', delimiter: '' },
     ease: 'none'
   }, 0.5);
   tl.to('#preloader-progress', { width: '100%', duration: 0.8, ease: 'power2.inOut' }, 0.9);
@@ -112,7 +112,6 @@ function initSite() {
   initScrollAnimations();
   initAboutScroll();
   initPersonCards();
-  initStats();
   initManifesto();
   initProjectCards();
   initHackathons();
@@ -158,13 +157,6 @@ function initScrollAnimations() {
       ease: 'expo.out',
       scrollTrigger: { trigger: el, start: 'top 88%', once: true }
     });
-  });
-  gsap.from('.about-body', {
-    y: 24,
-    opacity: 0,
-    duration: 0.65,
-    ease: 'expo.out',
-    scrollTrigger: { trigger: '.about-body', start: 'top 85%', once: true }
   });
   gsap.utils.toArray('.stack-line').forEach((el, i) => {
     gsap.from(el, {
@@ -313,34 +305,7 @@ function initPersonCards() {
     drawWater();
   });
 }
-function initStats() {
-  document.querySelectorAll('.stat-num').forEach((el, i) => {
-    const target = parseInt(el.dataset.target);
-    const suffix = el.dataset.suffix || '';
-    const obj = { val: 0 };
-    ScrollTrigger.create({
-      trigger: el,
-      start: 'top 75%',
-      once: true,
-      onEnter: () => {
-        gsap.to(obj, {
-          val: target,
-          duration: 2.2,
-          ease: 'expo.out',
-          snap: { val: 1 },
-          onUpdate: () => { el.textContent = obj.val.toLocaleString() + suffix; },
-          onComplete: () => {
-            if (i === 0) {
-              gsap.timeline()
-                .to(el, { color: '#C8FF00', duration: 0.4, delay: 0.1 })
-                .to(el, { color: '#0A0A0A', duration: 0.6 });
-            }
-          }
-        });
-      }
-    });
-  });
-}
+
 function initManifesto() {
   document.querySelectorAll('.manifesto-line').forEach((el, i) => {
     ScrollTrigger.create({
@@ -371,18 +336,16 @@ function initManifesto() {
 }
 function initProjectCards() {
   const track = document.getElementById('projects-track');
-  const dots = document.querySelectorAll('.proj-dot');
   const cards = document.querySelectorAll('.project-card');
-  let current = 0;
-  function goTo(idx) {
-    current = Math.max(0, Math.min(idx, cards.length - 1));
-    cards[current].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-    dots.forEach((d, i) => d.classList.toggle('active', i === current));
-  }
-  document.getElementById('proj-prev').addEventListener('click', () => goTo(current - 1));
-  document.getElementById('proj-next').addEventListener('click', () => goTo(current + 1));
-  dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
   cards.forEach(card => {
+    const link = card.querySelector('.card-link');
+    if (link) {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', (e) => {
+        if (e.target !== link) link.click();
+      });
+    }
+
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
       const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
@@ -393,6 +356,33 @@ function initProjectCards() {
       gsap.to(card, { rotateX: 0, rotateY: 0, scale: 1, duration: 0.5, ease: 'expo.out' });
     });
   });
+
+  if (track) {
+    let trackScrollSpeed = 0;
+    track.addEventListener('mousemove', (e) => {
+      const rect = track.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const width = rect.width;
+      const edgeSize = 150; 
+      if (x > width - edgeSize) {
+        trackScrollSpeed = ((x - (width - edgeSize)) / edgeSize) * 18;
+      } else if (x < edgeSize) {
+        trackScrollSpeed = -((edgeSize - x) / edgeSize) * 18;
+      } else {
+        trackScrollSpeed = 0;
+      }
+    });
+    track.addEventListener('mouseleave', () => {
+      trackScrollSpeed = 0;
+    });
+    function trackScrollLoop() {
+      if (trackScrollSpeed !== 0) {
+        track.scrollLeft += trackScrollSpeed;
+      }
+      requestAnimationFrame(trackScrollLoop);
+    }
+    trackScrollLoop();
+  }
 }
 function initHackathons() {
   const watermark = document.getElementById('hack-watermark');
@@ -415,6 +405,34 @@ function initHackathons() {
       }
     });
   });
+
+  const scrollContainer = document.getElementById('hack-timeline-scroll');
+  if (scrollContainer) {
+    let scrollSpeed = 0;
+    scrollContainer.addEventListener('mousemove', (e) => {
+      const rect = scrollContainer.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const width = rect.width;
+      const edgeSize = 150; 
+      if (x > width - edgeSize) {
+        scrollSpeed = ((x - (width - edgeSize)) / edgeSize) * 18;
+      } else if (x < edgeSize) {
+        scrollSpeed = -((edgeSize - x) / edgeSize) * 18;
+      } else {
+        scrollSpeed = 0;
+      }
+    });
+    scrollContainer.addEventListener('mouseleave', () => {
+      scrollSpeed = 0;
+    });
+    function scrollLoop() {
+      if (scrollSpeed !== 0) {
+        scrollContainer.scrollLeft += scrollSpeed;
+      }
+      requestAnimationFrame(scrollLoop);
+    }
+    scrollLoop();
+  }
 }
 function initNavHighlight() {
   const links = document.querySelectorAll('.nav-link');
@@ -703,5 +721,53 @@ window.addEventListener('load', () => {
   initHeroThreeJS();
   initAboutThreeJS();
   initStackThreeJS();
+  initStats();
 });
 
+
+function initStats() {
+  const cells = document.querySelectorAll('.stat-cell');
+  if (!cells.length) return;
+
+  gsap.fromTo(cells,
+    { opacity: 0, y: 28 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      ease: 'power2.out',
+      stagger: 0.15,
+      scrollTrigger: {
+        trigger: '#stats',
+        start: 'top 80%',
+        once: true
+      }
+    }
+  );
+
+  const targets = document.querySelectorAll('[data-target]');
+  targets.forEach(el => {
+    const raw = el.getAttribute('data-target');
+    const end = parseFloat(raw);
+    if (isNaN(end)) return;
+
+    const counter = { val: 0 };
+
+    gsap.fromTo(counter,
+      { val: 0 },
+      {
+        val: end,
+        duration: end === 0 ? 0.01 : 1.4,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '#stats',
+          start: 'top 80%',
+          once: true
+        },
+        onUpdate() {
+          el.textContent = Math.round(counter.val);
+        }
+      }
+    );
+  });
+}
