@@ -581,17 +581,17 @@
           <span class="contact-line">shipping.</span>
         </h2>
         <div class="contact-links">
-          <a href="#" onclick="window.open('https://github.com/adityaverma9777', '_blank'); window.open('https://github.com/ManikaKutiyal', '_blank'); return false;" class="contact-row" data-cursor="open">
+          <a href="#" onclick="openProfileModal('GitHub'); return false;" class="contact-row" data-cursor="open">
             <span class="contact-row-name">GitHub</span>
             <span class="contact-row-arrow">→</span>
             <div class="contact-row-fill"></div>
           </a>
-          <a href="mailto:mnm@email.com" class="contact-row" data-cursor="open">
+          <a href="mailto:contact.weareinventors@gmail.com" class="contact-row" data-cursor="open">
             <span class="contact-row-name">Email</span>
             <span class="contact-row-arrow">→</span>
             <div class="contact-row-fill"></div>
           </a>
-          <a href="#" onclick="window.open('https://www.linkedin.com/in/adityaverma9777/', '_blank'); window.open('https://www.linkedin.com/in/manika-kutiyal/', '_blank'); return false;" class="contact-row" data-cursor="open">
+          <a href="#" onclick="openProfileModal('LinkedIn'); return false;" class="contact-row" data-cursor="open">
             <span class="contact-row-name">LinkedIn</span>
             <span class="contact-row-arrow">→</span>
             <div class="contact-row-fill"></div>
@@ -600,6 +600,19 @@
         <p class="footer-credit commit-mono">MnM · 2026 · built with conviction and questionable sleep schedules</p>
       </div>
     </section>
+
+    <div id="profile-modal-overlay" class="profile-modal-overlay">
+      <div class="profile-modal">
+        <button id="profile-modal-close" class="profile-modal-close">&times;</button>
+        <span class="commit-mono modal-label">// select profile</span>
+        <h3 class="modal-title" id="modal-platform-name">GitHub</h3>
+        <div class="modal-buttons">
+          <a href="#" id="modal-link-aditya" class="btn-pill" target="_blank">Aditya Verma</a>
+          <a href="#" id="modal-link-manika" class="btn-pill" target="_blank">Manika Kutiyal</a>
+        </div>
+      </div>
+    </div>
+
   </main>
   <script type="module" src="/main.js"></script>
 </body>

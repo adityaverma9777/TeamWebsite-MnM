@@ -958,3 +958,39 @@ function initStats() {
     );
   });
 }
+
+// Profile Modal Logic
+window.openProfileModal = function(platform) {
+  const overlay = document.getElementById('profile-modal-overlay');
+  const title = document.getElementById('modal-platform-name');
+  const aditya = document.getElementById('modal-link-aditya');
+  const manika = document.getElementById('modal-link-manika');
+
+  if (platform === 'GitHub') {
+    title.textContent = 'GitHub';
+    aditya.href = 'https://github.com/adityaverma9777';
+    manika.href = 'https://github.com/ManikaKutiyal';
+  } else {
+    title.textContent = 'LinkedIn';
+    aditya.href = 'https://www.linkedin.com/in/adityaverma9777/';
+    manika.href = 'https://www.linkedin.com/in/manika-kutiyal/';
+  }
+
+  overlay.classList.add('active');
+};
+
+document.getElementById('profile-modal-close').addEventListener('click', () => {
+  document.getElementById('profile-modal-overlay').classList.remove('active');
+});
+
+document.getElementById('profile-modal-overlay').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) {
+    e.currentTarget.classList.remove('active');
+  }
+});
+
+document.querySelectorAll('.modal-buttons .btn-pill').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.getElementById('profile-modal-overlay').classList.remove('active');
+  });
+});

@@ -1368,3 +1368,96 @@ a, button {
   .stack-hero { padding: 0 24px; }
   .stack-grid-section { padding: 0 24px; }
 }
+
+/* PROFILE MODAL */
+.profile-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease-out);
+}
+.profile-modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.profile-modal {
+  background: var(--black);
+  color: var(--white);
+  padding: 48px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 420px;
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.4s var(--ease-out);
+  box-shadow: 0 32px 64px auto rgba(0,0,0,0.15);
+}
+.profile-modal-overlay.active .profile-modal {
+  transform: translateY(0);
+}
+.profile-modal-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.4);
+  font-size: 32px;
+  cursor: pointer;
+  line-height: 1;
+  font-family: sans-serif;
+  transition: color 0.2s;
+}
+.profile-modal-close:hover {
+  color: var(--white);
+}
+.modal-label {
+  display: block;
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.modal-title {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 36px;
+  font-weight: 500;
+  margin-bottom: 32px;
+  letter-spacing: -0.02em;
+}
+.modal-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.modal-buttons .btn-pill {
+  width: 100%;
+  justify-content: space-between;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: #111;
+  color: var(--white);
+  height: 64px;
+  font-size: 17px;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+.modal-buttons .btn-pill:hover {
+  background: var(--white);
+  color: var(--black);
+  border-color: var(--white);
+}
+.modal-buttons .btn-pill::after {
+  content: "↗";
+  font-family: 'Commit Mono', monospace;
+  font-size: 14px;
+  opacity: 0.5;
+}
