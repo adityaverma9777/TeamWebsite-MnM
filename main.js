@@ -496,56 +496,211 @@ function initHeroDisplacement() {
 function initHeroThreeJS() {
   const container = document.getElementById('hero-3d');
   if (!container) return;
-  const w = Math.min(container.offsetWidth, 520);
-  const h = Math.min(container.offsetHeight, 520);
+  const COUNT = 4000;
+  const w = 540;
+  const h = 540;
+  const dpr = Math.min(window.devicePixelRatio, 2);
+
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setPixelRatio(dpr);
   renderer.setSize(w, h);
   renderer.setClearColor(0x000000, 0);
   container.appendChild(renderer.domElement);
+
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(42, w / h, 0.1, 100);
-  camera.position.z = 5.5;
-  const geometry = new THREE.TorusKnotGeometry(1, 0.32, 180, 20);
-  const material = new THREE.MeshPhongMaterial({
-    color: 0xD8D8D8,
-    specular: 0xFFFFFF,
-    shininess: 220,
-    emissive: 0x111111,
-    emissiveIntensity: 0.15
+  const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
+  const baseZ = 5.8;
+  camera.position.z = baseZ;
+
+  const positions = new Float32Array(COUNT * 3);
+  const randoms = new Float32Array(COUNT);
+  const phaseArr = new Float32Array(COUNT);
+
+  for (let i = 0; i < COUNT; i++) {
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.acos(Math.random() * 2 - 1);
+    const r = 1.4;
+    positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+    positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+    positions[i * 3 + 2] = r * Math.cos(phi);
+    randoms[i] = Math.random();
+    phaseArr[i] = Math.random() * Math.PI * 2;
+  }
+
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geo.setAttribute('aRandom', new THREE.BufferAttribute(randoms, 1));
+  geo.setAttribute('aPhase', new THREE.BufferAttribute(phaseArr, 1));
+
+  const vertexShader = `
+    uniform float uTime;
+    uniform float uPixelRatio;
+    uniform vec3 uMouse;
+    uniform float uHover;
+    attribute float aRandom;
+    attribute float aPhase;
+    varying float vEdge;
+    varying float vDepth;
+    varying float vNoise;
+
+    vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+    vec4 mod289(vec4 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+    vec4 permute(vec4 x) { return mod289(((x * 34.0) + 10.0) * x); }
+    vec4 taylorInvSqrt(vec4 r) { return 1.79284291400159 - 0.85373472095314 * r; }
+
+    float snoise(vec3 v) {
+      const vec2 C = vec2(1.0 / 6.0, 1.0 / 3.0);
+      const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
+      vec3 i = floor(v + dot(v, C.yyy));
+      vec3 x0 = v - i + dot(i, C.xxx);
+      vec3 g = step(x0.yzx, x0.xyz);
+      vec3 l = 1.0 - g;
+      vec3 i1 = min(g.xyz, l.zxy);
+      vec3 i2 = max(g.xyz, l.zxy);
+      vec3 x1 = x0 - i1 + C.xxx;
+      vec3 x2 = x0 - i2 + C.yyy;
+      vec3 x3 = x0 - D.yyy;
+      i = mod289(i);
+      vec4 p = permute(permute(permute(
+        i.z + vec4(0.0, i1.z, i2.z, 1.0))
+        + i.y + vec4(0.0, i1.y, i2.y, 1.0))
+        + i.x + vec4(0.0, i1.x, i2.x, 1.0));
+      float n_ = 0.142857142857;
+      vec3 ns = n_ * D.wyz - D.xzx;
+      vec4 j = p - 49.0 * floor(p * ns.z * ns.z);
+      vec4 x_ = floor(j * ns.z);
+      vec4 y_ = floor(j - 7.0 * x_);
+      vec4 x = x_ * ns.x + ns.yyyy;
+      vec4 y = y_ * ns.x + ns.yyyy;
+      vec4 h = 1.0 - abs(x) - abs(y);
+      vec4 b0 = vec4(x.xy, y.xy);
+      vec4 b1 = vec4(x.zw, y.zw);
+      vec4 s0 = floor(b0) * 2.0 + 1.0;
+      vec4 s1 = floor(b1) * 2.0 + 1.0;
+      vec4 sh = -step(h, vec4(0.0));
+      vec4 a0 = b0.xzyw + s0.xzyw * sh.xxyy;
+      vec4 a1 = b1.xzyw + s1.xzyw * sh.zzww;
+      vec3 p0 = vec3(a0.xy, h.x);
+      vec3 p1 = vec3(a0.zw, h.y);
+      vec3 p2 = vec3(a1.xy, h.z);
+      vec3 p3 = vec3(a1.zw, h.w);
+      vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2,p2), dot(p3,p3)));
+      p0 *= norm.x; p1 *= norm.y; p2 *= norm.z; p3 *= norm.w;
+      vec4 m = max(0.5 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
+      m = m * m;
+      return 105.0 * dot(m * m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
+    }
+
+    void main() {
+      vec3 pos = position;
+      vec3 dir = normalize(pos);
+
+      float n1 = snoise(pos * 1.5 + uTime * 0.4) * 0.35;
+      float n2 = snoise(pos * 3.0 - uTime * 0.6) * 0.15;
+      float n3 = snoise(pos * 6.0 + uTime * 1.0) * 0.05;
+      float noise = n1 + n2 + n3;
+
+      float breath = sin(uTime * 1.2 + aPhase) * 0.08;
+
+      vec3 toMouse = uMouse - pos;
+      float mouseDist = length(toMouse);
+      float mouseInfluence = smoothstep(2.5, 0.0, mouseDist) * uHover;
+      float ripple = sin(mouseDist * 5.0 - uTime * 3.0) * 0.15 * mouseInfluence;
+
+      float displacement = noise + breath + ripple;
+      pos += dir * displacement;
+
+      vec4 mvPos = modelViewMatrix * vec4(pos, 1.0);
+      gl_Position = projectionMatrix * mvPos;
+
+      float depth = -mvPos.z;
+      float sizePulse = 1.0 + sin(aPhase + uTime * 2.5) * 0.2;
+      gl_PointSize = (4.0 + aRandom * 3.0) * uPixelRatio * sizePulse * (4.0 / max(depth, 0.5));
+
+      vEdge = 1.0 - abs(dot(dir, vec3(0.0, 0.0, 1.0)));
+      vDepth = clamp(depth * 0.15, 0.0, 1.0);
+      vNoise = noise;
+    }
+  `;
+
+  const fragmentShader = `
+    varying float vEdge;
+    varying float vDepth;
+    varying float vNoise;
+
+    void main() {
+      float dist = length(gl_PointCoord - vec2(0.5));
+      if (dist > 0.5) discard;
+      float alpha = 1.0 - smoothstep(0.0, 0.5, dist);
+
+      vec3 coreColor = vec3(0.04, 0.04, 0.06);
+      vec3 limeGlow = vec3(0.78, 1.0, 0.0);
+
+      float edgePow = pow(vEdge, 2.5);
+      vec3 color = mix(coreColor, limeGlow, edgePow * 0.7);
+      color += limeGlow * edgePow * 0.4;
+
+      alpha *= 0.92;
+
+      gl_FragColor = vec4(color, alpha);
+    }
+  `;
+
+  const mat = new THREE.ShaderMaterial({
+    uniforms: {
+      uTime: { value: 0 },
+      uPixelRatio: { value: dpr },
+      uMouse: { value: new THREE.Vector3(0, 0, 0) },
+      uHover: { value: 0 }
+    },
+    vertexShader,
+    fragmentShader,
+    transparent: true,
+    depthWrite: false
   });
-  const mesh = new THREE.Mesh(geometry, material);
-  scene.add(mesh);
-  scene.add(new THREE.AmbientLight(0xFFFFFF, 0.5));
-  const dir1 = new THREE.DirectionalLight(0xFFFFFF, 2.5);
-  dir1.position.set(4, 5, 3);
-  scene.add(dir1);
-  const dir2 = new THREE.DirectionalLight(0xCCDDFF, 1.2);
-  dir2.position.set(-4, -2, 2);
-  scene.add(dir2);
-  const pt = new THREE.PointLight(0xFFFFFF, 1.0, 20);
-  pt.position.set(0, 3, 4);
-  scene.add(pt);
-  mesh.scale.set(0, 0, 0);
-  gsap.to(mesh.scale, { x: 1, y: 1, z: 1, duration: 1.4, ease: 'elastic.out(1, 0.5)', delay: 0.1 });
-  let targetRotX = 0, targetRotY = 0;
-  window.addEventListener('mousemove', (e) => {
-    targetRotX = ((e.clientY / window.innerHeight) - 0.5) * 0.5;
-    targetRotY = ((e.clientX / window.innerWidth) - 0.5) * 0.5;
+
+  const points = new THREE.Points(geo, mat);
+  scene.add(points);
+
+  let mouseX = 0, mouseY = 0, hover = 0;
+  container.addEventListener('mousemove', (e) => {
+    const rect = container.getBoundingClientRect();
+    mouseX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+    mouseY = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+    hover = 1;
   });
-  let autoX = 0, autoY = 0;
+  container.addEventListener('mouseleave', () => { hover = 0; });
+
+  const targetMouse = new THREE.Vector3();
+  let smoothHover = 0;
+
+  points.scale.set(0, 0, 0);
+  gsap.to(points.scale, { x: 1, y: 1, z: 1, duration: 1.6, ease: 'elastic.out(1, 0.5)', delay: 0.2 });
+
+  let autoY = 0;
   (function animate() {
     requestAnimationFrame(animate);
-    autoX += 0.004;
-    autoY += 0.006;
-    mesh.rotation.x = autoX + (targetRotX - autoX) * 0.02;
-    mesh.rotation.y = autoY + (targetRotY - autoY) * 0.02;
+    mat.uniforms.uTime.value += 0.008;
+    autoY += 0.003;
+
+    targetMouse.x += (mouseX * 2 - targetMouse.x) * 0.06;
+    targetMouse.y += (mouseY * 2 - targetMouse.y) * 0.06;
+    smoothHover += (hover - smoothHover) * 0.05;
+
+    mat.uniforms.uMouse.value.copy(targetMouse);
+    mat.uniforms.uHover.value = smoothHover;
+
+    points.rotation.y = autoY + targetMouse.x * 0.15;
+    points.rotation.x = targetMouse.y * 0.1;
+
     renderer.render(scene, camera);
   })();
+
   window.addEventListener('resize', () => {
-    const nw = Math.min(container.offsetWidth, 520);
-    const nh = Math.min(container.offsetHeight, 520);
-    camera.aspect = nw / nh;
+    const nw = container.offsetWidth || 540;
+    const nh = nw;
+    camera.aspect = 1;
+    camera.position.z = baseZ;
     camera.updateProjectionMatrix();
     renderer.setSize(nw, nh);
   });

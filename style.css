@@ -359,15 +359,13 @@ a, button {
   padding: 0;
 }
 .hero-3d-col {
-  flex: 0 0 44%;
-  max-width: 44%;
-  height: 100%;
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 #hero-3d {
-  width: 100%;
+  width: 540px;
   height: 540px;
   display: flex;
   align-items: center;
@@ -375,7 +373,6 @@ a, button {
 }
 #hero-3d canvas {
   display: block;
-  max-width: 100%;
 }
 .hero-label {
   display: block;
