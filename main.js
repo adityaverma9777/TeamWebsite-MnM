@@ -308,6 +308,30 @@ function initPersonCards() {
 }
 
 function initManifesto() {
+  const section = document.getElementById('manifesto');
+
+  gsap.to('body', {
+    backgroundColor: '#050505',
+    ease: 'none',
+    scrollTrigger: {
+      trigger: section,
+      start: 'top 80%',
+      end: 'top 20%',
+      scrub: 0.6
+    }
+  });
+
+  gsap.to('body', {
+    backgroundColor: '#FFFFFF',
+    ease: 'none',
+    scrollTrigger: {
+      trigger: section,
+      start: 'bottom 80%',
+      end: 'bottom 20%',
+      scrub: 0.6
+    }
+  });
+
   document.querySelectorAll('.manifesto-line').forEach((el, i) => {
     ScrollTrigger.create({
       trigger: el,
@@ -323,6 +347,7 @@ function initManifesto() {
       }
     });
   });
+
   ScrollTrigger.create({
     trigger: '.manifesto-rule',
     start: 'top 80%',
@@ -751,6 +776,31 @@ function initAboutThreeJS() {
   })();
 }
 function initStackThreeJS() {
+  const section = document.getElementById('stack');
+  if (section) {
+    gsap.to('body', {
+      backgroundColor: '#050505',
+      ease: 'none',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 80%',
+        end: 'top 20%',
+        scrub: 0.6
+      }
+    });
+
+    gsap.to('body', {
+      backgroundColor: '#FFFFFF',
+      ease: 'none',
+      scrollTrigger: {
+        trigger: section,
+        start: 'bottom 80%',
+        end: 'bottom 20%',
+        scrub: 0.6
+      }
+    });
+  }
+
   const canvas = document.getElementById('stack-canvas');
   if (!canvas) return;
   const w = 360, h = 360;

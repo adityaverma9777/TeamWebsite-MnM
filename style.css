@@ -672,10 +672,8 @@ a, button {
 }
 
 #stack {
-  background: var(--void);
   padding: 100px 0 120px;
   overflow: hidden;
-  will-change: transform;
 }
 
 .stack-hero {
@@ -869,8 +867,6 @@ a, button {
 }
 #projects {
   padding: 120px 0 80px;
-  background: var(--white);
-  will-change: transform;
 }
 .projects-header {
   margin-bottom: 24px;
@@ -1238,7 +1234,6 @@ a, button {
   display: flex;
   align-items: center;
   justify-content: center;
-  will-change: transform;
 }
 .manifesto-inner {
   max-width: 860px;
