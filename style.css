@@ -672,6 +672,7 @@ a, button {
 }
 
 #stack {
+  background: var(--void);
   padding: 100px 0 120px;
   overflow: hidden;
 }
