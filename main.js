@@ -56,11 +56,12 @@ document.querySelectorAll('[data-cursor]').forEach(el => {
   });
 });
 document.querySelectorAll('.magnetic, .navbar-cta').forEach(el => {
+  const qx = gsap.quickTo(el, 'x', { duration: 0.4, ease: 'power2.out' });
+  const qy = gsap.quickTo(el, 'y', { duration: 0.4, ease: 'power2.out' });
   el.addEventListener('mousemove', (e) => {
     const rect = el.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    gsap.to(el, { x: x * 0.32, y: y * 0.32, duration: 0.35, ease: 'power2.out' });
+    qx((e.clientX - rect.left - rect.width / 2) * 0.32);
+    qy((e.clientY - rect.top - rect.height / 2) * 0.32);
   });
   el.addEventListener('mouseleave', () => {
     gsap.to(el, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.5)' });
@@ -346,11 +347,17 @@ function initProjectCards() {
       });
     }
 
+    const qRotX = gsap.quickTo(card, 'rotateX', { duration: 0.45, ease: 'power2.out' });
+    const qRotY = gsap.quickTo(card, 'rotateY', { duration: 0.45, ease: 'power2.out' });
+    const qScale = gsap.quickTo(card, 'scale', { duration: 0.45, ease: 'power2.out' });
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
       const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
       const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
-      gsap.to(card, { rotateX: y * -7, rotateY: x * 7, scale: 1.02, duration: 0.4, ease: 'power2.out', transformPerspective: 900 });
+      gsap.set(card, { transformPerspective: 900 });
+      qRotX(y * -7);
+      qRotY(x * 7);
+      qScale(1.02);
     });
     card.addEventListener('mouseleave', () => {
       gsap.to(card, { rotateX: 0, rotateY: 0, scale: 1, duration: 0.5, ease: 'expo.out' });
