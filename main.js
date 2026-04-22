@@ -141,9 +141,9 @@ function initNavbarCollapse() {
       collapsed = false;
       lastScrollY = currentY;
     } else if (diff > 0 && currentY > lastScrollY) {
-       lastScrollY = currentY;
+      lastScrollY = currentY;
     } else if (diff < 0 && currentY < lastScrollY) {
-       lastScrollY = currentY;
+      lastScrollY = currentY;
     }
   });
 }
@@ -395,7 +395,7 @@ function initProjectCards() {
       const rect = track.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const width = rect.width;
-      const edgeSize = 150; 
+      const edgeSize = 150;
       if (x > width - edgeSize) {
         trackScrollSpeed = ((x - (width - edgeSize)) / edgeSize) * 18;
       } else if (x < edgeSize) {
@@ -445,7 +445,7 @@ function initHackathons() {
       const rect = scrollContainer.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const width = rect.width;
-      const edgeSize = 150; 
+      const edgeSize = 150;
       if (x > width - edgeSize) {
         scrollSpeed = ((x - (width - edgeSize)) / edgeSize) * 18;
       } else if (x < edgeSize) {
@@ -468,7 +468,7 @@ function initHackathons() {
 }
 function initNavHighlight() {
   const links = document.querySelectorAll('.nav-link');
-  ['hero','projects','about','contact'].forEach(id => {
+  ['hero', 'projects', 'about', 'contact'].forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
     ScrollTrigger.create({
@@ -960,7 +960,7 @@ function initStats() {
 }
 
 // Profile Modal Logic
-window.openProfileModal = function(platform) {
+window.openProfileModal = function (platform) {
   const overlay = document.getElementById('profile-modal-overlay');
   const title = document.getElementById('modal-platform-name');
   const aditya = document.getElementById('modal-link-aditya');
@@ -968,12 +968,13 @@ window.openProfileModal = function(platform) {
 
   if (platform === 'GitHub') {
     title.textContent = 'GitHub';
-    aditya.href = 'https://github.com/adityaverma9777';
     manika.href = 'https://github.com/ManikaKutiyal';
+    aditya.href = 'https://github.com/adityaverma9777';
+
   } else {
     title.textContent = 'LinkedIn';
-    aditya.href = 'https://www.linkedin.com/in/adityaverma9777/';
     manika.href = 'https://www.linkedin.com/in/manika-kutiyal/';
+    aditya.href = 'https://www.linkedin.com/in/adityaverma9777/';
   }
 
   overlay.classList.add('active');
