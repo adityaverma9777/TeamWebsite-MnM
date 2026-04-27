@@ -531,8 +531,8 @@ function initHeroThreeJS() {
   const container = document.getElementById('hero-3d');
   if (!container) return;
   const COUNT = 4000;
-  const w = 540;
-  const h = 540;
+  const w = container.offsetWidth || 540;
+  const h = container.offsetHeight || 540;
   const dpr = Math.min(window.devicePixelRatio, 2);
 
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -549,6 +549,8 @@ function initHeroThreeJS() {
   const positions = new Float32Array(COUNT * 3);
   const randoms = new Float32Array(COUNT);
   const phaseArr = new Float32Array(COUNT);
+  const explodeDirs = new Float32Array(COUNT * 3);
+  const explodeSpeeds = new Float32Array(COUNT);
 
   for (let i = 0; i < COUNT; i++) {
     const theta = Math.random() * Math.PI * 2;
@@ -559,20 +561,31 @@ function initHeroThreeJS() {
     positions[i * 3 + 2] = r * Math.cos(phi);
     randoms[i] = Math.random();
     phaseArr[i] = Math.random() * Math.PI * 2;
+    const et = Math.random() * Math.PI * 2;
+    const ep = Math.acos(Math.random() * 2 - 1);
+    explodeDirs[i * 3]     = Math.sin(ep) * Math.cos(et);
+    explodeDirs[i * 3 + 1] = Math.sin(ep) * Math.sin(et);
+    explodeDirs[i * 3 + 2] = Math.cos(ep);
+    explodeSpeeds[i] = 0.55 + Math.random() * 0.9;
   }
 
   const geo = new THREE.BufferGeometry();
   geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
   geo.setAttribute('aRandom', new THREE.BufferAttribute(randoms, 1));
   geo.setAttribute('aPhase', new THREE.BufferAttribute(phaseArr, 1));
+  geo.setAttribute('aExplodeDir', new THREE.BufferAttribute(explodeDirs, 3));
+  geo.setAttribute('aExplodeSpeed', new THREE.BufferAttribute(explodeSpeeds, 1));
 
   const vertexShader = `
     uniform float uTime;
     uniform float uPixelRatio;
     uniform vec3 uMouse;
     uniform float uHover;
+    uniform float uExplodePhase;
     attribute float aRandom;
     attribute float aPhase;
+    attribute vec3 aExplodeDir;
+    attribute float aExplodeSpeed;
     varying float vEdge;
     varying float vDepth;
     varying float vNoise;
@@ -643,6 +656,8 @@ function initHeroThreeJS() {
 
       float displacement = noise + breath + ripple;
       pos += dir * displacement;
+      float burst = sin(clamp(uExplodePhase, 0.0, 1.0) * 3.14159265);
+      pos += aExplodeDir * (aExplodeSpeed * burst * 6.5);
 
       vec4 mvPos = modelViewMatrix * vec4(pos, 1.0);
       gl_Position = projectionMatrix * mvPos;
@@ -650,6 +665,7 @@ function initHeroThreeJS() {
       float depth = -mvPos.z;
       float sizePulse = 1.0 + sin(aPhase + uTime * 2.5) * 0.2;
       gl_PointSize = (4.0 + aRandom * 3.0) * uPixelRatio * sizePulse * (4.0 / max(depth, 0.5));
+      gl_PointSize *= (1.0 + burst * 0.55);
 
       vEdge = 1.0 - abs(dot(dir, vec3(0.0, 0.0, 1.0)));
       vDepth = clamp(depth * 0.15, 0.0, 1.0);
@@ -685,7 +701,8 @@ function initHeroThreeJS() {
       uTime: { value: 0 },
       uPixelRatio: { value: dpr },
       uMouse: { value: new THREE.Vector3(0, 0, 0) },
-      uHover: { value: 0 }
+      uHover: { value: 0 },
+      uExplodePhase: { value: 0 }
     },
     vertexShader,
     fragmentShader,
@@ -705,6 +722,59 @@ function initHeroThreeJS() {
     hover = 1;
   });
   container.addEventListener('mouseleave', () => { hover = 0; });
+
+  if (window.innerWidth <= 960) {
+    container.style.pointerEvents = 'auto';
+    let exploding = false;
+    const cvs = renderer.domElement;
+    container.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      if (exploding) return;
+      exploding = true;
+      lenis.stop();
+      document.body.style.overflow = 'hidden';
+      mat.uniforms.uExplodePhase.value = 0;
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const rect = container.getBoundingClientRect();
+      const origH = rect.height || 220;
+      const explodeZ = baseZ * (vh / origH);
+      cvs.style.cssText = `position:fixed;top:0;left:0;width:${vw}px;height:${vh}px;z-index:500;pointer-events:none;`;
+      renderer.setSize(vw, vh);
+      camera.position.z = explodeZ;
+      camera.aspect = vw / vh;
+      camera.updateProjectionMatrix();
+      const halfH = Math.tan((camera.fov * Math.PI) / 360) * explodeZ;
+      const halfW = halfH * camera.aspect;
+      const ndcX = ((rect.left + rect.width * 0.5) / vw) * 2 - 1;
+      const ndcY = 1 - ((rect.top + rect.height * 0.5) / vh) * 2;
+      points.position.set(ndcX * halfW, ndcY * halfH, 0);
+      const tl = gsap.timeline({
+        onComplete: () => {
+          mat.uniforms.uExplodePhase.value = 0;
+          requestAnimationFrame(() => {
+            points.position.set(0, 0, 0);
+            camera.position.z = baseZ;
+            camera.aspect = 1;
+            camera.updateProjectionMatrix();
+            const nw = container.offsetWidth || 240;
+            const nh = container.offsetHeight || 220;
+            renderer.setSize(nw, nh);
+            cvs.style.position = '';
+            cvs.style.top = '';
+            cvs.style.left = '';
+            cvs.style.zIndex = '';
+            cvs.style.pointerEvents = '';
+            lenis.start();
+            document.body.style.overflow = '';
+            exploding = false;
+          });
+        }
+      });
+      tl.to(mat.uniforms.uExplodePhase, { value: 0.5, duration: 0.2, ease: 'power4.out' });
+      tl.to(mat.uniforms.uExplodePhase, { value: 1.0, duration: 1.75, ease: 'power2.inOut' });
+    }, { passive: false });
+  }
 
   const targetMouse = new THREE.Vector3();
   let smoothHover = 0;
