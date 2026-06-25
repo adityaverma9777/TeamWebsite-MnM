@@ -48,6 +48,13 @@ An open-source AI gateway that gives developers free and uncapped access to larg
 
 - Live: [edyx.in](https://www.edyx.in/)
 
+### StreetIQ
+
+StreetIQ is a next-generation navigation and road monitoring platform overlayed with live crowdsourced hazard data.
+
+- GitHub: [StreetIQ](https://github.com/adityaverma9777/StreetIQ)
+- Live: [StreetIQ](https://streetiqmaps.vercel.app/)
+
 ### CortexFlow
 
 Voice and text intake with deterministic linguistic biomarker extraction and AI-assisted interpretation.
@@ -72,13 +79,6 @@ An OSINT dashboard for real-time satellite constellation and NEO telemetry monit
 A learning-focused IDE built on VS Code with an integrated LMS for HTML, Python, and Java.
 
 - Repo / Live Link: [CodeBendr IDE](https://github.com/adityaverma9777/CodeBendr-WEBSITE-RELEASES-)
-
-### StreetIQ
-
-StreetIQ is a next-generation navigation and road monitoring platform overlayed with live crowdsourced hazard data.
-
-- GitHub: [StreetIQ](https://github.com/adityaverma9777/StreetIQ)
-- Live: [StreetIQ](https://streetiqmaps.vercel.app/)
 
 ## Competition Record
 
