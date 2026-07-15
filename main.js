@@ -68,7 +68,7 @@ document.querySelectorAll('.magnetic, .navbar-cta').forEach(el => {
   });
 });
 document.getElementById('hero-cta').addEventListener('click', () => {
-  lenis.scrollTo(document.getElementById('projects'));
+  lenis.scrollTo(document.getElementById('contributors'));
 });
 function initPreloader() {
   const tl = gsap.timeline({ onComplete: initSite });
