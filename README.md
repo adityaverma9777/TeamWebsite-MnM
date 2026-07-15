@@ -1,101 +1,30 @@
-# MnM
+# Makers Need More (MnM)
 
 ![MnM README Banner](public/readme%20picture.png)
 
-This repository belongs to us, **Manika Kutiyal** and **Aditya Verma**.
+MnM is a student-run organization and community platform that supports and builds open-source projects. 
 
-MnM is our 2026 portfolio site. It reflects how we work: two people, unreasonable output, building at the speed of thought and shipping before we're ready. We write code to create impact.
+*Ideas are easy. Execution isn't. That's where MnM comes in as a community of students, by students, to power up and build solutions globally.*
 
-## Who We Are
+## Our Manifesto
 
-### Manika Kutiyal
+> "the best time to start building was yesterday. we started the day before."
 
-- BCA, Eternal University, Himachal Pradesh
-- GitHub: [ManikaKutiyal](https://github.com/ManikaKutiyal)
-- LinkedIn: [manika-kutiyal](https://www.linkedin.com/in/manika-kutiyal/)
+We write code to create an impact. With unreasonable output, we build at the speed of thought and ship before we're ready.
 
-### Aditya Verma
+## Platform Features
 
-- BCA, LPU, Punjab
-- GitHub: [adityaverma9777](https://github.com/adityaverma9777)
-- LinkedIn: [adityaverma9777](https://www.linkedin.com/in/adityaverma9777/)
+- **Community Legends:** A real-time leaderboard highlighting our top open-source contributors, their specialties, and their points.
+- **Sponsors:** We are proudly fueled by our sponsors who support student innovation. (Contact us for sponsorship opportunities).
+- **Open Source:** A focus on building and shipping accessible, high-quality open-source software.
 
-## Contact
+## Contact & Socials
 
-- Email: [contact.weareinventors@gmail.com](mailto:contact.weareinventors@gmail.com)
+Let's make something worth shipping. 
 
+- **Email:** [contact.weareinventors@gmail.com](mailto:contact.weareinventors@gmail.com)
+- **GitHub:** [Makers Need More (MnM)](#)
+- **LinkedIn:** [Makers Need More (MnM)](#)
 
-## What This Site Says About Us
-
-- We build.
-- We ship.
-- We win.
-- Then we build again.
-
-## Tech Stack
-
-- Frontend: HTML5, CSS, JavaScript, TypeScript, React, Next.js, Tailwind CSS
-- Backend and APIs: Node.js, Express, FastAPI
-- Data and Infra: MongoDB, PostgreSQL, Redis, Docker, Google Cloud
-- AI and ML: Python, PyTorch, NumPy, Hugging Face
-- Core Tools: Git, Java, C++
-
-## Selected Work
-
-### Edyx
-
-An open-source AI gateway that gives developers free and uncapped access to large language models.
-
-- Live: [edyx.in](https://www.edyx.in/)
-
-### StreetIQ
-
-StreetIQ is a next-generation navigation and road monitoring platform overlayed with live crowdsourced hazard data.
-
-- GitHub: [StreetIQ](https://github.com/adityaverma9777/StreetIQ)
-- Live: [StreetIQ](https://streetiqmaps.vercel.app/)
-
-### CortexFlow
-
-Voice and text intake with deterministic linguistic biomarker extraction and AI-assisted interpretation.
-
-- GitHub: [CortexFlow-MnM](https://github.com/ManikaKutiyal/CortexFlow-MnM)
-- Live: [CortexFlow](https://cortexflow-analysis.vercel.app/)
-
-### Cafe OS
-
-A cafe management system with digital menu, staff management, inventory control, and customer CRM.
-
-- Live: [Cafe OS](https://cafe-os-taupe.vercel.app/)
-
-### Nebula Ledger
-
-An OSINT dashboard for real-time satellite constellation and NEO telemetry monitoring.
-
-- Live: [Nebula Ledger](https://nebula-ledger.vercel.app/)
-
-### CodeBendr IDE
-
-A learning-focused IDE built on VS Code with an integrated LMS for HTML, Python, and Java.
-
-- Repo / Live Link: [CodeBendr IDE](https://github.com/adityaverma9777/CodeBendr-WEBSITE-RELEASES-)
-
-## Competition Record
-
-- Winner, GenAI Dev Hackathon 2026
-- Winner, Student Hackpad 2025
-- Participated, AI For Good
-- Winners TBD, Mind Hack 2026
-- Participated, Boeing TRU HACKS 2026
-- Winners TBD, Dev Season of Code
-- Winners TBD, IBM Z Sheridan BYTE: Enterprise AI
-- Winners TBD, Builders Week
-- In Progress, Google Solution Challenge 2026
-
-## By The Numbers
-
-- 5 domains: frontend, backend, database, AI, machine learning
-- 9 hackathons entered
-- Less than 24 hours from idea to working prototype
-- 0 abandoned projects
-
+---
+*MnM · 2026 · A student-run community building open-source solutions globally.*

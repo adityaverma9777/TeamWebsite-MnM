@@ -32,12 +32,18 @@
         </span>
         <span class="navbar-brand-text">MnM</span>
       </a>
-      <ul class="navbar-links">
-        <li><a href="#work" class="nav-link" data-section="work">work</a></li>
-        <li><a href="#about" class="nav-link" data-section="about">about</a></li>
-        <li><a href="#stack" class="nav-link" data-section="stack">tech stack</a></li>
+      <ul class="navbar-links" id="navbar-links">
+        <li><a href="#competitions" class="nav-link" data-section="competitions">Competitions</a></li>
+        <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+        <li><a href="#contribute" class="nav-link" data-section="contribute">Contribute</a></li>
+        <li><a href="#sponsors" class="nav-link" data-section="sponsors">Sponsors</a></li>
       </ul>
-      <a href="#contact" class="navbar-cta magnetic">Contact</a>
+      <div class="navbar-right">
+        <a href="#login" class="navbar-cta magnetic">Login</a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
   <main id="main">
@@ -46,11 +52,10 @@
       <div class="hero-grain"></div>
       <div class="hero-layout">
         <div class="hero-text-col">
-          <span class="hero-label">MnM — 2026</span>
           <h1 class="hero-heading" id="hero-heading">
-            <span class="hero-line">we  write  code</span>
-            <span class="hero-line">to  create</span>
-            <span class="hero-line">an  impact <span class="lime-period"> .</span></span>
+            <span class="hero-line">we write code</span>
+            <span class="hero-line">to create</span>
+            <span class="hero-line">an impact <span class="lime-period"> .</span></span>
           </h1>
           <p class="hero-sub">
             two people. unreasonable output.<br>
@@ -121,9 +126,115 @@
         </div>
       </div>
     </section>
+    <section id="features">
+      <div class="features-container">
+        <!-- Card 1 -->
+        <div class="feature-card">
+          <div class="feature-card-content">
+            <span class="feature-badge">01</span>
+            <h3 class="feature-title">Competitions</h3>
+            <p class="feature-desc">View ongoing competitions, check your registration status, build teams, and compete
+              with the best to discover top open-source solutions for unanswered problems.</p>
+            <a href="#competitions" class="feature-link">View Competitions <span class="arrow">→</span></a>
+          </div>
+          <div class="feature-card-graphic">
+            <div class="svg-anim-wrapper graphic-1">
+              <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="100" cy="100" r="80" stroke="#C8FF00" stroke-width="2" stroke-dasharray="10 10"
+                  class="spin-slow" />
+                <circle cx="100" cy="100" r="50" stroke="#000000" stroke-width="4" stroke-dasharray="20 20"
+                  class="spin-reverse-fast" />
+                <circle cx="100" cy="100" r="20" fill="#C8FF00" class="pulse" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="feature-card reverse">
+          <div class="feature-card-content">
+            <span class="feature-badge">02</span>
+            <h3 class="feature-title">Contribute</h3>
+            <p class="feature-desc">Discover projects that need your expertise. Contribute code, climb the leaderboard,
+              share your achievements on social media, and help build sustainable solutions.</p>
+            <a href="#contribute" class="feature-link">Start Contributing <span class="arrow">→</span></a>
+          </div>
+          <div class="feature-card-graphic">
+            <div class="svg-anim-wrapper graphic-2">
+              <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- 3D Isometric Cube -->
+                <g class="iso-cube">
+                  <!-- Floating core piece -->
+                  <polygon points="100,25 120,36.5 100,48 80,36.5" fill="#C8FF00" class="iso-float" />
+
+                  <!-- Top Face -->
+                  <polygon points="100,50 143.3,75 100,100 56.7,75" fill="#C8FF00" class="iso-top" />
+
+                  <!-- Left Face -->
+                  <polygon points="56.7,75 100,100 100,150 56.7,125" fill="#000000" class="iso-left" />
+
+                  <!-- Right Face -->
+                  <polygon points="100,100 143.3,75 143.3,125 100,150" fill="#fcfcfc" stroke="#000000" stroke-width="4"
+                    stroke-linejoin="round" class="iso-right" />
+
+                  <!-- Bottom decorative shadow line -->
+                  <line x1="56.7" y1="165" x2="143.3" y2="165" stroke="#C8FF00" stroke-width="2" class="iso-shadow" />
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="feature-card">
+          <div class="feature-card-content">
+            <span class="feature-badge">03</span>
+            <h3 class="feature-title">Got an Idea?</h3>
+            <p class="feature-desc">Submit your repository to our platform. If you're seeking contributions, your
+              project will be evaluated, showcased here, and opened to our community.</p>
+            <a href="#apply" class="feature-link">Submit Repo <span class="arrow">→</span></a>
+          </div>
+          <div class="feature-card-graphic">
+            <div class="svg-anim-wrapper graphic-3">
+              <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="100,25 165,62.5 165,137.5 100,175 35,137.5 35,62.5" stroke="#000" stroke-width="1"
+                  class="hex-anim-1" />
+                <polygon points="100,40 152,70 152,130 100,160 48,130 48,70" stroke="#C8FF00" stroke-width="2.5"
+                  class="hex-anim-2" />
+                <polygon points="100,55 139,77.5 139,122.5 100,145 61,122.5 61,77.5" fill="#000" class="hex-anim-3" />
+                <circle cx="100" cy="100" r="16" fill="#C8FF00" class="hex-core" />
+                <circle cx="100" cy="100" r="6" fill="#000" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="feature-card reverse">
+          <div class="feature-card-content">
+            <span class="feature-badge">04</span>
+            <h3 class="feature-title">Sponsor Us</h3>
+            <p class="feature-desc">Built for visionaries. Connect with our talented pool of developers and sponsor our
+              initiatives to drive innovation forward.</p>
+            <a href="#sponsors" class="feature-link">Become a Sponsor <span class="arrow">→</span></a>
+          </div>
+          <div class="feature-card-graphic">
+            <div class="svg-anim-wrapper graphic-4">
+              <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="10" fill="#000" class="node-1" />
+                <circle cx="150" cy="50" r="15" fill="#C8FF00" class="node-2" />
+                <circle cx="100" cy="150" r="20" fill="#000" class="node-3" />
+                <line x1="50" y1="50" x2="150" y2="50" stroke="#C8FF00" stroke-width="2" class="line-1" />
+                <line x1="150" y1="50" x2="100" y2="150" stroke="#000" stroke-width="2" class="line-2" />
+                <line x1="100" y1="150" x2="50" y2="50" stroke="#C8FF00" stroke-width="4" class="line-3" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <section id="about">
       <div class="about-text-col">
-        <span class="section-label">// who we are</span>
         <h2 class="about-heading">
           <span class="about-line">yeah.</span>
           <span class="about-line">we're</span>
@@ -132,37 +243,23 @@
         </h2>
         <p class="about-body">
           Ideas are easy.<br>
-          Execution isn’t.<br>
-          That’s where <br>
-          WE ARE.
+          Execution isn't.<br>
+          That's where MnM <br class="mobile-break">
+          comes in as a<br class="mobile-break">
+          community <br class="mobile-break">of Students,<br class="mobile-break">
+          by Students,<br class="mobile-break">
+          to power up and<br class="mobile-break">
+          build solutions <br class="mobile-break"> Globally.
         </p>
       </div>
       <div class="about-photo-wrap">
         <img src="1000147107.png" alt="M and Manna" class="about-photo">
       </div>
-      <div class="about-cards">
-        <div class="person-card" id="card-aditya">
-          <canvas class="card-water-canvas" id="water-canvas-0"></canvas>
-          <div class="card-inner">
-
-            <span class="card-person-name">Aditya Verma</span>
-            <span class="card-role">BCA @LPU, Punjab</span>
-          </div>
-        </div>
-        <div class="person-card" id="card-manika">
-          <canvas class="card-water-canvas" id="water-canvas-1"></canvas>
-          <div class="card-inner">
-
-            <span class="card-person-name">Manika Kutiyal</span>
-            <span class="card-role">BCA @Eternal University, Himachal Pradesh</span>
-          </div>
-        </div>
-      </div>
     </section>
     <section id="stack">
       <div class="stack-hero">
         <div class="stack-hero-text">
-          <span class="section-label lime-label">// our arsenal</span>
+          <span class="section-label lime-label">// community arsenal</span>
           <h2 class="stack-heading">
             <span class="stack-line">we didn't</span>
             <span class="stack-line">just learn it ,</span>
@@ -310,282 +407,149 @@
         </div>
       </div>
     </section>
-    <section id="projects">
-      <div class="projects-pin-wrap">
-        <div class="projects-header container">
-          <span class="section-label">// selected work</span>
-          <h2 class="projects-heading">
-            <span class="proj-word-light">things we</span><br>
-            <span class="proj-word-light">actually</span> <span class="proj-word-bold">shipped.</span>
-          </h2>
-        </div>
-        <div class="projects-track" id="projects-track">
-          <div class="project-card featured magnetic-card" data-cursor="view">
-            <img class="card-image" src="/edyx.png" alt="Edyx" />
-            <div class="card-body">
-              <div class="card-top-row">
-                <span class="card-index commit-mono">01</span>
 
-              </div>
-              <h3 class="card-name">Edyx</h3>
-              <p class="card-tagline">AI API Gateway — An open-source AI gateway giving developers free, unlimited
-                access to Large Language Models without the usual costs or rate limits.</p>
-              <div class="card-chips">
-                <span class="chip dark">AI</span>
-                <span class="chip dark">API Gateway</span>
-                <span class="chip dark">LLMs</span>
-                <span class="chip dark">Open Source</span>
-              </div>
-              <div class="card-links">
-                <a href="https://www.edyx.in/" class="card-link" target="_blank">live ↗</a>
-              </div>
-            </div>
-          </div>
-          <div class="project-card magnetic-card" data-cursor="view">
-            <img class="card-image" src="/streetiqlogo.png" alt="StreetIQ" />
-            <div class="card-body">
-              <div class="card-top-row">
-                <span class="card-index commit-mono">02</span>
-              </div>
-              <h3 class="card-name">StreetIQ</h3>
-              <p class="card-tagline">StreetIQ is a next-generation navigation and road monitoring platform. While conventional maps tell you how to get from point A to point B, StreetIQ tells you what is actually on the road. We provide smooth, real-time turn-by-turn navigation overlayed with live crowdsourced hazard data—such as potholes, waterlogging, severe cracks, and debris.</p>
-              <div class="card-chips">
-                <span class="chip dark">Navigation</span>
-                <span class="chip dark">Real-Time</span>
-                <span class="chip dark">Crowdsourced</span>
-              </div>
-              <div class="card-links">
-                <a href="https://github.com/adityaverma9777/StreetIQ" class="card-link" target="_blank">github ↗</a>
-                <a href="https://streetiqmaps.vercel.app/" class="card-link" target="_blank">live ↗</a>
-              </div>
-            </div>
-          </div>
-          <div class="project-card magnetic-card" data-cursor="view">
-            <img class="card-image" src="/cortexfl;ow.png" alt="CortexFlow" />
-            <div class="card-body">
-              <div class="card-top-row">
-                <span class="card-index commit-mono">03</span>
-              </div>
-              <h3 class="card-name">CortexFlow</h3>
-              <p class="card-tagline">Cognitive-Signature Analysis — Voice/text intake and deterministic linguistic
-                biomarker extraction combined with AI-assisted interpretation in a workspace-style experience.</p>
-              <div class="card-chips">
-                <span class="chip dark">Healthcare</span>
-                <span class="chip dark">Voice-first</span>
-                <span class="chip dark">AI Synthesis</span>
-              </div>
-              <div class="card-links">
-                <a href="https://github.com/ManikaKutiyal/CortexFlow-MnM" class="card-link" target="_blank">github ↗</a>
-                <a href="https://cortexflow-analysis.vercel.app/" class="card-link" target="_blank">live ↗</a>
-              </div>
-            </div>
-          </div>
-          <div class="project-card magnetic-card" data-cursor="view">
-            <img class="card-image" src="/Café-OS-–-Smart-Café-Management.png" alt="Cafe OS" />
-            <div class="card-body">
-              <div class="card-top-row">
-                <span class="card-index commit-mono">04</span>
-              </div>
-              <h3 class="card-name">Cafe OS</h3>
-              <p class="card-tagline">Digital Menu & Management — Complete café management system featuring a digital
-                menu, staff management, inventory control, and customer CRM.</p>
-              <div class="card-chips">
-                <span class="chip dark">SaaS</span>
-                <span class="chip dark">Management</span>
-                <span class="chip dark">Digital Menu</span>
-                <span class="chip dark">CRM</span>
-              </div>
-              <div class="card-links">
-                <a href="https://cafe-os-taupe.vercel.app/" class="card-link" target="_blank">live ↗</a>
-              </div>
-            </div>
-          </div>
-          <div class="project-card magnetic-card" data-cursor="view">
-            <img class="card-image" src="/nebulaledger.png" alt="Nebula Ledger" />
-            <div class="card-body">
-              <div class="card-top-row">
-                <span class="card-index commit-mono">05</span>
-              </div>
-              <h3 class="card-name">Nebula Ledger</h3>
-              <p class="card-tagline">Orbital Situational Awareness — An OSINT dashboard aggregating real-time telemetry
-                from multiple aerospace APIs to monitor satellite constellations and NEO trajectories.</p>
-              <div class="card-chips">
-                <span class="chip dark">Space Domain</span>
-                <span class="chip dark">3D Visualization</span>
-                <span class="chip dark">Real-Time</span>
-                <span class="chip dark">OSINT</span>
-              </div>
-              <div class="card-links">
-                <a href="https://nebula-ledger.vercel.app/" class="card-link" target="_blank">live ↗</a>
-              </div>
-            </div>
-          </div>
-          <div class="project-card magnetic-card" data-cursor="view">
-            <img class="card-image" src="/codebendr800600.png" alt="CodeBendr IDE" />
-            <div class="card-body">
-              <div class="card-top-row">
-                <span class="card-index commit-mono">06</span>
-              </div>
-              <h3 class="card-name">CodeBendr IDE</h3>
-              <p class="card-tagline">Learning-Focused IDE — A complete learning-focused IDE built on VS Code with an
-                integrated Learning Management System for HTML, Python, and Java.</p>
-              <div class="card-chips">
-                <span class="chip dark">Education</span>
-                <span class="chip dark">VS Code</span>
-                <span class="chip dark">LMS</span>
-                <span class="chip dark">Interactive</span>
-              </div>
-              <div class="card-links">
-                <a href="https://github.com/adityaverma9777/CodeBendr-WEBSITE-RELEASES-" class="card-link"
-                  target="_blank">live ↗</a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <p class="edge-scroll-hint commit-mono">
-          <span class="desktop-hint">[ hover near screen edges to pan projects → ]</span>
-          <span class="mobile-hint">[ swipe to explore projects → ]</span>
-        </p>
-      </div>
-    </section>
     <section id="hackathons">
-      <div class="container">
-        <span class="section-label">// competition record</span>
+      <div class="container" style="transform: translateY(-40px);">
+        <span class="section-label">// sponsors</span>
         <h2 class="hack-heading">
-          <span class="hack-line">we enter.</span>
-          <span class="hack-line">we compete.</span>
-          <span class="hack-line">occasionally</span>
-          <span class="hack-line">we <span class="hack-destroy">destroy.</span></span>
+          <span class="hack-line">fueling</span>
+          <span class="hack-line">innovation.</span>
+          <span class="hack-line">our</span>
+          <span class="hack-line">proud <span class="hack-destroy">sponsors.</span></span>
         </h2>
       </div>
       <div class="hack-timeline-wrap">
         <div class="hack-watermark" id="hack-watermark">8</div>
         <div class="hack-timeline-scroll" id="hack-timeline-scroll">
           <div class="hack-entries" id="hack-entries">
-            <div class="hack-timeline-line"></div>
             <div class="hack-entry" data-place="1">
               <div class="hack-stem"></div>
               <div class="hack-card">
-                <div class="hack-card-name">GenAI Dev Hackathon 2026</div>
-                <div class="hack-card-meta commit-mono">Global · 2026 · 48hrs</div>
-                <span class="hack-badge win">Winner</span>
-                <div class="hack-card-desc">Built a tool that provides free uncapped AI API access to developers.</div>
+                <div class="hack-card-name">Contact For sponsorship</div>
               </div>
             </div>
             <div class="hack-entry" data-place="9">
               <div class="hack-stem"></div>
               <div class="hack-card">
-                <div class="hack-card-name">Student Hackpad 2025</div>
-                <div class="hack-card-meta commit-mono">Global · 2025 · 36hrs</div>
-                <span class="hack-badge win">Winner</span>
-                <div class="hack-card-desc">Developed a space awareness dashboard.</div>
+                <div class="hack-card-name">Contact For sponsorship</div>
               </div>
             </div>
             <div class="hack-entry" data-place="2">
               <div class="hack-stem"></div>
               <div class="hack-card">
-                <div class="hack-card-name">AI For Good</div>
-                <div class="hack-card-meta commit-mono">Global · 2026 · 36hrs</div>
-                <span class="hack-badge finalist">Participated</span>
-                <div class="hack-card-desc">Developed an AI solution addressing global challenges.</div>
+                <div class="hack-card-name">Contact For sponsorship</div>
               </div>
             </div>
             <div class="hack-entry" data-place="3">
               <div class="hack-stem"></div>
               <div class="hack-card">
-                <div class="hack-card-name">Mind Hack 2026</div>
-                <div class="hack-card-meta commit-mono">Online · 2026 · 24hrs</div>
-                <span class="hack-badge finalist">Winners TBD</span>
-                <div class="hack-card-desc">Innovative solutions focusing on mental agility and tech.</div>
+                <div class="hack-card-name">Contact For sponsorship</div>
               </div>
             </div>
             <div class="hack-entry" data-place="4">
               <div class="hack-stem"></div>
               <div class="hack-card">
-                <div class="hack-card-name">Boeing TRU HACKS 2026</div>
-                <div class="hack-card-meta commit-mono">Hybrid · 2026 · 48hrs</div>
-                <span class="hack-badge finalist">Participated</span>
-                <div class="hack-card-desc">Aerospace-themed innovation and software solutions.</div>
+                <div class="hack-card-name">Contact For sponsorship</div>
               </div>
             </div>
             <div class="hack-entry" data-place="5">
               <div class="hack-stem"></div>
               <div class="hack-card">
-                <div class="hack-card-name">Dev Season of Code</div>
-                <div class="hack-card-meta commit-mono">Online · 2026 · 30 Days</div>
-                <span class="hack-badge finalist">Winners TBD</span>
-                <div class="hack-card-desc">Open source contributions and seasonal project building.</div>
+                <div class="hack-card-name">Contact For sponsorship</div>
               </div>
             </div>
             <div class="hack-entry" data-place="6">
               <div class="hack-stem"></div>
               <div class="hack-card">
-                <div class="hack-card-name">IBM Z Sheridan – BYTE: Enterprise AI</div>
-                <div class="hack-card-meta commit-mono">Toronto · 2026 · 48hrs</div>
-                <span class="hack-badge finalist">Winners TBD</span>
-                <div class="hack-card-desc">Enterprise-grade AI solutions built on IBM Z architecture.</div>
+                <div class="hack-card-name">Contact For sponsorship</div>
               </div>
             </div>
             <div class="hack-entry" data-place="7">
               <div class="hack-stem"></div>
               <div class="hack-card">
-                <div class="hack-card-name">Builders Week</div>
-                <div class="hack-card-meta commit-mono">Global · 2026 · 7 Days</div>
-                <span class="hack-badge finalist">Winners TBD</span>
-                <div class="hack-card-desc">Rapid prototyping and product development sprint.</div>
+                <div class="hack-card-name">Contact For sponsorship</div>
               </div>
             </div>
             <div class="hack-entry" data-place="8">
               <div class="hack-stem"></div>
               <div class="hack-card">
-                <div class="hack-card-name">Google Solution Challenge 2026</div>
-                <div class="hack-card-meta commit-mono">Global · 2026 · In Progress</div>
-                <span class="hack-badge finalist">In Progress</span>
-                <div class="hack-card-desc">Building with Google AI for local community problems.</div>
+                <div class="hack-card-name">Contact For sponsorship</div>
               </div>
             </div>
           </div>
         </div>
-        <p class="edge-scroll-hint commit-mono">
-          <span class="desktop-hint">[ hover near screen edges to pan timeline → ]</span>
-          <span class="mobile-hint">[ swipe to explore timeline → ]</span>
-        </p>
       </div>
     </section>
-    <section id="stats">
-      <div class="stats-grid">
 
-        <!-- DOMAINS -->
-        <div class="stat-cell">
-          <span class="stat-num">
-            <span class="stat-number" data-target="5">0</span> domains
-          </span>
-          <span class="stat-desc">frontend, backend, database, AI, Machine Learning</span>
+    <section id="contributors">
+      <div class="container">
+        <span class="section-label">// top contributors</span>
+        <h2 class="contrib-heading">
+          <span class="contrib-line">community</span>
+          <span class="contrib-line">legends.</span>
+        </h2>
+        
+        <div class="leaderboard-wrap">
+          <!-- Table Header -->
+          <div class="leaderboard-header commit-mono">
+            <div class="lb-col lb-rank">Rank</div>
+            <div class="lb-col lb-user">Contributor</div>
+            <div class="lb-col lb-role">Specialty</div>
+            <div class="lb-col lb-points">Points</div>
+          </div>
+          
+          <!-- Rows -->
+          <div class="leaderboard-body">
+            <div class="lb-row rank-1">
+              <div class="lb-col lb-rank commit-mono"><span class="neon-rank">#1</span></div>
+              <div class="lb-col lb-user">
+                <div class="lb-avatar avatar-1"></div>
+                <span class="lb-name">Alex Johnson</span>
+              </div>
+              <div class="lb-col lb-role">Core Architect</div>
+              <div class="lb-col lb-points commit-mono">14,250</div>
+            </div>
+            <div class="lb-row rank-2">
+              <div class="lb-col lb-rank commit-mono"><span class="neon-rank">#2</span></div>
+              <div class="lb-col lb-user">
+                <div class="lb-avatar avatar-2"></div>
+                <span class="lb-name">Sarah Chen</span>
+              </div>
+              <div class="lb-col lb-role">Frontend Lead</div>
+              <div class="lb-col lb-points commit-mono">12,100</div>
+            </div>
+            <div class="lb-row rank-3">
+              <div class="lb-col lb-rank commit-mono"><span class="neon-rank">#3</span></div>
+              <div class="lb-col lb-user">
+                <div class="lb-avatar avatar-3"></div>
+                <span class="lb-name">Michael Chang</span>
+              </div>
+              <div class="lb-col lb-role">Data Engineer</div>
+              <div class="lb-col lb-points commit-mono">10,850</div>
+            </div>
+            <div class="lb-row">
+              <div class="lb-col lb-rank commit-mono">#4</div>
+              <div class="lb-col lb-user">
+                <div class="lb-avatar avatar-4"></div>
+                <span class="lb-name">Emily Davis</span>
+              </div>
+              <div class="lb-col lb-role">UI/UX Designer</div>
+              <div class="lb-col lb-points commit-mono">9,400</div>
+            </div>
+            <div class="lb-row">
+              <div class="lb-col lb-rank commit-mono">#5</div>
+              <div class="lb-col lb-user">
+                <div class="lb-avatar avatar-5"></div>
+                <span class="lb-name">David Smith</span>
+              </div>
+              <div class="lb-col lb-role">Backend Dev</div>
+              <div class="lb-col lb-points commit-mono">8,720</div>
+            </div>
+          </div>
         </div>
-
-        <!-- HACKATHONS -->
-        <div class="stat-cell">
-          <span class="stat-num" data-target="9">0</span>
-          <span class="stat-label">hackathons entered</span>
-        </div>
-
-        <!-- BUILD TIME -->
-        <div class="stat-cell">
-          <span class="stat-num">
-            &lt;<span class="stat-number" data-target="24">0</span> hrs
-          </span>
-          <span class="stat-label">idea → working prototype</span>
-        </div>
-
-        <!-- PROJECTS -->
-        <div class="stat-cell">
-          <span class="stat-num" data-target="0">0</span>
-          <span class="stat-label">abandoned projects</span>
-        </div>
-
       </div>
     </section>
+
     <section id="manifesto">
       <div class="manifesto-inner">
         <p class="manifesto-line" data-line="1">&ldquo;the best time</p>
@@ -622,10 +586,9 @@
             <div class="contact-row-fill"></div>
           </a>
         </div>
-        <p class="footer-credit commit-mono">MnM · 2026 · built with conviction and questionable sleep schedules</p>
-        <div class="footer-portraits">
-          <img src="/MANIKA.png" alt="Manika" class="footer-portrait-image">
-          <img src="/ADITYA.png" alt="Aditya" class="footer-portrait-image">
+        <p class="footer-credit commit-mono">MnM · 2026 · A student-run community building open-source solutions globally.</p>
+        <div class="footer-logo-container">
+          <img src="/Makers%20Need%20More.png" alt="Makers Need More" class="footer-logo-image">
         </div>
       </div>
     </section>

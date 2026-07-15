@@ -118,6 +118,7 @@ function initSite() {
   initHackathons();
   initNavHighlight();
   initNavbarCollapse();
+  initMobileMenu();
 }
 function initNavbarCollapse() {
   const navbar = document.getElementById('navbar');
@@ -148,6 +149,28 @@ function initNavbarCollapse() {
   });
 }
 
+function initMobileMenu() {
+  const menuToggle = document.getElementById('menu-toggle');
+  const navbarLinks = document.getElementById('navbar-links');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const navbar = document.getElementById('navbar');
+
+  if (menuToggle && navbarLinks && navbar) {
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      navbarLinks.classList.toggle('active');
+      navbar.classList.toggle('menu-open');
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        navbarLinks.classList.remove('active');
+        navbar.classList.remove('menu-open');
+      });
+    });
+  }
+}
 
 function initScrollAnimations() {
   gsap.utils.toArray('.hack-line, .contact-line').forEach(el => {
@@ -723,58 +746,7 @@ function initHeroThreeJS() {
   });
   container.addEventListener('mouseleave', () => { hover = 0; });
 
-  if (window.innerWidth <= 960) {
-    container.style.pointerEvents = 'auto';
-    let exploding = false;
-    const cvs = renderer.domElement;
-    container.addEventListener('touchstart', (e) => {
-      e.preventDefault();
-      if (exploding) return;
-      exploding = true;
-      lenis.stop();
-      document.body.style.overflow = 'hidden';
-      mat.uniforms.uExplodePhase.value = 0;
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      const rect = container.getBoundingClientRect();
-      const origH = rect.height || 220;
-      const explodeZ = baseZ * (vh / origH);
-      cvs.style.cssText = `position:fixed;top:0;left:0;width:${vw}px;height:${vh}px;z-index:500;pointer-events:none;`;
-      renderer.setSize(vw, vh);
-      camera.position.z = explodeZ;
-      camera.aspect = vw / vh;
-      camera.updateProjectionMatrix();
-      const halfH = Math.tan((camera.fov * Math.PI) / 360) * explodeZ;
-      const halfW = halfH * camera.aspect;
-      const ndcX = ((rect.left + rect.width * 0.5) / vw) * 2 - 1;
-      const ndcY = 1 - ((rect.top + rect.height * 0.5) / vh) * 2;
-      points.position.set(ndcX * halfW, ndcY * halfH, 0);
-      const tl = gsap.timeline({
-        onComplete: () => {
-          mat.uniforms.uExplodePhase.value = 0;
-          requestAnimationFrame(() => {
-            points.position.set(0, 0, 0);
-            camera.position.z = baseZ;
-            camera.aspect = 1;
-            camera.updateProjectionMatrix();
-            const nw = container.offsetWidth || 240;
-            const nh = container.offsetHeight || 220;
-            renderer.setSize(nw, nh);
-            cvs.style.position = '';
-            cvs.style.top = '';
-            cvs.style.left = '';
-            cvs.style.zIndex = '';
-            cvs.style.pointerEvents = '';
-            lenis.start();
-            document.body.style.overflow = '';
-            exploding = false;
-          });
-        }
-      });
-      tl.to(mat.uniforms.uExplodePhase, { value: 0.5, duration: 0.2, ease: 'power4.out' });
-      tl.to(mat.uniforms.uExplodePhase, { value: 1.0, duration: 1.75, ease: 'power2.inOut' });
-    }, { passive: false });
-  }
+  // Mobile interaction removed as requested
 
   const targetMouse = new THREE.Vector3();
   let smoothHover = 0;
@@ -982,6 +954,7 @@ window.addEventListener('load', () => {
   initAboutThreeJS();
   initStackThreeJS();
   initStats();
+  initFeatures();
 });
 
 
@@ -1026,6 +999,32 @@ function initStats() {
         },
         onUpdate() {
           el.textContent = Math.round(counter.val);
+        }
+      }
+    );
+  });
+}
+
+function initFeatures() {
+  const cards = document.querySelectorAll('.feature-card');
+  if (!cards.length) return;
+
+  cards.forEach((card) => {
+    const isReverse = card.classList.contains('reverse');
+    const startX = isReverse ? 100 : -100;
+
+    gsap.fromTo(card,
+      { opacity: 0, x: startX, autoAlpha: 0 },
+      {
+        opacity: 1,
+        x: 0,
+        autoAlpha: 1,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 85%',
+          once: true
         }
       }
     );
