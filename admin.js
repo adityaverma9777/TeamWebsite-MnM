@@ -456,14 +456,17 @@ function renderSubmissions() {
     
     let statusColor = repo.status === 'approved' ? 'green' : (repo.status === 'rejected' ? 'red' : 'orange');
 
+    const urlToDisplay = repo.forkUrl || repo.repoUrl || 'No URL provided';
+    const descToDisplay = repo.note || repo.description || 'No description';
+    
     tr.innerHTML = `
       <td>
         <strong>${user ? user.name : 'Unknown'}</strong><br>
         <span style="font-size:12px; color:gray;">${user ? user.email : ''}</span>
       </td>
       <td>
-        <a href="${repo.repoUrl}" target="_blank" style="color:#0d6efd;">${repo.repoUrl}</a><br>
-        <span style="font-size:12px;">${repo.description}</span>
+        <a href="${urlToDisplay}" target="_blank" style="color:#0d6efd;">${urlToDisplay}</a><br>
+        <span style="font-size:12px;">${descToDisplay}</span>
       </td>
       <td>
         <span style="color:${statusColor}; font-weight:bold; text-transform:uppercase; font-size:12px;">${repo.status}</span>

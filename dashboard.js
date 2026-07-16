@@ -303,7 +303,7 @@ document.getElementById('dash-profile-form').addEventListener('submit', async (e
 });
 
 // --- Repo Submission Logic ---
-document.getElementById('dash-repo-form').addEventListener('submit', async (e) => {
+document.getElementById('dash-repo-form')?.addEventListener('submit', async (e) => {
   e.preventDefault();
   const btn = e.target.querySelector('button');
   btn.textContent = 'Validating...';
@@ -804,14 +804,14 @@ document.getElementById('repo-contribution-form')?.addEventListener('submit', as
   const userRef = doc(db, 'users', currentUser.uid);
   const userSnap = await getDoc(userRef);
   
-  if (!userSnap.exists() || !userSnap.data().githubUsername) {
+  if (!userSnap.exists() || !userSnap.data().github) {
     alert("You must link your GitHub username in your Profile first!");
     btn.disabled = false;
     btn.textContent = 'Validate & Submit';
     return;
   }
   
-  const githubUsername = userSnap.data().githubUsername;
+  const githubUsername = userSnap.data().github;
   const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 
   try {
