@@ -109,6 +109,11 @@ function initSite() {
   initContributePageAnimations();
   initSponsorsPageAnimations();
   initAuth();
+  
+  if (document.getElementById('home-sponsors-timeline-wrap')) {
+    loadHomepageSponsors();
+    loadLeaderboard();
+  }
 }
 function initNavbarCollapse() {
   const navbar = document.getElementById('navbar');
@@ -1505,3 +1510,94 @@ document.querySelectorAll('.modal-buttons .btn-pill').forEach(btn => {
     document.getElementById('profile-modal-overlay').classList.remove('active');
   });
 });
+
+window.loadHomepageSponsors = async function() {
+  const wrap = document.getElementById('home-sponsors-timeline-wrap');
+  const entries = document.getElementById('hack-entries');
+  if (!wrap || !entries) return;
+
+  try {
+    const sponsors = await sanityClient.fetch(`*[_type == "sponsor"] | order(tier asc)`);
+    
+    if (!sponsors || sponsors.length === 0) {
+      wrap.style.display = 'none'; // hide if empty
+      return;
+    }
+    
+    wrap.style.display = 'flex';
+    entries.innerHTML = '';
+    
+    sponsors.forEach((sponsor, index) => {
+      entries.innerHTML += `
+        <div class="hack-entry" data-place="${index + 1}">
+          <div class="hack-stem"></div>
+          <div class="hack-card">
+            <div class="hack-card-name">${sponsor.name}</div>
+          </div>
+        </div>
+      `;
+    });
+    
+    // Refresh ScrollTrigger to account for new elements
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+  } catch (err) {
+    console.error('Failed to load homepage sponsors', err);
+    wrap.style.display = 'none';
+  }
+};
+
+window.loadLeaderboard = async function() {
+  const lbBody = document.getElementById('home-leaderboard-body');
+  if (!lbBody) return;
+
+  try {
+    const { collection, query, orderBy, limit, getDocs } = await import('firebase/firestore');
+    const { db } = await import('./firebase.js');
+    
+    const q = query(collection(db, 'users'), orderBy('points', 'desc'), limit(5));
+    const snap = await getDocs(q);
+    
+    if (snap.empty) {
+      lbBody.innerHTML = '<div class="lb-row"><div class="lb-col" style="width:100%;text-align:center;color:var(--slate);">No contributors yet.</div></div>';
+      return;
+    }
+    
+    lbBody.innerHTML = '';
+    let rank = 1;
+    snap.forEach(docSnap => {
+      const data = docSnap.data();
+      const roleStr = data.title || 'Contributor'; // Fallback if no title
+      const points = data.points || 0;
+      const name = data.name || 'Anonymous';
+      
+      let rankStr = `#${rank}`;
+      let rankClass = ``;
+      if (rank <= 3) {
+        rankStr = `<span class="neon-rank">#${rank}</span>`;
+        rankClass = `rank-${rank}`;
+      }
+      
+      lbBody.innerHTML += `
+        <div class="lb-row ${rankClass}">
+          <div class="lb-col lb-rank commit-mono">${rankStr}</div>
+          <div class="lb-col lb-user">
+            <div class="lb-avatar" style="background-image: url('${data.photoURL || ''}')"></div>
+            <span class="lb-name">${name}</span>
+          </div>
+          <div class="lb-col lb-role">${roleStr}</div>
+          <div class="lb-col lb-points commit-mono">${points}</div>
+        </div>
+      `;
+      rank++;
+    });
+    
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+  } catch (error) {
+    console.error('Failed to load leaderboard', error);
+    lbBody.innerHTML = '<div class="lb-row"><div class="lb-col" style="width:100%;text-align:center;color:#ef4444;">Error loading leaderboard.</div></div>';
+  }
+};
