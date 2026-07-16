@@ -108,9 +108,13 @@ async function fetchAllData() {
   const regSnap = await getDocs(collection(db, 'hackathon_registrations'));
   allRegistrations = regSnap.docs.map(d => ({ id: d.id, ...d.data() }));
   
-  // Repos
-  const repoSnap = await getDocs(collection(db, 'repo_submissions'));
-  allRepos = repoSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+  // Repos (Real-time)
+  onSnapshot(collection(db, 'repo_submissions'), (snapshot) => {
+    allRepos = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+    renderSubmissions();
+    const metricRepos = document.getElementById('metric-repos');
+    if (metricRepos) metricRepos.textContent = allRepos.length;
+  });
 }
 
 // --- REFRESH POINTS ENGINE ---
