@@ -129,6 +129,19 @@
       </div>
     </div>
 
+    <div id="onboarding-modal-overlay" class="profile-modal-overlay">
+      <div class="profile-modal">
+        <span class="commit-mono modal-label">// complete profile</span>
+        <h3 class="modal-title">Welcome!</h3>
+        <p style="color: var(--slate); font-size: 15px; margin-bottom: 24px;">Please provide a few details to complete your profile.</p>
+        <form id="onboarding-form" class="onboarding-form">
+          <input type="text" id="ob-location" placeholder="City, Country" required class="modal-input">
+          <input type="tel" id="ob-phone" placeholder="Phone Number" required class="modal-input">
+          <button type="submit" class="btn-pill magnetic" style="width: 100%; border: none; cursor: pointer;">Save Profile</button>
+        </form>
+      </div>
+    </div>
+
   </main>
   <script type="module" src="/main.js"></script>
 </body>

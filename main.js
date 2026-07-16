@@ -4,6 +4,7 @@ import { TextPlugin } from 'gsap/TextPlugin';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import SplitType from 'split-type';
 import Lenis from 'lenis';
+import { initAuth } from './auth.js';
 import * as THREE from 'three';
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin, ScrollToPlugin);
@@ -126,6 +127,7 @@ function initSite() {
   initCompPageAnimations();
   initContributePageAnimations();
   initSponsorsPageAnimations();
+  initAuth();
 }
 function initNavbarCollapse() {
   const navbar = document.getElementById('navbar');
