@@ -3,6 +3,7 @@ import { GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 const provider = new GoogleAuthProvider();
+provider.setCustomParameters({ fedcm_hint: 'none' });
 
 export async function loginWithGoogle() {
   try {
