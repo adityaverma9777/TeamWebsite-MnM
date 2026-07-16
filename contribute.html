@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contribute - MnM | Non-Profit Student Community</title>
+  <link rel="icon" type="image/png" href="/logo.png">
+  <meta name="description" content="Contribute to MnM open-source repositories, earn points, and climb the leaderboard automatically.">
+  
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500&f[]=commit-mono@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="cursor-inner"></div>
+  <div id="cursor-outer"><span id="cursor-label"></span></div>
+  <div id="preloader">
+    <div id="preloader-line">
+      <div id="preloader-progress"></div>
+    </div>
+    <div id="preloader-text">Loading...</div>
+  </div>
+  
+  <nav id="navbar" class="navbar-island">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand">
+        <span class="navbar-logo">
+          <img src="/logo.png" alt="MnM logo" class="navbar-logo-img">
+        </span>
+        <span class="navbar-brand-text">MnM</span>
+      </a>
+      <ul class="navbar-links" id="navbar-links">
+        <li><a href="competitions.html" class="nav-link" data-section="competitions">Competitions</a></li>
+        <li><a href="about.html" class="nav-link" data-section="about">About</a></li>
+        <li><a href="contribute.html" class="nav-link active" data-section="contribute">Contribute</a></li>
+        <li><a href="sponsors.html" class="nav-link" data-section="sponsors">Sponsors</a></li>
+      </ul>
+      <div class="navbar-right">
+        <a href="#login" class="navbar-cta magnetic">Login</a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section id="contrib-hero" class="page-hero">
+      <canvas id="contrib-hero-canvas"></canvas>
+      <div class="hero-grain"></div>
+      <div class="container contrib-hero-container">
+        <div class="contrib-text-content">
+          <span class="section-label lime-label contrib-fade-in">// join the movement</span>
+          <h1 class="contrib-page-heading contrib-fade-in">
+            <span class="hero-line">write code.</span>
+            <span class="hero-line">earn points.</span>
+            <span class="hero-line">climb the ranks <span class="lime-period">.</span></span>
+          </h1>
+          <p class="contrib-page-sub contrib-fade-in">
+            Contribute to our active open-source repositories. Every approved commit is automatically counted towards your leaderboard score.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="contrib-steps-section">
+      <div class="container">
+        <h2 class="contrib-section-title contrib-slide-up">How it Works</h2>
+        <div class="contrib-steps-grid">
+          
+          <div class="contrib-step-card contrib-slide-up">
+            <div class="step-number">01</div>
+            <h3>Login to Contribute</h3>
+            <p>You must create an account and log in to link your GitHub profile so your commits can be tracked.</p>
+          </div>
+
+          <div class="contrib-step-card contrib-slide-up">
+            <div class="step-number">02</div>
+            <h3>Fork & Select</h3>
+            <p>Fork one of the listed repositories below, then fill out our contribution form selecting your chosen repo.</p>
+          </div>
+
+          <div class="contrib-step-card contrib-slide-up">
+            <div class="step-number">03</div>
+            <h3>Commit & Earn</h3>
+            <p>Push your code! Once merged, our system automatically counts your commits and awards you leaderboard points.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="contrib-content" class="contrib-section">
+      <div class="container">
+        <h2 class="contrib-section-title contrib-slide-up">Active Repositories</h2>
+        <!-- CMS Injection Target -->
+        <div id="cms-contrib-grid" class="contrib-grid">
+          
+          <!-- Empty Placeholder State -->
+          <div class="contrib-empty-state contrib-slide-up">
+            <div class="empty-state-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 3H6C4.89543 3 4 3.89543 4 5V19C4 20.1046 4.89543 21 6 21H18C19.1046 21 20 20.1046 20 19V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 11L21 2M21 2H16M21 2V7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Loading Repositories...</h3>
+            <p>Our CMS is fetching the latest open-source repositories available for contribution.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2 class="contact-heading">
+          <span class="contact-line">let's make</span>
+          <span class="contact-line">something worth</span>
+          <span class="contact-line">shipping.</span>
+        </h2>
+        <div class="contact-links">
+          <a href="#" onclick="openProfileModal('GitHub'); return false;" class="contact-row" data-cursor="open">
+            <span class="contact-row-name">GitHub</span>
+            <span class="contact-row-arrow">→</span>
+            <div class="contact-row-fill"></div>
+          </a>
+          <a href="mailto:contact.weareinventors@gmail.com" class="contact-row" data-cursor="open">
+            <span class="contact-row-name">Email</span>
+            <span class="contact-row-arrow">→</span>
+            <div class="contact-row-fill"></div>
+          </a>
+          <a href="#" onclick="openProfileModal('LinkedIn'); return false;" class="contact-row" data-cursor="open">
+            <span class="contact-row-name">LinkedIn</span>
+            <span class="contact-row-arrow">→</span>
+            <div class="contact-row-fill"></div>
+          </a>
+        </div>
+        <p class="footer-credit commit-mono">MnM · 2026 · A student-run non-profit community building open-source solutions globally.</p>
+        <div class="footer-logo-container">
+          <img src="/Makers%20Need%20More.png" alt="Makers Need More" class="footer-logo-image">
+        </div>
+      </div>
+    </section>
+
+    <div id="profile-modal-overlay" class="profile-modal-overlay">
+      <div class="profile-modal">
+        <button id="profile-modal-close" class="profile-modal-close">&times;</button>
+        <span class="commit-mono modal-label">// select profile</span>
+        <h3 class="modal-title" id="modal-platform-name">GitHub</h3>
+        <div class="modal-buttons">
+          <a href="#" id="modal-link-manika" class="btn-pill" target="_blank">Manika Kutiyal</a>
+          <a href="#" id="modal-link-aditya" class="btn-pill" target="_blank">Aditya Verma</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+  <script type="module" src="/main.js"></script>
+</body>
+</html>

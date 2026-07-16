@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - MnM | Non-Profit Student Community</title>
+  <link rel="icon" type="image/png" href="/logo.png">
+  <meta name="description" content="Learn about Makers Need More (MnM), a global, student-driven non-profit community focused on privacy, learning, and innovation.">
+  
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500&f[]=commit-mono@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="cursor-inner"></div>
+  <div id="cursor-outer"><span id="cursor-label"></span></div>
+  <div id="preloader">
+    <div id="preloader-line">
+      <div id="preloader-progress"></div>
+    </div>
+    <div id="preloader-text">Loading...</div>
+  </div>
+  
+  <nav id="navbar" class="navbar-island">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand">
+        <span class="navbar-logo">
+          <img src="/logo.png" alt="MnM logo" class="navbar-logo-img">
+        </span>
+        <span class="navbar-brand-text">MnM</span>
+      </a>
+      <ul class="navbar-links" id="navbar-links">
+        <li><a href="competitions.html" class="nav-link" data-section="competitions">Competitions</a></li>
+        <li><a href="about.html" class="nav-link active" data-section="about">About</a></li>
+        <li><a href="contribute.html" class="nav-link" data-section="contribute">Contribute</a></li>
+        <li><a href="sponsors.html" class="nav-link" data-section="sponsors">Sponsors</a></li>
+      </ul>
+      <div class="navbar-right">
+        <a href="#login" class="navbar-cta magnetic">Login</a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section id="about-hero" class="page-hero">
+      <canvas id="about-hero-canvas"></canvas>
+      <div class="hero-grain"></div>
+      <div class="container about-hero-container">
+        <div class="about-text-content">
+          <span class="section-label lime-label about-fade-in">// who we are</span>
+          <h1 class="about-page-heading about-fade-in">
+            <span class="hero-line">we are a</span>
+            <span class="hero-line">non-profit</span>
+            <span class="hero-line">organisation <span class="lime-period">.</span></span>
+          </h1>
+          <p class="about-page-sub about-fade-in">
+            Dedicated to empowering students globally without barriers.
+          </p>
+        </div>
+        <div class="about-hero-logo about-fade-in">
+          <img src="/logo.png" alt="MnM Logo">
+        </div>
+      </div>
+    </section>
+
+    <section id="about-mission" class="mission-section">
+      <div class="container">
+        <div class="mission-grid">
+          <div class="mission-text-col">
+            <h2 class="mission-heading about-slide-up">
+              <span class="about-line">pure</span>
+              <span class="about-line" style="color: var(--lime);">learning.</span>
+              <span class="about-line">zero</span>
+              <span class="about-line">pressure.</span>
+            </h2>
+          </div>
+          <div class="mission-desc-col">
+            <div class="mission-statement about-slide-up">
+              <p>
+                Our mission is simple: a student network with privacy and learning focused. No worries and no pressure. Just learning and innovation, and all free of cost. No hidden charges and healthy judging.
+              </p>
+            </div>
+            <div class="mission-features">
+              <div class="mission-feature about-slide-up" style="transition-delay: 0.1s;">
+                <span class="feature-icon commit-mono">01</span>
+                <h4>Privacy First</h4>
+                <p>Your data belongs to you. We focus on building a safe space.</p>
+              </div>
+              <div class="mission-feature about-slide-up" style="transition-delay: 0.2s;">
+                <span class="feature-icon commit-mono">02</span>
+                <h4>100% Free</h4>
+                <p>No paywalls, no hidden charges. Knowledge should be accessible to all.</p>
+              </div>
+              <div class="mission-feature about-slide-up" style="transition-delay: 0.3s;">
+                <span class="feature-icon commit-mono">03</span>
+                <h4>Healthy Innovation</h4>
+                <p>A supportive environment designed for constructive feedback and growth.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about-future" class="future-section">
+      <div class="container">
+        <span class="section-label about-fade-in">// looking ahead</span>
+        <h2 class="future-heading about-fade-in">
+          <span class="about-line">building</span>
+          <span class="about-line">tomorrow.</span>
+        </h2>
+        
+        <div class="future-timeline">
+          <div class="timeline-item about-slide-up">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>Global Chapters</h3>
+              <p>Expanding our student network to universities worldwide, creating local hubs of open-source innovation.</p>
+            </div>
+          </div>
+          <div class="timeline-item about-slide-up">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>Incubation Program</h3>
+              <p>Providing resources, mentorship, and infrastructure to help student projects evolve into real-world solutions.</p>
+            </div>
+          </div>
+          <div class="timeline-item about-slide-up">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>Open Learning Hub</h3>
+              <p>A decentralized platform for sharing knowledge, tutorials, and codebase breakdowns curated by top contributors.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2 class="contact-heading">
+          <span class="contact-line">let's make</span>
+          <span class="contact-line">something worth</span>
+          <span class="contact-line">shipping.</span>
+        </h2>
+        <div class="contact-links">
+          <a href="#" onclick="openProfileModal('GitHub'); return false;" class="contact-row" data-cursor="open">
+            <span class="contact-row-name">GitHub</span>
+            <span class="contact-row-arrow">→</span>
+            <div class="contact-row-fill"></div>
+          </a>
+          <a href="mailto:contact.weareinventors@gmail.com" class="contact-row" data-cursor="open">
+            <span class="contact-row-name">Email</span>
+            <span class="contact-row-arrow">→</span>
+            <div class="contact-row-fill"></div>
+          </a>
+          <a href="#" onclick="openProfileModal('LinkedIn'); return false;" class="contact-row" data-cursor="open">
+            <span class="contact-row-name">LinkedIn</span>
+            <span class="contact-row-arrow">→</span>
+            <div class="contact-row-fill"></div>
+          </a>
+        </div>
+        <p class="footer-credit commit-mono">MnM · 2026 · A student-run non-profit community building open-source solutions globally.</p>
+        <div class="footer-logo-container">
+          <img src="/Makers%20Need%20More.png" alt="Makers Need More" class="footer-logo-image">
+        </div>
+      </div>
+    </section>
+
+    <div id="profile-modal-overlay" class="profile-modal-overlay">
+      <div class="profile-modal">
+        <button id="profile-modal-close" class="profile-modal-close">&times;</button>
+        <span class="commit-mono modal-label">// select profile</span>
+        <h3 class="modal-title" id="modal-platform-name">GitHub</h3>
+        <div class="modal-buttons">
+          <a href="#" id="modal-link-manika" class="btn-pill" target="_blank">Manika Kutiyal</a>
+          <a href="#" id="modal-link-aditya" class="btn-pill" target="_blank">Aditya Verma</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
