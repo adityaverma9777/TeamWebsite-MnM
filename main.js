@@ -111,8 +111,8 @@ function initSite() {
   initAuth();
   
   if (document.getElementById('home-sponsors-timeline-wrap')) {
-    loadHomepageSponsors();
-    loadLeaderboard();
+    window.loadHomepageSponsors();
+    window.loadLeaderboard();
   }
 }
 function initNavbarCollapse() {
