@@ -1538,6 +1538,30 @@ window.loadHomepageSponsors = async function() {
       `;
     });
     
+    // Initialize ScrollTrigger for newly added entries
+    const watermark = document.getElementById('hack-watermark');
+    entries.querySelectorAll('.hack-entry').forEach((entry, i) => {
+      const stem = entry.querySelector('.hack-stem');
+      const card = entry.querySelector('.hack-card');
+      ScrollTrigger.create({
+        trigger: entry,
+        start: 'top 82%',
+        once: true,
+        onEnter: () => {
+          gsap.to(stem, { scaleY: 1, duration: 0.55, ease: 'expo.out' });
+          gsap.to(card, { opacity: 1, y: 0, duration: 0.45, ease: 'expo.out', delay: 0.45 });
+          if (watermark) {
+            gsap.to(watermark, {
+              textContent: i + 1,
+              duration: 0.01,
+              delay: 0.1,
+              onUpdate: () => { watermark.textContent = i + 1; }
+            });
+          }
+        }
+      });
+    });
+    
     // Refresh ScrollTrigger to account for new elements
     setTimeout(() => {
       ScrollTrigger.refresh();
