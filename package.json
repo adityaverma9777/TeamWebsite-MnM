@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@sanity/client": "^7.23.2",
+    "@sanity/image-url": "^2.1.1",
     "firebase": "^12.16.0",
     "gsap": "^3.12.5",
     "lenis": "^1.1.14",

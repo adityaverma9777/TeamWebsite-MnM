@@ -5,7 +5,19 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import SplitType from 'split-type';
 import Lenis from 'lenis';
 import { initAuth } from './auth.js';
+import { initCursor } from './cursor.js';
+import { sanityClient } from './sanity.js';
+import imageUrlBuilder from '@sanity/image-url';
 import * as THREE from 'three';
+
+// Wake up Render backend
+const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+fetch(`${backendUrl}/wake`).catch(() => {});
+
+const builder = imageUrlBuilder(sanityClient);
+function urlFor(source) {
+  return builder.image(source);
+}
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin, ScrollToPlugin);
 
@@ -23,39 +35,8 @@ gsap.ticker.add((time) => {
 });
 gsap.ticker.lagSmoothing(0);
 
-const cursorInner = document.getElementById('cursor-inner');
-const cursorOuter = document.getElementById('cursor-outer');
-const cursorLabel = document.getElementById('cursor-label');
-let mouseX = window.innerWidth / 2;
-let mouseY = window.innerHeight / 2;
-let outerX = mouseX;
-let outerY = mouseY;
+initCursor();
 
-window.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-  cursorInner.style.transform = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0)`;
-}, { passive: true });
-
-gsap.ticker.add(() => {
-  outerX += (mouseX - outerX) * 0.18;
-  outerY += (mouseY - outerY) * 0.18;
-  gsap.set(cursorOuter, { x: outerX, y: outerY });
-});
-document.addEventListener('mousedown', () => gsap.to(cursorOuter, { scale: 0.75, duration: 0.12, ease: 'power2.out' }));
-document.addEventListener('mouseup', () => gsap.to(cursorOuter, { scale: 1, duration: 0.2, ease: 'elastic.out(1,0.5)' }));
-document.querySelectorAll('[data-cursor]').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    cursorLabel.textContent = el.dataset.cursor;
-    cursorOuter.classList.add('expanded');
-    gsap.to(cursorInner, { opacity: 0, duration: 0.2 });
-  });
-  el.addEventListener('mouseleave', () => {
-    cursorOuter.classList.remove('expanded');
-    cursorLabel.textContent = '';
-    gsap.to(cursorInner, { opacity: 1, duration: 0.2 });
-  });
-});
 document.querySelectorAll('.magnetic, .navbar-cta').forEach(el => {
   const qx = gsap.quickTo(el, 'x', { duration: 0.4, ease: 'power2.out' });
   const qy = gsap.quickTo(el, 'y', { duration: 0.4, ease: 'power2.out' });
@@ -1155,6 +1136,217 @@ function initSponsorsPageAnimations() {
 }
 
 function initSponsorsHeroCanvas() {
+  if (document.getElementById('sponsors-hero-canvas')) initSponsorsHero();
+  loadSponsorsFromCMS();
+  loadReposFromCMS();
+  loadCompetitionsFromCMS();
+}
+
+async function loadSponsorsFromCMS() {
+  const grid = document.getElementById('cms-sponsors-grid');
+  if (!grid) return;
+
+  try {
+    const sponsors = await sanityClient.fetch(`*[_type == "sponsor"] | order(tier asc)`);
+    
+    if (sponsors.length === 0) {
+      grid.innerHTML = `
+        <div class="sponsors-empty-state sponsors-slide-up">
+          <h3>No Sponsors Yet</h3>
+          <p>Be the first to support our community!</p>
+        </div>
+      `;
+      return;
+    }
+
+    grid.innerHTML = '';
+    sponsors.forEach(sponsor => {
+      const imgUrl = sponsor.logo ? urlFor(sponsor.logo).width(400).url() : '';
+      grid.innerHTML += `
+        <a href="${sponsor.url || '#'}" target="_blank" class="sponsor-card sponsors-slide-up ${sponsor.tier || 'community'}">
+          <div class="sponsor-logo-container">
+            ${imgUrl ? `<img src="${imgUrl}" alt="${sponsor.name} logo" class="sponsor-logo">` : `<span style="color:var(--black)">${sponsor.name}</span>`}
+          </div>
+          <div class="sponsor-overlay">
+            <span class="sponsor-name">${sponsor.name}</span>
+            <span class="sponsor-tier">${sponsor.tier || 'Community'} Partner</span>
+          </div>
+        </a>
+      `;
+    });
+    
+    ScrollTrigger.refresh();
+  } catch (error) {
+    console.error("Failed to load sponsors from Sanity CMS", error);
+    grid.innerHTML = `<div class="sponsors-empty-state"><h3>Error loading sponsors</h3></div>`;
+  }
+}
+
+async function loadCompetitionsFromCMS() {
+  const grid = document.getElementById('cms-competitions-grid');
+  if (!grid) return;
+
+  try {
+    const competitions = await sanityClient.fetch(`*[_type == "competition"] | order(_createdAt desc)`);
+    
+    if (competitions.length === 0) {
+      grid.innerHTML = `
+        <div class="comp-empty-state comp-slide-up">
+          <h3>No Active Competitions</h3>
+          <p>Check back later for upcoming hackathons.</p>
+        </div>
+      `;
+      return;
+    }
+
+    grid.innerHTML = '';
+    competitions.forEach(comp => {
+      const imgUrl = comp.coverImage ? urlFor(comp.coverImage).width(600).url() : '';
+      
+      const card = document.createElement('div');
+      card.className = 'comp-card comp-slide-up';
+      card.style.cursor = 'pointer';
+      
+      card.innerHTML = `
+        ${imgUrl ? `<img src="${imgUrl}" alt="${comp.title}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px 12px 0 0;">` : ''}
+        <div style="padding: 24px;">
+          <h3 style="font-family: 'Clash Display', sans-serif; font-size: 20px; color: var(--white); margin-bottom: 12px;">${comp.title}</h3>
+          <p style="color: var(--slate); font-size: 15px; margin-bottom: 16px; line-height: 1.5;">${comp.shortDescription}</p>
+          <span class="btn-pill" style="display: inline-block;">View Details →</span>
+        </div>
+      `;
+
+      card.addEventListener('click', () => openCompetitionModal(comp));
+      grid.appendChild(card);
+    });
+    
+    ScrollTrigger.refresh();
+  } catch (error) {
+    console.error("Failed to load competitions from Sanity CMS", error);
+    grid.innerHTML = `<div class="comp-empty-state"><h3>Error loading competitions</h3></div>`;
+  }
+}
+
+function openCompetitionModal(comp) {
+  const overlay = document.getElementById('competition-modal-overlay');
+  if (!overlay) return;
+
+  const img = document.getElementById('comp-modal-image');
+  if (comp.coverImage) {
+    img.src = urlFor(comp.coverImage).width(800).url();
+    img.style.display = 'block';
+  } else {
+    img.style.display = 'none';
+  }
+
+  document.getElementById('comp-modal-title').textContent = comp.title || 'Competition';
+  document.getElementById('comp-modal-desc').textContent = comp.shortDescription || '';
+
+  // Timeline
+  const timelineContainer = document.getElementById('comp-modal-timeline');
+  timelineContainer.innerHTML = '';
+  if (comp.timeline && comp.timeline.length > 0) {
+    comp.timeline.forEach((stage, index) => {
+      const isActive = index === (comp.currentStageIndex || 0);
+      timelineContainer.innerHTML += `
+        <div style="margin-bottom: 16px; padding: 12px; border-left: 4px solid ${isActive ? 'var(--lime)' : 'var(--border)'}; background: ${isActive ? 'rgba(200, 255, 0, 0.05)' : 'transparent'};">
+          <strong style="color: ${isActive ? 'var(--lime)' : 'var(--white)'}">${stage.stageName}</strong>
+          <div style="color: var(--slate); font-size: 12px; margin-bottom: 4px;">${stage.date || ''}</div>
+          <div style="color: var(--ghost); font-size: 14px;">${stage.description || ''}</div>
+        </div>
+      `;
+    });
+  } else {
+    timelineContainer.innerHTML = '<p style="color: var(--slate); font-size: 14px;">Timeline not announced yet.</p>';
+  }
+
+  // Notices
+  const noticesContainer = document.getElementById('comp-modal-notices');
+  noticesContainer.innerHTML = '';
+  if (comp.notices && comp.notices.length > 0) {
+    comp.notices.forEach(notice => {
+      noticesContainer.innerHTML += `<li style="margin-bottom: 8px;">${notice}</li>`;
+    });
+  } else {
+    noticesContainer.innerHTML = '<li style="color: var(--ghost);">No notices at this time.</li>';
+  }
+
+  // Links
+  const linksContainer = document.getElementById('comp-modal-links');
+  linksContainer.innerHTML = '';
+  if (comp.links && comp.links.length > 0) {
+    comp.links.forEach(link => {
+      linksContainer.innerHTML += `<a href="${link.url}" target="_blank" class="btn-pill" style="border: 1px dashed var(--border); background: transparent;">${link.label} ↗</a>`;
+    });
+  }
+
+  // Register logic
+  const regBtn = document.getElementById('comp-btn-register');
+  regBtn.onclick = () => {
+    // Check auth
+    import('./firebase.js').then(({ auth }) => {
+      if (auth.currentUser) {
+        // Go to dashboard competitions tab
+        window.location.href = `/dashboard.html?tab=hackathons&comp=${comp._id}`;
+      } else {
+        // Not logged in
+        alert("Please login first to register for this hackathon.");
+        overlay.classList.remove('active');
+        // Optionally scroll to top or trigger login modal if exists
+        window.scrollTo(0, 0);
+      }
+    });
+  };
+
+  overlay.classList.add('active');
+}
+
+// Close competition modal
+const compModalCloseBtn = document.getElementById('competition-modal-close');
+if (compModalCloseBtn) {
+  compModalCloseBtn.addEventListener('click', () => {
+    document.getElementById('competition-modal-overlay').classList.remove('active');
+  });
+}
+
+async function loadReposFromCMS() {
+  const grid = document.getElementById('cms-contrib-grid');
+  if (!grid) return;
+
+  try {
+    const repos = await sanityClient.fetch(`*[_type == "repository"] | order(_createdAt desc)`);
+    
+    if (repos.length === 0) {
+      grid.innerHTML = `
+        <div class="contrib-empty-state contrib-slide-up">
+          <h3>No Repositories Yet</h3>
+          <p>Check back later for open-source projects.</p>
+        </div>
+      `;
+      return;
+    }
+
+    grid.innerHTML = '';
+    repos.forEach(repo => {
+      const tagsHtml = (repo.tags || []).map(tag => `<span class="repo-tag">${tag}</span>`).join('');
+      grid.innerHTML += `
+        <div class="repo-card contrib-slide-up">
+          <h3>${repo.title}</h3>
+          <p>${repo.description}</p>
+          <div class="repo-tags">${tagsHtml}</div>
+          <a href="${repo.githubUrl}" target="_blank" class="btn-pill" style="margin-top: 16px; display: inline-block;">View Repository →</a>
+        </div>
+      `;
+    });
+    
+    ScrollTrigger.refresh();
+  } catch (error) {
+    console.error("Failed to load repositories from Sanity CMS", error);
+    grid.innerHTML = `<div class="contrib-empty-state"><h3>Error loading repositories</h3></div>`;
+  }
+}
+
+function initSponsorsHero() {
   const canvas = document.getElementById('sponsors-hero-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');

@@ -116,19 +116,18 @@ function updateUIForLoggedInUser(user) {
   const loginBtns = document.querySelectorAll('a[href="#login"]');
   loginBtns.forEach(btn => {
     // Change login button to profile/dashboard button
-    btn.innerHTML = `<img src="${user.photoURL}" alt="Profile" style="width:24px;height:24px;border-radius:50%;margin-right:8px;"> ${user.displayName.split(' ')[0]}`;
-    btn.href = "#dashboard";
+    btn.innerHTML = `
+      <div style="display:flex; align-items:center; gap:8px;">
+        <img src="${user.photoURL}" alt="Profile" style="width:24px;height:24px;border-radius:50%;">
+        <span>${user.displayName.split(' ')[0]}</span>
+      </div>
+    `;
+    btn.href = "/dashboard.html";
     btn.classList.add('logged-in-btn');
     
-    // Swap click listener to logout for now (or to dashboard)
+    // Swap click listener to redirect to dashboard (remove old listeners)
     const newBtn = btn.cloneNode(true);
     btn.parentNode.replaceChild(newBtn, btn);
-    newBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      // For now, prompt to logout
-      if (confirm("Do you want to log out?")) {
-        logout();
-      }
-    });
+    // Since it's an a tag with an href, it will naturally redirect now.
   });
 }

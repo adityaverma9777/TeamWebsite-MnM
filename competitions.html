@@ -142,6 +142,31 @@
       </div>
     </div>
 
+    <div id="competition-modal-overlay" class="profile-modal-overlay">
+      <div class="competition-modal">
+        <button id="competition-modal-close" class="profile-modal-close">&times;</button>
+        <span class="commit-mono modal-label" id="comp-modal-tag">// competition details</span>
+        <img id="comp-modal-image" src="" alt="Competition Cover" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 24px; display: none;">
+        <h3 class="modal-title" id="comp-modal-title">Competition Title</h3>
+        <p id="comp-modal-desc" style="color: var(--slate); font-size: 15px; margin-bottom: 24px; line-height: 1.5;">Description goes here...</p>
+        
+        <h4 style="font-family: 'Clash Display', sans-serif; font-size: 18px; margin-bottom: 16px;">Timeline</h4>
+        <div id="comp-modal-timeline" class="timeline-container">
+          <!-- Timeline injected here -->
+        </div>
+
+        <h4 style="font-family: 'Clash Display', sans-serif; font-size: 18px; margin: 24px 0 16px;">Notices & Links</h4>
+        <ul id="comp-modal-notices" style="color: var(--slate); font-size: 14px; padding-left: 20px; margin-bottom: 16px;">
+          <!-- Notices injected here -->
+        </ul>
+        <div id="comp-modal-links" style="display: flex; gap: 12px; margin-bottom: 32px; flex-wrap: wrap;">
+          <!-- Links injected here -->
+        </div>
+
+        <button id="comp-btn-register" class="btn-pill magnetic" style="width: 100%; border: none; cursor: pointer; text-align: center;">Register for this Hackathon</button>
+      </div>
+    </div>
+
   </main>
   <script type="module" src="/main.js"></script>
 </body>

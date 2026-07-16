@@ -2909,7 +2909,7 @@ button {
 .benefit-icon {
   width: 48px;
   height: 48px;
-  color: var(--black);
+  color: var(--lime);
   margin-bottom: 24px;
 }
 
@@ -2917,7 +2917,7 @@ button {
   font-family: 'Clash Display', sans-serif;
   font-size: 24px;
   font-weight: 600;
-  color: var(--black);
+  color: var(--white);
   margin-bottom: 12px;
 }
 
