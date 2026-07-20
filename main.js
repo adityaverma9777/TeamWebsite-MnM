@@ -113,7 +113,6 @@ function initSite() {
   initAuth();
   
   if (document.getElementById('home-sponsors-timeline-wrap')) {
-    loadHomepageSponsors();
     loadLeaderboard();
   }
 }
@@ -1149,49 +1148,8 @@ function initSponsorsPageAnimations() {
 
 function initSponsorsHeroCanvas() {
   if (document.getElementById('sponsors-hero-canvas')) initSponsorsHero();
-  loadSponsorsFromCMS();
   loadReposFromCMS();
   loadCompetitionsFromCMS();
-}
-
-async function loadSponsorsFromCMS() {
-  const grid = document.getElementById('cms-sponsors-grid');
-  if (!grid) return;
-
-  try {
-    const sponsors = await sanityClient.fetch(`*[_type == "sponsor"] | order(tier asc)`);
-    
-    if (sponsors.length === 0) {
-      grid.innerHTML = `
-        <div class="sponsors-empty-state sponsors-slide-up">
-          <h3>No Sponsors Yet</h3>
-          <p>Be the first to support our community!</p>
-        </div>
-      `;
-      return;
-    }
-
-    grid.innerHTML = '';
-    sponsors.forEach(sponsor => {
-      const imgUrl = sponsor.logo ? urlFor(sponsor.logo).width(400).url() : '';
-      grid.innerHTML += `
-        <a href="${sponsor.url || '#'}" target="_blank" class="sponsor-card sponsors-slide-up ${sponsor.tier || 'community'}">
-          <div class="sponsor-logo-container">
-            ${imgUrl ? `<img src="${imgUrl}" alt="${sponsor.name} logo" class="sponsor-logo">` : `<span style="color:var(--black)">${sponsor.name}</span>`}
-          </div>
-          <div class="sponsor-overlay">
-            <span class="sponsor-name">${sponsor.name}</span>
-            <span class="sponsor-tier">${sponsor.tier || 'Community'} Partner</span>
-          </div>
-        </a>
-      `;
-    });
-    
-    ScrollTrigger.refresh();
-  } catch (error) {
-    console.error("Failed to load sponsors from Sanity CMS", error);
-    grid.innerHTML = `<div class="sponsors-empty-state"><h3>Error loading sponsors</h3></div>`;
-  }
 }
 
 async function loadCompetitionsFromCMS() {
@@ -1518,66 +1476,6 @@ document.querySelectorAll('.modal-buttons .btn-pill').forEach(btn => {
   });
 });
 
-async function loadHomepageSponsors() {
-  const wrap = document.getElementById('home-sponsors-timeline-wrap');
-  const entries = document.getElementById('hack-entries');
-  if (!wrap || !entries) return;
-
-  try {
-    const sponsors = await sanityClient.fetch(`*[_type == "sponsor"] | order(tier asc)`);
-    
-    if (!sponsors || sponsors.length === 0) {
-      wrap.style.display = 'none'; // hide if empty
-      return;
-    }
-    
-    wrap.style.display = 'flex';
-    entries.innerHTML = '';
-    
-    sponsors.forEach((sponsor, index) => {
-      entries.innerHTML += `
-        <div class="hack-entry" data-place="${index + 1}">
-          <div class="hack-stem"></div>
-          <div class="hack-card">
-            <div class="hack-card-name">${sponsor.name}</div>
-          </div>
-        </div>
-      `;
-    });
-    
-    // Initialize ScrollTrigger for newly added entries
-    const watermark = document.getElementById('hack-watermark');
-    entries.querySelectorAll('.hack-entry').forEach((entry, i) => {
-      const stem = entry.querySelector('.hack-stem');
-      const card = entry.querySelector('.hack-card');
-      ScrollTrigger.create({
-        trigger: entry,
-        start: 'top 82%',
-        once: true,
-        onEnter: () => {
-          gsap.to(stem, { scaleY: 1, duration: 0.55, ease: 'expo.out' });
-          gsap.to(card, { opacity: 1, y: 0, duration: 0.45, ease: 'expo.out', delay: 0.45 });
-          if (watermark) {
-            gsap.to(watermark, {
-              textContent: i + 1,
-              duration: 0.01,
-              delay: 0.1,
-              onUpdate: () => { watermark.textContent = i + 1; }
-            });
-          }
-        }
-      });
-    });
-    
-    // Refresh ScrollTrigger to account for new elements
-    setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 100);
-  } catch (err) {
-    console.error('Failed to load homepage sponsors', err);
-    wrap.style.display = 'none';
-  }
-};
 
 async function loadLeaderboard() {
   const lbBody = document.getElementById('home-leaderboard-body');

@@ -74,7 +74,7 @@
             and shipping before you're ready.
           </p>
           <div class="hero-cta-row">
-            <button class="btn-pill magnetic" id="hero-cta">Top Contributors</button>
+            <a href="contribute.html" class="btn-pill magnetic" id="hero-cta" style="display: inline-flex; justify-content: center; align-items: center; text-align: center; text-decoration: none;">Contribute</a>
             <a href="#about" class="hero-text-link">who we are <span class="arrow">↓</span></a>
           </div>
         </div>
@@ -137,6 +137,70 @@
         </div>
       </div>
     </section>
+
+    <section id="video-intro" style="padding: 100px 0 40px 0; background: transparent; display: flex; align-items: center; justify-content: center; box-sizing: border-box;">
+      <div class="container" style="display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%;">
+        
+        <!-- Top: Video in 16:9, scaled to fit height -->
+        <div class="video-wrapper" style="width: 100%; max-width: 900px; max-height: 55vh; position: relative; aspect-ratio: 16/9; background: #000; border-radius: 16px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.15); margin-bottom: 32px;">
+          <video id="intro-video" src="/My Video1.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
+          <button id="mute-toggle" style="position: absolute; bottom: 20px; right: 20px; background: rgba(0, 0, 0, 0.5); color: #fff; border: 1px solid rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 24px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: 'Commit Mono', monospace; font-size: 14px; backdrop-filter: blur(8px); transition: background 0.3s, transform 0.2s;">
+            <svg id="speaker-icon-muted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <line x1="23" y1="9" x2="17" y2="15"></line>
+              <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+            <svg id="speaker-icon-unmuted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+            </svg>
+            <span id="mute-text">Unmute</span>
+          </button>
+        </div>
+        
+        <!-- Bottom: Text centered -->
+        <div class="text-wrapper" style="display: flex; flex-direction: column; align-items: center;">
+          <h2 style="font-family: 'Clash Display', sans-serif; font-size: clamp(3.5rem, 6vw, 5.5rem); font-weight: 600; letter-spacing: -0.02em; margin-bottom: 24px; line-height: 1; color: var(--black);">
+            Makers Need More<span style="color: var(--lime);">.</span>
+          </h2>
+          <p style="font-size: clamp(1.25rem, 2vw, 1.75rem); color: var(--slate); line-height: 1.5; font-family: 'Satoshi', sans-serif; max-width: 600px;">
+            More minds. More solutions. More humanity.
+          </p>
+        </div>
+        
+      </div>
+    </section>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const video = document.getElementById('intro-video');
+        const muteToggle = document.getElementById('mute-toggle');
+        const muteText = document.getElementById('mute-text');
+        const iconMuted = document.getElementById('speaker-icon-muted');
+        const iconUnmuted = document.getElementById('speaker-icon-unmuted');
+        
+        if (muteToggle && video) {
+          muteToggle.addEventListener('mouseenter', () => muteToggle.style.background = 'rgba(0,0,0,0.7)');
+          muteToggle.addEventListener('mouseleave', () => muteToggle.style.background = 'rgba(0,0,0,0.5)');
+          
+          muteToggle.addEventListener('click', () => {
+            if (video.muted) {
+              video.muted = false;
+              muteText.textContent = 'Mute';
+              iconMuted.style.display = 'none';
+              iconUnmuted.style.display = 'block';
+            } else {
+              video.muted = true;
+              muteText.textContent = 'Unmute';
+              iconMuted.style.display = 'block';
+              iconUnmuted.style.display = 'none';
+            }
+          });
+        }
+      });
+    </script>
+
     <section id="features">
       <div class="features-container">
         <!-- Card 1 -->
@@ -398,14 +462,17 @@
     </section>
 
     <section id="hackathons">
-      <div class="container" style="transform: translateY(-40px);">
-        <span class="section-label">// sponsors</span>
-        <h2 class="hack-heading">
-          <span class="hack-line">fueling</span>
-          <span class="hack-line">innovation.</span>
-          <span class="hack-line">our</span>
-          <span class="hack-line">proud <span class="hack-destroy">sponsors.</span></span>
-        </h2>
+      <div class="container" style="transform: translateY(-40px); display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
+        <div>
+          <span class="section-label">// sponsors</span>
+          <h2 class="hack-heading">
+            <span class="hack-line">fuel</span>
+            <span class="hack-line">innovation</span>
+            <span class="hack-line">and</span>
+            <span class="hack-line">sponsor <span class="hack-destroy">us.</span></span>
+          </h2>
+        </div>
+        <a href="mailto:contact.weareinventors@gmail.com" class="btn-pill magnetic">Contact Us</a>
       </div>
       <div class="hack-timeline-wrap" id="home-sponsors-timeline-wrap" style="display: none;">
         <div class="hack-watermark" id="hack-watermark">0</div>
@@ -417,32 +484,7 @@
       </div>
     </section>
 
-    <section id="contributors">
-      <div class="container">
-        <span class="section-label">// top contributors</span>
-        <h2 class="contrib-heading">
-          <span class="contrib-line">community</span>
-          <span class="contrib-line">legends.</span>
-        </h2>
-        
-        <div class="leaderboard-wrap">
-          <!-- Table Header -->
-          <div class="leaderboard-header commit-mono">
-            <div class="lb-col lb-rank">Rank</div>
-            <div class="lb-col lb-user">Contributor</div>
-            <div class="lb-col lb-role">Specialty</div>
-            <div class="lb-col lb-points">Points</div>
-          </div>
-          
-          <!-- Rows -->
-          <div class="leaderboard-body" id="home-leaderboard-body">
-            <div class="lb-row">
-              <div class="lb-col" style="width: 100%; text-align: center; color: var(--slate);">Loading top contributors...</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+
 
     <section id="manifesto">
       <div class="manifesto-inner">

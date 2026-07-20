@@ -1597,7 +1597,7 @@ button {
 /* --- Features Section --- */
 #features {
   background: var(--white);
-  padding: 120px 0;
+  padding: 60px 0 120px 0;
   overflow: hidden;
   position: relative;
 }
@@ -2101,7 +2101,7 @@ button {
 
   /* Features */
   #features {
-    padding: 80px 0;
+    padding: 20px 0 80px 0;
   }
   .features-container {
     padding: 0 24px;
