@@ -4,21 +4,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MnM - Student Driven Open Source Community</title>
+  <title>MnM – Student-Driven Open Source Community | Makers Need More</title>
   <link rel="icon" type="image/png" href="/logo.png">
+  <link rel="canonical" href="https://mnmworks.xyz/">
+  <meta name="robots" content="index, follow">
   <meta name="description" content="Makers Need More (MnM) is a global, student-driven community building and shipping open-source solutions at the speed of thought.">
-  
-  <!-- Open Graph / Social Media Meta Tags -->
-  <meta property="og:title" content="MnM - Student Driven Open Source Community">
+  <meta property="og:title" content="MnM – Student-Driven Open Source Community | Makers Need More">
   <meta property="og:description" content="Makers Need More (MnM) is a global, student-driven community building and shipping open-source solutions at the speed of thought.">
-  <meta property="og:image" content="/logo.png">
+  <meta property="og:image" content="https://mnmworks.xyz/logo.png">
+  <meta property="og:url" content="https://mnmworks.xyz/">
   <meta property="og:type" content="website">
-  
-  <!-- Twitter Card Meta Tags -->
+  <meta property="og:site_name" content="MnM – Makers Need More">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MnM - Student Driven Open Source Community">
+  <meta name="twitter:title" content="MnM – Student-Driven Open Source Community">
   <meta name="twitter:description" content="Makers Need More (MnM) is a global, student-driven community building and shipping open-source solutions at the speed of thought.">
-  <meta name="twitter:image" content="/logo.png">
+  <meta name="twitter:image" content="https://mnmworks.xyz/logo.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://mnmworks.xyz/#organization",
+        "name": "Makers Need More (MnM)",
+        "url": "https://mnmworks.xyz",
+        "logo": "https://mnmworks.xyz/logo.png",
+        "description": "A global, student-driven non-profit community building and shipping open-source solutions.",
+        "email": "contact@mnmworks.xyz",
+        "sameAs": [
+          "https://github.com/MakersNeedMore-MnM",
+          "https://www.linkedin.com/company/makersneedmore"
+        ],
+        "founder": [
+          { "@type": "Person", "name": "Manika Kutiyal" },
+          { "@type": "Person", "name": "Aditya Verma" }
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://mnmworks.xyz/#website",
+        "url": "https://mnmworks.xyz",
+        "name": "MnM – Makers Need More",
+        "publisher": { "@id": "https://mnmworks.xyz/#organization" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://mnmworks.xyz/#webpage",
+        "url": "https://mnmworks.xyz/",
+        "name": "MnM – Student-Driven Open Source Community | Makers Need More",
+        "isPartOf": { "@id": "https://mnmworks.xyz/#website" },
+        "about": { "@id": "https://mnmworks.xyz/#organization" },
+        "description": "Makers Need More (MnM) is a global, student-driven community building and shipping open-source solutions at the speed of thought."
+      }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://api.fontshare.com">
   <link
     href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500&f[]=commit-mono@400&display=swap"
@@ -145,7 +185,7 @@
           
           <!-- Video wrapper — starts small, scales up on scroll -->
           <div class="video-wrapper" id="video-zoom-wrapper">
-            <video id="intro-video" src="/My Video1.webm" autoplay loop muted playsinline></video>
+            <video id="intro-video" src="/My Video1.webm" autoplay loop muted playsinline title="MnM community introduction video" aria-label="Makers Need More community introduction video"></video>
             <button id="mute-toggle" class="video-mute-btn">
               <svg id="speaker-icon-muted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
@@ -235,7 +275,7 @@
             <h3 class="feature-title">Contribute</h3>
             <p class="feature-desc">Discover projects that need your expertise. Contribute code, climb the leaderboard,
               share your achievements on social media, and help build sustainable solutions.</p>
-            <a href="#contribute" class="feature-link">Start Contributing <span class="arrow">→</span></a>
+            <a href="contribute.html" class="feature-link">Start Contributing <span class="arrow">→</span></a>
           </div>
           <div class="feature-card-graphic">
             <div class="svg-anim-wrapper graphic-2">
@@ -270,7 +310,7 @@
             <h3 class="feature-title">Got an Idea?</h3>
             <p class="feature-desc">Submit your repository to our platform. If you're seeking contributions, your
               project will be evaluated, showcased here, and opened to our community.</p>
-            <a href="#apply" class="feature-link">Submit Repo <span class="arrow">→</span></a>
+            <a href="contribute.html" class="feature-link">Submit Repo <span class="arrow">→</span></a>
           </div>
           <div class="feature-card-graphic">
             <div class="svg-anim-wrapper graphic-3">
@@ -294,7 +334,7 @@
             <h3 class="feature-title">Sponsor Us</h3>
             <p class="feature-desc">Built for visionaries. Connect with our talented pool of developers and sponsor our
               initiatives to drive innovation forward.</p>
-            <a href="#sponsors" class="feature-link">Become a Sponsor <span class="arrow">→</span></a>
+            <a href="sponsors.html" class="feature-link">Become a Sponsor <span class="arrow">→</span></a>
           </div>
           <div class="feature-card-graphic">
             <div class="svg-anim-wrapper graphic-4">
@@ -509,7 +549,7 @@
           <span class="contact-line">shipping.</span>
         </h2>
         <div class="contact-links">
-          <a href="#" onclick="openProfileModal('GitHub'); return false;" class="contact-row" data-cursor="open">
+          <a href="https://github.com/MakersNeedMore-MnM" onclick="openProfileModal('GitHub'); return false;" class="contact-row" data-cursor="open">
             <span class="contact-row-name">GitHub</span>
             <span class="contact-row-arrow">→</span>
             <div class="contact-row-fill"></div>
@@ -519,7 +559,7 @@
             <span class="contact-row-arrow">→</span>
             <div class="contact-row-fill"></div>
           </a>
-          <a href="#" onclick="openProfileModal('LinkedIn'); return false;" class="contact-row" data-cursor="open">
+          <a href="https://www.linkedin.com/company/makersneedmore" onclick="openProfileModal('LinkedIn'); return false;" class="contact-row" data-cursor="open">
             <span class="contact-row-name">LinkedIn</span>
             <span class="contact-row-arrow">→</span>
             <div class="contact-row-fill"></div>
