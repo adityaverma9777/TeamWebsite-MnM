@@ -12,7 +12,7 @@ import * as THREE from 'three';
 
 // Wake up Render backend
 const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
-fetch(`${backendUrl}/wake`).catch(() => {});
+fetch(`${backendUrl}/wake`).catch(() => { });
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -97,6 +97,7 @@ function initSite() {
   }
   gsap.to('.hero-sub', { y: 0, opacity: 1, duration: 0.65, ease: 'expo.out', delay: 0.55 });
   gsap.to('.hero-cta-row', { opacity: 1, duration: 0.5, ease: 'expo.out', delay: 0.75 });
+  initVideoZoom();
   initScrollAnimations();
   initAboutScroll();
   initPersonCards();
@@ -111,7 +112,7 @@ function initSite() {
   initContributePageAnimations();
   initSponsorsPageAnimations();
   initAuth();
-  
+
   if (document.getElementById('home-sponsors-timeline-wrap')) {
     loadLeaderboard();
   }
@@ -210,7 +211,7 @@ function initScrollAnimations() {
       });
     });
   }
-  
+
   if (document.querySelector('.projects-heading')) {
     gsap.from('.projects-heading', {
       y: 28,
@@ -238,6 +239,50 @@ function initScrollAnimations() {
     scrollTrigger: { trigger: '.contact-heading', start: 'top 82%', once: true }
   });
 }
+
+function initVideoZoom() {
+  const container = document.getElementById('video-scroll-container');
+  const pinTarget = document.getElementById('video-pin-target');
+  const videoWrapper = document.getElementById('video-zoom-wrapper');
+  const introText = document.getElementById('video-intro-text');
+
+  if (!container || !pinTarget || !videoWrapper) return;
+
+  // Set initial scale — video starts small
+  gsap.set(videoWrapper, {
+    scale: 0.5,
+    borderRadius: '20px',
+    transformOrigin: 'center center'
+  });
+
+  // ── Phase 1: Scale up during natural scroll (no pin) ──
+  // Starts as soon as the section enters the viewport from below,
+  // completes by the time it nears the top of the viewport.
+  gsap.to(videoWrapper, {
+    scale: 0.85,
+    borderRadius: '16px',
+    ease: 'none',
+    scrollTrigger: {
+      trigger: container,
+      start: 'top 90%',   // begins when top of section is 90% down viewport (just entering)
+      end: 'top 10%',     // ends when top of section is 10% from top (nearly in position)
+      scrub: 0.6,
+    }
+  });
+
+  // ── Phase 2: Brief pause when video + text are in position (scroll-down only) ──
+  // No pin — avoids the lag/sticky zone when scrolling back up.
+  ScrollTrigger.create({
+    trigger: container,
+    start: 'top -8%',
+    onEnter: () => {
+      // Freeze scroll briefly, then resume
+      lenis.stop();
+      setTimeout(() => lenis.start(), 600);
+    }
+  });
+}
+
 function initAboutScroll() {
   const aboutSection = document.getElementById('about');
   if (!aboutSection) return;
@@ -592,7 +637,7 @@ function initAboutHeroCanvas() {
   }
   resize();
   window.addEventListener('resize', resize);
-  
+
   function draw() {
     requestAnimationFrame(draw);
     t += 0.01;
@@ -600,11 +645,11 @@ function initAboutHeroCanvas() {
     ctx.fillRect(0, 0, w, h);
     ctx.lineWidth = 1;
     ctx.strokeStyle = 'rgba(200, 255, 0, 0.05)';
-    
+
     ctx.beginPath();
     for (let i = 0; i < h; i += 40) {
-      ctx.moveTo(0, i + Math.sin(t + i*0.01) * 20);
-      ctx.lineTo(w, i + Math.cos(t + i*0.02) * 20);
+      ctx.moveTo(0, i + Math.sin(t + i * 0.01) * 20);
+      ctx.lineTo(w, i + Math.cos(t + i * 0.02) * 20);
     }
     ctx.stroke();
   }
@@ -646,7 +691,7 @@ function initHeroThreeJS() {
     phaseArr[i] = Math.random() * Math.PI * 2;
     const et = Math.random() * Math.PI * 2;
     const ep = Math.acos(Math.random() * 2 - 1);
-    explodeDirs[i * 3]     = Math.sin(ep) * Math.cos(et);
+    explodeDirs[i * 3] = Math.sin(ep) * Math.cos(et);
     explodeDirs[i * 3 + 1] = Math.sin(ep) * Math.sin(et);
     explodeDirs[i * 3 + 2] = Math.cos(ep);
     explodeSpeeds[i] = 0.55 + Math.random() * 0.9;
@@ -1045,7 +1090,7 @@ function initCompHeroCanvas() {
   }
   resize();
   window.addEventListener('resize', resize);
-  
+
   function draw() {
     requestAnimationFrame(draw);
     t += 0.015;
@@ -1053,11 +1098,11 @@ function initCompHeroCanvas() {
     ctx.fillRect(0, 0, w, h);
     ctx.lineWidth = 1.5;
     ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
-    
+
     ctx.beginPath();
     for (let i = 0; i < w; i += 60) {
-      ctx.moveTo(i + Math.sin(t + i*0.01) * 30, 0);
-      ctx.lineTo(i + Math.cos(t + i*0.02) * 30, h);
+      ctx.moveTo(i + Math.sin(t + i * 0.01) * 30, 0);
+      ctx.lineTo(i + Math.cos(t + i * 0.02) * 30, h);
     }
     ctx.stroke();
   }
@@ -1101,7 +1146,7 @@ function initContribHeroCanvas() {
   }
   resize();
   window.addEventListener('resize', resize);
-  
+
   function draw() {
     requestAnimationFrame(draw);
     t += 0.012;
@@ -1109,11 +1154,11 @@ function initContribHeroCanvas() {
     ctx.fillRect(0, 0, w, h);
     ctx.lineWidth = 1;
     ctx.strokeStyle = 'rgba(200, 255, 0, 0.08)';
-    
+
     ctx.beginPath();
     for (let i = 0; i < h; i += 40) {
-      ctx.moveTo(0, i + Math.sin(t + i*0.01) * 20);
-      ctx.lineTo(w, i + Math.cos(t + i*0.02) * 20);
+      ctx.moveTo(0, i + Math.sin(t + i * 0.01) * 20);
+      ctx.lineTo(w, i + Math.cos(t + i * 0.02) * 20);
     }
     ctx.stroke();
   }
@@ -1158,7 +1203,7 @@ async function loadCompetitionsFromCMS() {
 
   try {
     const competitions = await sanityClient.fetch(`*[_type == "competition"] | order(_createdAt desc)`);
-    
+
     if (competitions.length === 0) {
       grid.innerHTML = `
         <div class="comp-empty-state comp-slide-up">
@@ -1172,11 +1217,11 @@ async function loadCompetitionsFromCMS() {
     grid.innerHTML = '';
     competitions.forEach(comp => {
       const imgUrl = comp.coverImage ? urlFor(comp.coverImage).width(600).url() : '';
-      
+
       const card = document.createElement('div');
       card.className = 'comp-card comp-slide-up';
       card.style.cursor = 'pointer';
-      
+
       card.innerHTML = `
         ${imgUrl ? `<img src="${imgUrl}" alt="${comp.title}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px 12px 0 0;">` : ''}
         <div style="padding: 24px;">
@@ -1189,7 +1234,7 @@ async function loadCompetitionsFromCMS() {
       card.addEventListener('click', () => openCompetitionModal(comp));
       grid.appendChild(card);
     });
-    
+
     ScrollTrigger.refresh();
   } catch (error) {
     console.error("Failed to load competitions from Sanity CMS", error);
@@ -1285,7 +1330,7 @@ async function loadReposFromCMS() {
 
   try {
     const repos = await sanityClient.fetch(`*[_type == "repository"] | order(_createdAt desc)`);
-    
+
     if (repos.length === 0) {
       grid.innerHTML = `
         <div class="contrib-empty-state contrib-slide-up">
@@ -1308,7 +1353,7 @@ async function loadReposFromCMS() {
         </div>
       `;
     });
-    
+
     ScrollTrigger.refresh();
   } catch (error) {
     console.error("Failed to load repositories from Sanity CMS", error);
@@ -1327,7 +1372,7 @@ function initSponsorsHero() {
   }
   resize();
   window.addEventListener('resize', resize);
-  
+
   function draw() {
     requestAnimationFrame(draw);
     t += 0.015;
@@ -1335,11 +1380,11 @@ function initSponsorsHero() {
     ctx.fillRect(0, 0, w, h);
     ctx.lineWidth = 1;
     ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
-    
+
     ctx.beginPath();
     for (let i = 0; i < w; i += 50) {
       ctx.moveTo(i, h);
-      ctx.quadraticCurveTo(i + Math.sin(t + i*0.01) * 100, h/2, i + Math.cos(t + i*0.02) * 50, 0);
+      ctx.quadraticCurveTo(i + Math.sin(t + i * 0.01) * 100, h / 2, i + Math.cos(t + i * 0.02) * 50, 0);
     }
     ctx.stroke();
   }
@@ -1443,18 +1488,21 @@ function initFeatures() {
 window.openProfileModal = function (platform) {
   const overlay = document.getElementById('profile-modal-overlay');
   const title = document.getElementById('modal-platform-name');
+  const mnm = document.getElementById('modal-link-mnm');
   const aditya = document.getElementById('modal-link-aditya');
   const manika = document.getElementById('modal-link-manika');
 
   if (platform === 'GitHub') {
     title.textContent = 'GitHub';
-    manika.href = 'https://github.com/ManikaKutiyal';
-    aditya.href = 'https://github.com/adityaverma9777';
+    if (mnm) mnm.href = 'https://github.com/MakersNeedMore-MnM';
+    if (manika) manika.href = 'https://github.com/ManikaKutiyal';
+    if (aditya) aditya.href = 'https://github.com/adityaverma9777';
 
   } else {
     title.textContent = 'LinkedIn';
-    manika.href = 'https://www.linkedin.com/in/manika-kutiyal/';
-    aditya.href = 'https://www.linkedin.com/in/adityaverma9777/';
+    if (mnm) mnm.href = 'https://www.linkedin.com/company/makersneedmore';
+    if (manika) manika.href = 'https://www.linkedin.com/in/manika-kutiyal/';
+    if (aditya) aditya.href = 'https://www.linkedin.com/in/adityaverma9777/';
   }
 
   overlay.classList.add('active');
@@ -1484,15 +1532,15 @@ async function loadLeaderboard() {
   try {
     const { collection, query, orderBy, limit, getDocs } = await import('firebase/firestore');
     const { db } = await import('./firebase.js');
-    
+
     const q = query(collection(db, 'users'), orderBy('points', 'desc'), limit(5));
     const snap = await getDocs(q);
-    
+
     if (snap.empty) {
       lbBody.innerHTML = '<div class="lb-row"><div class="lb-col" style="width:100%;text-align:center;color:var(--slate);">No contributors yet.</div></div>';
       return;
     }
-    
+
     lbBody.innerHTML = '';
     let rank = 1;
     snap.forEach(docSnap => {
@@ -1500,14 +1548,14 @@ async function loadLeaderboard() {
       const roleStr = data.title || 'Contributor'; // Fallback if no title
       const points = data.points || 0;
       const name = data.name || 'Anonymous';
-      
+
       let rankStr = `#${rank}`;
       let rankClass = ``;
       if (rank <= 3) {
         rankStr = `<span class="neon-rank">#${rank}</span>`;
         rankClass = `rank-${rank}`;
       }
-      
+
       lbBody.innerHTML += `
         <div class="lb-row ${rankClass}">
           <div class="lb-col lb-rank commit-mono">${rankStr}</div>
@@ -1521,7 +1569,7 @@ async function loadLeaderboard() {
       `;
       rank++;
     });
-    
+
     setTimeout(() => {
       ScrollTrigger.refresh();
     }, 100);

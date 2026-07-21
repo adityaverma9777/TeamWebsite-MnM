@@ -138,37 +138,40 @@
       </div>
     </section>
 
-    <section id="video-intro" style="padding: 100px 0 40px 0; background: transparent; display: flex; align-items: center; justify-content: center; box-sizing: border-box;">
-      <div class="container" style="display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%;">
-        
-        <!-- Top: Video in 16:9, scaled to fit height -->
-        <div class="video-wrapper" style="width: 100%; max-width: 900px; max-height: 55vh; position: relative; aspect-ratio: 16/9; background: #000; border-radius: 16px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.15); margin-bottom: 32px;">
-          <video id="intro-video" src="/My Video1.webm" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
-          <button id="mute-toggle" style="position: absolute; bottom: 20px; right: 20px; background: rgba(0, 0, 0, 0.5); color: #fff; border: 1px solid rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 24px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: 'Commit Mono', monospace; font-size: 14px; backdrop-filter: blur(8px); transition: background 0.3s, transform 0.2s;">
-            <svg id="speaker-icon-muted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-              <line x1="23" y1="9" x2="17" y2="15"></line>
-              <line x1="17" y1="9" x2="23" y2="15"></line>
-            </svg>
-            <svg id="speaker-icon-unmuted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-            </svg>
-            <span id="mute-text">Unmute</span>
-          </button>
+    <!-- Scroll-driven video zoom section -->
+    <section id="video-scroll-container">
+      <div id="video-pin-target">
+        <div class="video-zoom-inner">
+          
+          <!-- Video wrapper — starts small, scales up on scroll -->
+          <div class="video-wrapper" id="video-zoom-wrapper">
+            <video id="intro-video" src="/My Video1.webm" autoplay loop muted playsinline></video>
+            <button id="mute-toggle" class="video-mute-btn">
+              <svg id="speaker-icon-muted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+              <svg id="speaker-icon-unmuted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              </svg>
+              <span id="mute-text">Unmute</span>
+            </button>
+          </div>
+
+          <!-- Text revealed after video reaches full size -->
+          <div class="video-intro-text" id="video-intro-text">
+            <h2 class="video-intro-heading">
+              Makers Need More<span style="color: var(--lime);">.</span>
+            </h2>
+            <p class="video-intro-sub">
+              More minds. More solutions. More humanity.
+            </p>
+          </div>
+
         </div>
-        
-        <!-- Bottom: Text centered -->
-        <div class="text-wrapper" style="display: flex; flex-direction: column; align-items: center;">
-          <h2 style="font-family: 'Clash Display', sans-serif; font-size: clamp(3.5rem, 6vw, 5.5rem); font-weight: 600; letter-spacing: -0.02em; margin-bottom: 24px; line-height: 1; color: var(--black);">
-            Makers Need More<span style="color: var(--lime);">.</span>
-          </h2>
-          <p style="font-size: clamp(1.25rem, 2vw, 1.75rem); color: var(--slate); line-height: 1.5; font-family: 'Satoshi', sans-serif; max-width: 600px;">
-            More minds. More solutions. More humanity.
-          </p>
-        </div>
-        
       </div>
     </section>
 
@@ -472,7 +475,7 @@
             <span class="hack-line">sponsor <span class="hack-destroy">us.</span></span>
           </h2>
         </div>
-        <a href="mailto:contact.weareinventors@gmail.com" class="btn-pill magnetic">Contact Us</a>
+        <a href="mailto:contact@mnmworks.xyz" class="btn-pill magnetic">Contact Us</a>
       </div>
       <div class="hack-timeline-wrap" id="home-sponsors-timeline-wrap" style="display: none;">
         <div class="hack-watermark" id="hack-watermark">0</div>
@@ -511,7 +514,7 @@
             <span class="contact-row-arrow">→</span>
             <div class="contact-row-fill"></div>
           </a>
-          <a href="mailto:contact.weareinventors@gmail.com" class="contact-row" data-cursor="open">
+          <a href="mailto:contact@mnmworks.xyz" class="contact-row" data-cursor="open">
             <span class="contact-row-name">Email</span>
             <span class="contact-row-arrow">→</span>
             <div class="contact-row-fill"></div>
@@ -535,8 +538,9 @@
         <span class="commit-mono modal-label">// select profile</span>
         <h3 class="modal-title" id="modal-platform-name">GitHub</h3>
         <div class="modal-buttons">
-          <a href="#" id="modal-link-manika" class="btn-pill" target="_blank">Manika Kutiyal</a>
-          <a href="#" id="modal-link-aditya" class="btn-pill" target="_blank">Aditya Verma</a>
+          <a href="#" id="modal-link-mnm" class="btn-pill" target="_blank">Makers Need More</a>
+          <!-- <a href="#" id="modal-link-manika" class="btn-pill" target="_blank">Manika Kutiyal</a> -->
+          <!-- <a href="#" id="modal-link-aditya" class="btn-pill" target="_blank">Aditya Verma</a> -->
         </div>
       </div>
     </div>
