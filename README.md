@@ -22,7 +22,7 @@ We write code to create an impact. With unreasonable output, we build at the spe
 
 Let's make something worth shipping. 
 
-- **Email:** [contact@mnmworks.xyz](mailto:contact@mnmworks.xyz)
+- **Email:** [admin@mnmworks.xyz](mailto:admin@mnmworks.xyz)
 - **GitHub:** [Makers Need More (MnM)](#)
 - **LinkedIn:** [Makers Need More (MnM)](#)
 

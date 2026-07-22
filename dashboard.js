@@ -1,6 +1,6 @@
 import { auth, db, storage } from './firebase.js';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { doc, getDoc, updateDoc, collection, addDoc, query, where, getDocs, onSnapshot, orderBy } from 'firebase/firestore';
+import { doc, getDoc, updateDoc, collection, addDoc, query, where, getDocs, onSnapshot, orderBy, arrayUnion, arrayRemove, deleteDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { sanityClient } from './sanity.js';
 import imageUrlBuilder from '@sanity/image-url';
@@ -23,6 +23,12 @@ onAuthStateChanged(auth, async (user) => {
     checkUrlParams();
     document.getElementById('preloader').style.display = 'none';
   } else {
+    // Save invite parameter to sessionStorage if present in URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const invite = urlParams.get('invite');
+    if (invite) {
+      sessionStorage.setItem('pendingInvite', invite);
+    }
     // Not logged in, redirect to home
     window.location.href = '/index.html';
   }
@@ -90,7 +96,6 @@ async function loadUserProfile() {
     document.getElementById('dash-user-name').textContent = data.name || 'User';
     document.getElementById('dash-user-email').textContent = data.email || '';
     document.getElementById('dash-user-avatar').src = data.photoURL || '/logo.png';
-    document.getElementById('dash-points').textContent = data.points || 0;
     
     // Pre-fill form
     if (data.name) document.getElementById('dash-name').value = data.name;
@@ -122,12 +127,6 @@ async function loadUserProfile() {
     }
     
     document.getElementById('dash-public').checked = data.isPublic === true;
-    
-    if (data.resumeUrl) {
-      const link = document.getElementById('dash-resume-link');
-      link.href = data.resumeUrl;
-      link.style.display = 'block';
-    }
 
     renderExtraLinks(data.extraLinks || []);
     
@@ -138,13 +137,25 @@ async function loadUserProfile() {
 
 async function handleTeamFlow(teamId) {
   const urlParams = new URLSearchParams(window.location.search);
-  const inviteCode = urlParams.get('invite');
+  let inviteCode = urlParams.get('invite');
+  
+  if (!inviteCode) {
+    inviteCode = sessionStorage.getItem('pendingInvite');
+    if (inviteCode) {
+      sessionStorage.removeItem('pendingInvite'); // Clear so we don't prompt on subsequent loads
+    }
+  } else {
+    sessionStorage.removeItem('pendingInvite');
+  }
   
   if (inviteCode && !teamId) {
     // User is joining via invite link
     if (confirm("You were invited to join a team! Join now?")) {
       await joinTeam(inviteCode);
       return;
+    } else {
+      // User declined, clean up URL and show no-team state
+      window.history.replaceState({}, document.title, "/dashboard.html");
     }
   }
 
@@ -156,32 +167,71 @@ async function handleTeamFlow(teamId) {
     const teamSnap = await getDoc(doc(db, 'teams', teamId));
     if (teamSnap.exists()) {
       const teamData = teamSnap.data();
+      const isLeader = teamData.leaderId === currentUser.uid;
+
       document.getElementById('active-team-name').textContent = teamData.name;
-      
+
+      // --- Role Badge ---
+      document.getElementById('team-role-badge').textContent = isLeader ? '👑 You are the Team Leader' : '👤 You are a Member';
+      document.getElementById('team-role-badge').style.color = isLeader ? 'var(--lime)' : 'var(--slate)';
+
+      // --- Members List ---
       const list = document.getElementById('team-members-list');
       list.innerHTML = '';
       
-      // Fetch member profiles
       for (let uid of teamData.members) {
         const memberSnap = await getDoc(doc(db, 'users', uid));
         if (memberSnap.exists()) {
           const mData = memberSnap.data();
-          list.innerHTML += `
-            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
-              <img src="${mData.photoURL || '/logo.png'}" style="width: 24px; height: 24px; border-radius: 50%;">
-              <span style="font-size: 14px;">${mData.name} ${uid === teamData.leaderId ? '(Leader)' : ''}</span>
-            </div>
+          const row = document.createElement('div');
+          row.style.cssText = 'display:flex; align-items:center; gap:12px; margin-bottom:10px; padding:8px; background:rgba(255,255,255,0.03); border-radius:8px; border:1px solid var(--border);';
+          
+          let removeBtn = '';
+          // Leader can remove any member except themselves
+          if (isLeader && uid !== currentUser.uid) {
+            removeBtn = `<button class="btn-remove-member" data-uid="${uid}" style="margin-left:auto; background:transparent; border:1px solid #ef4444; color:#ef4444; border-radius:6px; padding:2px 10px; cursor:pointer; font-size:12px;">Remove</button>`;
+          }
+
+          row.innerHTML = `
+            <img src="${mData.photoURL || '/logo.png'}" style="width:28px; height:28px; border-radius:50%; flex-shrink:0;">
+            <span style="font-size:14px; color:var(--white);">${mData.name || mData.email || 'Unknown'}</span>
+            ${uid === teamData.leaderId ? '<span style="font-size:11px; color:var(--lime); margin-left:4px;">👑 Leader</span>' : ''}
+            ${removeBtn}
           `;
+          list.appendChild(row);
+
+          // Bind remove button
+          if (isLeader && uid !== currentUser.uid) {
+            row.querySelector('.btn-remove-member').addEventListener('click', async () => {
+              if (confirm(`Remove ${mData.name} from the team?`)) {
+                await removeMember(teamId, uid);
+              }
+            });
+          }
         }
       }
-      
-      // Setup invite button
+
+      // --- Leader Controls: Rename Team ---
+      const leaderControls = document.getElementById('team-leader-controls');
+      const memberControls = document.getElementById('team-member-controls');
+
+      if (isLeader) {
+        leaderControls.style.display = 'block';
+        memberControls.style.display = 'none';
+        document.getElementById('rename-team-input').value = teamData.name;
+      } else {
+        leaderControls.style.display = 'none';
+        memberControls.style.display = 'block';
+      }
+
+      // --- Copy Invite Link ---
       document.getElementById('btn-copy-invite').onclick = () => {
         const inviteUrl = `${window.location.origin}/dashboard.html?invite=${teamId}`;
         navigator.clipboard.writeText(inviteUrl);
-        document.getElementById('btn-copy-invite').textContent = 'Copied!';
-        setTimeout(() => { document.getElementById('btn-copy-invite').textContent = 'Copy Invite Link'; }, 2000);
+        document.getElementById('btn-copy-invite').textContent = '✅ Copied!';
+        setTimeout(() => { document.getElementById('btn-copy-invite').textContent = '📋 Copy Invite Link'; }, 2000);
       };
+
     }
   } else {
     document.getElementById('team-none-state').style.display = 'block';
@@ -193,8 +243,10 @@ document.getElementById('create-team-form').addEventListener('submit', async (e)
   e.preventDefault();
   const btn = e.target.querySelector('button');
   btn.textContent = 'Creating...';
+  btn.disabled = true;
   
-  const teamName = document.getElementById('new-team-name').value;
+  const teamName = document.getElementById('new-team-name').value.trim();
+  if (!teamName) { btn.textContent = 'Create Team'; btn.disabled = false; return; }
   
   try {
     // 1. Create team doc
@@ -210,9 +262,14 @@ document.getElementById('create-team-form').addEventListener('submit', async (e)
       teamId: teamDoc.id
     });
     
+    document.getElementById('new-team-name').value = '';
     await handleTeamFlow(teamDoc.id);
   } catch (error) {
     console.error("Error creating team:", error);
+    alert('Failed to create team. Check console for details.');
+  } finally {
+    btn.textContent = 'Create Team';
+    btn.disabled = false;
   }
 });
 
@@ -223,25 +280,95 @@ async function joinTeam(teamId) {
     
     if (teamSnap.exists()) {
       const data = teamSnap.data();
-      // Add to members array (in production, use arrayUnion)
+      
       if (!data.members.includes(currentUser.uid)) {
-        const newMembers = [...data.members, currentUser.uid];
-        await updateDoc(teamRef, { members: newMembers });
+        // Use arrayUnion for safe atomic update
+        await updateDoc(teamRef, { members: arrayUnion(currentUser.uid) });
       }
       
-      // Update user doc
+      // Update user doc with their new teamId
       await updateDoc(doc(db, 'users', currentUser.uid), { teamId: teamId });
       
       // Clean up URL
       window.history.replaceState({}, document.title, "/dashboard.html");
       await handleTeamFlow(teamId);
     } else {
-      alert("Invalid invite link.");
+      alert("Invalid invite link. This team no longer exists.");
+      window.history.replaceState({}, document.title, "/dashboard.html");
     }
   } catch (e) {
-    console.error(e);
+    console.error('Error joining team:', e);
+    alert(`Failed to join team: ${e.message}. You may not have permission — please contact an admin.`);
+    window.history.replaceState({}, document.title, "/dashboard.html");
   }
 }
+
+async function leaveTeam(teamId) {
+  if (!confirm('Are you sure you want to leave this team?')) return;
+  try {
+    // Remove self from team members array
+    await updateDoc(doc(db, 'teams', teamId), {
+      members: arrayRemove(currentUser.uid)
+    });
+    // Clear teamId from user profile
+    await updateDoc(doc(db, 'users', currentUser.uid), { teamId: null });
+    await handleTeamFlow(null);
+  } catch (e) {
+    console.error('Error leaving team:', e);
+    alert(`Failed to leave team: ${e.message}`);
+  }
+}
+
+async function removeMember(teamId, memberUid) {
+  try {
+    // Remove member from team
+    await updateDoc(doc(db, 'teams', teamId), {
+      members: arrayRemove(memberUid)
+    });
+    // Clear teamId from removed user's profile
+    await updateDoc(doc(db, 'users', memberUid), { teamId: null });
+    // Re-render team
+    await handleTeamFlow(teamId);
+  } catch (e) {
+    console.error('Error removing member:', e);
+    alert(`Failed to remove member: ${e.message}`);
+  }
+}
+
+async function renameTeam(teamId, newName) {
+  if (!newName.trim()) { alert('Team name cannot be empty.'); return; }
+  try {
+    await updateDoc(doc(db, 'teams', teamId), { name: newName.trim() });
+    document.getElementById('active-team-name').textContent = newName.trim();
+    return true;
+  } catch (e) {
+    console.error('Error renaming team:', e);
+    alert(`Failed to rename team: ${e.message}`);
+    return false;
+  }
+}
+
+// --- Rename Team Form Handler ---
+document.getElementById('rename-team-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = e.target.querySelector('button');
+  const newName = document.getElementById('rename-team-input').value.trim();
+  const userSnap = await getDoc(doc(db, 'users', currentUser.uid));
+  const teamId = userSnap.data()?.teamId;
+  if (!teamId) return;
+  btn.textContent = 'Saving...';
+  btn.disabled = true;
+  const success = await renameTeam(teamId, newName);
+  btn.textContent = success ? 'Saved!' : 'Save Name';
+  setTimeout(() => { btn.textContent = 'Save Name'; btn.disabled = false; }, 2000);
+});
+
+// --- Leave Team Button Handler ---
+document.getElementById('btn-leave-team').addEventListener('click', async () => {
+  const userSnap = await getDoc(doc(db, 'users', currentUser.uid));
+  const teamId = userSnap.data()?.teamId;
+  if (teamId) await leaveTeam(teamId);
+});
 
 document.getElementById('dash-profile-form').addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -275,19 +402,6 @@ document.getElementById('dash-profile-form').addEventListener('submit', async (e
   };
 
   try {
-    const resumeFile = document.getElementById('dash-resume').files[0];
-    if (resumeFile) {
-      const resumeRef = ref(storage, `resumes/${currentUser.uid}_${Date.now()}.pdf`);
-      btn.textContent = 'Uploading Resume...';
-      await uploadBytes(resumeRef, resumeFile);
-      const resumeUrl = await getDownloadURL(resumeRef);
-      updateData.resumeUrl = resumeUrl;
-      
-      const link = document.getElementById('dash-resume-link');
-      link.href = resumeUrl;
-      link.style.display = 'block';
-    }
-
     const userRef = doc(db, 'users', currentUser.uid);
     await updateDoc(userRef, updateData);
     
@@ -848,7 +962,7 @@ document.getElementById('repo-contribution-form')?.addEventListener('submit', as
       timestamp: new Date()
     });
 
-    alert("Awesome! Your fork has been validated and submitted. You will earn points for your commits to this fork!");
+    alert("Awesome! Your fork has been validated and submitted.");
     document.getElementById('repo-contribution-modal-overlay').classList.remove('active');
     
   } catch (error) {

@@ -114,6 +114,12 @@ export function initAuth() {
 }
 
 function updateUIForLoggedInUser(user) {
+  // If user came via an invite link, automatically redirect them to the dashboard to join the team
+  if (sessionStorage.getItem('pendingInvite')) {
+    window.location.href = '/dashboard.html';
+    return;
+  }
+
   const loginBtns = document.querySelectorAll('a[href="#login"]');
   loginBtns.forEach(btn => {
     // Change login button to profile/dashboard button

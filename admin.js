@@ -3,7 +3,7 @@ import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { collection, getDocs, doc, updateDoc, query, where } from 'firebase/firestore';
 import { sanityClient } from './sanity.js';
 
-const ADMIN_EMAIL = 'contact.manikaditya@gmail.com';
+const ADMIN_EMAIL = 'admin@mnmworks.xyz';
 let allUsers = [];
 let allTeams = [];
 let allRegistrations = [];

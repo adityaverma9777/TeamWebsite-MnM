@@ -44,17 +44,6 @@
           </div>
         </div>
 
-        <div class="profile-stats-grid" style="margin-bottom: 40px;">
-          <div class="dash-stat-card">
-            <span class="stat-label">Points</span>
-            <span class="stat-val" id="dash-points">0</span>
-          </div>
-          <div class="dash-stat-card">
-            <span class="stat-label">Rank</span>
-            <span class="stat-val" id="dash-rank">--</span>
-          </div>
-        </div>
-
         <!-- GitHub Contributions -->
         <div class="dash-card" id="github-contributions-card" style="margin-bottom: 40px; display: none;">
           <h3 style="margin-top:0; color: var(--lime);">Current Contributions</h3>
@@ -87,12 +76,6 @@
                 <input type="text" id="dash-college" placeholder="University of Technology" class="dash-input">
 
                 <h4 class="dash-subsection-title">Professional</h4>
-                <label>Resume (PDF only)</label>
-                <div style="display: flex; align-items: center; gap: 12px;">
-                  <input type="file" id="dash-resume" accept="application/pdf" class="dash-input" style="flex: 1;">
-                  <a id="dash-resume-link" href="#" target="_blank" style="display: none; color: var(--lime); font-size: 14px;">View Current</a>
-                </div>
-
                 <label>GitHub Username <span id="github-lock-note" style="display:none; color:var(--ghost); font-size:12px; font-weight:normal; margin-left:8px;">(Contact support to change)</span></label>
                 <input type="text" id="dash-github" placeholder="e.g. adityaverma9777" class="dash-input">
                 
@@ -129,11 +112,35 @@
 
               <!-- State 2: Has Team -->
               <div id="team-active-state" style="display: none;">
-                <h4 id="active-team-name" style="font-size: 20px; color: var(--lime); margin-top: 0;">Team Name</h4>
-                <div id="team-members-list" class="dash-list" style="margin-bottom: 20px;">
-                  <!-- Members injected here -->
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px; flex-wrap:wrap;">
+                  <h4 id="active-team-name" style="font-size: 20px; color: var(--lime); margin: 0;">Team Name</h4>
+                  <span id="team-role-badge" style="font-size:12px; color:var(--slate); padding:2px 10px; border-radius:20px; background:rgba(255,255,255,0.05); border:1px solid var(--border);"></span>
                 </div>
-                <button id="btn-copy-invite" class="btn-pill dash-btn-primary" style="background: transparent; color: var(--lime); border: 1px solid var(--lime);">Copy Invite Link</button>
+
+                <p style="color:var(--slate); font-size:13px; margin-bottom:16px;">Members of your team:</p>
+                <div id="team-members-list" style="margin-bottom: 20px;">
+                  <!-- Members injected by JS -->
+                </div>
+
+                <!-- Leader-only controls -->
+                <div id="team-leader-controls" style="display:none; margin-bottom:20px; padding:16px; background:rgba(192,255,0,0.04); border:1px solid rgba(192,255,0,0.2); border-radius:12px;">
+                  <p style="font-size:13px; color:var(--lime); margin:0 0 12px; font-weight:600;">⚙️ Leader Controls</p>
+                  <form id="rename-team-form" style="display:flex; gap:8px; align-items:center;">
+                    <input type="text" id="rename-team-input" placeholder="New team name..." required
+                      style="flex:1; background:rgba(255,255,255,0.05); border:1px solid var(--border); border-radius:8px; padding:8px 12px; color:var(--white); font-family:inherit; font-size:14px;">
+                    <button type="submit" style="background:var(--lime); color:#000; border:none; border-radius:8px; padding:8px 16px; cursor:pointer; font-weight:600; font-size:14px; white-space:nowrap;">Save Name</button>
+                  </form>
+                </div>
+
+                <!-- Member-only controls -->
+                <div id="team-member-controls" style="display:none; margin-bottom:20px;">
+                  <button id="btn-leave-team" style="background:transparent; border:1px solid #ef4444; color:#ef4444; border-radius:8px; padding:8px 20px; cursor:pointer; font-size:14px; width:100%;">
+                    🚪 Leave Team
+                  </button>
+                </div>
+
+                <!-- Invite link (for everyone) -->
+                <button id="btn-copy-invite" class="btn-pill dash-btn-primary" style="background: transparent; color: var(--lime); border: 1px solid var(--lime); width:100%;">📋 Copy Invite Link</button>
               </div>
           </div>
         </div>
@@ -250,7 +257,6 @@
           <li>You must have your exact GitHub username saved in your profile.</li>
           <li>You must <strong>fork</strong> the repository directly on GitHub.</li>
           <li><strong>Do not rename</strong> your forked repository.</li>
-          <li>You earn <strong>200 points</strong> for every approved commit you make to your fork!</li>
         </ul>
       </div>
 
