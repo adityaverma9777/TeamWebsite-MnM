@@ -13,6 +13,7 @@ export default defineConfig({
         contribute: './contribute.html',
         about: './about.html',
         sponsors: './sponsors.html',
+        careers: './careers.html',
         admin: './admin.html'
       }
     }

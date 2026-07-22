@@ -1193,53 +1193,6 @@ function initSponsorsPageAnimations() {
 
 function initSponsorsHeroCanvas() {
   if (document.getElementById('sponsors-hero-canvas')) initSponsorsHero();
-  loadReposFromCMS();
-  loadCompetitionsFromCMS();
-}
-
-async function loadCompetitionsFromCMS() {
-  const grid = document.getElementById('cms-competitions-grid');
-  if (!grid) return;
-
-  try {
-    const competitions = await sanityClient.fetch(`*[_type == "competition"] | order(_createdAt desc)`);
-
-    if (competitions.length === 0) {
-      grid.innerHTML = `
-        <div class="comp-empty-state comp-slide-up">
-          <h3>No Active Competitions</h3>
-          <p>Check back later for upcoming hackathons.</p>
-        </div>
-      `;
-      return;
-    }
-
-    grid.innerHTML = '';
-    competitions.forEach(comp => {
-      const imgUrl = comp.coverImage ? urlFor(comp.coverImage).width(600).url() : '';
-
-      const card = document.createElement('div');
-      card.className = 'comp-card comp-slide-up';
-      card.style.cursor = 'pointer';
-
-      card.innerHTML = `
-        ${imgUrl ? `<img src="${imgUrl}" alt="${comp.title}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px 12px 0 0;">` : ''}
-        <div style="padding: 24px;">
-          <h3 style="font-family: 'Clash Display', sans-serif; font-size: 20px; color: var(--white); margin-bottom: 12px;">${comp.title}</h3>
-          <p style="color: var(--slate); font-size: 15px; margin-bottom: 16px; line-height: 1.5;">${comp.shortDescription}</p>
-          <span class="btn-pill" style="display: inline-block;">View Details →</span>
-        </div>
-      `;
-
-      card.addEventListener('click', () => openCompetitionModal(comp));
-      grid.appendChild(card);
-    });
-
-    ScrollTrigger.refresh();
-  } catch (error) {
-    console.error("Failed to load competitions from Sanity CMS", error);
-    grid.innerHTML = `<div class="comp-empty-state"><h3>Error loading competitions</h3></div>`;
-  }
 }
 
 function openCompetitionModal(comp) {
@@ -1322,43 +1275,6 @@ if (compModalCloseBtn) {
   compModalCloseBtn.addEventListener('click', () => {
     document.getElementById('competition-modal-overlay').classList.remove('active');
   });
-}
-
-async function loadReposFromCMS() {
-  const grid = document.getElementById('cms-contrib-grid');
-  if (!grid) return;
-
-  try {
-    const repos = await sanityClient.fetch(`*[_type == "repository"] | order(_createdAt desc)`);
-
-    if (repos.length === 0) {
-      grid.innerHTML = `
-        <div class="contrib-empty-state contrib-slide-up">
-          <h3>No Repositories Yet</h3>
-          <p>Check back later for open-source projects.</p>
-        </div>
-      `;
-      return;
-    }
-
-    grid.innerHTML = '';
-    repos.forEach(repo => {
-      const tagsHtml = (repo.tags || []).map(tag => `<span class="repo-tag">${tag}</span>`).join('');
-      grid.innerHTML += `
-        <div class="repo-card contrib-slide-up">
-          <h3>${repo.title}</h3>
-          <p>${repo.description}</p>
-          <div class="repo-tags">${tagsHtml}</div>
-          <a href="${repo.githubUrl}" target="_blank" class="btn-pill" style="margin-top: 16px; display: inline-block;">View Repository →</a>
-        </div>
-      `;
-    });
-
-    ScrollTrigger.refresh();
-  } catch (error) {
-    console.error("Failed to load repositories from Sanity CMS", error);
-    grid.innerHTML = `<div class="contrib-empty-state"><h3>Error loading repositories</h3></div>`;
-  }
 }
 
 function initSponsorsHero() {
