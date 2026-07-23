@@ -1110,3 +1110,23 @@ async function loadProjectSubmissions() {
     list.appendChild(div);
   });
 }
+
+// --- Load Notices ---
+async function loadNotices() {
+  const noticeContainer = document.getElementById('dash-notice-content');
+  if (!noticeContainer) return;
+  
+  try {
+    const query = '*[_type == "notice"] | order(_createdAt desc)[0]';
+    const notice = await sanityClient.fetch(query);
+    
+    if (notice && notice.text) {
+      noticeContainer.textContent = notice.text;
+    } else {
+      noticeContainer.innerHTML = '<div class="dash-empty-state">No new notices at this time.</div>';
+    }
+  } catch (error) {
+    console.error("Failed to load notice:", error);
+    noticeContainer.innerHTML = '<div class="dash-empty-state">Failed to load notice.</div>';
+  }
+}
