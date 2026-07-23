@@ -8,6 +8,7 @@ let allUsers = [];
 let allTeams = [];
 let allRegistrations = [];
 let allRepos = [];
+let allProposals = [];
 
 // --- AUTHENTICATION ---
 let currentAdminUid = null;
@@ -114,6 +115,12 @@ async function fetchAllData() {
     renderSubmissions();
     const metricRepos = document.getElementById('metric-repos');
     if (metricRepos) metricRepos.textContent = allRepos.length;
+  });
+
+  // Project Proposals (Real-time)
+  onSnapshot(collection(db, 'project_proposals'), (snapshot) => {
+    allProposals = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+    renderProposals();
   });
 }
 
@@ -506,6 +513,66 @@ async function updateRepoStatus(repoId, status) {
   } catch (e) {
     console.error("Failed to update status", e);
     alert("Error updating status");
+  }
+}
+
+function renderProposals() {
+  const tbody = document.getElementById('admin-proposals-list');
+  if (!tbody) return;
+  tbody.innerHTML = '';
+
+  if (allProposals.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">No proposals found.</td></tr>';
+    return;
+  }
+
+  // Sort newest first
+  const sorted = [...allProposals].sort((a, b) => {
+    return (b.timestamp?.seconds || 0) - (a.timestamp?.seconds || 0);
+  });
+
+  sorted.forEach(prop => {
+    const user = allUsers.find(u => u.id === prop.userId);
+    const tr = document.createElement('tr');
+
+    let statusColor = prop.status === 'approved' ? 'green' : (prop.status === 'rejected' ? 'red' : 'orange');
+
+    const urlToDisplay = prop.url || 'No URL provided';
+    const descToDisplay = prop.description || 'No description';
+
+    tr.innerHTML = `
+      <td>
+        <strong>${user ? user.name : 'Unknown'}</strong><br>
+        <span style="font-size:12px; color:gray;">${user ? user.email : ''}</span>
+      </td>
+      <td>
+        <a href="${urlToDisplay}" target="_blank" style="color:#0d6efd;">${urlToDisplay}</a><br>
+        <span style="font-size:12px;">${descToDisplay}</span>
+      </td>
+      <td>
+        <span style="color:${statusColor}; font-weight:bold; text-transform:uppercase; font-size:12px;">${prop.status}</span>
+      </td>
+      <td>
+        <button class="btn btn-sm" style="background:#28a745; color:white;" id="btn-prop-approve-${prop.id}">Approve</button>
+        <button class="btn btn-sm" style="background:#dc3545; color:white;" id="btn-prop-reject-${prop.id}">Reject</button>
+      </td>
+    `;
+    tbody.appendChild(tr);
+
+    document.getElementById(`btn-prop-approve-${prop.id}`).addEventListener('click', () => updateProposalStatus(prop.id, 'approved'));
+    document.getElementById(`btn-prop-reject-${prop.id}`).addEventListener('click', () => updateProposalStatus(prop.id, 'rejected'));
+  });
+}
+
+async function updateProposalStatus(propId, status) {
+  try {
+    await updateDoc(doc(db, 'project_proposals', propId), { status });
+    const p = allProposals.find(x => x.id === propId);
+    if (p) p.status = status;
+    renderProposals();
+  } catch (e) {
+    console.error("Failed to update proposal status", e);
+    alert("Error updating proposal status");
   }
 }
 
