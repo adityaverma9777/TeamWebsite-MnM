@@ -91,10 +91,12 @@ service cloud.firestore {
     // MESSAGES collection
     // ─────────────────────────────────────────────────────────
     match /messages/{messageId} {
-      // Can read a message if you are the sender or receiver
+      // Can read a message if you are a participant or admin
       allow read: if isSignedIn()
-        && (resource.data.senderId == request.auth.uid
-          || resource.data.receiverId == request.auth.uid);
+        && (request.auth.uid in resource.data.participants 
+          || resource.data.senderId == request.auth.uid
+          || resource.data.receiverId == request.auth.uid
+          || isAdmin());
 
       // Can create a message only as yourself
       allow create: if isSignedIn()

@@ -608,6 +608,7 @@ function initInbox() {
 
     await addDoc(collection(db, 'messages'), {
       chatId: chatId,
+      participants: [currentAdminUid, currentInboxTarget],
       senderId: currentAdminUid,
       receiverId: currentInboxTarget,
       text: text,

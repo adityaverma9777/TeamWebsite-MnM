@@ -567,8 +567,61 @@ document.getElementById('user-search-input').addEventListener('input', async (e)
 });
 
 async function loadRecentChats() {
-  // To keep it simple, we listen to all messages where the user is sender or receiver.
-  // In a production app, you'd have a 'chats' collection.
+  const list = document.getElementById('recent-chats-list');
+  if (!list) return;
+
+  const q = query(
+    collection(db, 'messages'),
+    where('participants', 'array-contains', currentUser.uid)
+  );
+
+  onSnapshot(q, async (snapshot) => {
+    if (snapshot.empty) {
+      list.innerHTML = '<div class="dash-empty-state">No recent messages.</div>';
+      return;
+    }
+
+    const chatsMap = new Map();
+    snapshot.forEach(docSnap => {
+      const msg = docSnap.data();
+      const existing = chatsMap.get(msg.chatId);
+      if (!existing || msg.timestamp > existing.timestamp) {
+        chatsMap.set(msg.chatId, msg);
+      }
+    });
+
+    const recentChats = Array.from(chatsMap.values()).sort((a, b) => {
+      return (b.timestamp?.seconds || 0) - (a.timestamp?.seconds || 0);
+    });
+
+    list.innerHTML = '';
+    
+    for (const chat of recentChats) {
+      const otherUid = chat.senderId === currentUser.uid ? chat.receiverId : chat.senderId;
+      
+      const userRef = doc(db, 'users', otherUid);
+      const userSnap = await getDoc(userRef);
+      const otherUser = userSnap.exists() ? userSnap.data() : { name: 'Unknown User', photoURL: '/logo.png' };
+
+      const card = document.createElement('div');
+      card.className = 'dash-card';
+      card.style.cssText = 'padding: 12px; margin-bottom: 8px; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: 0.2s;';
+      card.innerHTML = `
+        <img src="${otherUser.photoURL || '/logo.png'}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+        <div style="flex: 1; overflow: hidden;">
+          <h4 style="margin: 0 0 4px; color: var(--white);">${otherUser.name}</h4>
+          <p style="margin: 0; color: var(--slate); font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${chat.text}</p>
+        </div>
+      `;
+      card.onmouseover = () => card.style.borderColor = 'var(--lime)';
+      card.onmouseout = () => card.style.borderColor = 'var(--border)';
+      
+      card.addEventListener('click', () => {
+        openChat(otherUid, otherUser.name);
+      });
+      list.appendChild(card);
+    }
+  });
 }
 
 // --- Chat Overlay Logic ---
@@ -586,18 +639,33 @@ function openChat(targetUid, targetName) {
   // Create a predictable Chat ID (alphabetical combination of both UIDs)
   const chatId = [currentUser.uid, targetUid].sort().join('_');
   
+  // Query all messages for the current user to avoid composite index requirements
   const q = query(
     collection(db, 'messages'), 
-    where('chatId', '==', chatId),
-    orderBy('timestamp', 'asc')
+    where('participants', 'array-contains', currentUser.uid)
   );
   
   if (chatUnsubscribe) chatUnsubscribe();
   
   chatUnsubscribe = onSnapshot(q, (snapshot) => {
     messagesArea.innerHTML = '';
+    
+    // Filter and sort in memory
+    const chatMessages = [];
     snapshot.forEach(docSnap => {
       const msg = docSnap.data();
+      if (msg.chatId === chatId) {
+        chatMessages.push(msg);
+      }
+    });
+    
+    chatMessages.sort((a, b) => (a.timestamp?.seconds || 0) - (b.timestamp?.seconds || 0));
+    
+    if (chatMessages.length === 0) {
+      messagesArea.innerHTML = '<div style="margin: auto; color: var(--slate);">No messages yet. Say hi!</div>';
+    }
+
+    chatMessages.forEach(msg => {
       const isSent = msg.senderId === currentUser.uid;
       
       const bubble = document.createElement('div');
@@ -628,6 +696,7 @@ document.getElementById('chat-form').addEventListener('submit', async (e) => {
   
   await addDoc(collection(db, 'messages'), {
     chatId: chatId,
+    participants: [currentUser.uid, currentChatUserId],
     senderId: currentUser.uid,
     receiverId: currentChatUserId,
     text: text,
