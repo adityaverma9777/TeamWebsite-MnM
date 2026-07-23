@@ -787,12 +787,36 @@ async function loadNotices() {
   if (!noticeContent) return;
 
   try {
-    const notice = await sanityClient.fetch(`*[_type == "notice"] | order(_createdAt desc)[0]`);
+    const notices = await sanityClient.fetch(`*[_type == "notice"] | order(_createdAt desc)`);
     
-    if (!notice || !notice.text) {
+    if (!notices || notices.length === 0) {
       noticeContent.innerHTML = '<div class="dash-empty-state">No notices available</div>';
     } else {
-      noticeContent.textContent = notice.text;
+      noticeContent.innerHTML = '';
+      notices.forEach(notice => {
+        if (!notice.text) return;
+        const div = document.createElement('div');
+        div.style.padding = '16px';
+        div.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+        
+        const textSpan = document.createElement('div');
+        textSpan.textContent = notice.text;
+        div.appendChild(textSpan);
+        
+        if (notice._createdAt) {
+          const date = new Date(notice._createdAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+          const dateSpan = document.createElement('div');
+          dateSpan.textContent = date;
+          dateSpan.style.fontSize = '12px';
+          dateSpan.style.color = 'var(--lime)';
+          dateSpan.style.marginTop = '8px';
+          dateSpan.style.fontFamily = "'Commit Mono', monospace";
+          div.appendChild(dateSpan);
+        }
+        
+        noticeContent.appendChild(div);
+      });
+      if (noticeContent.lastChild) noticeContent.lastChild.style.borderBottom = 'none';
     }
   } catch (error) {
     console.error("Failed to load Notices", error);
