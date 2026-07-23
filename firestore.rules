@@ -15,7 +15,7 @@ service cloud.firestore {
     }
 
     function isAdmin() {
-      return isSignedIn() && request.auth.token.email == 'admin@mnmworks.xyz';
+      return isSignedIn() && request.auth.token.email == 'contact.manikaditya@gmail.com';
     }
 
     // Check if the requesting user is the leader of a team doc
