@@ -251,6 +251,13 @@ function renderUsers(users) {
       </td>
       <td>${user.email || 'N/A'}</td>
       <td>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <span style="color:var(--text-muted);">@</span>
+          <input type="text" class="form-control" id="un-${user.id}" value="${user.username || ''}" placeholder="Not set" style="width:120px;">
+          <button class="btn btn-primary btn-sm" id="btn-save-un-${user.id}">Save</button>
+        </div>
+      </td>
+      <td>
         <div style="display:flex; gap:8px;">
           <input type="text" class="form-control" id="gh-${user.id}" value="${user.github || ''}" placeholder="Not set">
           <button class="btn btn-primary btn-sm" id="btn-save-${user.id}">Save</button>
@@ -261,6 +268,42 @@ function renderUsers(users) {
       </td>
     `;
     tbody.appendChild(tr);
+
+    // Save App Username Logic
+    document.getElementById(`btn-save-un-${user.id}`).addEventListener('click', async (e) => {
+      const btn = e.target;
+      const newUsername = document.getElementById(`un-${user.id}`).value.trim();
+      
+      if (newUsername === (user.username || '')) return;
+      
+      btn.textContent = '...';
+      
+      try {
+        if (newUsername !== '') {
+          // Uniqueness check
+          const q = query(collection(db, 'users'), where('username', '==', newUsername));
+          const snap = await getDocs(q);
+          const isTaken = !snap.empty && snap.docs.some(doc => doc.id !== user.id);
+          if (isTaken) {
+            alert(`Username "${newUsername}" is already taken by another user.`);
+            btn.textContent = 'Save';
+            return;
+          }
+        }
+
+        await updateDoc(doc(db, 'users', user.id), { username: newUsername });
+        btn.textContent = 'Saved';
+        btn.style.background = 'green';
+        setTimeout(() => { btn.textContent = 'Save'; btn.style.background = ''; }, 2000);
+        
+        const u = allUsers.find(x => x.id === user.id);
+        if (u) u.username = newUsername;
+      } catch (error) {
+        console.error(error);
+        alert('Error updating username: ' + error.message);
+        btn.textContent = 'Error';
+      }
+    });
 
     // Save GitHub Logic
     document.getElementById(`btn-save-${user.id}`).addEventListener('click', async (e) => {

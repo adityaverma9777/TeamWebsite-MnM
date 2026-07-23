@@ -44,14 +44,7 @@
           </div>
         </div>
 
-        <!-- GitHub Contributions -->
-        <div class="dash-card" id="github-contributions-card" style="margin-bottom: 40px; display: none;">
-          <h3 style="margin-top:0; color: var(--lime);">Current Contributions</h3>
-          <p class="dash-desc" style="margin-bottom: 16px;">Your latest open-source commits and GitHub activity.</p>
-          <div id="github-chart-container" style="overflow-x: auto; padding: 16px; background: rgba(255,255,255,0.02); border-radius: 8px; border: 1px solid var(--border);">
-            <!-- Image injected via JS -->
-          </div>
-        </div>
+
 
         <!-- Edit Profile -->
         <div class="dash-card" style="margin-bottom: 40px;">
@@ -62,8 +55,8 @@
                 <label>Actual Name</label>
                 <input type="text" id="dash-name" required placeholder="John Doe" class="dash-input">
                 
-                <label>Username</label>
-                <input type="text" id="dash-username" required placeholder="@johndoe" class="dash-input">
+                <label>Username <span id="username-lock-note" style="display:none; color:var(--ghost); font-size:12px; font-weight:normal; margin-left:8px;">(Contact admin@mnmworks.xyz to change)</span></label>
+                <input type="text" id="dash-username" required placeholder="johndoe" class="dash-input">
                 
                 <label>Bio / About</label>
                 <textarea id="dash-bio" placeholder="Tell us about yourself..." class="dash-input" rows="3"></textarea>

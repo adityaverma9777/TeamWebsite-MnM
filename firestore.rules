@@ -35,9 +35,17 @@ service cloud.firestore {
       // Any signed-in user can read other user profiles (for search/leaderboard)
       allow read: if isSignedIn();
 
-      // A user can only write to their own profile
-      // Admin can write to any user profile (e.g., to reset github username)
-      allow write: if isOwner(userId) || isAdmin();
+      allow create: if isOwner(userId) || isAdmin();
+      allow delete: if isAdmin();
+      allow update: if isAdmin() || (
+        isOwner(userId) && (
+          // If a username is already set, they cannot change it
+          !("username" in resource.data) || 
+          resource.data.username == "" || 
+          !("username" in request.resource.data) ||
+          request.resource.data.username == resource.data.username
+        )
+      );
     }
 
     // ─────────────────────────────────────────────────────────

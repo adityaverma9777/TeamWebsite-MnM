@@ -85,6 +85,7 @@ document.getElementById('btn-add-link').addEventListener('click', () => {
 
 // --- Profile Logic ---
 let initialGithub = null;
+let initialUsername = null;
 
 async function loadUserProfile() {
   const userRef = doc(db, 'users', currentUser.uid);
@@ -99,7 +100,20 @@ async function loadUserProfile() {
     
     // Pre-fill form
     if (data.name) document.getElementById('dash-name').value = data.name;
-    if (data.username) document.getElementById('dash-username').value = data.username;
+    
+    const usernameInput = document.getElementById('dash-username');
+    if (data.username) {
+      initialUsername = data.username;
+      usernameInput.value = data.username;
+      usernameInput.disabled = true;
+      usernameInput.style.opacity = '0.7';
+      document.getElementById('username-lock-note').style.display = 'inline';
+    } else {
+      usernameInput.value = '';
+      usernameInput.disabled = false;
+      usernameInput.style.opacity = '1';
+      document.getElementById('username-lock-note').style.display = 'none';
+    }
     if (data.bio) document.getElementById('dash-bio').value = data.bio;
     if (data.phone) document.getElementById('dash-phone').value = data.phone;
     if (data.college) document.getElementById('dash-college').value = data.college;
@@ -112,18 +126,11 @@ async function loadUserProfile() {
       ghInput.disabled = true;
       ghInput.style.opacity = '0.7';
       document.getElementById('github-lock-note').style.display = 'inline';
-      
-      // Show Contributions Chart
-      document.getElementById('github-contributions-card').style.display = 'block';
-      document.getElementById('github-chart-container').innerHTML = `
-        <img src="https://ghchart.rshah.org/C0FF00/${data.github}" alt="${data.github}'s Github Chart" style="width: 100%; min-width: 600px; display: block; margin: 0 auto; filter: brightness(1.2);">
-      `;
     } else {
       ghInput.value = '';
       ghInput.disabled = false;
       ghInput.style.opacity = '1';
       document.getElementById('github-lock-note').style.display = 'none';
-      document.getElementById('github-contributions-card').style.display = 'none';
     }
     
     document.getElementById('dash-public').checked = data.isPublic === true;
@@ -384,6 +391,31 @@ document.getElementById('dash-profile-form').addEventListener('submit', async (e
   const linkedin = document.getElementById('dash-linkedin').value.trim();
   const isPublic = document.getElementById('dash-public').checked;
   
+  if (username && username !== initialUsername) {
+    if (initialUsername) {
+      alert("You cannot change your username once it is set. Please contact admin@mnmworks.xyz to change it.");
+      btn.textContent = 'Save Changes';
+      return;
+    }
+    
+    // Check for uniqueness
+    const q = query(collection(db, 'users'), where('username', '==', username));
+    const snap = await getDocs(q);
+    const isTaken = !snap.empty && snap.docs.some(doc => doc.id !== currentUser.uid);
+    
+    if (isTaken) {
+      alert(`The username "${username}" is already taken by someone else. Please choose another one.`);
+      btn.textContent = 'Save Changes';
+      return;
+    }
+    
+    const confirmUn = confirm("Are you sure? Once your username is saved, you cannot change it without contacting admin@mnmworks.xyz. Proceed?");
+    if (!confirmUn) {
+      btn.textContent = 'Save Changes';
+      return;
+    }
+  }
+
   if (github && github !== initialGithub) {
     const confirmGh = confirm("Are you sure? Once your GitHub username is saved, you cannot change it without contacting support. Proceed?");
     if (!confirmGh) {
@@ -582,45 +614,66 @@ async function loadRecentChats() {
     }
 
     const chatsMap = new Map();
+    
+    // Helper to normalize timestamp values
+    const getMillis = (ts) => {
+      if (!ts) return 0;
+      if (ts.seconds) return ts.seconds * 1000;
+      if (ts.getTime) return ts.getTime();
+      return 0;
+    };
+
     snapshot.forEach(docSnap => {
       const msg = docSnap.data();
       const existing = chatsMap.get(msg.chatId);
-      if (!existing || msg.timestamp > existing.timestamp) {
+      
+      const msgTime = getMillis(msg.timestamp);
+      const existingTime = existing ? getMillis(existing.timestamp) : 0;
+      
+      if (!existing || msgTime > existingTime) {
         chatsMap.set(msg.chatId, msg);
       }
     });
 
     const recentChats = Array.from(chatsMap.values()).sort((a, b) => {
-      return (b.timestamp?.seconds || 0) - (a.timestamp?.seconds || 0);
+      return getMillis(b.timestamp) - getMillis(a.timestamp);
     });
 
-    list.innerHTML = '';
+    const htmlElements = [];
     
     for (const chat of recentChats) {
-      const otherUid = chat.senderId === currentUser.uid ? chat.receiverId : chat.senderId;
-      
-      const userRef = doc(db, 'users', otherUid);
-      const userSnap = await getDoc(userRef);
-      const otherUser = userSnap.exists() ? userSnap.data() : { name: 'Unknown User', photoURL: '/logo.png' };
+      try {
+        const otherUid = chat.senderId === currentUser.uid ? chat.receiverId : chat.senderId;
+        if (!otherUid) continue;
+        
+        const userRef = doc(db, 'users', otherUid);
+        const userSnap = await getDoc(userRef);
+        const otherUser = userSnap.exists() ? userSnap.data() : { name: 'Unknown User', photoURL: '/logo.png' };
 
-      const card = document.createElement('div');
-      card.className = 'dash-card';
-      card.style.cssText = 'padding: 12px; margin-bottom: 8px; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: 0.2s;';
-      card.innerHTML = `
-        <img src="${otherUser.photoURL || '/logo.png'}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
-        <div style="flex: 1; overflow: hidden;">
-          <h4 style="margin: 0 0 4px; color: var(--white);">${otherUser.name}</h4>
-          <p style="margin: 0; color: var(--slate); font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${chat.text}</p>
-        </div>
-      `;
-      card.onmouseover = () => card.style.borderColor = 'var(--lime)';
-      card.onmouseout = () => card.style.borderColor = 'var(--border)';
-      
-      card.addEventListener('click', () => {
-        openChat(otherUid, otherUser.name);
-      });
-      list.appendChild(card);
+        const card = document.createElement('div');
+        card.className = 'dash-card';
+        card.style.cssText = 'padding: 12px; margin-bottom: 8px; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: 0.2s;';
+        card.innerHTML = `
+          <img src="${otherUser.photoURL || '/logo.png'}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+          <div style="flex: 1; overflow: hidden;">
+            <h4 style="margin: 0 0 4px; color: var(--white);">${otherUser.name}</h4>
+            <p style="margin: 0; color: var(--slate); font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${chat.text}</p>
+          </div>
+        `;
+        card.onmouseover = () => card.style.borderColor = 'var(--lime)';
+        card.onmouseout = () => card.style.borderColor = 'var(--border)';
+        
+        card.addEventListener('click', () => {
+          openChat(otherUid, otherUser.name);
+        });
+        htmlElements.push(card);
+      } catch (err) {
+        console.error("Error processing recent chat:", err);
+      }
     }
+    
+    list.innerHTML = '';
+    htmlElements.forEach(el => list.appendChild(el));
   });
 }
 
@@ -659,7 +712,15 @@ function openChat(targetUid, targetName) {
       }
     });
     
-    chatMessages.sort((a, b) => (a.timestamp?.seconds || 0) - (b.timestamp?.seconds || 0));
+    // Helper to normalize timestamp values
+    const getMillis = (ts) => {
+      if (!ts) return 0;
+      if (ts.seconds) return ts.seconds * 1000;
+      if (ts.getTime) return ts.getTime();
+      return 0;
+    };
+    
+    chatMessages.sort((a, b) => getMillis(a.timestamp) - getMillis(b.timestamp));
     
     if (chatMessages.length === 0) {
       messagesArea.innerHTML = '<div style="margin: auto; color: var(--slate);">No messages yet. Say hi!</div>';
