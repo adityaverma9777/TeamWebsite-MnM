@@ -236,6 +236,52 @@
     .admin-section.active {
       display: block;
     }
+    
+    /* User Profile Side Panel */
+    .user-profile-sidepanel {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 400px;
+      height: 100vh;
+      background: var(--surface);
+      box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+      z-index: 2000;
+      transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid var(--border);
+    }
+    .user-profile-sidepanel.active {
+      right: 0;
+    }
+    .sidepanel-header {
+      padding: 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-color);
+    }
+    .sidepanel-body {
+      padding: 20px;
+      flex: 1;
+      overflow-y: auto;
+    }
+    .sidepanel-footer {
+      padding: 20px;
+      border-top: 1px solid var(--border);
+      background: var(--bg-color);
+    }
+    
+    .clickable-name {
+      color: var(--primary);
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .clickable-name:hover {
+      color: var(--primary-hover);
+    }
   </style>
 </head>
 <body>
@@ -477,6 +523,41 @@
     </div>
   </div>
 
-  <script type="module" src="/admin.js"></script>
+  <!-- User Profile Side Panel -->
+  <div id="admin-user-sidepanel" class="user-profile-sidepanel">
+    <div class="sidepanel-header">
+      <h3 style="margin:0;">User Profile</h3>
+      <button id="close-sidepanel-btn" class="close-btn">&times;</button>
+    </div>
+    <div class="sidepanel-body" id="sidepanel-body-content">
+      <div style="text-align: center; margin-bottom: 20px;">
+        <img id="sp-avatar" src="/logo.png" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 10px;">
+        <h2 id="sp-name" style="margin: 0; color: var(--text-main);">Loading...</h2>
+        <p id="sp-email" style="margin: 5px 0 0; color: var(--text-muted); font-size: 14px;"></p>
+      </div>
+      
+      <div style="background: var(--bg-color); border: 1px solid var(--border); border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+        <p style="margin: 0 0 8px;"><strong>App Username:</strong> <span id="sp-username"></span></p>
+        <p style="margin: 0 0 8px;"><strong>GitHub:</strong> <span id="sp-github"></span></p>
+        <p style="margin: 0 0 8px;"><strong>Phone:</strong> <span id="sp-phone"></span></p>
+        <p style="margin: 0;"><strong>College:</strong> <span id="sp-college"></span></p>
+      </div>
+
+      <div style="margin-bottom: 15px;">
+        <strong>Bio:</strong>
+        <p id="sp-bio" style="margin: 5px 0; font-size: 14px; color: var(--text-muted);"></p>
+      </div>
+
+      <div style="margin-bottom: 15px;">
+        <strong>Links:</strong>
+        <div id="sp-links" style="display: flex; flex-direction: column; gap: 6px; margin-top: 5px;"></div>
+      </div>
+    </div>
+    <div class="sidepanel-footer">
+      <button id="btn-sp-dm" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 1rem;">💬 Send Direct Message</button>
+    </div>
+  </div>
+
+  <script type="module" src="./admin.js"></script>
 </body>
 </html>

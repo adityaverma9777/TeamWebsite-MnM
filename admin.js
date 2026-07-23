@@ -246,7 +246,7 @@ function renderUsers(users) {
       <td>
         <div style="display:flex; align-items:center; gap:8px;">
           <img src="${user.photoURL || '/logo.png'}" style="width:24px; height:24px; border-radius:50%;">
-          <strong>${user.name || 'Unnamed'}</strong>
+          <strong class="clickable-name" id="user-name-${user.id}">${user.name || 'Unnamed'}</strong>
         </div>
       </td>
       <td>${user.email || 'N/A'}</td>
@@ -328,6 +328,11 @@ function renderUsers(users) {
     document.getElementById(`btn-activity-${user.id}`).addEventListener('click', () => {
       openActivityModal(user);
     });
+
+    // Profile Panel Logic
+    document.getElementById(`user-name-${user.id}`).addEventListener('click', () => {
+      window.openUserProfilePanel(user.id);
+    });
   });
 }
 
@@ -343,7 +348,7 @@ function renderTeams(teams) {
 
   teams.forEach(team => {
     const leader = allUsers.find(u => u.id === team.leaderId);
-    const leaderName = leader ? leader.name : 'Unknown';
+    const leaderNameHTML = leader ? `<span class="clickable-name" id="team-leader-${team.id}">${leader.name}</span>` : 'Unknown';
     const memberCount = (team.members && Array.isArray(team.members)) ? team.members.length : 0;
 
     // Attempt to format creation date
@@ -359,11 +364,17 @@ function renderTeams(teams) {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td><strong>${team.name || 'Unnamed Team'}</strong></td>
-      <td>${leaderName}</td>
+      <td>${leaderNameHTML}</td>
       <td>${memberCount} User(s)</td>
       <td>${dateStr}</td>
     `;
     tbody.appendChild(tr);
+
+    if (leader) {
+      document.getElementById(`team-leader-${team.id}`).addEventListener('click', () => {
+        window.openUserProfilePanel(leader.id);
+      });
+    }
   });
 }
 
@@ -515,7 +526,7 @@ function renderSubmissions() {
 
     tr.innerHTML = `
       <td>
-        <strong>${user ? user.name : 'Unknown'}</strong><br>
+        <strong class="clickable-name" id="sub-user-${repo.id}">${user ? user.name : 'Unknown'}</strong><br>
         <span style="font-size:12px; color:gray;">${user ? user.email : ''}</span>
       </td>
       <td>
@@ -543,6 +554,12 @@ function renderSubmissions() {
         openInboxChat(user.id, user.name);
       }
     });
+
+    if (user) {
+      document.getElementById(`sub-user-${repo.id}`).addEventListener('click', () => {
+        window.openUserProfilePanel(user.id);
+      });
+    }
   });
 }
 
@@ -585,7 +602,7 @@ function renderProposals() {
 
     tr.innerHTML = `
       <td>
-        <strong>${user ? user.name : 'Unknown'}</strong><br>
+        <strong class="clickable-name" id="prop-user-${prop.id}">${user ? user.name : 'Unknown'}</strong><br>
         <span style="font-size:12px; color:gray;">${user ? user.email : ''}</span>
       </td>
       <td>
@@ -604,6 +621,12 @@ function renderProposals() {
 
     document.getElementById(`btn-prop-approve-${prop.id}`).addEventListener('click', () => updateProposalStatus(prop.id, 'approved'));
     document.getElementById(`btn-prop-reject-${prop.id}`).addEventListener('click', () => updateProposalStatus(prop.id, 'rejected'));
+
+    if (user) {
+      document.getElementById(`prop-user-${prop.id}`).addEventListener('click', () => {
+        window.openUserProfilePanel(user.id);
+      });
+    }
   });
 }
 
@@ -743,3 +766,71 @@ function openInboxChat(targetUid, targetName) {
     messagesArea.scrollTop = messagesArea.scrollHeight;
   });
 }
+
+// --- USER PROFILE SIDE PANEL LOGIC ---
+const sidepanel = document.getElementById('admin-user-sidepanel');
+const btnCloseSidepanel = document.getElementById('close-sidepanel-btn');
+let currentSidepanelUserId = null;
+
+if (btnCloseSidepanel) {
+  btnCloseSidepanel.addEventListener('click', () => {
+    sidepanel.classList.remove('active');
+  });
+}
+
+// Global function exposed to window so inline onclicks could work if needed, 
+// though we will attach via JS class '.clickable-name'
+window.openUserProfilePanel = async function(userId) {
+  currentSidepanelUserId = userId;
+  const user = allUsers.find(u => u.id === userId);
+  if (!user) return;
+
+  // Populate basic data
+  document.getElementById('sp-avatar').src = user.photoURL || '/logo.png';
+  document.getElementById('sp-name').textContent = user.name || 'Unnamed User';
+  document.getElementById('sp-email').textContent = user.email || 'No email provided';
+  
+  // Details
+  document.getElementById('sp-username').textContent = user.username ? `@${user.username}` : 'Not set';
+  document.getElementById('sp-github').textContent = user.github || 'Not set';
+  document.getElementById('sp-phone').textContent = user.phone || 'Not set';
+  document.getElementById('sp-college').textContent = user.college || 'Not set';
+  document.getElementById('sp-bio').textContent = user.bio || 'No bio provided.';
+  
+  // Links
+  const linksContainer = document.getElementById('sp-links');
+  linksContainer.innerHTML = '';
+  if (user.linkedin) {
+    linksContainer.innerHTML += `<a href="${user.linkedin}" target="_blank" style="color:var(--primary);">${user.linkedin}</a>`;
+  }
+  if (user.extraLinks && user.extraLinks.length > 0) {
+    user.extraLinks.forEach(link => {
+      linksContainer.innerHTML += `<a href="${link}" target="_blank" style="color:var(--primary);">${link}</a>`;
+    });
+  }
+  if (!user.linkedin && (!user.extraLinks || user.extraLinks.length === 0)) {
+    linksContainer.innerHTML = '<span style="color:var(--text-muted); font-size:14px;">No links provided.</span>';
+  }
+
+  // Show panel
+  sidepanel.classList.add('active');
+};
+
+document.getElementById('btn-sp-dm').addEventListener('click', () => {
+  if (!currentSidepanelUserId) return;
+  
+  const user = allUsers.find(u => u.id === currentSidepanelUserId);
+  if (!user) return;
+  
+  // 1. Close sidepanel
+  sidepanel.classList.remove('active');
+  
+  // 2. Switch to Inbox Tab
+  document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+  document.querySelector('[data-target="sec-inbox"]').classList.add('active');
+  document.querySelectorAll('.admin-section').forEach(sec => sec.classList.remove('active'));
+  document.getElementById('sec-inbox').classList.add('active');
+  
+  // 3. Open chat
+  openInboxChat(user.id, user.name || 'Unnamed');
+});
