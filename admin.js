@@ -3,7 +3,7 @@ import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { collection, getDocs, doc, updateDoc, query, where } from 'firebase/firestore';
 import { sanityClient } from './sanity.js';
 
-const ADMIN_EMAIL = 'admin@mnmworks.xyz';
+const ADMIN_EMAIL = 'contact.manikaditya@gmail.com';
 let allUsers = [];
 let allTeams = [];
 let allRegistrations = [];
@@ -19,7 +19,7 @@ onAuthStateChanged(auth, async (user) => {
       // Ensure admin name is set correctly
       try {
         await updateDoc(doc(db, 'users', user.uid), { name: "MnM Admin" });
-      } catch(e) { }
+      } catch (e) { }
 
       document.getElementById('preloader').style.display = 'none';
       initAdminDashboard();
@@ -57,7 +57,7 @@ navItems.forEach(item => {
   item.addEventListener('click', () => {
     navItems.forEach(n => n.classList.remove('active'));
     sections.forEach(s => s.classList.remove('active'));
-    
+
     item.classList.add('active');
     document.getElementById(item.getAttribute('data-target')).classList.add('active');
   });
@@ -73,11 +73,11 @@ async function initAdminDashboard() {
   loadCompetitions();
   initInbox();
   setupRefreshEngine();
-  
+
   // Setup Search
   document.getElementById('user-search').addEventListener('input', (e) => {
     const term = e.target.value.toLowerCase();
-    const filtered = allUsers.filter(u => 
+    const filtered = allUsers.filter(u =>
       (u.name && u.name.toLowerCase().includes(term)) ||
       (u.email && u.email.toLowerCase().includes(term)) ||
       (u.github && u.github.toLowerCase().includes(term))
@@ -87,7 +87,7 @@ async function initAdminDashboard() {
 
   document.getElementById('team-search').addEventListener('input', (e) => {
     const term = e.target.value.toLowerCase();
-    const filtered = allTeams.filter(t => 
+    const filtered = allTeams.filter(t =>
       t.name && t.name.toLowerCase().includes(term)
     );
     renderTeams(filtered);
@@ -99,15 +99,15 @@ async function fetchAllData() {
   // Users
   const userSnap = await getDocs(collection(db, 'users'));
   allUsers = userSnap.docs.map(d => ({ id: d.id, ...d.data() }));
-  
+
   // Teams
   const teamSnap = await getDocs(collection(db, 'teams'));
   allTeams = teamSnap.docs.map(d => ({ id: d.id, ...d.data() }));
-  
+
   // Registrations
   const regSnap = await getDocs(collection(db, 'hackathon_registrations'));
   allRegistrations = regSnap.docs.map(d => ({ id: d.id, ...d.data() }));
-  
+
   // Repos (Real-time)
   onSnapshot(collection(db, 'repo_submissions'), (snapshot) => {
     allRepos = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
@@ -128,10 +128,10 @@ function setupRefreshEngine() {
     const bar = document.getElementById('refresh-progress-bar');
     const logBox = document.getElementById('refresh-log');
     const statusText = document.getElementById('refresh-status-text');
-    
+
     container.style.display = 'block';
     logBox.innerHTML = '';
-    
+
     const log = (msg) => {
       const div = document.createElement('div');
       div.textContent = msg;
@@ -141,30 +141,30 @@ function setupRefreshEngine() {
 
     try {
       log('Starting Global Points Calculation Engine...');
-      
+
       // Get all approved repos
       const approvedRepos = allRepos.filter(r => r.status === 'approved');
       log(`Found ${approvedRepos.length} approved repositories.`);
-      
+
       // Group repos by user to minimize writes
       const userCommits = {};
-      
+
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
-      
+
       for (let i = 0; i < approvedRepos.length; i++) {
         const repo = approvedRepos[i];
         bar.style.width = `${((i) / approvedRepos.length) * 100}%`;
-        
+
         const match = repo.repoUrl.match(/github\.com\/([^\/]+)\/([^\/]+)/);
         if (match) {
           const owner = match[1];
           const repoName = match[2].replace('.git', '');
-          
+
           try {
             log(`Fetching commits for ${owner}/${repoName}...`);
             const apiUrl = `${backendUrl}/api/commits?owner=${owner}&repo=${repoName}&author=${owner}`;
             const res = await fetch(apiUrl);
-            
+
             if (res.ok) {
               const commits = await res.json();
               if (!userCommits[repo.userId]) userCommits[repo.userId] = 0;
@@ -182,11 +182,11 @@ function setupRefreshEngine() {
       // Final writes
       log('Saving calculated points to database...');
       const userIds = Object.keys(userCommits);
-      
+
       for (let i = 0; i < userIds.length; i++) {
         const uid = userIds[i];
         const points = userCommits[uid] * 200;
-        
+
         await updateDoc(doc(db, 'users', uid), { points: points });
         log(`User ID: ${uid} -> ${points} points.`);
       }
@@ -195,17 +195,17 @@ function setupRefreshEngine() {
       statusText.textContent = 'Calculation Complete!';
       statusText.style.color = '#28a745';
       log('Successfully updated all user points.');
-      
+
       // Update local state
       await fetchAllData();
       renderUsers(allUsers);
-      
+
     } catch (err) {
       log(`FATAL ERROR: ${err.message}`);
       statusText.textContent = 'Error occurred during calculation.';
       statusText.style.color = 'red';
     }
-    
+
     setTimeout(() => {
       btn.disabled = false;
       container.style.display = 'none';
@@ -227,12 +227,12 @@ function renderOverview() {
 function renderUsers(users) {
   const tbody = document.getElementById('admin-users-list');
   tbody.innerHTML = '';
-  
+
   if (users.length === 0) {
     tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">No users found.</td></tr>';
     return;
   }
-  
+
   users.forEach(user => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
@@ -254,7 +254,7 @@ function renderUsers(users) {
       </td>
     `;
     tbody.appendChild(tr);
-    
+
     // Save GitHub Logic
     document.getElementById(`btn-save-${user.id}`).addEventListener('click', async (e) => {
       const btn = e.target;
@@ -285,7 +285,7 @@ function renderUsers(users) {
 function renderTeams(teams) {
   const tbody = document.getElementById('admin-teams-list');
   tbody.innerHTML = '';
-  
+
   if (teams.length === 0) {
     tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">No teams found.</td></tr>';
     return;
@@ -295,7 +295,7 @@ function renderTeams(teams) {
     const leader = allUsers.find(u => u.id === team.leaderId);
     const leaderName = leader ? leader.name : 'Unknown';
     const memberCount = (team.members && Array.isArray(team.members)) ? team.members.length : 0;
-    
+
     // Attempt to format creation date
     let dateStr = 'Unknown';
     if (team.createdAt) {
@@ -305,7 +305,7 @@ function renderTeams(teams) {
         dateStr = new Date(team.createdAt).toLocaleDateString();
       }
     }
-    
+
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td><strong>${team.name || 'Unnamed Team'}</strong></td>
@@ -320,9 +320,9 @@ function renderTeams(teams) {
 // --- ACTIVITY MODAL ---
 function openActivityModal(user) {
   document.getElementById('activity-modal-title').textContent = `Activity: ${user.name}`;
-  
+
   const modalBody = document.getElementById('activity-modal-body');
-  
+
   // Find team
   let teamHtml = `<p><strong>Team:</strong> Not in a team</p>`;
   if (user.teamId) {
@@ -365,11 +365,11 @@ document.getElementById('close-activity-modal').addEventListener('click', () => 
 async function loadCompetitions() {
   const tbody = document.getElementById('admin-comps-list');
   tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">Fetching from Sanity...</td></tr>';
-  
+
   try {
     const comps = await sanityClient.fetch(`*[_type == "competition"] | order(_createdAt desc)`);
     tbody.innerHTML = '';
-    
+
     if (comps.length === 0) {
       tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">No competitions found.</td></tr>';
       return;
@@ -377,7 +377,7 @@ async function loadCompetitions() {
 
     comps.forEach(comp => {
       const regs = allRegistrations.filter(r => r.competitionId === comp._id);
-      
+
       const tr = document.createElement('tr');
       tr.innerHTML = `
         <td><strong>${comp.title}</strong></td>
@@ -415,7 +415,7 @@ function exportRegistrationsToCSV(comp, regs) {
     // Resolve team name
     const team = allTeams.find(t => t.id === reg.teamId);
     const teamName = team ? team.name : "Unknown Team";
-    
+
     // Escape quotes and commas
     const escapeCsv = (str) => `"${String(str || '').replace(/"/g, '""')}"`;
 
@@ -434,7 +434,7 @@ function exportRegistrationsToCSV(comp, regs) {
   link.setAttribute("href", encodedUri);
   link.setAttribute("download", `registrations_${comp.title.replace(/\s+/g, '_')}.csv`);
   document.body.appendChild(link); // Required for FF
-  
+
   link.click();
   document.body.removeChild(link);
 }
@@ -443,7 +443,7 @@ function exportRegistrationsToCSV(comp, regs) {
 function renderSubmissions() {
   const tbody = document.getElementById('admin-submissions-list');
   tbody.innerHTML = '';
-  
+
   if (allRepos.length === 0) {
     tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">No submissions found.</td></tr>';
     return;
@@ -457,12 +457,12 @@ function renderSubmissions() {
   sorted.forEach(repo => {
     const user = allUsers.find(u => u.id === repo.userId);
     const tr = document.createElement('tr');
-    
+
     let statusColor = repo.status === 'approved' ? 'green' : (repo.status === 'rejected' ? 'red' : 'orange');
 
     const urlToDisplay = repo.forkUrl || repo.repoUrl || 'No URL provided';
     const descToDisplay = repo.note || repo.description || 'No description';
-    
+
     tr.innerHTML = `
       <td>
         <strong>${user ? user.name : 'Unknown'}</strong><br>
@@ -485,7 +485,7 @@ function renderSubmissions() {
 
     document.getElementById(`btn-approve-${repo.id}`).addEventListener('click', () => updateRepoStatus(repo.id, 'approved'));
     document.getElementById(`btn-reject-${repo.id}`).addEventListener('click', () => updateRepoStatus(repo.id, 'rejected'));
-    
+
     document.getElementById(`btn-msg-${repo.id}`).addEventListener('click', () => {
       // Switch to Inbox tab and open chat
       document.querySelector('.nav-item[data-target="sec-inbox"]').click();
@@ -503,7 +503,7 @@ async function updateRepoStatus(repoId, status) {
     const r = allRepos.find(x => x.id === repoId);
     if (r) r.status = status;
     renderSubmissions();
-  } catch(e) {
+  } catch (e) {
     console.error("Failed to update status", e);
     alert("Error updating status");
   }
@@ -517,28 +517,28 @@ let currentInboxTarget = null;
 
 function initInbox() {
   renderInboxUsers(allUsers);
-  
+
   document.getElementById('inbox-search').addEventListener('input', (e) => {
     const term = e.target.value.toLowerCase();
-    const filtered = allUsers.filter(u => 
+    const filtered = allUsers.filter(u =>
       (u.name && u.name.toLowerCase().includes(term)) ||
       (u.email && u.email.toLowerCase().includes(term))
     );
     renderInboxUsers(filtered);
   });
-  
+
   document.getElementById('inbox-chat-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!currentInboxTarget) return;
-    
+
     const input = document.getElementById('inbox-chat-input');
     const text = input.value.trim();
     if (!text) return;
-    
+
     input.value = '';
-    
+
     const chatId = [currentAdminUid, currentInboxTarget].sort().join('_');
-    
+
     await addDoc(collection(db, 'messages'), {
       chatId: chatId,
       senderId: currentAdminUid,
@@ -552,10 +552,10 @@ function initInbox() {
 function renderInboxUsers(users) {
   const container = document.getElementById('inbox-users-list');
   container.innerHTML = '';
-  
+
   // Exclude self from list
   const targets = users.filter(u => u.id !== currentAdminUid);
-  
+
   targets.forEach(user => {
     const div = document.createElement('div');
     div.style.padding = '15px';
@@ -564,7 +564,7 @@ function renderInboxUsers(users) {
     div.style.display = 'flex';
     div.style.alignItems = 'center';
     div.style.gap = '10px';
-    
+
     div.innerHTML = `
       <img src="${user.photoURL || '/logo.png'}" style="width:32px; height:32px; border-radius:50%;">
       <div>
@@ -572,14 +572,14 @@ function renderInboxUsers(users) {
         <span style="font-size:12px; color:gray;">${user.email}</span>
       </div>
     `;
-    
+
     div.addEventListener('click', () => {
       // highlight active
       Array.from(container.children).forEach(c => c.style.background = 'transparent');
       div.style.background = '#e9ecef';
       openInboxChat(user.id, user.name);
     });
-    
+
     container.appendChild(div);
   });
 }
@@ -589,32 +589,32 @@ function openInboxChat(targetUid, targetName) {
   document.getElementById('inbox-target-name').textContent = `Chat with ${targetName}`;
   document.getElementById('inbox-chat-input').disabled = false;
   document.getElementById('inbox-chat-send').disabled = false;
-  
+
   const messagesArea = document.getElementById('inbox-messages-area');
   messagesArea.innerHTML = 'Loading messages...';
-  
+
   const chatId = [currentAdminUid, targetUid].sort().join('_');
-  
+
   const q = query(
-    collection(db, 'messages'), 
+    collection(db, 'messages'),
     where('chatId', '==', chatId),
     orderBy('timestamp', 'asc')
   );
-  
+
   if (inboxUnsubscribe) inboxUnsubscribe();
-  
+
   inboxUnsubscribe = onSnapshot(q, (snapshot) => {
     messagesArea.innerHTML = '';
-    
+
     if (snapshot.empty) {
       messagesArea.innerHTML = '<div style="margin:auto; color:gray;">No messages yet. Send a message to start the conversation!</div>';
       return;
     }
-    
+
     snapshot.forEach(docSnap => {
       const msg = docSnap.data();
       const isSent = msg.senderId === currentAdminUid;
-      
+
       const bubble = document.createElement('div');
       bubble.style.maxWidth = '70%';
       bubble.style.padding = '10px 15px';
@@ -625,10 +625,10 @@ function openInboxChat(targetUid, targetName) {
       bubble.style.color = isSent ? 'white' : 'black';
       bubble.style.border = isSent ? 'none' : '1px solid var(--border)';
       bubble.textContent = msg.text;
-      
+
       messagesArea.appendChild(bubble);
     });
-    
+
     messagesArea.scrollTop = messagesArea.scrollHeight;
   });
 }

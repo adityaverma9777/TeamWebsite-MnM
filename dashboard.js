@@ -19,7 +19,7 @@ onAuthStateChanged(auth, async (user) => {
     await loadUserProfile();
     loadProjectSubmissions();
     loadRecentChats();
-    loadActivityHub();
+    loadNotices();
     checkUrlParams();
     document.getElementById('preloader').style.display = 'none';
   } else {
@@ -648,92 +648,25 @@ function checkUrlParams() {
   }
 }
 
-// --- Activity Hub Logic ---
+// --- Notices Logic ---
 let activeCompetitionData = null;
 let allDynamicActivities = [];
 
-async function loadActivityHub() {
-  const reposList = document.getElementById('dash-repos-list');
-  const compGrid = document.getElementById('dash-competitions-grid');
-  const dynamicList = document.getElementById('dash-dynamic-activities-list');
-  
-  if (!reposList || !compGrid || !dynamicList) return;
+async function loadNotices() {
+  const noticeContent = document.getElementById('dash-notice-content');
+  if (!noticeContent) return;
 
   try {
-    // Fetch all 3 collections in parallel
-    const [repos, comps, activities] = await Promise.all([
-      sanityClient.fetch(`*[_type == "repository"] | order(_createdAt desc)`),
-      sanityClient.fetch(`*[_type == "competition"] | order(_createdAt desc)`),
-      sanityClient.fetch(`*[_type == "dynamicActivity" && isActive == true] | order(_createdAt desc)`)
-    ]);
-
-    // 1. Render Repos
-    if (repos.length === 0) {
-      reposList.innerHTML = '<div class="dash-empty-state">No active repositories</div>';
+    const notice = await sanityClient.fetch(`*[_type == "notice"] | order(_createdAt desc)[0]`);
+    
+    if (!notice || !notice.text) {
+      noticeContent.innerHTML = '<div class="dash-empty-state">No notices available</div>';
     } else {
-      reposList.innerHTML = '';
-      repos.slice(0, 10).forEach(repo => {
-        const repoCard = document.createElement('div');
-        repoCard.style.cssText = 'padding: 12px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; transition: 0.2s;';
-        repoCard.innerHTML = `
-          <strong style="color: var(--white); display: block; margin-bottom: 4px;">${repo.title}</strong>
-          <span style="font-size: 13px; color: var(--slate);">${repo.description?.substring(0, 50)}...</span>
-        `;
-        repoCard.onmouseover = () => repoCard.style.borderColor = 'var(--lime)';
-        repoCard.onmouseout = () => repoCard.style.borderColor = 'var(--border)';
-        repoCard.addEventListener('click', () => openRepoContributionModal(repo));
-        reposList.appendChild(repoCard);
-      });
+      noticeContent.textContent = notice.text;
     }
-
-    // 2. Render Hackathons
-    if (comps.length === 0) {
-      compGrid.innerHTML = '<div class="dash-empty-state">No Active Hackathons</div>';
-    } else {
-      compGrid.innerHTML = '';
-      comps.forEach(comp => {
-        const imgUrl = comp.coverImage ? urlFor(comp.coverImage).width(600).url() : '';
-        const card = document.createElement('div');
-        card.className = 'comp-card';
-        card.style.cursor = 'pointer';
-        card.innerHTML = `
-          ${imgUrl ? `<img src="${imgUrl}" alt="${comp.title}" style="width: 100%; height: 120px; object-fit: cover; border-radius: 12px 12px 0 0;">` : ''}
-          <div style="padding: 12px;">
-            <h4 style="font-family: 'Clash Display', sans-serif; color: var(--white); margin: 0 0 4px;">${comp.title}</h4>
-            <p style="color: var(--slate); font-size: 13px; margin: 0 0 12px;">${comp.shortDescription}</p>
-            <span style="color: #a855f7; font-size: 13px; font-weight: bold;">Register →</span>
-          </div>
-        `;
-        card.addEventListener('click', () => openRegistrationModal(comp));
-        compGrid.appendChild(card);
-      });
-    }
-
-    // 3. Render Dynamic Activities
-    allDynamicActivities = activities;
-    if (activities.length === 0) {
-      dynamicList.innerHTML = '<div class="dash-empty-state">No upcoming activities</div>';
-    } else {
-      dynamicList.innerHTML = '';
-      activities.forEach((act, index) => {
-        const card = document.createElement('div');
-        card.style.cssText = 'padding: 12px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; transition: 0.2s;';
-        card.innerHTML = `
-          <strong style="color: var(--white); display: block; margin-bottom: 4px;">${act.title}</strong>
-          <span style="font-size: 13px; color: var(--slate);">${act.shortDescription}</span>
-        `;
-        // Hover effect inline for simplicity
-        card.onmouseover = () => card.style.borderColor = '#ec4899';
-        card.onmouseout = () => card.style.borderColor = 'var(--border)';
-        
-        card.addEventListener('click', () => openDynamicModal(act));
-        dynamicList.appendChild(card);
-      });
-    }
-
   } catch (error) {
-    console.error("Failed to load Activity Hub", error);
-    reposList.innerHTML = `<div class="dash-empty-state">Error loading</div>`;
+    console.error("Failed to load Notices", error);
+    noticeContent.innerHTML = `<div class="dash-empty-state">Error loading notices</div>`;
   }
 }
 
