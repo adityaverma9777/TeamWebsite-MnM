@@ -864,6 +864,88 @@
     </div>
   </div>
 
+  <!-- Edit ID Card Modal -->
+  <div id="edit-idcard-modal" class="modal-overlay">
+    <div class="modal-content" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3 style="margin:0;">Edit ID Card</h3>
+        <button id="close-edit-idcard-btn" class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="form-edit-idcard" style="display: flex; flex-direction: column; gap: 15px;">
+          <input type="hidden" id="edit-idcard-db-id">
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div>
+              <label>Unique ID (Read-only)</label>
+              <input type="text" id="edit-idcard-unique-id" class="form-control" readonly style="background: #e9ecef; cursor: not-allowed;" />
+            </div>
+            <div>
+              <label>Candidate Name</label>
+              <input type="text" id="edit-idcard-name" class="form-control" required />
+            </div>
+            <div>
+              <label>Role</label>
+              <input type="text" id="edit-idcard-role" list="edit-idcard-roles-list" class="form-control" placeholder="Select or type role..." required />
+              <datalist id="edit-idcard-roles-list">
+                <option value="Frontend Dev">
+                <option value="Backend Dev">
+                <option value="Full Stack Dev">
+                <option value="Flutter Dev">
+                <option value="UI/UX Dev">
+                <option value="AI/ML Eng">
+                <option value="Data Science">
+                <option value="DevOps">
+                <option value="Cybersecurity">
+                <option value="Cloud Eng">
+                <option value="Technical Writer">
+                <option value="Graphic Designer">
+                <option value="Video Editor">
+                <option value="Social Media">
+                <option value="Marketing">
+                <option value="HR">
+                <option value="Operations">
+                <option value="Campus Ambassador">
+              </datalist>
+            </div>
+            <div>
+              <label>Age</label>
+              <input type="text" id="edit-idcard-age" class="form-control" required />
+            </div>
+            <div>
+              <label>City</label>
+              <input type="text" id="edit-idcard-city" class="form-control" required />
+            </div>
+            <div>
+              <label>State</label>
+              <input type="text" id="edit-idcard-state" class="form-control" required />
+            </div>
+          </div>
+          
+          <div>
+            <label>College / University</label>
+            <input type="text" id="edit-idcard-college" class="form-control" required />
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div>
+              <label>Joining Date</label>
+              <input type="date" id="edit-idcard-joining" class="form-control" required />
+            </div>
+            <div>
+              <label>Valid Till</label>
+              <input type="date" id="edit-idcard-valid" class="form-control" required />
+            </div>
+          </div>
+
+          <div style="text-align: right; margin-top: 10px;">
+            <button type="submit" class="btn btn-primary" id="btn-save-idcard">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <script type="module" src="./admin.js"></script>
 </body>
 </html>

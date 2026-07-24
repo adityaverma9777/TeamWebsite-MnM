@@ -1172,7 +1172,17 @@ async function loadManageIdCards() {
       tbody.appendChild(tr);
 
       document.getElementById(`btn-edit-idcard-${card.id}`).addEventListener('click', () => {
-        alert("Editing will be available in future updates! For now, please modify directly in Supabase.");
+        document.getElementById('edit-idcard-db-id').value = card.id;
+        document.getElementById('edit-idcard-unique-id').value = card.unique_id || '';
+        document.getElementById('edit-idcard-name').value = card.name || '';
+        document.getElementById('edit-idcard-role').value = card.role || '';
+        document.getElementById('edit-idcard-age').value = card.age || '';
+        document.getElementById('edit-idcard-city').value = card.city || '';
+        document.getElementById('edit-idcard-state').value = card.state || '';
+        document.getElementById('edit-idcard-college').value = card.college || '';
+        document.getElementById('edit-idcard-joining').value = card.joining_date || '';
+        document.getElementById('edit-idcard-valid').value = card.valid_till || '';
+        document.getElementById('edit-idcard-modal').classList.add('active');
       });
 
       const toggleBtn = document.getElementById(card.status !== 'revoked' ? `btn-revoke-idcard-${card.id}` : `btn-activate-idcard-${card.id}`);
@@ -1209,6 +1219,46 @@ if (btnRefreshIdCards) {
 
 // Load initially when Manage tab is clicked
 document.querySelector('.nav-item[data-target="sec-manage-idcards"]').addEventListener('click', loadManageIdCards);
+
+// Edit ID Card Logic
+document.getElementById('close-edit-idcard-btn')?.addEventListener('click', () => {
+  document.getElementById('edit-idcard-modal').classList.remove('active');
+});
+
+document.getElementById('form-edit-idcard')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const dbId = document.getElementById('edit-idcard-db-id').value;
+  const btn = document.getElementById('btn-save-idcard');
+  btn.textContent = 'Saving...';
+  btn.disabled = true;
+
+  try {
+    const { error } = await supabase
+      .from('id_cards')
+      .update({
+        name: document.getElementById('edit-idcard-name').value,
+        role: document.getElementById('edit-idcard-role').value,
+        age: document.getElementById('edit-idcard-age').value,
+        city: document.getElementById('edit-idcard-city').value,
+        state: document.getElementById('edit-idcard-state').value,
+        college: document.getElementById('edit-idcard-college').value,
+        joining_date: document.getElementById('edit-idcard-joining').value,
+        valid_till: document.getElementById('edit-idcard-valid').value,
+      })
+      .eq('id', dbId);
+
+    if (error) throw error;
+
+    document.getElementById('edit-idcard-modal').classList.remove('active');
+    loadManageIdCards();
+  } catch (err) {
+    console.error(err);
+    alert('Error updating ID card: ' + err.message);
+  } finally {
+    btn.textContent = 'Save Changes';
+    btn.disabled = false;
+  }
+});
 
 // =====================================================
 // OFFER LETTER GENERATOR
