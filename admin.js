@@ -1401,6 +1401,7 @@ document.getElementById('ol-search')?.addEventListener('input', (e) => {
 
 document.getElementById('ol-role')?.addEventListener('change', validateOLForm);
 document.getElementById('ol-idcard-url')?.addEventListener('input', validateOLForm);
+document.getElementById('ol-name')?.addEventListener('input', validateOLForm);
 
 document.querySelector('.nav-item[data-target="sec-offerletter"]')?.addEventListener('click', () => {
   if (olAllApplicants.length === 0) loadOLSheet('1');
@@ -1443,7 +1444,7 @@ document.getElementById('btn-generate-offer')?.addEventListener('click', async (
     const ctx = canvas.getContext('2d');
     ctx.drawImage(logoImg, 0, 0);
     const logoData = canvas.toDataURL('image/png');
-    doc.addImage(logoData, 'PNG', mx, 15, 14, 14);
+    doc.addImage(logoData, 'PNG', mx, 15.5, 14, 14);
   } catch (e) { }
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(22);
@@ -1457,7 +1458,7 @@ document.getElementById('btn-generate-offer')?.addEventListener('click', async (
   doc.text('INTERNSHIP OFFER LETTER', pw - mx, 23, { align: 'right' });
   doc.setTextColor(160, 160, 160);
   doc.text(refNum, pw - mx, 30, { align: 'right' });
-  y = 52;
+  y = 50;
   doc.setTextColor(100, 100, 100);
   doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
@@ -1477,15 +1478,15 @@ document.getElementById('btn-generate-offer')?.addEventListener('click', async (
   if (college) { doc.text(college, mx, y); y += 5; }
   if (email) { doc.text(email, mx, y); y += 5; }
   if (phone) { doc.text(phone, mx, y); y += 5; }
-  y += 6;
+  y += 4;
   doc.setDrawColor(200, 200, 200);
   doc.line(mx, y, pw - mx, y);
-  y += 8;
+  y += 6;
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(13);
   doc.setTextColor(10, 10, 10);
   doc.text('Subject: Offer of Internship', mx, y);
-  y += 10;
+  y += 8;
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(10.5);
   doc.setTextColor(40, 40, 40);
@@ -1576,11 +1577,45 @@ document.getElementById('btn-generate-offer')?.addEventListener('click', async (
   doc.setFontSize(11);
   doc.setTextColor(10, 10, 10);
   doc.text('MnM Team', mx, y);
-  y += 5;
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(8);
   doc.setTextColor(120, 120, 120);
-  doc.text('Authorized Signatory', mx, y);
+  doc.text('Authorized Signatory', mx, y + 5);
+
+  const stampX = pw - mx - 55;
+  const stampY = y - 8;
+  const stampW = 55;
+  const stampH = 19;
+  
+  doc.setDrawColor(100, 100, 100);
+  doc.setLineWidth(0.2);
+  doc.setLineDash([1, 1], 0);
+  doc.rect(stampX, stampY, stampW, stampH);
+  doc.setLineDash([]); 
+
+  doc.setDrawColor(0, 160, 0);
+  doc.setLineWidth(1.2);
+  doc.lines([[2, 2], [5, -7]], stampX + 32, stampY + 12);
+  doc.setLineWidth(0.2); 
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(9);
+  doc.setTextColor(20, 60, 140);
+  doc.text('Signature valid', stampX + 2, stampY + 4.5);
+  
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(5.5);
+  doc.setTextColor(40, 40, 40);
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '.');
+  const timeStr = now.toLocaleTimeString('en-IN', { hour12: false });
+  doc.text(`Date: ${dateStr} at ${timeStr} IST`, stampX + 2, stampY + 8);
+  doc.text('Digitally signed by:', stampX + 2, stampY + 11.5);
+  doc.setFont('helvetica', 'bold');
+  doc.text('Manika Kutiyal (COO)', stampX + 2, stampY + 14.5);
+  doc.text('Aditya Verma (CTO)', stampX + 2, stampY + 17.5);
+
+  y += 5;
   const footerH = idCardUrl ? 28 : 16;
   doc.setFillColor(10, 10, 10);
   doc.rect(0, ph - footerH, pw, footerH, 'F');
@@ -1619,4 +1654,13 @@ document.getElementById('btn-generate-offer')?.addEventListener('click', async (
   }
   const safeName = name.replace(/[^a-zA-Z0-9]/g, '_');
   doc.save(`MnM_OfferLetter_${safeName}.pdf`);
+});
+
+document.getElementById('idcard-joining')?.addEventListener('change', (e) => {
+  if (e.target.value) {
+    const joiningDate = new Date(e.target.value);
+    const validDate = new Date(joiningDate);
+    validDate.setMonth(validDate.getMonth() + 3);
+    document.getElementById('idcard-valid').value = validDate.toISOString().split('T')[0];
+  }
 });
