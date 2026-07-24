@@ -1,9 +1,10 @@
 import { auth, db } from './firebase.js';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { collection, getDocs, doc, updateDoc, query, where } from 'firebase/firestore';
 import { sanityClient } from './sanity.js';
 import { supabase } from './supabase.js';
 import imageCompression from 'browser-image-compression';
+import { jsPDF } from 'jspdf';
 
 const ADMIN_EMAIL = 'contact.manikaditya@gmail.com';
 let allUsers = [];
@@ -275,11 +276,11 @@ function renderUsers(users) {
     document.getElementById(`btn-save-un-${user.id}`).addEventListener('click', async (e) => {
       const btn = e.target;
       const newUsername = document.getElementById(`un-${user.id}`).value.trim();
-      
+
       if (newUsername === (user.username || '')) return;
-      
+
       btn.textContent = '...';
-      
+
       try {
         if (newUsername !== '') {
           // Uniqueness check
@@ -297,7 +298,7 @@ function renderUsers(users) {
         btn.textContent = 'Saved';
         btn.style.background = 'green';
         setTimeout(() => { btn.textContent = 'Save'; btn.style.background = ''; }, 2000);
-        
+
         const u = allUsers.find(x => x.id === user.id);
         if (u) u.username = newUsername;
       } catch (error) {
@@ -782,7 +783,7 @@ if (btnCloseSidepanel) {
 
 // Global function exposed to window so inline onclicks could work if needed, 
 // though we will attach via JS class '.clickable-name'
-window.openUserProfilePanel = async function(userId) {
+window.openUserProfilePanel = async function (userId) {
   currentSidepanelUserId = userId;
   const user = allUsers.find(u => u.id === userId);
   if (!user) return;
@@ -791,14 +792,14 @@ window.openUserProfilePanel = async function(userId) {
   document.getElementById('sp-avatar').src = user.photoURL || '/logo.png';
   document.getElementById('sp-name').textContent = user.name || 'Unnamed User';
   document.getElementById('sp-email').textContent = user.email || 'No email provided';
-  
+
   // Details
   document.getElementById('sp-username').textContent = user.username ? `@${user.username}` : 'Not set';
   document.getElementById('sp-github').textContent = user.github || 'Not set';
   document.getElementById('sp-phone').textContent = user.phone || 'Not set';
   document.getElementById('sp-college').textContent = user.college || 'Not set';
   document.getElementById('sp-bio').textContent = user.bio || 'No bio provided.';
-  
+
   // Links
   const linksContainer = document.getElementById('sp-links');
   linksContainer.innerHTML = '';
@@ -820,19 +821,19 @@ window.openUserProfilePanel = async function(userId) {
 
 document.getElementById('btn-sp-dm').addEventListener('click', () => {
   if (!currentSidepanelUserId) return;
-  
+
   const user = allUsers.find(u => u.id === currentSidepanelUserId);
   if (!user) return;
-  
+
   // 1. Close sidepanel
   sidepanel.classList.remove('active');
-  
+
   // 2. Switch to Inbox Tab
   document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
   document.querySelector('[data-target="sec-inbox"]').classList.add('active');
   document.querySelectorAll('.admin-section').forEach(sec => sec.classList.remove('active'));
   document.getElementById('sec-inbox').classList.add('active');
-  
+
   // 3. Open chat
   openInboxChat(user.id, user.name || 'Unnamed');
 });
@@ -1105,7 +1106,7 @@ if (addIdCardForm) {
       const resultDiv = document.getElementById('idcard-result');
       const resultUrl = document.getElementById('idcard-result-url');
       const generatedUrl = `${window.location.origin}/id/${uniqueId}`;
-      
+
       resultUrl.href = generatedUrl;
       resultUrl.textContent = generatedUrl;
       resultDiv.style.display = 'block';
@@ -1114,7 +1115,7 @@ if (addIdCardForm) {
       addIdCardForm.reset();
       finalIdCardPicBlob = null;
       idcardPicInput.value = '';
-      
+
       // Auto-refresh the list
       loadManageIdCards();
 
@@ -1132,17 +1133,17 @@ if (addIdCardForm) {
 async function loadManageIdCards() {
   const tbody = document.getElementById('manage-idcards-list');
   if (!tbody || !supabase) return;
-  
+
   tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">Loading...</td></tr>';
-  
+
   try {
     const { data, error } = await supabase
       .from('id_cards')
       .select('*')
       .order('created_at', { ascending: false });
-      
+
     if (error) throw error;
-    
+
     tbody.innerHTML = '';
     if (!data || data.length === 0) {
       tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No ID Cards generated yet.</td></tr>';
@@ -1152,7 +1153,7 @@ async function loadManageIdCards() {
     data.forEach(card => {
       const tr = document.createElement('tr');
       const statusColor = card.status === 'active' ? 'green' : 'red';
-      
+
       tr.innerHTML = `
         <td><img src="${card.profile_pic_url}" style="width:40px; height:40px; border-radius:4px; object-fit:cover;"></td>
         <td><strong>${card.name}</strong></td>
@@ -1161,10 +1162,10 @@ async function loadManageIdCards() {
         <td><span style="color:${statusColor}; font-weight:bold; text-transform:uppercase; font-size:12px;">${card.status || 'active'}</span></td>
         <td>
           <button class="btn btn-sm btn-primary" id="btn-edit-idcard-${card.id}">Edit</button>
-          ${card.status !== 'revoked' 
-            ? `<button class="btn btn-sm" style="background:#dc3545; color:white;" id="btn-revoke-idcard-${card.id}">Revoke</button>`
-            : `<button class="btn btn-sm" style="background:#28a745; color:white;" id="btn-activate-idcard-${card.id}">Activate</button>`
-          }
+          ${card.status !== 'revoked'
+          ? `<button class="btn btn-sm" style="background:#dc3545; color:white;" id="btn-revoke-idcard-${card.id}">Revoke</button>`
+          : `<button class="btn btn-sm" style="background:#28a745; color:white;" id="btn-activate-idcard-${card.id}">Activate</button>`
+        }
         </td>
       `;
       tbody.appendChild(tr);
@@ -1207,3 +1208,390 @@ if (btnRefreshIdCards) {
 
 // Load initially when Manage tab is clicked
 document.querySelector('.nav-item[data-target="sec-manage-idcards"]').addEventListener('click', loadManageIdCards);
+
+// =====================================================
+// OFFER LETTER GENERATOR
+// =====================================================
+
+const SHEETS_CONFIG = {
+  '1': { id: import.meta.env.VITE_SHEET1_ID, gid: import.meta.env.VITE_SHEET1_GID },
+  '2': { id: import.meta.env.VITE_SHEET2_ID, gid: import.meta.env.VITE_SHEET2_GID }
+};
+let googleAccessToken = null;
+let olAllApplicants = [];
+let olFilteredApplicants = [];
+let olSelectedCandidate = null;
+let olCurrentSheet = '1';
+async function getGoogleAccessToken() {
+  if (googleAccessToken) return googleAccessToken;
+  const provider = new GoogleAuthProvider();
+  provider.addScope('https://www.googleapis.com/auth/spreadsheets.readonly');
+  try {
+    const result = await signInWithPopup(auth, provider);
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    googleAccessToken = credential.accessToken;
+    return googleAccessToken;
+  } catch (err) {
+    console.error('Google Sheets auth failed:', err);
+    alert('Failed to connect Google Sheets. Please allow the popup and try again.');
+    return null;
+  }
+}
+function findField(obj, ...candidates) {
+  for (const c of candidates) {
+    const key = Object.keys(obj).find(k => k.toLowerCase().includes(c.toLowerCase()));
+    if (key && obj[key]) return obj[key];
+  }
+  return '';
+}
+async function fetchSheetData(sheetKey) {
+  const config = SHEETS_CONFIG[sheetKey];
+  if (!config || !config.id) return [];
+  const token = await getGoogleAccessToken();
+  if (!token) return [];
+  try {
+    const metaResp = await fetch(
+      `https://sheets.googleapis.com/v4/spreadsheets/${config.id}?fields=sheets.properties`,
+      { headers: { 'Authorization': `Bearer ${token}` } }
+    );
+    if (!metaResp.ok) throw new Error(`Sheets API error: ${metaResp.status}`);
+    const meta = await metaResp.json();
+    let sheetName = 'Sheet1';
+    if (meta.sheets) {
+      const matched = meta.sheets.find(s => String(s.properties.sheetId) === config.gid);
+      if (matched) sheetName = matched.properties.title;
+    }
+    const dataResp = await fetch(
+      `https://sheets.googleapis.com/v4/spreadsheets/${config.id}/values/${encodeURIComponent(sheetName)}`,
+      { headers: { 'Authorization': `Bearer ${token}` } }
+    );
+    if (!dataResp.ok) throw new Error(`Data fetch error: ${dataResp.status}`);
+    const data = await dataResp.json();
+    const rows = data.values;
+    if (!rows || rows.length < 2) return [];
+    const headers = rows[0];
+    const result = [];
+    for (let i = 1; i < rows.length; i++) {
+      const obj = {};
+      headers.forEach((h, idx) => {
+        obj[h] = rows[i][idx] || '';
+      });
+      obj._headers = headers;
+      result.push(obj);
+    }
+    return result;
+  } catch (err) {
+    console.error('Error fetching sheet:', err);
+    return [];
+  }
+}
+
+function renderOLTable(data) {
+  const thead = document.getElementById('ol-thead');
+  const tbody = document.getElementById('ol-tbody');
+  if (!data || data.length === 0) {
+    thead.innerHTML = '<tr><th>No Data</th></tr>';
+    tbody.innerHTML = '<tr><td>No applicants found. Make sure the sheet is shared as "Anyone with the link".</td></tr>';
+    return;
+  }
+  const displayCols = [
+    { label: 'Name', key: 'Full Name' },
+    { label: 'Email', key: 'Email address' },
+    { label: 'College', key: 'College - University' },
+    { label: 'Role Applied', key: 'Which role are you applying for ?' },
+    { label: 'City', key: 'City' },
+  ];
+  const headers = data[0]._headers || [];
+  const cols = displayCols.filter(c => headers.some(h => h.toLowerCase().includes(c.key.toLowerCase().split(' ')[0])));
+  if (cols.length === 0) {
+    const fallback = headers.slice(0, 5);
+    fallback.forEach(h => cols.push({ label: h, key: h }));
+  }
+  thead.innerHTML = '<tr>' + cols.map(c => `<th>${c.label}</th>`).join('') + '<th>Action</th></tr>';
+  tbody.innerHTML = '';
+  data.forEach((row, idx) => {
+    const tr = document.createElement('tr');
+    let cells = cols.map(c => {
+      const val = findField(row, c.key) || '-';
+      return `<td>${val.length > 40 ? val.substring(0, 40) + '...' : val}</td>`;
+    }).join('');
+    cells += `<td><button class="btn-select-candidate" data-idx="${idx}">Select</button></td>`;
+    tr.innerHTML = cells;
+    tbody.appendChild(tr);
+  });
+  tbody.querySelectorAll('.btn-select-candidate').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.btn-select-candidate').forEach(b => {
+        b.textContent = 'Select';
+        b.style.background = '';
+      });
+      const idx = parseInt(btn.getAttribute('data-idx'));
+      selectOLCandidate(olFilteredApplicants[idx]);
+      btn.textContent = '✓ Selected';
+      btn.style.background = '#28a745';
+    });
+  });
+}
+
+function selectOLCandidate(candidate) {
+  olSelectedCandidate = candidate;
+  document.getElementById('ol-name').value = findField(candidate, 'Full Name', 'name');
+  document.getElementById('ol-email').value = findField(candidate, 'Email address', 'email');
+  document.getElementById('ol-phone').value = findField(candidate, 'Phone', 'WhatsApp', 'mobile');
+  document.getElementById('ol-college').value = findField(candidate, 'College - University', 'college', 'university');
+  const roleSelect = document.getElementById('ol-role');
+  if (olCurrentSheet === '2') {
+    roleSelect.value = 'Campus Ambassador';
+    roleSelect.disabled = true;
+  } else {
+    roleSelect.disabled = false;
+    const appliedRole = findField(candidate, 'Which role are you applying for', 'role');
+    if (appliedRole) {
+      const matchOption = Array.from(roleSelect.options).find(
+        o => o.value.toLowerCase() === appliedRole.toLowerCase()
+      );
+      if (matchOption) {
+        roleSelect.value = matchOption.value;
+      }
+    }
+  }
+  const startDateInput = document.getElementById('ol-start-date');
+  if (!startDateInput.value) {
+    startDateInput.value = new Date().toISOString().split('T')[0];
+  }
+  validateOLForm();
+}
+
+function validateOLForm() {
+  const name = document.getElementById('ol-name').value;
+  const role = document.getElementById('ol-role').value;
+  document.getElementById('btn-generate-offer').disabled = !(name && role);
+}
+
+async function loadOLSheet(sheetKey) {
+  olCurrentSheet = sheetKey;
+  document.getElementById('ol-table-title').textContent = `Applicants — Sheet ${sheetKey}`;
+  document.getElementById('ol-thead').innerHTML = '<tr><th>Loading...</th></tr>';
+  document.getElementById('ol-tbody').innerHTML = '<tr><td>Fetching data from Google Sheets...</td></tr>';
+  olAllApplicants = await fetchSheetData(sheetKey);
+  olFilteredApplicants = [...olAllApplicants];
+  renderOLTable(olFilteredApplicants);
+}
+
+document.querySelectorAll('.sheet-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.sheet-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    loadOLSheet(tab.getAttribute('data-sheet'));
+  });
+});
+
+document.getElementById('ol-search')?.addEventListener('input', (e) => {
+  const term = e.target.value.toLowerCase();
+  if (!term) {
+    olFilteredApplicants = [...olAllApplicants];
+  } else {
+    olFilteredApplicants = olAllApplicants.filter(row => {
+      return Object.values(row).some(v => typeof v === 'string' && v.toLowerCase().includes(term));
+    });
+  }
+  renderOLTable(olFilteredApplicants);
+});
+
+document.getElementById('ol-role')?.addEventListener('change', validateOLForm);
+document.getElementById('ol-idcard-url')?.addEventListener('input', validateOLForm);
+
+document.querySelector('.nav-item[data-target="sec-offerletter"]')?.addEventListener('click', () => {
+  if (olAllApplicants.length === 0) loadOLSheet('1');
+});
+
+document.getElementById('btn-generate-offer')?.addEventListener('click', () => {
+  const name = document.getElementById('ol-name').value;
+  const email = document.getElementById('ol-email').value;
+  const phone = document.getElementById('ol-phone').value;
+  const college = document.getElementById('ol-college').value;
+  const role = document.getElementById('ol-role').value;
+  const idCardUrl = document.getElementById('ol-idcard-url').value;
+  const startDateVal = document.getElementById('ol-start-date').value;
+  if (!name || !role) {
+    alert('Please select a candidate and choose a role.');
+    return;
+  }
+  const startDate = startDateVal ? new Date(startDateVal) : new Date();
+  const endDate = new Date(startDate);
+  endDate.setMonth(endDate.getMonth() + 3);
+  const fmt = (d) => d.toLocaleDateString('en-IN', { day: '2-digit', month: 'long', year: 'numeric' });
+  const refNum = `MNM/OL/${startDate.getFullYear()}/${String(Math.floor(Math.random() * 9000) + 1000)}`;
+  const doc = new jsPDF('p', 'mm', 'a4');
+  const pw = doc.internal.pageSize.getWidth();
+  const ph = doc.internal.pageSize.getHeight();
+  const mx = 25;
+  let y = 20;
+  doc.setFillColor(10, 10, 10);
+  doc.rect(0, 0, pw, 40, 'F');
+  doc.setFillColor(200, 255, 0);
+  doc.rect(0, 38, pw, 2, 'F');
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(24);
+  doc.setTextColor(200, 255, 0);
+  doc.text('MnM', mx, 26);
+  doc.setFontSize(10);
+  doc.setTextColor(180, 180, 180);
+  doc.text('Building the Future, Together', mx, 33);
+  doc.setFontSize(9);
+  doc.setTextColor(255, 255, 255);
+  doc.text('INTERNSHIP OFFER LETTER', pw - mx, 26, { align: 'right' });
+  doc.setTextColor(180, 180, 180);
+  doc.text(refNum, pw - mx, 33, { align: 'right' });
+  y = 52;
+  doc.setTextColor(100, 100, 100);
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'normal');
+  doc.text(`Date: ${fmt(startDate)}`, mx, y);
+  y += 12;
+  doc.setTextColor(30, 30, 30);
+  doc.setFontSize(11);
+  doc.text('To,', mx, y);
+  y += 7;
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(13);
+  doc.text(name, mx, y);
+  y += 6;
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(10);
+  doc.setTextColor(80, 80, 80);
+  if (college) { doc.text(college, mx, y); y += 5; }
+  if (email) { doc.text(email, mx, y); y += 5; }
+  if (phone) { doc.text(phone, mx, y); y += 5; }
+  y += 8;
+  doc.setDrawColor(200, 200, 200);
+  doc.line(mx, y, pw - mx, y);
+  y += 10;
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(14);
+  doc.setTextColor(10, 10, 10);
+  doc.text('Subject: Offer of Internship', mx, y);
+  y += 12;
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(11);
+  doc.setTextColor(40, 40, 40);
+  const bodyLines = [
+    `Dear ${name},`,
+    '',
+    `We are pleased to inform you that you have been selected for the position of ${role} at MnM. Your application has been reviewed and we are confident that your skills and enthusiasm will be a great addition to our team.`,
+    '',
+    'Please find the details of your internship below:',
+  ];
+  bodyLines.forEach(line => {
+    if (line === '') { y += 4; return; }
+    const split = doc.splitTextToSize(line, pw - mx * 2);
+    doc.text(split, mx, y);
+    y += split.length * 6;
+  });
+  y += 6;
+  doc.setFillColor(248, 249, 250);
+  doc.roundedRect(mx, y, pw - mx * 2, 52, 3, 3, 'F');
+  doc.setDrawColor(220, 220, 220);
+  doc.roundedRect(mx, y, pw - mx * 2, 52, 3, 3, 'S');
+  const bx = mx + 8;
+  let by = y + 10;
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(11);
+  doc.setTextColor(10, 10, 10);
+  doc.text('INTERNSHIP DETAILS', bx, by);
+  by += 9;
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(10);
+  doc.setTextColor(60, 60, 60);
+  const details = [
+    ['Position', role],
+    ['Duration', '3 Months'],
+    ['Start Date', fmt(startDate)],
+    ['End Date', fmt(endDate)],
+  ];
+  details.forEach(([label, value]) => {
+    doc.setFont('helvetica', 'bold');
+    doc.text(`${label}:`, bx, by);
+    doc.setFont('helvetica', 'normal');
+    doc.text(value, bx + 35, by);
+    by += 7;
+  });
+  y += 60;
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(11);
+  doc.setTextColor(10, 10, 10);
+  doc.text('Terms & Conditions:', mx, y);
+  y += 8;
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(10);
+  doc.setTextColor(50, 50, 50);
+  const terms = [
+    'This is an unpaid internship focused on skill development, mentorship, and real-world project experience.',
+    'The intern is expected to maintain professional conduct and adhere to the guidelines set by MnM.',
+    'A certificate of completion will be provided upon successful completion of the internship.',
+    'The intern must complete assigned tasks and participate actively in team activities.',
+    'MnM reserves the right to terminate the internship in case of misconduct or prolonged inactivity.',
+    'The intern shall not disclose any confidential information of MnM to third parties.',
+  ];
+  terms.forEach((term, i) => {
+    const text = `${i + 1}. ${term}`;
+    const split = doc.splitTextToSize(text, pw - mx * 2 - 5);
+    doc.text(split, mx + 3, y);
+    y += split.length * 5.5 + 2;
+  });
+  y += 8;
+  doc.setDrawColor(200, 200, 200);
+  doc.line(mx, y, pw - mx, y);
+  y += 10;
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(10.5);
+  doc.setTextColor(40, 40, 40);
+  const closing = [
+    'We look forward to having you on board and are excited about the contributions you will make to MnM.',
+    '',
+    'Warm Regards,',
+  ];
+  closing.forEach(line => {
+    if (line === '') { y += 4; return; }
+    const split = doc.splitTextToSize(line, pw - mx * 2);
+    doc.text(split, mx, y);
+    y += split.length * 6;
+  });
+  y += 10;
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(12);
+  doc.setTextColor(10, 10, 10);
+  doc.text('MnM Team', mx, y);
+  y += 6;
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9);
+  doc.setTextColor(120, 120, 120);
+  doc.text('Authorized Signatory', mx, y);
+  if (idCardUrl) {
+    y += 14;
+    doc.setDrawColor(230, 230, 230);
+    doc.setFillColor(248, 249, 250);
+    doc.roundedRect(mx, y - 4, pw - mx * 2, 22, 3, 3, 'FD');
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8);
+    doc.setTextColor(100, 100, 100);
+    doc.text('VERIFY THIS LETTER:', mx + 5, y + 4);
+    doc.setTextColor(13, 110, 253);
+    doc.setFont('helvetica', 'bold');
+    doc.text(idCardUrl, mx + 5, y + 11);
+  }
+  const footerY = ph - 12;
+  doc.setFillColor(10, 10, 10);
+  doc.rect(0, ph - 18, pw, 18, 'F');
+  doc.setFillColor(200, 255, 0);
+  doc.rect(0, ph - 18, pw, 1.5, 'F');
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(8);
+  doc.setTextColor(150, 150, 150);
+  doc.text('This is a computer-generated document and does not require a physical signature.', pw / 2, footerY, { align: 'center' });
+  doc.setTextColor(200, 255, 0);
+  doc.setFont('helvetica', 'bold');
+  doc.text('MnM', pw / 2, footerY + 5, { align: 'center' });
+  const safeName = name.replace(/[^a-zA-Z0-9]/g, '_');
+  doc.save(`MnM_OfferLetter_${safeName}.pdf`);
+});

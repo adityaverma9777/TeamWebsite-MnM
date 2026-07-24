@@ -294,6 +294,112 @@
     .clickable-name:hover {
       color: var(--primary-hover);
     }
+    .sheet-tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+    }
+    .sheet-tab {
+      padding: 10px 20px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      border: none;
+      background: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.2s;
+    }
+    .sheet-tab.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+    .sheet-tab:hover {
+      color: var(--text-main);
+    }
+    .ol-split {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 24px;
+      align-items: start;
+    }
+    .ol-form-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      position: sticky;
+      top: 0;
+    }
+    .ol-form-card h3 {
+      margin: 0 0 16px;
+    }
+    .ol-field {
+      margin-bottom: 14px;
+    }
+    .ol-field label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .ol-field input, .ol-field select {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+    .ol-field input:read-only {
+      background: var(--bg-color);
+      color: var(--text-muted);
+    }
+    .btn-generate {
+      width: 100%;
+      padding: 12px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn-generate:hover {
+      background: #218838;
+    }
+    .btn-generate:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    .btn-select-candidate {
+      padding: 4px 10px;
+      font-size: 0.8rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .btn-select-candidate:hover {
+      background: var(--primary-hover);
+    }
+    .ol-selected-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      background: #d4edda;
+      color: #155724;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
   </style>
 </head>
 <body>
@@ -316,6 +422,7 @@
       <a class="nav-item" data-target="sec-inbox">Admin Inbox</a>
       <a class="nav-item" data-target="sec-idcard">Add ID Card</a>
       <a class="nav-item" data-target="sec-manage-idcards">Manage ID Cards</a>
+      <a class="nav-item" data-target="sec-offerletter">Offer Letter</a>
     </nav>
     <div class="sidebar-footer">
       <button id="btn-admin-logout" class="btn-logout">Logout</button>
@@ -609,6 +716,81 @@
               <tr><td colspan="6" style="text-align:center;">Loading...</td></tr>
             </tbody>
           </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- OFFER LETTER SECTION -->
+    <section id="sec-offerletter" class="admin-section">
+      <h2 class="section-title">Offer Letter Generator</h2>
+      <div class="sheet-tabs">
+        <button class="sheet-tab active" data-sheet="1">Sheet 1 — Applications</button>
+        <button class="sheet-tab" data-sheet="2">Sheet 2 — Applications</button>
+      </div>
+      <div class="ol-split">
+        <div class="data-card">
+          <div class="data-header">
+            <h3 id="ol-table-title">Applicants — Sheet 1</h3>
+            <input type="text" id="ol-search" class="search-input" placeholder="Search applicants...">
+          </div>
+          <div style="overflow-x: auto; max-height: 500px; overflow-y: auto;">
+            <table>
+              <thead id="ol-thead"><tr><th>Loading...</th></tr></thead>
+              <tbody id="ol-tbody"><tr><td>Fetching data from Google Sheets...</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="ol-form-card">
+          <h3>Generate Offer Letter</h3>
+          <div class="ol-field">
+            <label>Candidate Name</label>
+            <input type="text" id="ol-name" readonly placeholder="Select a candidate →">
+          </div>
+          <div class="ol-field">
+            <label>Email</label>
+            <input type="text" id="ol-email" readonly placeholder="—">
+          </div>
+          <div class="ol-field">
+            <label>Phone</label>
+            <input type="text" id="ol-phone" readonly placeholder="—">
+          </div>
+          <div class="ol-field">
+            <label>College</label>
+            <input type="text" id="ol-college" readonly placeholder="—">
+          </div>
+          <div class="ol-field">
+            <label>Role / Position</label>
+            <select id="ol-role">
+              <option value="">— Select Role —</option>
+              <option value="Frontend Dev">Frontend Dev</option>
+              <option value="Backend Dev">Backend Dev</option>
+              <option value="Full Stack Dev">Full Stack Dev</option>
+              <option value="Flutter Dev">Flutter Dev</option>
+              <option value="UI/UX Dev">UI/UX Dev</option>
+              <option value="AI/ML Eng">AI/ML Eng</option>
+              <option value="Data Science">Data Science</option>
+              <option value="DevOps">DevOps</option>
+              <option value="Cybersecurity">Cybersecurity</option>
+              <option value="Cloud Eng">Cloud Eng</option>
+              <option value="Technical Writer">Technical Writer</option>
+              <option value="Graphic Designer">Graphic Designer</option>
+              <option value="Video Editor">Video Editor</option>
+              <option value="Social Media">Social Media</option>
+              <option value="Marketing">Marketing</option>
+              <option value="HR">HR</option>
+              <option value="Operations">Operations</option>
+              <option value="Campus Ambassador">Campus Ambassador</option>
+            </select>
+          </div>
+          <div class="ol-field">
+            <label>ID Card URL</label>
+            <input type="text" id="ol-idcard-url" placeholder="https://mnm.works/id/0001">
+          </div>
+          <div class="ol-field">
+            <label>Start Date</label>
+            <input type="date" id="ol-start-date">
+          </div>
+          <button class="btn-generate" id="btn-generate-offer" disabled>Generate Offer Letter</button>
         </div>
       </div>
     </section>
