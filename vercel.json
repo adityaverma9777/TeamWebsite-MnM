@@ -19,5 +19,8 @@
       ]
     }
   ],
+  "rewrites": [
+    { "source": "/id/:id", "destination": "/idcard.html" }
+  ],
   "trailingSlash": false
 }

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MnM — Digital ID</title>
+  <link rel="stylesheet" href="/idcard.css">
+  <link rel="icon" type="image/png" href="/logo.png">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+
+<body>
+  <div id="loader" class="loader">
+    <div class="loader-ring"></div>
+  </div>
+  <div id="content" class="page" style="display: none;">
+    <div class="layout">
+      <div class="panel-left">
+        <div class="info-card">
+          <div class="info-header">
+            <span class="info-tag">Member Profile</span>
+            <span class="info-status" id="det-status">-</span>
+          </div>
+          <div class="info-name" id="det-name">-</div>
+          <div class="info-role" id="det-role">-</div>
+          <div class="info-grid">
+            <div class="info-cell">
+              <span class="cell-label">Age</span>
+              <span class="cell-value" id="det-age">-</span>
+            </div>
+            <div class="info-cell">
+              <span class="cell-label">Location</span>
+              <span class="cell-value" id="det-location">-</span>
+            </div>
+            <div class="info-cell">
+              <span class="cell-label">College</span>
+              <span class="cell-value" id="det-college">-</span>
+            </div>
+            <div class="info-cell">
+              <span class="cell-label">Joined</span>
+              <span class="cell-value" id="det-joining">-</span>
+            </div>
+            <div class="info-cell">
+              <span class="cell-label">Valid Till</span>
+              <span class="cell-value" id="det-valid">-</span>
+            </div>
+          </div>
+          <div class="info-actions">
+            <button id="btn-download" class="btn-main">Download Card</button>
+            <button id="btn-share" class="btn-ghost">Copy Link</button>
+          </div>
+        </div>
+      </div>
+      <div class="panel-right">
+        <div class="card-stage" id="id-card-element">
+          <div class="id-card">
+            <div class="card-inner">
+              <div class="card-row-top">
+                <div class="card-brand">
+                  <img src="/logo.png" alt="MnM" class="brand-icon">
+                  <span class="brand-name">MnM</span>
+                </div>
+                <span class="card-id-num" id="card-id-num">ID-0000</span>
+              </div>
+              <div class="card-divider"></div>
+              <div class="card-center">
+                <div class="avatar-wrapper">
+                  <div class="avatar-glow"></div>
+                  <img src="/logo.png" alt="Profile" class="avatar-img" id="card-photo" crossorigin="anonymous">
+                </div>
+                <div class="card-identity">
+                  <h2 class="card-fullname" id="card-name">Name</h2>
+                  <span class="card-title" id="card-role">Role</span>
+                  <span class="card-university" id="card-university">University</span>
+                </div>
+              </div>
+              <div class="card-divider"></div>
+              <div class="card-row-bottom">
+                <div class="card-dates">
+                  <div class="date-block">
+                    <span class="date-label">Joined</span>
+                    <span class="date-value" id="card-joining">--/--/----</span>
+                  </div>
+                  <div class="date-block date-right">
+                    <span class="date-label">Expires</span>
+                    <span class="date-value" id="card-valid">--/--/----</span>
+                  </div>
+                </div>
+                <div class="card-qr-row">
+                  <div class="qr-box" id="qrcode"></div>
+                  <div class="qr-text">
+                    <span>VERIFY</span>
+                    <strong>MnM</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-edge-accent"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="error-screen" class="error-screen" style="display: none;">
+    <div class="error-icon">⚠</div>
+    <h2>Card Not Found</h2>
+    <p>This ID card doesn't exist or has been revoked.</p>
+  </div>
+  <script type="module" src="/idcard.js"></script>
+</body>
+
+</html>

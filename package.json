@@ -11,10 +11,15 @@
   "dependencies": {
     "@sanity/client": "^7.23.2",
     "@sanity/image-url": "^2.1.1",
+    "@supabase/supabase-js": "^2.110.8",
+    "browser-image-compression": "^2.0.2",
+    "cropperjs": "^1.6.1",
     "firebase": "^12.16.0",
     "gsap": "^3.12.5",
+    "html2canvas": "^1.4.1",
     "lenis": "^1.1.14",
     "next": "^16.2.4",
+    "qrcode": "^1.5.4",
     "split-type": "^0.3.4",
     "three": "^0.160.0"
   },

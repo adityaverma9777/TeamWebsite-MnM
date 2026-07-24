@@ -7,6 +7,18 @@
   <link rel="icon" type="image/png" href="/logo.png">
   <meta name="robots" content="noindex, nofollow">
   <style>
+    /* Custom canvas cropper */
+    #cropper-wrapper {
+      position: relative;
+      width: 100%;
+      background: #111;
+      cursor: crosshair;
+      user-select: none;
+    }
+    #cropper-canvas {
+      display: block;
+      width: 100%;
+    }
     /* Clean, Professional Enterprise Theme */
     :root {
       --bg-color: #f8f9fa;
@@ -302,6 +314,8 @@
       <a class="nav-item" data-target="sec-submissions">Submissions</a>
       <a class="nav-item" data-target="sec-competitions">Competitions</a>
       <a class="nav-item" data-target="sec-inbox">Admin Inbox</a>
+      <a class="nav-item" data-target="sec-idcard">Add ID Card</a>
+      <a class="nav-item" data-target="sec-manage-idcards">Manage ID Cards</a>
     </nav>
     <div class="sidebar-footer">
       <button id="btn-admin-logout" class="btn-logout">Logout</button>
@@ -508,6 +522,97 @@
       </div>
     </section>
 
+    <!-- ADD ID CARD SECTION -->
+    <section id="sec-idcard" class="admin-section">
+      <h2 class="section-title">Add ID Card</h2>
+      <div class="data-card" style="padding: 20px;">
+        <form id="add-idcard-form" style="display: grid; gap: 15px; max-width: 600px;">
+          <div>
+            <label>Profile Picture</label>
+            <input type="file" id="idcard-pic" class="form-control" accept="image/*" required style="width: 100%;" />
+          </div>
+          <div>
+            <label>Name</label>
+            <input type="text" id="idcard-name" class="form-control" required style="width: 100%;" />
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div>
+              <label>Role</label>
+              <input type="text" id="idcard-role" class="form-control" required style="width: 100%;" />
+            </div>
+            <div>
+              <label>Age</label>
+              <input type="number" id="idcard-age" class="form-control" required style="width: 100%;" />
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div>
+              <label>City</label>
+              <input type="text" id="idcard-city" class="form-control" required style="width: 100%;" />
+            </div>
+            <div>
+              <label>State</label>
+              <input type="text" id="idcard-state" class="form-control" required style="width: 100%;" />
+            </div>
+          </div>
+          <div>
+            <label>College</label>
+            <input type="text" id="idcard-college" class="form-control" required style="width: 100%;" />
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div>
+              <label>Joining Date</label>
+              <input type="date" id="idcard-joining" class="form-control" required style="width: 100%;" />
+            </div>
+            <div>
+              <label>Valid Till</label>
+              <input type="date" id="idcard-valid" class="form-control" required style="width: 100%;" />
+            </div>
+          </div>
+          <div>
+            <label>Unique ID (Custom URL segment)</label>
+            <input type="text" id="idcard-unique-id" class="form-control" required style="width: 100%;" placeholder="e.g. user123" />
+          </div>
+          <button type="submit" class="btn btn-primary" id="btn-generate-idcard" style="margin-top: 10px;">Generate ID Card</button>
+          
+          <div id="idcard-result" style="margin-top: 15px; display: none; padding: 15px; background: #e9ecef; border-radius: 4px;">
+            <strong>Generated URL:</strong> <br />
+            <a id="idcard-result-url" href="#" target="_blank" style="color: var(--primary); word-break: break-all;"></a>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- MANAGE ID CARDS SECTION -->
+    <section id="sec-manage-idcards" class="admin-section">
+      <h2 class="section-title">Manage ID Cards</h2>
+      
+      <div class="data-card">
+        <div class="data-header">
+          <h3>Generated ID Cards</h3>
+          <button class="btn btn-primary btn-sm" id="btn-refresh-idcards">Refresh List</button>
+        </div>
+        <div style="overflow-x: auto;">
+          <table>
+            <thead>
+              <tr>
+                <th>Photo</th>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Unique ID</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="manage-idcards-list">
+              <!-- ID Cards populated here -->
+              <tr><td colspan="6" style="text-align:center;">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- Activity Log Modal -->
@@ -555,6 +660,25 @@
     </div>
     <div class="sidepanel-footer">
       <button id="btn-sp-dm" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 1rem;">💬 Send Direct Message</button>
+    </div>
+  </div>
+
+  <!-- Cropper Modal -->
+  <div id="cropper-modal" class="modal-overlay">
+    <div class="modal-content" style="width: 700px; max-width: 95vw;">
+      <div class="modal-header">
+        <h3 style="margin:0;">Crop Profile Picture</h3>
+        <button id="close-cropper-btn" class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body" style="padding: 0;">
+        <div id="cropper-wrapper">
+          <canvas id="cropper-canvas"></canvas>
+        </div>
+        <div style="padding: 15px; text-align: center;">
+          <small style="color:#666;">Drag to move the crop box &bull; Scroll to zoom</small><br><br>
+          <button id="btn-apply-crop" class="btn btn-primary">Apply Crop &amp; Compress</button>
+        </div>
+      </div>
     </div>
   </div>
 

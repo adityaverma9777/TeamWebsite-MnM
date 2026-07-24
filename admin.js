@@ -2,6 +2,8 @@ import { auth, db } from './firebase.js';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { collection, getDocs, doc, updateDoc, query, where } from 'firebase/firestore';
 import { sanityClient } from './sanity.js';
+import { supabase } from './supabase.js';
+import imageCompression from 'browser-image-compression';
 
 const ADMIN_EMAIL = 'contact.manikaditya@gmail.com';
 let allUsers = [];
@@ -834,3 +836,374 @@ document.getElementById('btn-sp-dm').addEventListener('click', () => {
   // 3. Open chat
   openInboxChat(user.id, user.name || 'Unnamed');
 });
+
+// --- ID CARD LOGIC ---
+
+// Helper to generate a unique random string if needed
+function generateRandomString(length) {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+const addIdCardForm = document.getElementById('add-idcard-form');
+let finalIdCardPicBlob = null;
+
+const idcardPicInput = document.getElementById('idcard-pic');
+const cropperModal = document.getElementById('cropper-modal');
+const cropperCanvas = document.getElementById('cropper-canvas');
+const btnCloseCropper = document.getElementById('close-cropper-btn');
+const btnApplyCrop = document.getElementById('btn-apply-crop');
+
+let cropState = {
+  img: null,
+  scale: 1,
+  offsetX: 0,
+  offsetY: 0,
+  cropX: 0,
+  cropY: 0,
+  cropSize: 0,
+  dragging: false,
+  dragStartX: 0,
+  dragStartY: 0,
+  cropStartX: 0,
+  cropStartY: 0,
+};
+
+function drawCropper() {
+  const cs = cropState;
+  if (!cs.img) return;
+  const ctx = cropperCanvas.getContext('2d');
+  const W = cropperCanvas.width;
+  const H = cropperCanvas.height;
+  const imgW = cs.img.naturalWidth * cs.scale;
+  const imgH = cs.img.naturalHeight * cs.scale;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#111';
+  ctx.fillRect(0, 0, W, H);
+  ctx.drawImage(cs.img, cs.offsetX, cs.offsetY, imgW, imgH);
+  ctx.fillStyle = 'rgba(0,0,0,0.55)';
+  ctx.fillRect(0, 0, W, H);
+  ctx.drawImage(cs.img,
+    (cs.cropX - cs.offsetX) / cs.scale,
+    (cs.cropY - cs.offsetY) / cs.scale,
+    cs.cropSize / cs.scale,
+    cs.cropSize / cs.scale,
+    cs.cropX, cs.cropY, cs.cropSize, cs.cropSize
+  );
+  ctx.strokeStyle = '#fff';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(cs.cropX, cs.cropY, cs.cropSize, cs.cropSize);
+  const third = cs.cropSize / 3;
+  ctx.strokeStyle = 'rgba(255,255,255,0.4)';
+  ctx.lineWidth = 1;
+  for (let i = 1; i < 3; i++) {
+    ctx.beginPath();
+    ctx.moveTo(cs.cropX + i * third, cs.cropY);
+    ctx.lineTo(cs.cropX + i * third, cs.cropY + cs.cropSize);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(cs.cropX, cs.cropY + i * third);
+    ctx.lineTo(cs.cropX + cs.cropSize, cs.cropY + i * third);
+    ctx.stroke();
+  }
+}
+
+function initCustomCropper(img) {
+  const cs = cropState;
+  cs.img = img;
+  const wrapper = document.getElementById('cropper-wrapper');
+  const W = wrapper.offsetWidth;
+  const maxH = 500;
+  const imgAspect = img.naturalWidth / img.naturalHeight;
+  let dispW = W, dispH = W / imgAspect;
+  if (dispH > maxH) { dispH = maxH; dispW = maxH * imgAspect; }
+  cropperCanvas.width = W;
+  cropperCanvas.height = maxH;
+  cs.scale = dispW / img.naturalWidth;
+  cs.offsetX = (W - dispW) / 2;
+  cs.offsetY = (maxH - dispH) / 2;
+  cs.cropSize = Math.min(dispW, dispH) * 0.7;
+  cs.cropX = cs.offsetX + (dispW - cs.cropSize) / 2;
+  cs.cropY = cs.offsetY + (dispH - cs.cropSize) / 2;
+  drawCropper();
+}
+
+if (cropperCanvas) {
+  cropperCanvas.addEventListener('mousedown', (e) => {
+    const rect = cropperCanvas.getBoundingClientRect();
+    const scaleX = cropperCanvas.width / rect.width;
+    const mx = (e.clientX - rect.left) * scaleX;
+    const my = (e.clientY - rect.top) * scaleX;
+    const cs = cropState;
+    if (mx >= cs.cropX && mx <= cs.cropX + cs.cropSize && my >= cs.cropY && my <= cs.cropY + cs.cropSize) {
+      cs.dragging = true;
+      cs.dragStartX = mx;
+      cs.dragStartY = my;
+      cs.cropStartX = cs.cropX;
+      cs.cropStartY = cs.cropY;
+    }
+  });
+  window.addEventListener('mousemove', (e) => {
+    if (!cropState.dragging) return;
+    const rect = cropperCanvas.getBoundingClientRect();
+    const scaleX = cropperCanvas.width / rect.width;
+    const mx = (e.clientX - rect.left) * scaleX;
+    const my = (e.clientY - rect.top) * scaleX;
+    const cs = cropState;
+    const W = cropperCanvas.width;
+    const H = cropperCanvas.height;
+    cs.cropX = Math.min(Math.max(cs.cropStartX + (mx - cs.dragStartX), 0), W - cs.cropSize);
+    cs.cropY = Math.min(Math.max(cs.cropStartY + (my - cs.dragStartY), 0), H - cs.cropSize);
+    drawCropper();
+  });
+  window.addEventListener('mouseup', () => { cropState.dragging = false; });
+  cropperCanvas.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const cs = cropState;
+    const delta = e.deltaY > 0 ? 0.9 : 1.1;
+    cs.scale *= delta;
+    const imgW = cs.img.naturalWidth * cs.scale;
+    const imgH = cs.img.naturalHeight * cs.scale;
+    const W = cropperCanvas.width;
+    const H = cropperCanvas.height;
+    cs.offsetX = Math.min(Math.max(cs.offsetX, W - imgW), 0);
+    cs.offsetY = Math.min(Math.max(cs.offsetY, H - imgH), 0);
+    drawCropper();
+  }, { passive: false });
+}
+
+if (idcardPicInput) {
+  idcardPicInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      cropperModal.classList.add('active');
+      const img = new Image();
+      img.onload = () => initCustomCropper(img);
+      img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+if (btnCloseCropper) {
+  btnCloseCropper.addEventListener('click', () => {
+    cropperModal.classList.remove('active');
+    if (!finalIdCardPicBlob) idcardPicInput.value = '';
+  });
+}
+
+if (btnApplyCrop) {
+  btnApplyCrop.addEventListener('click', async () => {
+    const cs = cropState;
+    if (!cs.img) return;
+    btnApplyCrop.textContent = 'Compressing...';
+    btnApplyCrop.disabled = true;
+    try {
+      const out = document.createElement('canvas');
+      out.width = 500;
+      out.height = 500;
+      const ctx = out.getContext('2d');
+      ctx.drawImage(cs.img,
+        (cs.cropX - cs.offsetX) / cs.scale,
+        (cs.cropY - cs.offsetY) / cs.scale,
+        cs.cropSize / cs.scale,
+        cs.cropSize / cs.scale,
+        0, 0, 500, 500
+      );
+      out.toBlob(async (blob) => {
+        try {
+          const options = { maxSizeMB: 1, maxWidthOrHeight: 800, useWebWorker: false };
+          finalIdCardPicBlob = await imageCompression(blob, options);
+          cropperModal.classList.remove('active');
+        } catch (err) {
+          console.error('Compression error:', err);
+          alert('Error compressing image.');
+        } finally {
+          btnApplyCrop.textContent = 'Apply Crop & Compress';
+          btnApplyCrop.disabled = false;
+        }
+      }, 'image/jpeg', 0.9);
+    } catch (err) {
+      console.error(err);
+      btnApplyCrop.textContent = 'Apply Crop & Compress';
+      btnApplyCrop.disabled = false;
+    }
+  });
+}
+
+if (addIdCardForm) {
+  addIdCardForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!supabase) {
+      alert("Supabase client is not initialized. Please check your environment variables.");
+      return;
+    }
+
+    if (!finalIdCardPicBlob) {
+      alert("Please select and crop a profile picture first.");
+      return;
+    }
+
+    const btn = document.getElementById('btn-generate-idcard');
+    btn.textContent = 'Generating...';
+    btn.disabled = true;
+
+    try {
+      const name = document.getElementById('idcard-name').value;
+      const role = document.getElementById('idcard-role').value;
+      const age = document.getElementById('idcard-age').value;
+      const city = document.getElementById('idcard-city').value;
+      const state = document.getElementById('idcard-state').value;
+      const college = document.getElementById('idcard-college').value;
+      const joiningDate = document.getElementById('idcard-joining').value;
+      const validTill = document.getElementById('idcard-valid').value;
+      let uniqueId = document.getElementById('idcard-unique-id').value.trim();
+
+      // Ensure uniqueId is URL friendly
+      uniqueId = uniqueId.replace(/[^a-zA-Z0-9_-]/g, '');
+
+      // 1. Upload image to Supabase Storage
+      // Always upload as .jpg since we converted it via Canvas
+      const fileName = `${uniqueId}_${Date.now()}.jpg`;
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from('avatars')
+        .upload(fileName, finalIdCardPicBlob, {
+          contentType: 'image/jpeg'
+        });
+
+      if (uploadError) throw uploadError;
+
+      const { data: urlData } = supabase.storage.from('avatars').getPublicUrl(fileName);
+      const publicUrl = urlData.publicUrl;
+
+      // 2. Insert record into Supabase Database
+      const { error: dbError } = await supabase
+        .from('id_cards')
+        .insert([{
+          unique_id: uniqueId,
+          name,
+          role,
+          age,
+          city,
+          state,
+          college,
+          joining_date: joiningDate,
+          valid_till: validTill,
+          profile_pic_url: publicUrl,
+          status: 'active'
+        }]);
+
+      if (dbError) throw dbError;
+
+      // 3. Show Result
+      const resultDiv = document.getElementById('idcard-result');
+      const resultUrl = document.getElementById('idcard-result-url');
+      const generatedUrl = `${window.location.origin}/id/${uniqueId}`;
+      
+      resultUrl.href = generatedUrl;
+      resultUrl.textContent = generatedUrl;
+      resultDiv.style.display = 'block';
+
+      // Reset form
+      addIdCardForm.reset();
+      finalIdCardPicBlob = null;
+      idcardPicInput.value = '';
+      
+      // Auto-refresh the list
+      loadManageIdCards();
+
+    } catch (err) {
+      console.error(err);
+      alert(`Error generating ID Card: ${err.message}`);
+    } finally {
+      btn.textContent = 'Generate ID Card';
+      btn.disabled = false;
+    }
+  });
+}
+
+// Manage ID Cards
+async function loadManageIdCards() {
+  const tbody = document.getElementById('manage-idcards-list');
+  if (!tbody || !supabase) return;
+  
+  tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">Loading...</td></tr>';
+  
+  try {
+    const { data, error } = await supabase
+      .from('id_cards')
+      .select('*')
+      .order('created_at', { ascending: false });
+      
+    if (error) throw error;
+    
+    tbody.innerHTML = '';
+    if (!data || data.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No ID Cards generated yet.</td></tr>';
+      return;
+    }
+
+    data.forEach(card => {
+      const tr = document.createElement('tr');
+      const statusColor = card.status === 'active' ? 'green' : 'red';
+      
+      tr.innerHTML = `
+        <td><img src="${card.profile_pic_url}" style="width:40px; height:40px; border-radius:4px; object-fit:cover;"></td>
+        <td><strong>${card.name}</strong></td>
+        <td>${card.role}</td>
+        <td><a href="/id/${card.unique_id}" target="_blank" style="color:var(--primary);">${card.unique_id}</a></td>
+        <td><span style="color:${statusColor}; font-weight:bold; text-transform:uppercase; font-size:12px;">${card.status || 'active'}</span></td>
+        <td>
+          <button class="btn btn-sm btn-primary" id="btn-edit-idcard-${card.id}">Edit</button>
+          ${card.status !== 'revoked' 
+            ? `<button class="btn btn-sm" style="background:#dc3545; color:white;" id="btn-revoke-idcard-${card.id}">Revoke</button>`
+            : `<button class="btn btn-sm" style="background:#28a745; color:white;" id="btn-activate-idcard-${card.id}">Activate</button>`
+          }
+        </td>
+      `;
+      tbody.appendChild(tr);
+
+      document.getElementById(`btn-edit-idcard-${card.id}`).addEventListener('click', () => {
+        alert("Editing will be available in future updates! For now, please modify directly in Supabase.");
+      });
+
+      const toggleBtn = document.getElementById(card.status !== 'revoked' ? `btn-revoke-idcard-${card.id}` : `btn-activate-idcard-${card.id}`);
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', async () => {
+          const newStatus = card.status === 'revoked' ? 'active' : 'revoked';
+          if (confirm(`Are you sure you want to change status to ${newStatus}?`)) {
+            toggleBtn.textContent = '...';
+            const { error } = await supabase
+              .from('id_cards')
+              .update({ status: newStatus })
+              .eq('id', card.id);
+            if (error) {
+              alert('Error updating status: ' + error.message);
+              toggleBtn.textContent = 'Error';
+            } else {
+              loadManageIdCards();
+            }
+          }
+        });
+      }
+    });
+
+  } catch (err) {
+    console.error(err);
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:red;">Error loading ID Cards</td></tr>';
+  }
+}
+
+const btnRefreshIdCards = document.getElementById('btn-refresh-idcards');
+if (btnRefreshIdCards) {
+  btnRefreshIdCards.addEventListener('click', loadManageIdCards);
+}
+
+// Load initially when Manage tab is clicked
+document.querySelector('.nav-item[data-target="sec-manage-idcards"]').addEventListener('click', loadManageIdCards);
