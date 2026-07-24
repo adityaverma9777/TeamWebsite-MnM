@@ -5,6 +5,7 @@ import { sanityClient } from './sanity.js';
 import { supabase } from './supabase.js';
 import imageCompression from 'browser-image-compression';
 import { jsPDF } from 'jspdf';
+import QRCode from 'qrcode';
 
 const ADMIN_EMAIL = 'contact.manikaditya@gmail.com';
 let allUsers = [];
@@ -1405,7 +1406,7 @@ document.querySelector('.nav-item[data-target="sec-offerletter"]')?.addEventList
   if (olAllApplicants.length === 0) loadOLSheet('1');
 });
 
-document.getElementById('btn-generate-offer')?.addEventListener('click', () => {
+document.getElementById('btn-generate-offer')?.addEventListener('click', async () => {
   const name = document.getElementById('ol-name').value;
   const email = document.getElementById('ol-email').value;
   const phone = document.getElementById('ol-phone').value;
@@ -1427,32 +1428,45 @@ document.getElementById('btn-generate-offer')?.addEventListener('click', () => {
   const ph = doc.internal.pageSize.getHeight();
   const mx = 25;
   let y = 20;
+  const logoImg = new Image();
+  logoImg.crossOrigin = 'anonymous';
+  logoImg.src = '/logo.png';
+  await new Promise(r => { if (logoImg.complete) r(); else { logoImg.onload = r; logoImg.onerror = r; } });
   doc.setFillColor(10, 10, 10);
-  doc.rect(0, 0, pw, 40, 'F');
+  doc.rect(0, 0, pw, 42, 'F');
   doc.setFillColor(200, 255, 0);
-  doc.rect(0, 38, pw, 2, 'F');
+  doc.rect(0, 40, pw, 2, 'F');
+  try {
+    const canvas = document.createElement('canvas');
+    canvas.width = logoImg.naturalWidth;
+    canvas.height = logoImg.naturalHeight;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(logoImg, 0, 0);
+    const logoData = canvas.toDataURL('image/png');
+    doc.addImage(logoData, 'PNG', mx, 15, 14, 14);
+  } catch (e) { }
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(24);
+  doc.setFontSize(22);
   doc.setTextColor(200, 255, 0);
-  doc.text('MnM', mx, 26);
-  doc.setFontSize(10);
-  doc.setTextColor(180, 180, 180);
-  doc.text('Building the Future, Together', mx, 33);
+  doc.text('MnM', mx + 17, 23);
+  doc.setFontSize(8);
+  doc.setTextColor(160, 160, 160);
+  doc.text('Makers Need More', mx + 17, 29);
   doc.setFontSize(9);
   doc.setTextColor(255, 255, 255);
-  doc.text('INTERNSHIP OFFER LETTER', pw - mx, 26, { align: 'right' });
-  doc.setTextColor(180, 180, 180);
-  doc.text(refNum, pw - mx, 33, { align: 'right' });
+  doc.text('INTERNSHIP OFFER LETTER', pw - mx, 23, { align: 'right' });
+  doc.setTextColor(160, 160, 160);
+  doc.text(refNum, pw - mx, 30, { align: 'right' });
   y = 52;
   doc.setTextColor(100, 100, 100);
   doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
   doc.text(`Date: ${fmt(startDate)}`, mx, y);
-  y += 12;
+  y += 10;
   doc.setTextColor(30, 30, 30);
   doc.setFontSize(11);
   doc.text('To,', mx, y);
-  y += 7;
+  y += 6;
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(13);
   doc.text(name, mx, y);
@@ -1463,45 +1477,45 @@ document.getElementById('btn-generate-offer')?.addEventListener('click', () => {
   if (college) { doc.text(college, mx, y); y += 5; }
   if (email) { doc.text(email, mx, y); y += 5; }
   if (phone) { doc.text(phone, mx, y); y += 5; }
-  y += 8;
+  y += 6;
   doc.setDrawColor(200, 200, 200);
   doc.line(mx, y, pw - mx, y);
-  y += 10;
+  y += 8;
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(14);
+  doc.setFontSize(13);
   doc.setTextColor(10, 10, 10);
   doc.text('Subject: Offer of Internship', mx, y);
-  y += 12;
+  y += 10;
   doc.setFont('helvetica', 'normal');
-  doc.setFontSize(11);
+  doc.setFontSize(10.5);
   doc.setTextColor(40, 40, 40);
   const bodyLines = [
     `Dear ${name},`,
     '',
-    `We are pleased to inform you that you have been selected for the position of ${role} at MnM. Your application has been reviewed and we are confident that your skills and enthusiasm will be a great addition to our team.`,
+    `We are pleased to inform you that you have been selected for the position of ${role} at MnM (Makers Need More). Your application has been reviewed and we are confident that your skills and enthusiasm will be a great addition to our team.`,
     '',
     'Please find the details of your internship below:',
   ];
   bodyLines.forEach(line => {
-    if (line === '') { y += 4; return; }
+    if (line === '') { y += 3; return; }
     const split = doc.splitTextToSize(line, pw - mx * 2);
     doc.text(split, mx, y);
-    y += split.length * 6;
+    y += split.length * 5;
   });
-  y += 6;
+  y += 5;
   doc.setFillColor(248, 249, 250);
-  doc.roundedRect(mx, y, pw - mx * 2, 52, 3, 3, 'F');
+  doc.roundedRect(mx, y, pw - mx * 2, 48, 3, 3, 'F');
   doc.setDrawColor(220, 220, 220);
-  doc.roundedRect(mx, y, pw - mx * 2, 52, 3, 3, 'S');
+  doc.roundedRect(mx, y, pw - mx * 2, 48, 3, 3, 'S');
   const bx = mx + 8;
-  let by = y + 10;
+  let by = y + 9;
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(11);
+  doc.setFontSize(10);
   doc.setTextColor(10, 10, 10);
   doc.text('INTERNSHIP DETAILS', bx, by);
-  by += 9;
+  by += 8;
   doc.setFont('helvetica', 'normal');
-  doc.setFontSize(10);
+  doc.setFontSize(9.5);
   doc.setTextColor(60, 60, 60);
   const details = [
     ['Position', role],
@@ -1513,20 +1527,20 @@ document.getElementById('btn-generate-offer')?.addEventListener('click', () => {
     doc.setFont('helvetica', 'bold');
     doc.text(`${label}:`, bx, by);
     doc.setFont('helvetica', 'normal');
-    doc.text(value, bx + 35, by);
-    by += 7;
+    doc.text(value, bx + 30, by);
+    by += 6;
   });
-  y += 60;
+  y += 55;
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(11);
+  doc.setFontSize(10);
   doc.setTextColor(10, 10, 10);
   doc.text('Terms & Conditions:', mx, y);
-  y += 8;
+  y += 6;
   doc.setFont('helvetica', 'normal');
-  doc.setFontSize(10);
+  doc.setFontSize(9);
   doc.setTextColor(50, 50, 50);
   const terms = [
-    'This is an unpaid internship focused on skill development, mentorship, and real-world project experience.',
+    'This internship is a learning-oriented engagement.',
     'The intern is expected to maintain professional conduct and adhere to the guidelines set by MnM.',
     'A certificate of completion will be provided upon successful completion of the internship.',
     'The intern must complete assigned tasks and participate actively in team activities.',
@@ -1537,14 +1551,14 @@ document.getElementById('btn-generate-offer')?.addEventListener('click', () => {
     const text = `${i + 1}. ${term}`;
     const split = doc.splitTextToSize(text, pw - mx * 2 - 5);
     doc.text(split, mx + 3, y);
-    y += split.length * 5.5 + 2;
+    y += split.length * 4 + 1.5;
   });
-  y += 8;
+  y += 3;
   doc.setDrawColor(200, 200, 200);
   doc.line(mx, y, pw - mx, y);
-  y += 10;
+  y += 5;
   doc.setFont('helvetica', 'normal');
-  doc.setFontSize(10.5);
+  doc.setFontSize(10);
   doc.setTextColor(40, 40, 40);
   const closing = [
     'We look forward to having you on board and are excited about the contributions you will make to MnM.',
@@ -1552,46 +1566,57 @@ document.getElementById('btn-generate-offer')?.addEventListener('click', () => {
     'Warm Regards,',
   ];
   closing.forEach(line => {
-    if (line === '') { y += 4; return; }
+    if (line === '') { y += 2; return; }
     const split = doc.splitTextToSize(line, pw - mx * 2);
     doc.text(split, mx, y);
-    y += split.length * 6;
+    y += split.length * 4.5;
   });
-  y += 10;
+  y += 3;
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(12);
+  doc.setFontSize(11);
   doc.setTextColor(10, 10, 10);
   doc.text('MnM Team', mx, y);
-  y += 6;
-  doc.setFont('helvetica', 'normal');
-  doc.setFontSize(9);
-  doc.setTextColor(120, 120, 120);
-  doc.text('Authorized Signatory', mx, y);
-  if (idCardUrl) {
-    y += 14;
-    doc.setDrawColor(230, 230, 230);
-    doc.setFillColor(248, 249, 250);
-    doc.roundedRect(mx, y - 4, pw - mx * 2, 22, 3, 3, 'FD');
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(8);
-    doc.setTextColor(100, 100, 100);
-    doc.text('VERIFY THIS LETTER:', mx + 5, y + 4);
-    doc.setTextColor(13, 110, 253);
-    doc.setFont('helvetica', 'bold');
-    doc.text(idCardUrl, mx + 5, y + 11);
-  }
-  const footerY = ph - 12;
-  doc.setFillColor(10, 10, 10);
-  doc.rect(0, ph - 18, pw, 18, 'F');
-  doc.setFillColor(200, 255, 0);
-  doc.rect(0, ph - 18, pw, 1.5, 'F');
+  y += 5;
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(8);
-  doc.setTextColor(150, 150, 150);
-  doc.text('This is a computer-generated document and does not require a physical signature.', pw / 2, footerY, { align: 'center' });
-  doc.setTextColor(200, 255, 0);
-  doc.setFont('helvetica', 'bold');
-  doc.text('MnM', pw / 2, footerY + 5, { align: 'center' });
+  doc.setTextColor(120, 120, 120);
+  doc.text('Authorized Signatory', mx, y);
+  const footerH = idCardUrl ? 28 : 16;
+  doc.setFillColor(10, 10, 10);
+  doc.rect(0, ph - footerH, pw, footerH, 'F');
+  doc.setFillColor(200, 255, 0);
+  doc.rect(0, ph - footerH, pw, 1.5, 'F');
+  if (idCardUrl) {
+    let qrDataUrl = null;
+    try {
+      qrDataUrl = await QRCode.toDataURL(idCardUrl, {
+        width: 80,
+        margin: 1,
+        color: { dark: '#ffffff', light: '#0A0A0A' }
+      });
+    } catch (e) { }
+    if (qrDataUrl) {
+      try {
+        doc.addImage(qrDataUrl, 'PNG', mx - 5, ph - footerH + 4, 20, 20);
+      } catch (e) { }
+    }
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(6.5);
+    doc.setTextColor(120, 120, 120);
+    doc.text('This is a computer-generated document.', mx + 18, ph - footerH + 9);
+    doc.setFontSize(7);
+    doc.setTextColor(150, 150, 150);
+    doc.text('This offer can be verified by scanning the QR code or visiting:', mx + 18, ph - footerH + 14);
+    doc.setTextColor(200, 255, 0);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7.5);
+    doc.text(idCardUrl, mx + 18, ph - footerH + 19);
+  } else {
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7);
+    doc.setTextColor(150, 150, 150);
+    doc.text('This is a computer-generated document.', pw / 2, ph - 7, { align: 'center' });
+  }
   const safeName = name.replace(/[^a-zA-Z0-9]/g, '_');
   doc.save(`MnM_OfferLetter_${safeName}.pdf`);
 });
