@@ -8,16 +8,19 @@
   <link rel="icon" type="image/png" href="/logo.png">
   <link rel="canonical" href="https://mnmworks.xyz/">
   <meta name="robots" content="index, follow">
-  <meta name="description" content="Makers Need More (MnM) is a global, student-driven community building and shipping open-source solutions at the speed of thought.">
+  <meta name="description"
+    content="Makers Need More (MnM) is a global, student-driven community building and shipping open-source solutions at the speed of thought.">
   <meta property="og:title" content="MnM – Student-Driven Open Source Community | Makers Need More">
-  <meta property="og:description" content="Makers Need More (MnM) is a global, student-driven community building and shipping open-source solutions at the speed of thought.">
+  <meta property="og:description"
+    content="Makers Need More (MnM) is a global, student-driven community building and shipping open-source solutions at the speed of thought.">
   <meta property="og:image" content="https://mnmworks.xyz/logo.png">
   <meta property="og:url" content="https://mnmworks.xyz/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="MnM – Makers Need More">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="MnM – Student-Driven Open Source Community">
-  <meta name="twitter:description" content="Makers Need More (MnM) is a global, student-driven community building and shipping open-source solutions at the speed of thought.">
+  <meta name="twitter:description"
+    content="Makers Need More (MnM) is a global, student-driven community building and shipping open-source solutions at the speed of thought.">
   <meta name="twitter:image" content="https://mnmworks.xyz/logo.png">
   <script type="application/ld+json">
   {
@@ -113,9 +116,22 @@
             building at the speed of thought<br>
             and shipping before you're ready.
           </p>
+          <a href="https://unstop.com/" target="_blank" rel="noopener noreferrer" class="sponsor-badge"
+            style="display: inline-flex; align-items: center; gap: 16px; padding: 6px 6px 6px 20px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 999px; margin-bottom: 2.5rem; backdrop-filter: blur(12px); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; text-decoration: none;"
+            onmouseover="this.style.transform='translateY(-3px)'; this.style.borderColor='var(--lime, #ccff00)'; this.style.background='rgba(204, 255, 0, 0.05)';"
+            onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255, 255, 255, 0.1)'; this.style.background='rgba(255, 255, 255, 0.03)';">
+            <span
+              style="font-size: 0.85rem; font-weight: 600; color: #000000; letter-spacing: 1.5px; text-transform: uppercase;">Powered
+              by</span>
+            <div
+              style="background: #ffffff; padding: 10px 24px; border-radius: 999px; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);">
+              <img src="/unstop/Unstop-Logo-Blue-Extra-Large.jpg" alt="Unstop Partner"
+                style="height: 24px; width: auto; object-fit: contain; mix-blend-mode: multiply;">
+            </div>
+          </a>
           <div class="hero-cta-row">
-            <a href="contribute.html" class="btn-pill magnetic" id="hero-cta" style="display: inline-flex; justify-content: center; align-items: center; text-align: center; text-decoration: none;">Contribute</a>
-            <a href="#about" class="hero-text-link">who we are <span class="arrow">↓</span></a>
+            <a href="contribute.html" class="btn-pill magnetic" id="hero-cta"
+              style="display: inline-flex; justify-content: center; align-items: center; text-align: center; text-decoration: none;">Contribute</a>
           </div>
         </div>
         <div class="hero-3d-col">
@@ -182,17 +198,22 @@
     <section id="video-scroll-container">
       <div id="video-pin-target">
         <div class="video-zoom-inner">
-          
+
           <!-- Video wrapper — starts small, scales up on scroll -->
           <div class="video-wrapper" id="video-zoom-wrapper">
-            <video id="intro-video" src="/My Video1.webm" autoplay loop muted playsinline title="MnM community introduction video" aria-label="Makers Need More community introduction video"></video>
+            <video id="intro-video" src="/My Video1.webm" autoplay loop muted playsinline
+              title="MnM community introduction video"
+              aria-label="Makers Need More community introduction video"></video>
             <button id="mute-toggle" class="video-mute-btn">
-              <svg id="speaker-icon-muted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg id="speaker-icon-muted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                 <line x1="23" y1="9" x2="17" y2="15"></line>
                 <line x1="17" y1="9" x2="23" y2="15"></line>
               </svg>
-              <svg id="speaker-icon-unmuted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+              <svg id="speaker-icon-unmuted" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                style="display: none;">
                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                 <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
                 <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
@@ -222,11 +243,11 @@
         const muteText = document.getElementById('mute-text');
         const iconMuted = document.getElementById('speaker-icon-muted');
         const iconUnmuted = document.getElementById('speaker-icon-unmuted');
-        
+
         if (muteToggle && video) {
           muteToggle.addEventListener('mouseenter', () => muteToggle.style.background = 'rgba(0,0,0,0.7)');
           muteToggle.addEventListener('mouseleave', () => muteToggle.style.background = 'rgba(0,0,0,0.5)');
-          
+
           muteToggle.addEventListener('click', () => {
             if (video.muted) {
               video.muted = false;
@@ -355,7 +376,9 @@
           <div class="feature-card-content">
             <span class="feature-badge">05</span>
             <h3 class="feature-title">Careers</h3>
-            <p class="feature-desc">Level up your career with MnM. Join us as a Campus Ambassador to represent us at your university or secure an Open Source Internship to gain hands-on experience and build global solutions.</p>
+            <p class="feature-desc">Level up your career with MnM. Join us as a Campus Ambassador to represent us at
+              your university or secure an Open Source Internship to gain hands-on experience and build global
+              solutions.</p>
             <a href="careers.html" class="feature-link">Explore Careers <span class="arrow">→</span></a>
           </div>
           <div class="feature-card-graphic">
@@ -371,14 +394,15 @@
                 <g class="float-anim">
                   <!-- Rocket Flame/Thrust (Pulsing) -->
                   <path d="M90 140 L100 165 L110 140 Z" fill="#C8FF00" class="pulse" />
-                  
+
                   <!-- Rocket Body -->
-                  <path d="M100 50 C110 75 115 100 115 130 L85 130 C85 100 90 75 100 50 Z" fill="#000" stroke="#C8FF00" stroke-width="2.5" />
-                  
+                  <path d="M100 50 C110 75 115 100 115 130 L85 130 C85 100 90 75 100 50 Z" fill="#000" stroke="#C8FF00"
+                    stroke-width="2.5" />
+
                   <!-- Fins -->
                   <path d="M85 115 L70 135 L85 130 Z" fill="#C8FF00" />
                   <path d="M115 115 L130 135 L115 130 Z" fill="#C8FF00" />
-                  
+
                   <!-- Window -->
                   <circle cx="100" cy="90" r="6" fill="#C8FF00" />
                 </g>
@@ -541,10 +565,245 @@
       </div>
     </section>
 
+    <!-- ============================================== -->
+    <!-- SPONSOR CAROUSEL SECTION -->
+    <!-- ============================================== -->
+    <section id="partner-carousel"
+      style="padding: 6rem 0 4rem; overflow: hidden; position: relative; background-color: #ffffff;">
+      <div class="container" style="text-align: center; margin-bottom: 3rem;">
+        <span class="section-label" style="display: inline-block; margin-bottom: 1rem; opacity: 0.9;">// exclusive partner</span>
+        <h2 class="hack-heading"
+          style="font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: -0.02em; line-height: 1.1; max-width: 800px; margin: 0 auto; color: #000000; font-weight: 700;">
+          <span class="hack-line" style="display: block;">Empowering</span>
+          <span class="hack-line" style="display: block;">The Next Generation</span>
+        </h2>
+        <p style="color: #a3a3a3; font-size: 1.1rem; max-width: 600px; margin: 1.5rem auto 0; line-height: 1.6; text-align: center;">
+          Backed by the best in the industry to fuel your growth, learning, and innovation journey.</p>
+        <div style="margin-top: 1.5rem; display: flex; justify-content: center;">
+          <div style="background: white; padding: 12px 24px; border-radius: 50px; display: inline-flex;">
+            <img src="/unstop/Unstop-Logo-Blue-Extra-Large.jpg" alt="Unstop"
+              style="height: 32px; width: auto; object-fit: contain; mix-blend-mode: multiply;">
+          </div>
+        </div>
+      </div>
+
+      <style>
+        .carousel-control:hover {
+          background: var(--lime, #ccff00) !important;
+          color: black !important;
+          border-color: var(--lime, #ccff00) !important;
+          transform: translateY(-50%) scale(1.1) !important;
+        }
+
+        .sponsor-card {
+          flex: 0 0 550px;
+          aspect-ratio: 16/9;
+          background: #ffffff;
+          border: 1px solid rgba(255, 255, 255, 0.05);
+          border-radius: 24px;
+          padding: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+          text-decoration: none;
+          overflow: hidden;
+        }
+
+        .sponsor-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 20px 40px rgba(204, 255, 0, 0.15);
+          border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .sponsor-card img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          transition: transform 0.4s ease;
+        }
+
+        .sponsor-card:hover img {
+          transform: scale(1.08);
+        }
+
+        @media (max-width: 768px) {
+          .sponsor-card {
+            flex: 0 0 calc(100vw - 48px);
+            padding: 0;
+          }
+
+          .carousel-wrapper {
+            padding: 0 8px !important;
+          }
+
+          .carousel-track {
+            gap: 16px !important;
+          }
+
+          .carousel-control {
+            display: none !important;
+          }
+        }
+      </style>
+
+      <div class="carousel-wrapper"
+        style="position: relative; width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 60px;">
+        <!-- Left Control -->
+        <button class="carousel-control prev" aria-label="Previous"
+          style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; backdrop-filter: blur(10px); transition: all 0.3s ease;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <!-- Carousel Track -->
+        <div class="carousel-track-container" style="overflow: hidden; width: 100%; padding: 20px 0;">
+          <div class="carousel-track" style="display: flex; gap: 32px; align-items: center; width: max-content;">
+            <!-- Carousel Items -->
+            <a href="https://unstop.com/" target="_blank" class="sponsor-card">
+              <img src="/unstop/1.JPG" alt="Unstop Partner Post 1">
+            </a>
+            <a href="https://unstop.com/" target="_blank" class="sponsor-card">
+              <img src="/unstop/2.JPG" alt="Unstop Partner Post 2">
+            </a>
+            <a href="https://unstop.com/" target="_blank" class="sponsor-card">
+              <img src="/unstop/3.JPG" alt="Unstop Partner Post 3">
+            </a>
+            <a href="https://unstop.com/" target="_blank" class="sponsor-card">
+              <img src="/unstop/4.JPG" alt="Unstop Partner Post 4">
+            </a>
+            <!-- Duplicate for smoother infinite scroll loop -->
+            <a href="https://unstop.com/" target="_blank" class="sponsor-card">
+              <img src="/unstop/1.JPG" alt="Unstop Partner Post 1">
+            </a>
+            <a href="https://unstop.com/" target="_blank" class="sponsor-card">
+              <img src="/unstop/2.JPG" alt="Unstop Partner Post 2">
+            </a>
+            <a href="https://unstop.com/" target="_blank" class="sponsor-card">
+              <img src="/unstop/3.JPG" alt="Unstop Partner Post 3">
+            </a>
+            <a href="https://unstop.com/" target="_blank" class="sponsor-card">
+              <img src="/unstop/4.JPG" alt="Unstop Partner Post 4">
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Control -->
+        <button class="carousel-control next" aria-label="Next"
+          style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; backdrop-filter: blur(10px); transition: all 0.3s ease;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const track = document.querySelector('.carousel-track');
+          const prevBtn = document.querySelector('.carousel-control.prev');
+          const nextBtn = document.querySelector('.carousel-control.next');
+          let autoScrollInterval;
+          let isAnimating = false;
+
+          const getGapAndWidth = () => {
+            const card = track.children[0];
+            const style = window.getComputedStyle(track);
+            const gap = parseFloat(style.gap) || 0;
+            return card.offsetWidth + gap;
+          };
+
+          const nextSlide = () => {
+            if (isAnimating || document.hidden) return;
+            isAnimating = true;
+            track.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+            const moveAmount = getGapAndWidth();
+            track.style.transform = `translateX(-${moveAmount}px)`;
+
+            setTimeout(() => {
+              track.style.transition = 'none';
+              track.appendChild(track.children[0]);
+              track.style.transform = 'translateX(0)';
+              isAnimating = false;
+            }, 500);
+          };
+
+          const prevSlide = () => {
+            if (isAnimating) return;
+            isAnimating = true;
+            track.style.transition = 'none';
+            const moveAmount = getGapAndWidth();
+            track.insertBefore(track.lastElementChild, track.children[0]);
+            track.style.transform = `translateX(-${moveAmount}px)`;
+
+            // Force reflow
+            track.offsetHeight;
+
+            track.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+            track.style.transform = 'translateX(0)';
+
+            setTimeout(() => {
+              isAnimating = false;
+            }, 500);
+          };
+
+          const startAutoScroll = () => {
+            clearInterval(autoScrollInterval);
+            autoScrollInterval = setInterval(nextSlide, 2500);
+          };
+
+          nextBtn.addEventListener('click', () => {
+            nextSlide();
+            startAutoScroll();
+          });
+
+          prevBtn.addEventListener('click', () => {
+            prevSlide();
+            startAutoScroll();
+          });
+
+          track.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
+          track.addEventListener('mouseleave', startAutoScroll);
+
+          // Add simple swipe detection for mobile
+          let touchStartX = 0;
+          let touchEndX = 0;
+
+          track.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+            clearInterval(autoScrollInterval);
+          }, { passive: true });
+
+          track.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) nextSlide();
+            if (touchEndX - touchStartX > 50) prevSlide();
+            startAutoScroll();
+          }, { passive: true });
+
+          startAutoScroll();
+
+          // Handle visibility change so it doesn't break when tab is inactive
+          document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+              clearInterval(autoScrollInterval);
+            } else {
+              startAutoScroll();
+            }
+          });
+        });
+      </script>
+    </section>
+
     <section id="hackathons">
-      <div class="container" style="transform: translateY(-40px); display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
+      <div class="container"
+        style="transform: translateY(-40px); display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
         <div>
-          <span class="section-label">// sponsors</span>
+          <span class="section-label">// partner with us</span>
           <h2 class="hack-heading">
             <span class="hack-line">fuel</span>
             <span class="hack-line">innovation</span>
@@ -586,7 +845,8 @@
           <span class="contact-line">shipping.</span>
         </h2>
         <div class="contact-links">
-          <a href="https://github.com/MakersNeedMore-MnM" onclick="openProfileModal('GitHub'); return false;" class="contact-row" data-cursor="open">
+          <a href="https://github.com/MakersNeedMore-MnM" onclick="openProfileModal('GitHub'); return false;"
+            class="contact-row" data-cursor="open">
             <span class="contact-row-name">GitHub</span>
             <span class="contact-row-arrow">→</span>
             <div class="contact-row-fill"></div>
@@ -596,13 +856,15 @@
             <span class="contact-row-arrow">→</span>
             <div class="contact-row-fill"></div>
           </a>
-          <a href="https://www.linkedin.com/company/makersneedmore" onclick="openProfileModal('LinkedIn'); return false;" class="contact-row" data-cursor="open">
+          <a href="https://www.linkedin.com/company/makersneedmore"
+            onclick="openProfileModal('LinkedIn'); return false;" class="contact-row" data-cursor="open">
             <span class="contact-row-name">LinkedIn</span>
             <span class="contact-row-arrow">→</span>
             <div class="contact-row-fill"></div>
           </a>
         </div>
-        <p class="footer-credit commit-mono">MnM · 2026 · A student-run community building open-source solutions globally.</p>
+        <p class="footer-credit commit-mono">MnM · 2026 · A student-run community building open-source solutions
+          globally.</p>
         <div class="footer-logo-container">
           <img src="/Makers%20Need%20More.png" alt="Makers Need More" class="footer-logo-image">
         </div>
@@ -626,11 +888,13 @@
       <div class="profile-modal">
         <span class="commit-mono modal-label">// complete profile</span>
         <h3 class="modal-title">Welcome!</h3>
-        <p style="color: var(--slate); font-size: 15px; margin-bottom: 24px;">Please provide a few details to complete your profile.</p>
+        <p style="color: var(--slate); font-size: 15px; margin-bottom: 24px;">Please provide a few details to complete
+          your profile.</p>
         <form id="onboarding-form" class="onboarding-form">
           <input type="text" id="ob-location" placeholder="City, Country" required class="modal-input">
           <input type="tel" id="ob-phone" placeholder="Phone Number" required class="modal-input">
-          <button type="submit" class="btn-pill magnetic" style="width: 100%; border: none; cursor: pointer;">Save Profile</button>
+          <button type="submit" class="btn-pill magnetic" style="width: 100%; border: none; cursor: pointer;">Save
+            Profile</button>
         </form>
       </div>
     </div>

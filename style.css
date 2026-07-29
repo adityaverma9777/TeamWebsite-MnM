@@ -2640,6 +2640,15 @@ button {
   overflow: hidden;
 }
 
+@media (max-width: 960px) {
+  .page-hero {
+    height: auto;
+    min-height: 100svh;
+    align-items: flex-start;
+    padding-bottom: 60px;
+  }
+}
+
 #about-hero-canvas {
   position: absolute;
   inset: 0;
@@ -2679,12 +2688,14 @@ button {
   .about-hero-container {
     flex-direction: column;
     text-align: center;
+    padding-top: 130px;
   }
 
   .about-hero-logo img {
     width: 200px;
     height: 200px;
-    margin-top: 40px;
+    margin-top: 48px;
+    margin-bottom: 0;
   }
 }
 
