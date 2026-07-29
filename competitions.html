@@ -8,34 +8,727 @@
   <link rel="icon" type="image/png" href="/logo.png">
   <link rel="canonical" href="https://mnmworks.xyz/competitions.html">
   <meta name="robots" content="index, follow">
-  <meta name="description" content="View ongoing competitions, build teams, and compete with the best in the MnM community to build open-source solutions.">
+  <meta name="description"
+    content="View ongoing competitions, build teams, and compete with the best in the MnM community to build open-source solutions.">
   <meta property="og:title" content="Competitions – MnM | Open Source Hackathons & Challenges">
-  <meta property="og:description" content="View ongoing competitions, build teams, and compete with the best in the MnM community to build open-source solutions.">
+  <meta property="og:description"
+    content="View ongoing competitions, build teams, and compete with the best in the MnM community to build open-source solutions.">
   <meta property="og:image" content="https://mnmworks.xyz/logo.png">
   <meta property="og:url" content="https://mnmworks.xyz/competitions.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="MnM – Makers Need More">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Competitions – MnM | Open Source Hackathons & Challenges">
-  <meta name="twitter:description" content="View ongoing competitions, build teams, and compete with the best in the MnM community to build open-source solutions.">
+  <meta name="twitter:description"
+    content="View ongoing competitions, build teams, and compete with the best in the MnM community to build open-source solutions.">
   <meta name="twitter:image" content="https://mnmworks.xyz/logo.png">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "@id": "https://mnmworks.xyz/competitions.html#webpage",
-    "url": "https://mnmworks.xyz/competitions.html",
-    "name": "Competitions – MnM | Open Source Hackathons & Challenges",
-    "isPartOf": { "@id": "https://mnmworks.xyz/#website" },
-    "description": "View ongoing competitions, build teams, and compete with the best in the MnM community to build open-source solutions."
-  }
-  </script>
   <link rel="preconnect" href="https://api.fontshare.com">
-  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500&f[]=commit-mono@400&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://api.fontshare.com/v2/css?f[]=clash-display@200,400,500,600,700&f[]=satoshi@300,400,500,700&f[]=outfit@300,400,500,600&f[]=commit-mono@400&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #040100;
+      overflow-x: hidden;
+      color: #F9F7F4;
+    }
+
+    .ambient-glow {
+      position: fixed;
+      border-radius: 50%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .ambient-glow.g-1 {
+      top: -10%;
+      left: -10%;
+      width: 70vw;
+      height: 70vw;
+      background: radial-gradient(circle, rgba(200, 75, 0, 0.09) 0%, rgba(200, 75, 0, 0.03) 40%, transparent 70%);
+    }
+
+    .ambient-glow.g-2 {
+      bottom: -10%;
+      right: -10%;
+      width: 80vw;
+      height: 80vw;
+      background: radial-gradient(circle, rgba(232, 96, 32, 0.07) 0%, rgba(232, 96, 32, 0.02) 40%, transparent 70%);
+    }
+
+    .ambient-glow.g-3 {
+      top: 40%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60vw;
+      height: 60vw;
+      background: radial-gradient(circle, rgba(255, 120, 50, 0.05) 0%, rgba(255, 120, 50, 0.015) 40%, transparent 70%);
+    }
+
+    .noise-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 50;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.05;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    #main {
+      padding-top: 0;
+      z-index: 1;
+      position: relative;
+    }
+
+    .hero-wrapper {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 0 5%;
+      box-sizing: border-box;
+      z-index: 2;
+    }
+
+    .event-tagline {
+      position: relative;
+      max-width: 500px;
+      z-index: 10;
+    }
+
+    .event-tagline .preheader {
+      font-family: 'Commit Mono', monospace;
+      font-size: clamp(10px, 1.1vw, 13px);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #E86020;
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .event-tagline .headline {
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 700;
+      font-size: clamp(48px, 6vw, 84px);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: #F9F7F4;
+      display: block;
+      margin-bottom: 32px;
+    }
+
+    .event-tagline .headline em {
+      font-style: normal;
+      background: linear-gradient(135deg, #FF9040 0%, #E86020 45%, #C84B00 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .event-tagline .divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, #E86020, transparent);
+      margin: 0 0 24px 0;
+      display: block;
+    }
+
+    .event-tagline .sublines {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .event-tagline .subline {
+      font-family: 'Satoshi', sans-serif;
+      font-weight: 400;
+      font-size: clamp(14px, 1.5vw, 18px);
+      letter-spacing: 0.01em;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .event-tagline .subline.accent {
+      color: #E86020;
+      font-weight: 600;
+      font-size: clamp(16px, 1.7vw, 20px);
+    }
+
+    /* Animations */
+    .animate-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .animate-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .d-1 {
+      transition-delay: 0.1s;
+    }
+
+    .d-2 {
+      transition-delay: 0.2s;
+    }
+
+    .d-3 {
+      transition-delay: 0.3s;
+    }
+
+    .d-4 {
+      transition-delay: 0.4s;
+    }
+
+    /* Logo */
+    .floating-morrow-logo-wrapper {
+      position: absolute;
+      top: 30%;
+      right: 15%;
+      transform: translateY(-50%);
+      width: clamp(200px, 25vw, 400px);
+      height: clamp(200px, 25vw, 400px);
+      z-index: 15;
+      pointer-events: none;
+    }
+
+    .floating-morrow-logo-inner {
+      width: 100%;
+      height: 100%;
+      animation: spinClockwise 30s linear infinite;
+      filter: drop-shadow(0 0 40px rgba(232, 96, 32, 0.4)) drop-shadow(0 0 80px rgba(200, 75, 0, 0.2));
+    }
+
+    @keyframes spinClockwise {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .floating-morrow-logo-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    @media (max-width: 768px) {
+      .hero-wrapper {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding-top: 100px;
+      }
+
+      .event-tagline {
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .event-tagline .divider {
+        margin: 0 auto 24px auto;
+        background: linear-gradient(90deg, transparent, #E86020, transparent);
+      }
+
+      .event-tagline .sublines {
+        align-items: center;
+      }
+
+      .floating-morrow-logo-wrapper {
+        position: relative;
+        top: auto;
+        right: auto;
+        transform: none;
+        margin: 40px auto 0 auto;
+        width: 180px;
+        height: 180px;
+      }
+    }
+
+    /* Sections */
+    .white-reveal-section {
+      background: transparent;
+      color: #F9F7F4;
+      text-align: center;
+      padding: 280px 5% 140px 5%;
+      z-index: 10;
+      position: relative;
+    }
+
+    .white-reveal-section .presenting-text {
+      display: block;
+      font-family: 'Commit Mono', monospace;
+      font-size: clamp(14px, 1.5vw, 18px);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+      margin-bottom: 24px;
+    }
+
+    .white-reveal-section .premium-name {
+      font-family: 'Syne', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: clamp(40px, 12vw, 200px);
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      margin: 0 0 60px 0;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      text-shadow:
+        0 1px 0 #f0f0f0,
+        0 2px 0 #ebebeb,
+        0 3px 0 #e6e6e6,
+        0 4px 0 #e0e0e0,
+        0 5px 0 #dbdbdb,
+        0 6px 0 #d6d6d6,
+        0 7px 0 #d1d1d1,
+        0 8px 0 #cccccc,
+        0 9px 15px rgba(0, 0, 0, 0.1),
+        0 15px 30px rgba(0, 0, 0, 0.15);
+      transform: perspective(1000px) rotateX(15deg);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), text-shadow 0.6s ease, color 0.6s ease;
+      cursor: crosshair;
+    }
+
+    .white-reveal-section .premium-name:hover {
+      transform: perspective(1000px) rotateX(0deg) scale(1.02);
+
+      /* Keep face white */
+      color: #FFFFFF;
+      background: none;
+      -webkit-text-fill-color: initial;
+      animation: none;
+
+      /* Deep Orange/Red 3D Extrusion */
+      text-shadow:
+        0 1px 0 #E86020,
+        0 2px 0 #D05010,
+        0 3px 0 #B84000,
+        0 4px 0 #A03000,
+        0 5px 0 #882000,
+        0 6px 0 #701000,
+        0 10px 20px rgba(232, 96, 32, 0.4),
+        0 20px 40px rgba(200, 75, 0, 0.6);
+    }
+
+    .partners-block {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      padding: 16px 40px;
+      background: linear-gradient(135deg, #ffffff 0%, #f7f7f7 100%);
+      border-radius: 100px;
+      box-shadow:
+        inset 0 2px 0 rgba(255, 255, 255, 1),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.03),
+        0 15px 35px rgba(0, 0, 0, 0.06);
+      position: relative;
+      overflow: hidden;
+      transform: translateY(0);
+      transition: all 0.4s ease;
+      cursor: default;
+    }
+
+    .partners-block:hover {
+      box-shadow:
+        inset 0 2px 0 rgba(255, 255, 255, 1),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.03),
+        0 0 20px rgba(232, 96, 32, 0.15);
+    }
+
+    .partners-block::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+      animation: sheen 4s infinite;
+      transform: skewX(-20deg);
+    }
+
+    @keyframes sheen {
+      0% {
+        left: -100%;
+      }
+
+      20% {
+        left: 200%;
+      }
+
+      100% {
+        left: 200%;
+      }
+    }
+
+    .partner-logo {
+      height: 36px;
+      object-fit: contain;
+      position: relative;
+      z-index: 1;
+    }
+
+    .partner-logo.unstop {
+      height: 44px;
+    }
+
+    .partner-cross {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 20px;
+      color: #A0A0A0;
+      font-weight: 400;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 768px) {
+      .partners-block {
+        gap: 16px;
+        padding: 12px 24px;
+      }
+
+      .partner-logo {
+        height: 24px;
+      }
+
+      .partner-logo.unstop {
+        height: 32px;
+      }
+
+      .white-reveal-section {
+        padding: 0 5%;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+
+    .section {
+      padding: 80px 5%;
+      position: relative;
+      z-index: 2;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .section-label {
+      font-family: 'Commit Mono', monospace;
+      font-size: clamp(12px, 1.2vw, 14px);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #E86020;
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .section-title {
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 700;
+      font-size: clamp(36px, 4.5vw, 64px);
+      line-height: 1.1;
+      color: #F9F7F4;
+      margin-bottom: 32px;
+    }
+
+    .section-title span {
+      color: #C84B00;
+    }
+
+    .text-content {
+      font-family: 'Satoshi', sans-serif;
+      font-size: clamp(16px, 1.4vw, 20px);
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.75);
+      margin: 0 auto 24px auto;
+      max-width: 700px;
+    }
+
+    .text-emphasis {
+      font-family: 'Clash Display', sans-serif;
+      font-size: clamp(24px, 2.5vw, 36px);
+      line-height: 1.4;
+      color: #F9F7F4;
+      max-width: 900px;
+      margin: 40px auto;
+    }
+
+    /* Grid layout */
+    .build-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    @media (max-width: 1024px) {
+      .build-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .build-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .build-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 32px;
+      border-radius: 16px;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .build-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(232, 96, 32, 0.5), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .build-card:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(232, 96, 32, 0.3);
+      box-shadow: 0 0 20px rgba(232, 96, 32, 0.15);
+    }
+
+    .build-card:hover::before {
+      opacity: 1;
+    }
+
+    .build-card h3 {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      margin: 0;
+      color: #F9F7F4;
+    }
+
+    /* Roles */
+    .role-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin: 40px auto;
+    }
+
+    .role-pill {
+      padding: 14px 28px;
+      border-radius: 999px;
+      background: rgba(200, 75, 0, 0.1);
+      border: 1px solid rgba(200, 75, 0, 0.3);
+      color: #E86020;
+      font-family: 'Commit Mono', monospace;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.3s;
+    }
+
+    .role-pill:hover {
+      background: #E86020;
+      color: #050200;
+      border-color: #E86020;
+      box-shadow: 0 0 20px rgba(232, 96, 32, 0.4);
+    }
+
+    /* List */
+    .benefits-list {
+      list-style: none;
+      padding: 0;
+      margin: 48px auto 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 1000px;
+      gap: 20px;
+    }
+
+    .benefits-list li {
+      display: flex;
+      align-items: center;
+      text-align: left;
+      gap: 16px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 24px;
+      border-radius: 12px;
+      font-family: 'Satoshi', sans-serif;
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.9);
+      transition: border-color 0.3s, box-shadow 0.3s;
+      width: 300px;
+      max-width: 100%;
+      flex: 0 0 auto;
+    }
+
+    .benefits-list li:hover {
+      border-color: rgba(232, 96, 32, 0.4);
+      box-shadow: 0 0 20px rgba(232, 96, 32, 0.15);
+    }
+
+    .benefits-list li svg {
+      width: 24px;
+      height: 24px;
+      fill: none;
+      stroke: #E86020;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      max-width: 600px;
+      padding: 0;
+      margin: 48px auto 0 auto;
+      text-align: center;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      background: linear-gradient(180deg, #E86020 0%, rgba(255, 255, 255, 0.1) 40%);
+      z-index: 0;
+    }
+
+    .tl-item {
+      position: relative;
+      margin-bottom: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .tl-marker {
+      position: relative;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #050200;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s;
+      margin-bottom: 12px;
+      z-index: 2;
+    }
+
+    .tl-item.active .tl-marker,
+    .tl-item.past .tl-marker {
+      background: #C84B00;
+      border-color: #E86020;
+      box-shadow: 0 0 0 4px rgba(232, 96, 32, 0.2);
+    }
+
+    .tl-date {
+      font-family: 'Commit Mono', monospace;
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      color: rgba(255, 255, 255, 0.4);
+      margin-bottom: 8px;
+      display: block;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+      background: #040100;
+      padding: 0 16px;
+    }
+
+    .tl-item.active .tl-date,
+    .tl-item.past .tl-date {
+      color: #E86020;
+    }
+
+    .tl-content {
+      font-family: 'Satoshi', sans-serif;
+      font-size: clamp(18px, 1.8vw, 24px);
+      color: rgba(255, 255, 255, 0.5);
+      font-weight: 500;
+      position: relative;
+      z-index: 1;
+      background: #040100;
+      padding: 4px 16px;
+    }
+
+    .tl-item.active .tl-content,
+    .tl-item.past .tl-content {
+      color: #F9F7F4;
+    }
+
+    .register-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+      color: #fff;
+      font-family: 'Commit Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 14px 40px;
+      border-radius: 100px;
+      text-decoration: none;
+      margin-top: 40px;
+      border: 1px solid #fff;
+      box-shadow: inset 0 0 0 2px #000, inset 0 0 0 3px #fff;
+      transition: all 0.3s ease;
+    }
+
+    .register-btn:hover {
+      background: #fff;
+      color: #000;
+      box-shadow: inset 0 0 0 2px #fff, inset 0 0 0 3px #000;
+      border-color: #000;
+      transform: scale(1.02);
+    }
+  </style>
 </head>
 
 <body>
+  <div class="noise-overlay"></div>
   <div id="cursor-inner"></div>
   <div id="cursor-outer"><span id="cursor-label"></span></div>
   <div id="preloader">
@@ -44,7 +737,7 @@
     </div>
     <div id="preloader-text">Loading...</div>
   </div>
-  
+
   <nav id="navbar" class="navbar-island">
     <div class="navbar-inner">
       <a href="index.html" class="navbar-brand">
@@ -69,124 +762,304 @@
   </nav>
 
   <main id="main">
-    <section id="comp-hero" class="page-hero">
-      <canvas id="comp-hero-canvas"></canvas>
-      <div class="hero-grain"></div>
-      <div class="container comp-hero-container">
-        <div class="comp-text-content">
-          <span class="section-label lime-label comp-fade-in">// prove your mettle</span>
-          <h1 class="comp-page-heading comp-fade-in">
-            <span class="hero-line">active</span>
-            <span class="hero-line">competitions <span class="lime-period">.</span></span>
-          </h1>
-          <p class="comp-page-sub comp-fade-in">
-            Discover challenges, build teams, and compete with the best to craft open-source solutions.
-          </p>
+
+    <div class="ambient-glow g-1"></div>
+    <div class="ambient-glow g-2"></div>
+    <div class="ambient-glow g-3"></div>
+
+    <section class="white-reveal-section">
+      <div class="container">
+        <span class="presenting-text animate-up">presenting</span>
+        <h2 class="premium-name animate-up d-1" id="morrow-title">Morrow </h2>
+        <span class="presenting-text animate-up d-2"
+          style="font-size: clamp(12px, 1.2vw, 14px); margin-bottom: 20px; color: rgba(255, 255, 255, 0.3);">brought to
+          you by</span>
+        <div class="partners-block animate-up d-3">
+          <!-- Filter invert added in case the logo is pure white, removing it if the logo is black -->
+          <img src="/logo.png" alt="MnM" class="partner-logo" style="filter: brightness(0);">
+          <span class="partner-cross">×</span>
+          <img src="/unstop/Unstop-Logo-Blue-Extra-Large.jpg" alt="Unstop" class="partner-logo unstop">
+        </div>
+        <div>
+          <a href="http://localhost:5173/competitions.html" class="register-btn animate-up d-4">Register Here</a>
         </div>
       </div>
     </section>
 
-    <section id="comp-content" class="comp-section">
+    <section class="hero-wrapper">
+      <div class="event-tagline">
+        <span class="preheader animate-up d-1">// MnM × Unstop</span>
+        <span class="headline animate-up d-2">Skip the<br>fake hustle.<br><em>Build something<br>real.</em></span>
+        <span class="divider animate-up d-3"></span>
+        <div class="sublines animate-up d-4">
+          <span class="subline accent">One motive.</span>
+          <span class="subline">Thousands of builders.</span>
+          <span class="subline">Infinite possibilities.</span>
+        </div>
+      </div>
+
+      <div class="floating-morrow-logo-wrapper animate-up d-3">
+        <div class="floating-morrow-logo-inner">
+          <img src="/morrow logo.png" alt="Morrow Logo">
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
       <div class="container">
-        <div id="cms-competitions-grid" class="comp-grid">
-          <div class="comp-empty-state comp-slide-up">
-            <div class="empty-state-icon">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <h3>No Active Competitions</h3>
-            <p>There are no active competitions at the moment. Stay tuned for upcoming hackathons and challenges! For queries, reach out to <a href="mailto:admin@mnmworks.xyz" style="color: var(--black); text-decoration: underline;">admin@mnmworks.xyz</a>.</p>
+        <span class="section-label animate-up">// about the event</span>
+        <h2 class="section-title animate-up">What is <span>Morrow?</span></h2>
+        <div class="animate-up d-1">
+          <p class="text-content">Morrow is an open-source hackathon organized by MnM (Makers Need More) where
+            participants build solutions that continue to benefit people even after the event ends.</p>
+          <p class="text-content">Every project is encouraged to remain open source so others can learn from it,
+            contribute to it, and improve it.</p>
+          <p class="text-content" style="color: #E86020; font-weight: 500; font-style: italic;">Because the best
+            software shouldn't disappear after judging.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-darker">
+      <div class="container">
+        <span class="section-label animate-up">// domains</span>
+        <h2 class="section-title animate-up">What You'll <span>Build</span></h2>
+        <p class="text-content animate-up d-1">Choose a challenge that matters.</p>
+
+        <div class="build-grid animate-up d-2">
+          <div class="build-card">
+            <h3>AI for Education</h3>
+          </div>
+          <div class="build-card">
+            <h3>Healthcare</h3>
+          </div>
+          <div class="build-card">
+            <h3>Accessibility</h3>
+          </div>
+          <div class="build-card">
+            <h3>Climate & Sustainability</h3>
+          </div>
+          <div class="build-card">
+            <h3>Productivity</h3>
+          </div>
+          <div class="build-card">
+            <h3>Civic Tech</h3>
+          </div>
+          <div class="build-card">
+            <h3>Open Innovation</h3>
+          </div>
+          <div class="build-card">
+            <h3>Developer Tools</h3>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="contact">
+    <section class="section">
       <div class="container">
-        <h2 class="contact-heading">
-          <span class="contact-line">let's make</span>
-          <span class="contact-line">something worth</span>
-          <span class="contact-line">shipping.</span>
-        </h2>
-        <div class="contact-links">
-          <a href="https://github.com/MakersNeedMore-MnM" onclick="openProfileModal('GitHub'); return false;" class="contact-row" data-cursor="open">
-            <span class="contact-row-name">GitHub</span>
-            <span class="contact-row-arrow">→</span>
-            <div class="contact-row-fill"></div>
-          </a>
-          <a href="mailto:admin@mnmworks.xyz" class="contact-row" data-cursor="open">
-            <span class="contact-row-name">Email</span>
-            <span class="contact-row-arrow">→</span>
-            <div class="contact-row-fill"></div>
-          </a>
-          <a href="https://www.linkedin.com/company/makersneedmore" onclick="openProfileModal('LinkedIn'); return false;" class="contact-row" data-cursor="open">
-            <span class="contact-row-name">LinkedIn</span>
-            <span class="contact-row-arrow">→</span>
-            <div class="contact-row-fill"></div>
-          </a>
-        </div>
-        <p class="footer-credit commit-mono">MnM · 2026 · A student-run community building open-source solutions globally.</p>
-        <div class="footer-logo-container">
-          <img src="/Makers%20Need%20More.png" alt="Makers Need More" class="footer-logo-image">
+        <span class="section-label animate-up">// philosophy</span>
+        <h2 class="section-title animate-up">Why <span>Open Source?</span></h2>
+        <div class="animate-up d-1">
+          <p class="text-emphasis">Because impact shouldn't have an expiry date.</p>
+          <p class="text-content">Every line of code has the potential to help someone else.</p>
+          <p class="text-content">Whether you're fixing a small issue or building the next great platform, your
+            contribution becomes part of something bigger than a weekend hackathon.</p>
         </div>
       </div>
     </section>
 
-    <div id="profile-modal-overlay" class="profile-modal-overlay">
-      <div class="profile-modal">
-        <button id="profile-modal-close" class="profile-modal-close">&times;</button>
-        <span class="commit-mono modal-label">// select profile</span>
-        <h3 class="modal-title" id="modal-platform-name">GitHub</h3>
-        <div class="modal-buttons">
-          <a href="#" id="modal-link-mnm" class="btn-pill" target="_blank">Makers Need More</a>
-          <!-- <a href="#" id="modal-link-manika" class="btn-pill" target="_blank">Manika Kutiyal</a> -->
-          <!-- <a href="#" id="modal-link-aditya" class="btn-pill" target="_blank">Aditya Verma</a> -->
-        </div>
-      </div>
-    </div>
+    <section class="section bg-darker">
+      <div class="container">
+        <span class="section-label animate-up">// eligibility</span>
+        <h2 class="section-title animate-up">Who Can <span>Participate?</span></h2>
+        <p class="text-content animate-up d-1">Whether you're...</p>
 
-    <div id="onboarding-modal-overlay" class="profile-modal-overlay">
-      <div class="profile-modal">
-        <span class="commit-mono modal-label">// complete profile</span>
-        <h3 class="modal-title">Welcome!</h3>
-        <p style="color: var(--slate); font-size: 15px; margin-bottom: 24px;">Please provide a few details to complete your profile.</p>
-        <form id="onboarding-form" class="onboarding-form">
-          <input type="text" id="ob-location" placeholder="City, Country" required class="modal-input">
-          <input type="tel" id="ob-phone" placeholder="Phone Number" required class="modal-input">
-          <button type="submit" class="btn-pill magnetic" style="width: 100%; border: none; cursor: pointer;">Save Profile</button>
-        </form>
-      </div>
-    </div>
-
-    <div id="competition-modal-overlay" class="profile-modal-overlay">
-      <div class="competition-modal">
-        <button id="competition-modal-close" class="profile-modal-close">&times;</button>
-        <span class="commit-mono modal-label" id="comp-modal-tag">// competition details</span>
-        <img id="comp-modal-image" src="" alt="Competition Cover" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 24px; display: none;">
-        <h3 class="modal-title" id="comp-modal-title">Competition Title</h3>
-        <p id="comp-modal-desc" style="color: var(--slate); font-size: 15px; margin-bottom: 24px; line-height: 1.5;">Description goes here...</p>
-        
-        <h4 style="font-family: 'Clash Display', sans-serif; font-size: 18px; margin-bottom: 16px;">Timeline</h4>
-        <div id="comp-modal-timeline" class="timeline-container">
-          <!-- Timeline injected here -->
+        <div class="role-pills animate-up d-2">
+          <span class="role-pill">a developer</span>
+          <span class="role-pill">designer</span>
+          <span class="role-pill">AI enthusiast</span>
+          <span class="role-pill">student</span>
+          <span class="role-pill">researcher</span>
+          <span class="role-pill">beginner</span>
         </div>
 
-        <h4 style="font-family: 'Clash Display', sans-serif; font-size: 18px; margin: 24px 0 16px;">Notices & Links</h4>
-        <ul id="comp-modal-notices" style="color: var(--slate); font-size: 14px; padding-left: 20px; margin-bottom: 16px;">
-          <!-- Notices injected here -->
+        <div class="animate-up d-3">
+          <p class="text-content" style="margin-top: 24px;">...there's a place for you.</p>
+          <p class="text-content" style="color: #E86020; font-weight: 500;">No experience requirement. Curiosity is
+            enough.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <span class="section-label animate-up">// perks</span>
+        <h2 class="section-title animate-up">What You'll <span>Get</span></h2>
+        <p class="text-content animate-up d-1">Not just certificates.</p>
+
+        <ul class="benefits-list animate-up d-2">
+          <li><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg> Build a real project</li>
+          <li><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg> Collaborate with students worldwide</li>
+          <li><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg> Mentorship</li>
+          <li><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg> Open-source contributions</li>
+          <li><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg> Recognition & prizes</li>
+          <li><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg> Portfolio-worthy work</li>
+          <li><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg> Network with builders</li>
         </ul>
-        <div id="comp-modal-links" style="display: flex; gap: 12px; margin-bottom: 32px; flex-wrap: wrap;">
-          <!-- Links injected here -->
-        </div>
+      </div>
+    </section>
 
-        <button id="comp-btn-register" class="btn-pill magnetic" style="width: 100%; border: none; cursor: pointer; text-align: center;">Register for this Hackathon</button>
+    <section class="section bg-darker">
+      <div class="container">
+        <span class="section-label animate-up">// schedule</span>
+        <h2 class="section-title animate-up">The <span>Timeline</span></h2>
+
+        <div class="timeline animate-up d-1">
+          <div class="tl-item past">
+            <div class="tl-marker"></div>
+            <span class="tl-date">29 Jul 2026</span>
+            <div class="tl-content">Registrations Open</div>
+          </div>
+          <div class="tl-item active">
+            <div class="tl-marker"></div>
+            <span class="tl-date">Till 31 Aug 2026</span>
+            <div class="tl-content">Registration Phase</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-marker"></div>
+            <span class="tl-date">1 – 5 Sep 2026</span>
+            <div class="tl-content">Round 1 — Pitch Submissions</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-marker"></div>
+            <span class="tl-date">9 Sep 2026</span>
+            <div class="tl-content">Round 1 Results</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-marker"></div>
+            <span class="tl-date">9 – 11 Sep 2026</span>
+            <div class="tl-content">Project & Prototype Submissions</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-marker"></div>
+            <span class="tl-date">13 Sep 2026</span>
+            <div class="tl-content">Shortlist Results</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-marker"></div>
+            <span class="tl-date">15 Sep 2026</span>
+            <div class="tl-content">Final Round Begins</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-marker"></div>
+            <span class="tl-date">16 – 17 Sep 2026</span>
+            <div class="tl-content">Final Round</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-marker"></div>
+            <span class="tl-date">18 Sep 2026</span>
+            <div class="tl-content">Winners Declared</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="profile-modal-overlay" class="profile-modal-overlay">
+    <div class="profile-modal">
+      <button id="profile-modal-close" class="profile-modal-close">&times;</button>
+      <span class="commit-mono modal-label">// select profile</span>
+      <h3 class="modal-title" id="modal-platform-name">GitHub</h3>
+      <div class="modal-buttons">
+        <a href="#" id="modal-link-mnm" class="btn-pill" target="_blank">Makers Need More</a>
       </div>
     </div>
+  </div>
 
-  </main>
+  <div id="onboarding-modal-overlay" class="profile-modal-overlay">
+    <div class="profile-modal">
+      <span class="commit-mono modal-label">// complete profile</span>
+      <h3 class="modal-title">Welcome!</h3>
+      <p style="color: var(--slate); font-size: 15px; margin-bottom: 24px;">Please provide a few details to complete
+        your profile.</p>
+      <form id="onboarding-form" class="onboarding-form">
+        <input type="text" id="ob-location" placeholder="City, Country" required class="modal-input">
+        <input type="tel" id="ob-phone" placeholder="Phone Number" required class="modal-input">
+        <button type="submit" class="btn-pill magnetic" style="width: 100%; border: none; cursor: pointer;">Save
+          Profile</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const morrowTitle = document.getElementById('morrow-title');
+      let isConfettiFiring = false;
+
+      if (morrowTitle) {
+        morrowTitle.addEventListener('mouseenter', () => {
+          if (isConfettiFiring) return;
+          isConfettiFiring = true;
+
+          const duration = 2500;
+          const end = Date.now() + duration;
+
+          (function frame() {
+            confetti({
+              particleCount: 7,
+              angle: 60,
+              spread: 55,
+              origin: { x: 0, y: 1 },
+              colors: ['#ffffff', '#e0e0e0', '#c0c0c0', '#a0a0a0']
+            });
+            confetti({
+              particleCount: 7,
+              angle: 120,
+              spread: 55,
+              origin: { x: 1, y: 1 },
+              colors: ['#ffffff', '#e0e0e0', '#c0c0c0', '#a0a0a0']
+            });
+
+            if (Date.now() < end) {
+              requestAnimationFrame(frame);
+            } else {
+              setTimeout(() => { isConfettiFiring = false; }, 2000); // 2s cooldown
+            }
+          }());
+        });
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.animate-up').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
   <script type="module" src="/main.js"></script>
 </body>
+
 </html>
