@@ -3405,3 +3405,435 @@ button {
     font-size: 12px;
   }
 }
+
+/* --- Project Card (Contribute Page) --- */
+.proj-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px;
+  cursor: pointer;
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), border-color 0.3s ease;
+  outline: none;
+  max-width: 560px;
+}
+
+.proj-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.08);
+  border-color: var(--black);
+}
+
+.proj-card:focus-visible {
+  box-shadow: 0 0 0 3px var(--lime);
+}
+
+.proj-card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.proj-card-logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  object-fit: contain;
+  background: var(--black);
+  padding: 6px;
+  flex-shrink: 0;
+}
+
+.proj-card-meta {
+  flex: 1;
+}
+
+.proj-card-label {
+  font-size: 11px;
+  color: var(--lime);
+  background: var(--black);
+  padding: 3px 10px;
+  border-radius: 100px;
+  display: inline-block;
+  margin-bottom: 6px;
+  letter-spacing: 0.04em;
+}
+
+.proj-card-name {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--black);
+  letter-spacing: -0.02em;
+}
+
+.proj-card-status {
+  font-family: 'Commit Mono', monospace;
+  font-size: 11px;
+  color: #1c7c3c;
+  background: #d1fae5;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.proj-card-desc {
+  color: var(--slate);
+  font-size: 15px;
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+
+.proj-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.proj-tag {
+  font-family: 'Commit Mono', monospace;
+  font-size: 11px;
+  color: var(--black);
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 4px 12px;
+  border-radius: 100px;
+  letter-spacing: 0.02em;
+}
+
+.proj-card-footer {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+
+.proj-card-cta {
+  font-family: 'Commit Mono', monospace;
+  font-size: 13px;
+  color: var(--black);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: letter-spacing 0.2s ease;
+}
+
+.proj-card:hover .proj-card-cta {
+  letter-spacing: 0.06em;
+}
+
+/* --- Project Modal --- */
+.proj-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.proj-modal-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.proj-modal {
+  background: var(--white);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 720px;
+  max-height: 90vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  position: relative;
+  transform: translateY(24px) scale(0.98);
+  transition: transform 0.35s var(--ease-out);
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.proj-modal-overlay.active .proj-modal {
+  transform: translateY(0) scale(1);
+}
+
+.proj-modal-close {
+  position: sticky;
+  top: 20px;
+  float: right;
+  margin: 20px 20px 0 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--black);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: background 0.2s ease, transform 0.2s ease;
+  z-index: 10;
+}
+
+.proj-modal-close:hover {
+  background: var(--black);
+  color: var(--white);
+  transform: rotate(90deg);
+}
+
+.proj-modal-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 40px 40px 0;
+  clear: both;
+}
+
+.proj-modal-logo {
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+  object-fit: contain;
+  background: var(--black);
+  padding: 10px;
+  flex-shrink: 0;
+}
+
+.proj-modal-label {
+  font-size: 11px;
+  color: var(--lime);
+  background: var(--black);
+  padding: 3px 10px;
+  border-radius: 100px;
+  display: inline-block;
+  margin-bottom: 8px;
+  letter-spacing: 0.04em;
+}
+
+.proj-modal-title {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--black);
+  letter-spacing: -0.03em;
+  margin-bottom: 6px;
+  line-height: 1.1;
+}
+
+.proj-modal-tagline {
+  color: var(--slate);
+  font-size: 15px;
+}
+
+.proj-modal-body {
+  padding: 32px 40px 40px;
+}
+
+.proj-modal-desc {
+  color: var(--slate);
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 36px;
+}
+
+.proj-modal-desc strong {
+  color: var(--black);
+}
+
+.proj-modal-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 36px;
+}
+
+.proj-feature {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.proj-feature-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--black);
+  border-radius: 10px;
+  color: var(--lime);
+  margin-top: 2px;
+}
+
+.proj-feature strong {
+  display: block;
+  font-family: 'Clash Display', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.proj-feature p {
+  color: var(--slate);
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.proj-modal-stack {
+  margin-bottom: 36px;
+}
+
+.proj-modal-stack h4 {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 14px;
+}
+
+.proj-modal-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.proj-modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.proj-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  border-radius: 100px;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: transform 0.2s var(--ease-out), box-shadow 0.2s ease, background 0.2s ease;
+  letter-spacing: -0.01em;
+}
+
+.proj-action-primary {
+  background: var(--black);
+  color: var(--white);
+}
+
+.proj-action-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.proj-action-secondary {
+  background: transparent;
+  color: var(--black);
+  border: 1.5px solid var(--border);
+}
+
+.proj-action-secondary:hover {
+  border-color: var(--black);
+  transform: translateY(-2px);
+}
+
+.proj-contrib-guide {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+}
+
+.proj-contrib-guide h4 {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--black);
+  margin: 10px 0 16px;
+  letter-spacing: -0.02em;
+}
+
+.proj-contrib-steps {
+  padding-left: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.proj-contrib-steps li {
+  color: var(--slate);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.proj-contrib-steps li strong {
+  color: var(--black);
+}
+
+.proj-contrib-steps li a {
+  color: var(--black);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.proj-contrib-note {
+  color: var(--slate);
+  font-size: 13px;
+  line-height: 1.6;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.proj-contrib-note a {
+  color: var(--black);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .proj-modal-features {
+    grid-template-columns: 1fr;
+  }
+
+  .proj-modal-header {
+    padding: 28px 24px 0;
+    flex-direction: column;
+  }
+
+  .proj-modal-body {
+    padding: 24px 24px 32px;
+  }
+
+  .proj-modal-title {
+    font-size: 26px;
+  }
+
+  .proj-modal-actions {
+    flex-direction: column;
+  }
+
+  .proj-action-btn {
+    width: 100%;
+  }
+}

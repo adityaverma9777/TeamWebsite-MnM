@@ -35,6 +35,8 @@ gsap.ticker.add((time) => {
 });
 gsap.ticker.lagSmoothing(0);
 
+window._lenis = lenis;
+
 initCursor();
 
 document.querySelectorAll('.magnetic, .navbar-cta').forEach(el => {

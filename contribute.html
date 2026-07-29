@@ -86,7 +86,8 @@
             <span class="hero-line">become an intern <span class="lime-period">.</span></span>
           </h1>
           <p class="contrib-page-sub contrib-fade-in">
-            Join our open-source movement as an intern. Earn a verifiable joining letter, an ID card, and valuable real-world experience.
+            Join our open-source movement as an intern. Earn a verifiable joining letter, an ID card, and valuable
+            real-world experience.
           </p>
         </div>
       </div>
@@ -100,7 +101,8 @@
           <div class="contrib-step-card contrib-slide-up">
             <div class="step-number">01</div>
             <h3>Discover Opportunities</h3>
-            <p>Explore the repositories listed below. You can either submit your own ideas or work on existing issues.</p>
+            <p>Explore the repositories listed below. You can either submit your own ideas or work on existing issues.
+            </p>
           </div>
 
           <div class="contrib-step-card contrib-slide-up">
@@ -124,24 +126,158 @@
         <h2 class="contrib-section-title contrib-slide-up">Active Repositories</h2>
         <div id="cms-contrib-grid" class="contrib-grid">
 
-          <div class="contrib-empty-state contrib-slide-up">
-            <div class="empty-state-icon">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 3H6C4.89543 3 4 3.89543 4 5V19C4 20.1046 4.89543 21 6 21H18C19.1046 21 20 20.1046 20 19V14"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M12 11L21 2M21 2H16M21 2V7" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg>
+          <div class="proj-card contrib-slide-up" id="streetiq-card" onclick="openProjectModal('streetiq')"
+            role="button" tabindex="0" aria-label="View StreetIQ project details">
+            <div class="proj-card-header">
+              <img src="/streetiqlogo.png" alt="StreetIQ Logo" class="proj-card-logo">
+              <div class="proj-card-meta">
+                <span class="proj-card-label commit-mono">// open source</span>
+                <h3 class="proj-card-name">StreetIQ</h3>
+              </div>
+              <span class="proj-card-status">Active</span>
             </div>
-            <h3>Open to Contributions</h3>
-            <p>Got an Idea! Tell us about it and submit your repository. We'd love to help you make it a reality. Mail
-              us your repository at <a href="mailto:admin@mnmworks.xyz"
-                style="color: var(--black); text-decoration: underline;">admin@mnmworks.xyz</a> with details.</p>
+            <p class="proj-card-desc">An AI-powered road intelligence & navigation platform that turns every driver into
+              a road surveyor. Real-time hazard detection using a custom-trained YOLOv8 model running entirely
+              in-browser via TensorFlow.js.</p>
+            <div class="proj-card-tags">
+              <span class="proj-tag">React</span>
+              <span class="proj-tag">TensorFlow.js</span>
+              <span class="proj-tag">YOLOv8</span>
+              <span class="proj-tag">Node.js</span>
+              <span class="proj-tag">Supabase</span>
+              <span class="proj-tag">WebSockets</span>
+            </div>
+            <div class="proj-card-footer">
+              <span class="proj-card-cta">View Details →</span>
+            </div>
           </div>
 
         </div>
       </div>
     </section>
+
+    <div id="project-modal-overlay" class="proj-modal-overlay" onclick="closeProjectModal(event)" aria-hidden="true">
+      <div class="proj-modal" role="dialog" aria-modal="true" aria-labelledby="proj-modal-title" data-lenis-prevent>
+        <button class="proj-modal-close" onclick="closeProjectModal()" aria-label="Close">×</button>
+
+        <div id="proj-modal-content-streetiq">
+          <div class="proj-modal-header">
+            <img src="/streetiqlogo.png" alt="StreetIQ Logo" class="proj-modal-logo">
+            <div>
+              <span class="commit-mono proj-modal-label">// open source project</span>
+              <h2 id="proj-modal-title" class="proj-modal-title">StreetIQ</h2>
+              <p class="proj-modal-tagline">The AI-Powered Road Intelligence & Navigation Platform</p>
+            </div>
+          </div>
+
+          <div class="proj-modal-body">
+            <p class="proj-modal-desc">StreetIQ is a next-generation navigation platform that tells you <strong>what is
+                actually on the road</strong>. It provides real-time turn-by-turn navigation overlaid with live
+              crowdsourced hazard data potholes, waterlogging, cracks, and debris detected entirely on-device using a
+              custom-trained YOLOv8 model running in the browser at 15fps via TensorFlow.js. Video feeds are never sent
+              to a server. Only GPS coordinates and hazard metadata are transmitted, preserving absolute privacy.</p>
+
+            <div class="proj-modal-features">
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="10" rx="2"/>
+                    <circle cx="12" cy="5" r="2"/>
+                    <path d="M12 7v4M8 11V9a4 4 0 0 1 8 0v2"/>
+                    <line x1="8" y1="15" x2="8" y2="17"/>
+                    <line x1="12" y1="15" x2="12" y2="17"/>
+                    <line x1="16" y1="15" x2="16" y2="17"/>
+                  </svg>
+                </span>
+                <div>
+                  <strong>Custom-Trained YOLOv8 Model</strong>
+                  <p>Hand-trained on thousands of real Indian road images to detect cracks, potholes, waterlogging, and
+                    debris across varied lighting and traffic conditions.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    <polyline points="9 12 11 14 15 10"/>
+                  </svg>
+                </span>
+                <div>
+                  <strong>On-Device AI — Zero Video Uploads</strong>
+                  <p>All inference runs locally in your browser. Nothing leaves your device except GPS coordinates when
+                    a hazard is confirmed.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                  </svg>
+                </span>
+                <div>
+                  <strong>Real-Time Hazard Broadcasting</strong>
+                  <p>The moment a hazard is detected, WebSockets instantly broadcast it to every other driver in the
+                    area via the Supabase Realtime backend.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="2" y1="12" x2="22" y2="12"/>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                  </svg>
+                </span>
+                <div>
+                  <strong>Full Navigation Stack</strong>
+                  <p>Smooth turn-by-turn navigation powered by OSRM with custom traffic multipliers and Photon geocoding
+                    — no third-party map API required.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="proj-modal-stack">
+              <h4>Tech Stack</h4>
+              <div class="proj-modal-tags">
+                <span class="proj-tag">React + Vite</span>
+                <span class="proj-tag">TensorFlow.js</span>
+                <span class="proj-tag">YOLOv8</span>
+                <span class="proj-tag">Node.js + TypeScript</span>
+                <span class="proj-tag">OSRM</span>
+                <span class="proj-tag">Supabase</span>
+                <span class="proj-tag">WebSockets</span>
+                <span class="proj-tag">React-Leaflet</span>
+              </div>
+            </div>
+
+            <div class="proj-modal-actions">
+              <a href="https://streetiq-rose.vercel.app" target="_blank" rel="noopener noreferrer"
+                class="proj-action-btn proj-action-primary" id="streetiq-demo-btn">↗ Live Demo</a>
+              <a href="https://github.com/MakersNeedMore-MnM/StreetIQ" target="_blank" rel="noopener noreferrer"
+                class="proj-action-btn proj-action-secondary" id="streetiq-github-btn">GitHub Repo</a>
+            </div>
+
+            <div class="proj-contrib-guide">
+              <span class="commit-mono proj-modal-label">// how to contribute</span>
+              <h4>Want to contribute to StreetIQ?</h4>
+              <ol class="proj-contrib-steps">
+                <li>Sign up on <strong>mnmworks.xyz</strong> to create your MnM member account.</li>
+                <li>Fork the <a href="https://github.com/MakersNeedMore-MnM/StreetIQ" target="_blank"
+                    rel="noopener noreferrer">StreetIQ repository</a> on GitHub.</li>
+                <li>Make your changes in the forked repo — bug fixes, new features, improvements, anything meaningful.
+                </li>
+                <li>Raise a Pull Request with proper documentation describing what you changed and why.</li>
+                <li>Head to the <strong>Submit</strong> section of your MnM Dashboard, paste your fork link, and write a
+                  description of your contribution.</li>
+                <li>Wait for review, approval, and feedback from the MnM team.</li>
+              </ol>
+              <p class="proj-contrib-note">If it is taking longer than expected, mail us at <a
+                  href="mailto:admin@mnmworks.xyz">admin@mnmworks.xyz</a> for faster validation and review.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <section id="contact">
       <div class="container">
@@ -207,6 +343,34 @@
 
   </main>
   <script type="module" src="/main.js"></script>
+  <script>
+    const _modalOverlay = document.getElementById('project-modal-overlay');
+
+    function openProjectModal(id) {
+      _modalOverlay.classList.add('active');
+      _modalOverlay.setAttribute('aria-hidden', 'false');
+      if (window._lenis) window._lenis.stop();
+    }
+
+    function closeProjectModal(e) {
+      if (e && e.target !== _modalOverlay && !e.target.classList.contains('proj-modal-close')) return;
+      _modalOverlay.classList.remove('active');
+      _modalOverlay.setAttribute('aria-hidden', 'true');
+      if (window._lenis) window._lenis.start();
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeProjectModal();
+    });
+
+    document.getElementById('streetiq-card').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openProjectModal('streetiq');
+      }
+    });
+  </script>
+
 </body>
 
 </html>
