@@ -15,7 +15,7 @@ export default async function handler(req, res) {
       fs.createReadStream(csvPath)
         .pipe(csv())
         .on('data', (row) => {
-          const tName = row['Q1: Team Name'] || row['Team Name / Candidate Name'];
+          const tName = row['Team Name / Candidate Name'] || row['Q1: Team Name'];
           if (tName) {
             const name = tName.trim();
             teamCounts[name] = (teamCounts[name] || 0) + 1;
