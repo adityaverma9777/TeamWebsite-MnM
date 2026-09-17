@@ -30,6 +30,7 @@
     href="https://api.fontshare.com/v2/css?f[]=clash-display@200,400,500,600,700&f[]=satoshi@300,400,500,700&f[]=outfit@300,400,500,600&f[]=commit-mono@400&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="results.css">
   <style>
     body {
       margin: 0;
@@ -934,44 +935,42 @@
             <span class="tl-date">29 Jul 2026</span>
             <div class="tl-content">Registrations Open</div>
           </div>
-          <div class="tl-item active">
+          <div class="tl-item past">
             <div class="tl-marker"></div>
             <span class="tl-date">Till 31 Aug 2026</span>
             <div class="tl-content">Registration Phase</div>
           </div>
-          <div class="tl-item">
+          <div class="tl-item past">
             <div class="tl-marker"></div>
             <span class="tl-date">1 – 5 Sep 2026</span>
-            <div class="tl-content">Round 1 — Pitch Submissions</div>
+            <div class="tl-content">Round 1 : Pitch your ideas</div>
           </div>
-          <div class="tl-item">
-            <div class="tl-marker"></div>
-            <span class="tl-date">9 Sep 2026</span>
-            <div class="tl-content">Round 1 Results</div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-marker"></div>
-            <span class="tl-date">9 – 11 Sep 2026</span>
-            <div class="tl-content">Project & Prototype Submissions</div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-marker"></div>
-            <span class="tl-date">13 Sep 2026</span>
-            <div class="tl-content">Shortlist Results</div>
-          </div>
-          <div class="tl-item">
+          <div class="tl-item past">
             <div class="tl-marker"></div>
             <span class="tl-date">15 Sep 2026</span>
-            <div class="tl-content">Final Round Begins</div>
+            <div class="tl-content">
+                Round 1 Results
+                <button id="viewResultsBtn" class="view-results-btn">View Results</button>
+            </div>
+          </div>
+          <div class="tl-item active">
+            <div class="tl-marker"></div>
+            <span class="tl-date">16 – 20 Sep 2026</span>
+            <div class="tl-content">Round 2 : Project & Prototype Submissions</div>
           </div>
           <div class="tl-item">
             <div class="tl-marker"></div>
-            <span class="tl-date">16 – 17 Sep 2026</span>
-            <div class="tl-content">Final Round</div>
+            <span class="tl-date">25 Sep 2026</span>
+            <div class="tl-content">Round 2 Results</div>
           </div>
           <div class="tl-item">
             <div class="tl-marker"></div>
-            <span class="tl-date">18 Sep 2026</span>
+            <span class="tl-date">26 – 30 Sep 2026</span>
+            <div class="tl-content">Round 3 : Final Round</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-marker"></div>
+            <span class="tl-date">1 Oct 2026</span>
             <div class="tl-content">Winners Declared</div>
           </div>
         </div>
@@ -998,10 +997,22 @@
         your profile.</p>
       <form id="onboarding-form" class="onboarding-form">
         <input type="text" id="ob-location" placeholder="City, Country" required class="modal-input">
-        <input type="tel" id="ob-phone" placeholder="Phone Number" required class="modal-input">
-        <button type="submit" class="btn-pill magnetic" style="width: 100%; border: none; cursor: pointer;">Save
-          Profile</button>
+        <input type="url" id="ob-linkedin" placeholder="LinkedIn URL" class="modal-input">
+        <input type="url" id="ob-portfolio" placeholder="Portfolio/Website URL" class="modal-input">
+        <button type="submit" class="btn-primary" style="width: 100%; margin-top: 12px;">Save Profile</button>
       </form>
+    </div>
+  </div>
+
+  <div id="results-modal-overlay" class="profile-modal-overlay" style="z-index: 9998; align-items: flex-start; padding-top: 5vh;">
+    <div class="profile-modal results-modal">
+      <button id="results-modal-close" class="profile-modal-close">&times;</button>
+      <span class="commit-mono modal-label">// shortlist</span>
+      <h3 class="modal-title" style="color: #111;">Round 1 Results</h3>
+      <p style="color: #555; font-size: 14px; margin-bottom: 20px;">Congratulations to all the teams advancing to Round 2!</p>
+      <div id="resultsListContainer" class="results-list-container">
+          <div class="results-loader">Loading results...</div>
+      </div>
     </div>
   </div>
 
@@ -1057,6 +1068,54 @@
       document.querySelectorAll('.animate-up').forEach(el => {
         observer.observe(el);
       });
+
+      // Round 1 Results Modal Logic
+      const viewResultsBtn = document.getElementById('viewResultsBtn');
+      const resultsModalOverlay = document.getElementById('results-modal-overlay');
+      const resultsModalClose = document.getElementById('results-modal-close');
+      const resultsListContainer = document.getElementById('resultsListContainer');
+      let resultsLoaded = false;
+
+      if(viewResultsBtn && resultsModalOverlay) {
+          viewResultsBtn.addEventListener('click', async () => {
+              resultsModalOverlay.classList.add('active');
+              document.body.style.overflow = 'hidden';
+              if(!resultsLoaded) {
+                  try {
+                      const res = await fetch('/teams.json');
+                      const data = await res.json();
+                      const teams = data.teams || [];
+                      
+                      resultsListContainer.innerHTML = '';
+                      if(teams.length === 0) {
+                          resultsListContainer.innerHTML = '<div class="results-loader">No results available yet.</div>';
+                      } else {
+                          teams.forEach(team => {
+                              const el = document.createElement('div');
+                              el.className = 'result-item';
+                              el.innerHTML = `<span>${team.name}</span><span class="result-size">${team.size} Members</span>`;
+                              resultsListContainer.appendChild(el);
+                          });
+                      }
+                      resultsLoaded = true;
+                  } catch(err) {
+                      resultsListContainer.innerHTML = '<div class="results-loader" style="color:red;">Failed to load results.</div>';
+                  }
+              }
+          });
+
+          resultsModalClose.addEventListener('click', () => {
+              resultsModalOverlay.classList.remove('active');
+              document.body.style.overflow = '';
+          });
+          
+          resultsModalOverlay.addEventListener('click', (e) => {
+              if(e.target === resultsModalOverlay) {
+                  resultsModalOverlay.classList.remove('active');
+                  document.body.style.overflow = '';
+              }
+          });
+      }
     });
   </script>
   <script type="module" src="/main.js"></script>
