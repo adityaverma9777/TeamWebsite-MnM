@@ -59,7 +59,7 @@ export default async function handler(req, res) {
       fs.createReadStream(csvPath)
         .pipe(csv())
         .on('data', (row) => {
-          const tName = row['Q1: Team Name'] || row['Team Name / Candidate Name'];
+          const tName = row['Team Name / Candidate Name'] || row['Q1: Team Name'];
           const email = row['Candidate\'s Email'] || row['Team Leader\'s Email / Candidate\'s Email'];
           
           if (tName && tName.trim() === teamName.trim() && email) {
