@@ -20,21 +20,22 @@ export default defineConfig({
       },
     },
   ],
-  build: {
-    outDir: 'dist',
-    assetsDir: 'assets',
-    rollupOptions: {
-      input: {
-        main: './index.html',
-        dashboard: './dashboard.html',
-        competitions: './competitions.html',
-        contribute: './contribute.html',
-        about: './about.html',
-        sponsors: './sponsors.html',
-        careers: './careers.html',
-        admin: './admin.html',
-        idcard: './idcard.html'
+    build: {
+      outDir: 'dist',
+      assetsDir: 'assets',
+      rollupOptions: {
+        input: {
+          main: './index.html',
+          dashboard: './dashboard.html',
+          competitions: './competitions.html',
+          contribute: './contribute.html',
+          about: './about.html',
+          sponsors: './sponsors.html',
+          careers: './careers.html',
+          admin: './admin.html',
+          idcard: './idcard.html',
+          round2: './round2.html'
+        }
       }
-    }
-  },
-});
+    },
+  });

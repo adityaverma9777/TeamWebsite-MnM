@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon Round 2 - Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="round2.css">
+    <link rel="stylesheet" href="autocomplete.css">
+</head>
+<body>
+    <div class="page-container">
+        <header class="header">
+            <div class="logo">🎉 Congratulations</div>
+            <h1>Round 2 Workspace Initialization</h1>
+            <p>Please provide your team details to provision your GitHub repository.</p>
+        </header>
+
+        <main class="form-wrapper">
+            <form id="registrationForm" class="registration-form">
+                <section class="form-section">
+                    <div class="input-group autocomplete-group">
+                        <label for="teamName">Registered Team Name</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="teamName" name="teamName" placeholder="Type to search your registered team name" autocomplete="off" required>
+                            <svg class="success-tick hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </div>
+                        <ul id="teamDropdown" class="autocomplete-dropdown hidden"></ul>
+                    </div>
+                </section>
+
+                <section class="form-section members-section">
+                    <div class="section-header">
+                        <h2>Team Members</h2>
+                        <button type="button" id="addMemberBtn" class="btn-secondary hidden">+ Add Member</button>
+                    </div>
+                    <div id="membersContainer" class="members-container">
+                        <!-- Initial Member -->
+                        <div class="member-row">
+                            <div class="member-info">
+                                <span class="member-label">Member 1</span>
+                            </div>
+                            <div class="input-grid">
+                                <div class="input-group">
+                                    <label>Registered Email</label>
+                                    <input type="email" name="memberEmail[]" placeholder="name@example.com" required>
+                                </div>
+                                <div class="input-group">
+                                    <label>GitHub Username</label>
+                                    <input type="text" name="memberGithub[]" placeholder="e.g. torvalds" required>
+                                </div>
+                            </div>
+                            <button type="button" class="remove-btn hidden" aria-label="Remove member">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="form-actions">
+                    <div class="verification-checkbox">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="verifyInfo" name="verifyInfo" required>
+                            <span class="checkmark-text">I have double-checked all emails and GitHub usernames. I understand that this cannot be changed later, and incorrect info may send repository access to the wrong person.</span>
+                        </label>
+                    </div>
+                    <button type="submit" id="submitBtn" class="btn-primary">
+                        <span class="btn-text">Initialize Workspace</span>
+                        <span class="loader hidden"></span>
+                    </button>
+                </div>
+
+                <div id="messageBox" class="message-box hidden" role="alert"></div>
+            </form>
+        </main>
+    </div>
+    <script type="module" src="/round2.js"></script>
+</body>
+</html>
