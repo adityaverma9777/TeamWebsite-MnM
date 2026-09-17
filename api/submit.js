@@ -134,7 +134,20 @@ export default async function handler(req, res) {
         from: EMAIL_USER,
         to: members.map(m => m.email).join(','),
         subject: `Round 2 Repository Created for ${teamName}!`,
-        text: `Hello Team ${teamName},\n\nYour repository has been successfully created. You must have received a separate email directly from GitHub inviting you to collaborate on the repository.\n\nPlease accept that invitation and start building there!\n\nBest of luck for Round 2!`,
+        text: `Hello Team ${teamName},
+
+Your repository has been successfully created and you are now authorized! You must have received a separate email directly from GitHub inviting you to collaborate on the repository.
+
+All members of your team have received this email, and ALL of you MUST accept the GitHub invitation to be able to push your code to the repository.
+
+Once you accept the invitation, you can either:
+1. Clone the repository and start building in it.
+2. Push your existing project into this repository.
+
+Please continue all your development directly in this repository for Round 2!
+
+Best of luck!
+- Makers Need More (MnM)`,
       };
 
       await transporter.sendMail(mailOptions);
