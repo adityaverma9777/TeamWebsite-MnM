@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morrow – Brochure | MnM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange:    #E86020;
+    --orange-lt: #FF9040;
+    --orange-dk: #C84B00;
+    --black:     #040100;
+    --off-white: #F9F7F4;
+    --slate:     rgba(249,247,244,0.55);
+    --page-w: 210mm;
+    --page-h: 297mm;
+  }
+
+  body {
+    background: #1a1a1a;
+    font-family: 'Inter', sans-serif;
+    color: var(--off-white);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .screen-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  .print-btn {
+    background: var(--orange);
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 100px;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .print-btn:hover { background: var(--orange-dk); transform: scale(1.03); }
+
+  .page {
+    width: var(--page-w);
+    min-height: var(--page-h);
+    margin: 32px auto;
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .deco-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(232,96,32,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,96,32,0.04) 1px, transparent 1px);
+    background-size: 20mm 20mm;
+    pointer-events: none;
+  }
+  .deco-glow {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .deco-glow.a {
+    width: 120mm; height: 120mm;
+    top: -30mm; left: -30mm;
+    background: radial-gradient(circle, rgba(232,96,32,0.18) 0%, transparent 65%);
+  }
+  .deco-glow.b {
+    width: 100mm; height: 100mm;
+    bottom: -20mm; right: -20mm;
+    background: radial-gradient(circle, rgba(200,75,0,0.14) 0%, transparent 65%);
+  }
+  .deco-glow.c {
+    width: 80mm; height: 80mm;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    background: radial-gradient(circle, rgba(255,144,64,0.06) 0%, transparent 65%);
+  }
+  .deco-corner {
+    position: absolute;
+    width: 12mm; height: 12mm;
+  }
+  .deco-corner::before, .deco-corner::after {
+    content: '';
+    position: absolute;
+    background: var(--orange);
+  }
+  .deco-corner::before { width: 100%; height: 1px; top: 0; left: 0; }
+  .deco-corner::after  { width: 1px; height: 100%; top: 0; left: 0; }
+  .deco-corner.tl { top: 8mm; left: 8mm; }
+  .deco-corner.tr { top: 8mm; right: 8mm; transform: scaleX(-1); }
+  .deco-corner.bl { bottom: 8mm; left: 8mm; transform: scaleY(-1); }
+  .deco-corner.br { bottom: 8mm; right: 8mm; transform: scale(-1); }
+
+  .label {
+    font-family: 'Space Mono', monospace;
+    font-size: 7pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+  .h-section {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--off-white);
+  }
+  .body-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--slate);
+  }
+  .pill {
+    display: inline-block;
+    padding: 2.5mm 5mm;
+    border-radius: 100mm;
+    border: 1px solid rgba(232,96,32,0.4);
+    background: rgba(232,96,32,0.08);
+    color: var(--orange);
+    font-family: 'Space Mono', monospace;
+    font-size: 6.5pt;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* PAGE 1 - COVER */
+  .p1-inner {
+    position: relative;
+    width: 100%;
+    height: var(--page-h);
+    display: flex;
+    flex-direction: column;
+    padding: 16mm 14mm 12mm 14mm;
+  }
+  .p1-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .p1-mnm-brand {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+  }
+  .p1-mnm-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 11pt;
+    color: var(--off-white);
+    letter-spacing: 0.05em;
+  }
+  .p1-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 6mm;
+  }
+  .p1-presenting {
+    font-family: 'Space Mono', monospace;
+    font-size: 7pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(249,247,244,0.35);
+  }
+  .p1-event-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 72pt;
+    line-height: 0.88;
+    letter-spacing: -0.04em;
+    color: var(--off-white);
+    text-shadow:
+      0 1px 0 #f0f0f0,
+      0 3px 0 #e0e0e0,
+      0 6px 0 #cccccc,
+      0 10px 20px rgba(0,0,0,0.25),
+      0 0 60px rgba(232,96,32,0.12);
+  }
+  .p1-tagline {
+    font-family: 'Inter', sans-serif;
+    font-size: 11pt;
+    font-weight: 300;
+    color: rgba(249,247,244,0.6);
+    letter-spacing: 0.02em;
+    max-width: 100mm;
+  }
+  .p1-tagline strong { color: var(--orange); font-weight: 600; }
+  .p1-divider {
+    width: 20mm;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--orange), transparent);
+    margin: 0 auto;
+  }
+  .p1-meta-row {
+    display: flex;
+    justify-content: center;
+    gap: 6mm;
+    flex-wrap: wrap;
+  }
+  .p1-meta-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5mm;
+  }
+  .p1-meta-val {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 14pt;
+    color: var(--off-white);
+  }
+  .p1-meta-key {
+    font-family: 'Space Mono', monospace;
+    font-size: 6pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(249,247,244,0.35);
+  }
+  .p1-meta-sep {
+    width: 1px;
+    height: 10mm;
+    background: rgba(232,96,32,0.25);
+    align-self: center;
+  }
+  .p1-morrow-logo {
+    width: 22mm; height: 22mm;
+    margin: 0 auto;
+    opacity: 0.9;
+  }
+  .p1-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .p1-footer-url {
+    font-family: 'Space Mono', monospace;
+    font-size: 7pt;
+    color: rgba(249,247,244,0.25);
+    letter-spacing: 0.1em;
+  }
+  .p1-page-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 7pt;
+    color: rgba(249,247,244,0.2);
+    letter-spacing: 0.1em;
+  }
+  .p1-orange-bar {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2mm;
+    background: linear-gradient(180deg, transparent 5%, var(--orange) 30%, var(--orange-dk) 70%, transparent 95%);
+  }
+
+  /* PAGES 2-4 SHARED */
+  .p2-inner {
+    position: relative;
+    width: 100%;
+    height: var(--page-h);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 14mm 14mm 12mm 14mm;
+    gap: 8mm;
+  }
+  .page-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 5mm;
+    border-bottom: 1px solid rgba(232,96,32,0.15);
+  }
+  .page-header-brand {
+    display: flex;
+    align-items: center;
+    gap: 2.5mm;
+  }
+  .page-header-brand-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 8pt;
+    color: rgba(249,247,244,0.4);
+    letter-spacing: 0.1em;
+  }
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8mm;
+    align-content: start;
+  }
+  .content-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4mm;
+  }
+  .content-block .h-section { font-size: 18pt; }
+  .content-block .body-text { font-size: 8.5pt; }
+  .quote-block {
+    margin-top: 4mm;
+    padding: 4mm 5mm;
+    border-left: 2px solid var(--orange);
+    background: rgba(232,96,32,0.05);
+    border-radius: 0 4px 4px 0;
+  }
+  .quote-block p {
+    font-family: 'Syne', sans-serif;
+    font-size: 9.5pt;
+    font-weight: 600;
+    color: var(--off-white);
+    line-height: 1.5;
+    font-style: italic;
+  }
+  .stat-row {
+    display: flex;
+    gap: 4mm;
+    margin-top: 4mm;
+  }
+  .stat-box {
+    flex: 1;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 3mm;
+    padding: 4mm;
+    text-align: center;
+  }
+  .stat-box .val {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 20pt;
+    color: var(--orange);
+    line-height: 1;
+  }
+  .stat-box .key {
+    font-family: 'Space Mono', monospace;
+    font-size: 5.5pt;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(249,247,244,0.35);
+    margin-top: 1.5mm;
+  }
+  .philosophy-card {
+    margin-top: 3mm;
+    padding: 5mm;
+    background: rgba(232,96,32,0.06);
+    border: 1px solid rgba(232,96,32,0.2);
+    border-radius: 3mm;
+  }
+  .philosophy-card p {
+    font-family: 'Inter', sans-serif;
+    font-size: 8.5pt;
+    line-height: 1.7;
+    color: rgba(249,247,244,0.75);
+  }
+  .domains-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3mm;
+    margin-top: 3mm;
+  }
+  .domain-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 3mm;
+    padding: 4mm 3.5mm;
+    position: relative;
+    overflow: hidden;
+  }
+  .domain-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, rgba(232,96,32,0.6), transparent);
+  }
+  .domain-card .icon { font-size: 14pt; margin-bottom: 2mm; display: block; }
+  .domain-card .name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 8pt;
+    color: var(--off-white);
+    line-height: 1.3;
+  }
+  .roles-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2mm;
+    margin-top: 3mm;
+  }
+  .role-tag {
+    padding: 2mm 4mm;
+    border-radius: 100mm;
+    background: rgba(200,75,0,0.1);
+    border: 1px solid rgba(200,75,0,0.3);
+    color: var(--orange);
+    font-family: 'Space Mono', monospace;
+    font-size: 6pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .perks-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3mm;
+    margin-top: 3mm;
+  }
+  .perk-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 3mm;
+    padding: 3.5mm 4mm;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 3mm;
+  }
+  .perk-check {
+    flex-shrink: 0;
+    width: 4mm; height: 4mm;
+    border-radius: 50%;
+    background: var(--orange-dk);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.5mm;
+  }
+  .perk-check svg {
+    width: 3mm; height: 3mm;
+    stroke: #fff;
+    stroke-width: 2.5;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .perk-item span {
+    font-family: 'Inter', sans-serif;
+    font-size: 8pt;
+    color: rgba(249,247,244,0.85);
+    line-height: 1.5;
+  }
+  .timeline-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 3mm;
+    position: relative;
+  }
+  .timeline-list::before {
+    content: '';
+    position: absolute;
+    left: 3.5mm;
+    top: 4mm;
+    bottom: 4mm;
+    width: 1px;
+    background: linear-gradient(180deg, var(--orange) 0%, rgba(232,96,32,0.1) 100%);
+  }
+  .tl-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 4mm;
+    padding: 3mm 0;
+    position: relative;
+  }
+  .tl-dot {
+    flex-shrink: 0;
+    width: 7mm; height: 7mm;
+    border-radius: 50%;
+    background: var(--black);
+    border: 1.5px solid rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+  .tl-row.done .tl-dot { background: var(--orange-dk); border-color: var(--orange); box-shadow: 0 0 0 2px rgba(232,96,32,0.2); }
+  .tl-row.active .tl-dot { background: var(--orange); border-color: var(--orange-lt); box-shadow: 0 0 0 3px rgba(232,96,32,0.3); }
+  .tl-dot-inner { width: 2.5mm; height: 2.5mm; border-radius: 50%; background: rgba(249,247,244,0.3); }
+  .tl-row.done .tl-dot-inner, .tl-row.active .tl-dot-inner { background: #fff; }
+  .tl-info { flex: 1; }
+  .tl-info .date {
+    font-family: 'Space Mono', monospace;
+    font-size: 6pt;
+    letter-spacing: 0.15em;
+    color: rgba(249,247,244,0.35);
+    text-transform: uppercase;
+  }
+  .tl-row.done .tl-info .date, .tl-row.active .tl-info .date { color: var(--orange); }
+  .tl-info .event {
+    font-family: 'Inter', sans-serif;
+    font-size: 8pt;
+    font-weight: 500;
+    color: rgba(249,247,244,0.45);
+    margin-top: 0.5mm;
+  }
+  .tl-row.done .tl-info .event, .tl-row.active .tl-info .event { color: var(--off-white); }
+
+  /* PAGE 5 - CTA */
+  .p5-inner {
+    position: relative;
+    width: 100%;
+    height: var(--page-h);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 16mm 18mm;
+    gap: 7mm;
+  }
+  .p5-big-text {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 44pt;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--off-white);
+  }
+  .p5-big-text em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--orange-lt) 0%, var(--orange) 50%, var(--orange-dk) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .p5-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 10pt;
+    font-weight: 300;
+    color: rgba(249,247,244,0.55);
+    max-width: 110mm;
+    line-height: 1.7;
+  }
+  .p5-url-box {
+    padding: 4mm 10mm;
+    border: 1px solid rgba(232,96,32,0.4);
+    border-radius: 100mm;
+    background: rgba(232,96,32,0.06);
+  }
+  .p5-url-box span {
+    font-family: 'Space Mono', monospace;
+    font-size: 8pt;
+    color: var(--orange);
+    letter-spacing: 0.05em;
+  }
+  .p5-footer-row {
+    position: absolute;
+    bottom: 12mm;
+    left: 14mm;
+    right: 14mm;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .p5-footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+  }
+  .p5-social {
+    font-family: 'Space Mono', monospace;
+    font-size: 6.5pt;
+    color: rgba(249,247,244,0.25);
+    letter-spacing: 0.1em;
+  }
+  .orange-stripe {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2mm;
+    background: linear-gradient(90deg, var(--orange-dk), var(--orange), var(--orange-lt), var(--orange), var(--orange-dk));
+  }
+
+  @media print {
+    body { background: none; }
+    .screen-controls { display: none; }
+    .page { margin: 0; box-shadow: none; page-break-after: always; break-after: page; }
+    .page:last-child { page-break-after: auto; break-after: auto; }
+  }
+  @page { size: A4 portrait; margin: 0; }
+</style>
+</head>
+<body>
+
+<div class="screen-controls">
+  <button class="print-btn" onclick="window.print()">&#8595; Save as PDF</button>
+</div>
+
+<!-- PAGE 1 - COVER -->
+<div class="page" id="page-1">
+  <div class="deco-grid"></div>
+  <div class="deco-glow a"></div>
+  <div class="deco-glow b"></div>
+  <div class="deco-glow c"></div>
+  <div class="deco-corner tl"></div>
+  <div class="deco-corner tr"></div>
+  <div class="deco-corner bl"></div>
+  <div class="deco-corner br"></div>
+  <div class="p1-orange-bar"></div>
+  <div class="p1-inner">
+    <div class="p1-header">
+      <div class="p1-mnm-brand">
+        <img src="https://mnmworks.xyz/logo.png" alt="MnM Logo" style="width:10mm;height:10mm;object-fit:contain;" onerror="this.style.display='none'">
+        <span class="p1-mnm-name">Makers Need More</span>
+      </div>
+      <span class="label">Open-Source Hackathon</span>
+    </div>
+    <div class="p1-center">
+      <span class="p1-presenting">— MnM presents —</span>
+      <svg class="p1-morrow-logo" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="60" cy="18" r="16" fill="#F9F7F4" opacity="0.9"/>
+        <circle cx="91.4" cy="36" r="16" fill="#F9F7F4" opacity="0.75"/>
+        <circle cx="91.4" cy="84" r="16" fill="#F9F7F4" opacity="0.6"/>
+        <circle cx="60" cy="102" r="16" fill="#F9F7F4" opacity="0.45"/>
+        <circle cx="28.6" cy="84" r="16" fill="#F9F7F4" opacity="0.6"/>
+        <circle cx="28.6" cy="36" r="16" fill="#F9F7F4" opacity="0.75"/>
+      </svg>
+      <h1 class="p1-event-name">MORROW</h1>
+      <div class="p1-divider"></div>
+      <p class="p1-tagline">Skip the fake hustle.<br><strong>Build something real.</strong></p>
+      <div class="p1-meta-row">
+        <div class="p1-meta-item">
+          <span class="p1-meta-val">3 Rounds</span>
+          <span class="p1-meta-key">Competition Format</span>
+        </div>
+        <div class="p1-meta-sep"></div>
+        <div class="p1-meta-item">
+          <span class="p1-meta-val">8 Domains</span>
+          <span class="p1-meta-key">Challenge Tracks</span>
+        </div>
+        <div class="p1-meta-sep"></div>
+        <div class="p1-meta-item">
+          <span class="p1-meta-val">Open Source</span>
+          <span class="p1-meta-key">Project Requirement</span>
+        </div>
+      </div>
+      <div class="p1-meta-row" style="gap:3mm;margin-top:3mm;">
+        <span class="pill">Jul – Oct 2026</span>
+        <span class="pill">Online</span>
+        <span class="pill">All Skill Levels</span>
+      </div>
+    </div>
+    <div class="p1-footer">
+      <span class="p1-footer-url">mnmworks.xyz/competitions</span>
+      <span class="p1-page-num">01 / 05</span>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2 - ABOUT + PHILOSOPHY -->
+<div class="page" id="page-2">
+  <div class="deco-grid"></div>
+  <div class="deco-glow a" style="opacity:0.5;"></div>
+  <div class="deco-corner tl"></div>
+  <div class="deco-corner tr"></div>
+  <div class="deco-corner bl"></div>
+  <div class="deco-corner br"></div>
+  <div class="p2-inner">
+    <div class="page-header-bar">
+      <div class="page-header-brand">
+        <img src="https://mnmworks.xyz/logo.png" alt="MnM" style="width:6mm;height:6mm;object-fit:contain;" onerror="this.style.display='none'">
+        <span class="page-header-brand-name">MnM — Makers Need More</span>
+      </div>
+      <span class="label">About the Event</span>
+      <span class="p1-page-num">02 / 05</span>
+    </div>
+    <div class="two-col">
+      <div class="content-block">
+        <span class="label">// What is Morrow?</span>
+        <h2 class="h-section" style="font-size:20pt;">Built to Last<br>Beyond the Weekend</h2>
+        <p class="body-text" style="font-size:8.5pt;">Morrow is an open-source hackathon organised by <span style="color:var(--orange);font-weight:600;">MnM (Makers Need More)</span> where participants build solutions that continue to benefit people even after the event ends.</p>
+        <p class="body-text" style="font-size:8.5pt;">Every project is encouraged to remain open source so others can learn from it, contribute to it, and improve it over time.</p>
+        <div class="quote-block">
+          <p>"Because the best software shouldn't disappear after judging."</p>
+        </div>
+        <div class="stat-row">
+          <div class="stat-box">
+            <div class="val">&#8734;</div>
+            <div class="key">Impact Potential</div>
+          </div>
+          <div class="stat-box">
+            <div class="val">3</div>
+            <div class="key">Rounds</div>
+          </div>
+          <div class="stat-box">
+            <div class="val">100%</div>
+            <div class="key">Open Source</div>
+          </div>
+        </div>
+      </div>
+      <div class="content-block">
+        <span class="label">// Why Open Source?</span>
+        <h2 class="h-section" style="font-size:20pt;">Impact Without<br>an Expiry Date</h2>
+        <p class="body-text" style="font-size:8.5pt;">Every line of code has the potential to help someone else. Whether you're fixing a small issue or building the next great platform, your contribution becomes part of something bigger than a weekend hackathon.</p>
+        <div class="philosophy-card">
+          <p>At Morrow, we believe technology built in the open is technology that grows. Your project doesn't end at the submission deadline — it begins there. By open-sourcing your work, you invite collaboration, learning, and real-world impact.</p>
+        </div>
+        <div style="margin-top:5mm;">
+          <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:16mm;height:16mm;opacity:0.45;">
+            <circle cx="60" cy="18" r="16" fill="#E86020"/>
+            <circle cx="91.4" cy="36" r="16" fill="#E86020" opacity="0.75"/>
+            <circle cx="91.4" cy="84" r="16" fill="#E86020" opacity="0.55"/>
+            <circle cx="60" cy="102" r="16" fill="#E86020" opacity="0.35"/>
+            <circle cx="28.6" cy="84" r="16" fill="#E86020" opacity="0.55"/>
+            <circle cx="28.6" cy="36" r="16" fill="#E86020" opacity="0.75"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div style="padding-top:5mm;border-top:1px solid rgba(232,96,32,0.12);display:flex;align-items:center;justify-content:space-between;">
+      <span class="body-text" style="font-size:7.5pt;">One motive. Thousands of builders. Infinite possibilities.</span>
+      <span class="label" style="font-size:6pt;">mnmworks.xyz</span>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 3 - DOMAINS + ELIGIBILITY -->
+<div class="page" id="page-3">
+  <div class="deco-grid"></div>
+  <div class="deco-glow b" style="opacity:0.5;"></div>
+  <div class="deco-corner tl"></div>
+  <div class="deco-corner tr"></div>
+  <div class="deco-corner bl"></div>
+  <div class="deco-corner br"></div>
+  <div class="p2-inner">
+    <div class="page-header-bar">
+      <div class="page-header-brand">
+        <img src="https://mnmworks.xyz/logo.png" alt="MnM" style="width:6mm;height:6mm;object-fit:contain;" onerror="this.style.display='none'">
+        <span class="page-header-brand-name">MnM — Makers Need More</span>
+      </div>
+      <span class="label">Challenge Domains</span>
+      <span class="p1-page-num">03 / 05</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:7mm;">
+      <div class="content-block">
+        <span class="label">// What You'll Build</span>
+        <h2 class="h-section" style="font-size:20pt;">Choose a Challenge<br>That Matters</h2>
+        <p class="body-text" style="font-size:8.5pt;">Morrow spans eight high-impact domains. Pick the one that resonates with you and build a solution that outlives the competition.</p>
+        <div class="domains-grid">
+          <div class="domain-card">
+            <span class="icon">&#129302;</span>
+            <span class="name">AI for Education</span>
+          </div>
+          <div class="domain-card">
+            <span class="icon">&#127973;</span>
+            <span class="name">Healthcare</span>
+          </div>
+          <div class="domain-card">
+            <span class="icon">&#9855;</span>
+            <span class="name">Accessibility</span>
+          </div>
+          <div class="domain-card">
+            <span class="icon">&#127807;</span>
+            <span class="name">Climate &amp; Sustainability</span>
+          </div>
+          <div class="domain-card">
+            <span class="icon">&#9889;</span>
+            <span class="name">Productivity</span>
+          </div>
+          <div class="domain-card">
+            <span class="icon">&#127963;</span>
+            <span class="name">Civic Tech</span>
+          </div>
+          <div class="domain-card">
+            <span class="icon">&#128161;</span>
+            <span class="name">Open Innovation</span>
+          </div>
+          <div class="domain-card">
+            <span class="icon">&#128295;</span>
+            <span class="name">Developer Tools</span>
+          </div>
+        </div>
+      </div>
+      <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(232,96,32,0.3),transparent);"></div>
+      <div class="content-block">
+        <span class="label">// Eligibility</span>
+        <h2 class="h-section" style="font-size:20pt;">Who Can Participate?</h2>
+        <p class="body-text" style="font-size:8.5pt;">Morrow is open to everyone. No experience requirement — curiosity is enough.</p>
+        <div class="roles-wrap">
+          <span class="role-tag">Developers</span>
+          <span class="role-tag">Designers</span>
+          <span class="role-tag">AI Enthusiasts</span>
+          <span class="role-tag">Students</span>
+          <span class="role-tag">Researchers</span>
+          <span class="role-tag">Beginners</span>
+          <span class="role-tag">Product Thinkers</span>
+          <span class="role-tag">Domain Experts</span>
+        </div>
+        <div class="philosophy-card" style="margin-top:3mm;">
+          <p>Teams can be formed across institutions, cities, and countries. Build with strangers. Ship with friends. The only requirement is a genuine desire to create something meaningful.</p>
+        </div>
+      </div>
+    </div>
+    <div style="padding-top:5mm;border-top:1px solid rgba(232,96,32,0.12);display:flex;align-items:center;justify-content:space-between;">
+      <span class="body-text" style="font-size:7.5pt;">No experience requirement. Curiosity is enough.</span>
+      <span class="label" style="font-size:6pt;">mnmworks.xyz</span>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 4 - PERKS + TIMELINE -->
+<div class="page" id="page-4">
+  <div class="deco-grid"></div>
+  <div class="deco-glow a" style="opacity:0.4;top:auto;bottom:-30mm;left:-20mm;"></div>
+  <div class="deco-corner tl"></div>
+  <div class="deco-corner tr"></div>
+  <div class="deco-corner bl"></div>
+  <div class="deco-corner br"></div>
+  <div class="p2-inner">
+    <div class="page-header-bar">
+      <div class="page-header-brand">
+        <img src="https://mnmworks.xyz/logo.png" alt="MnM" style="width:6mm;height:6mm;object-fit:contain;" onerror="this.style.display='none'">
+        <span class="page-header-brand-name">MnM — Makers Need More</span>
+      </div>
+      <span class="label">Perks &amp; Timeline</span>
+      <span class="p1-page-num">04 / 05</span>
+    </div>
+    <div class="two-col" style="align-items:start;">
+      <div class="content-block">
+        <span class="label">// What You'll Get</span>
+        <h2 class="h-section" style="font-size:18pt;">Not Just Certificates</h2>
+        <p class="body-text" style="font-size:8pt;">Walk away with more than a participation badge.</p>
+        <div class="perks-grid">
+          <div class="perk-item">
+            <div class="perk-check"><svg viewBox="0 0 10 10"><polyline points="1.5,5.5 4,8 8.5,2"/></svg></div>
+            <span>Build a real project that ships</span>
+          </div>
+          <div class="perk-item">
+            <div class="perk-check"><svg viewBox="0 0 10 10"><polyline points="1.5,5.5 4,8 8.5,2"/></svg></div>
+            <span>Collaborate with global builders</span>
+          </div>
+          <div class="perk-item">
+            <div class="perk-check"><svg viewBox="0 0 10 10"><polyline points="1.5,5.5 4,8 8.5,2"/></svg></div>
+            <span>Expert mentorship access</span>
+          </div>
+          <div class="perk-item">
+            <div class="perk-check"><svg viewBox="0 0 10 10"><polyline points="1.5,5.5 4,8 8.5,2"/></svg></div>
+            <span>Open-source contributions</span>
+          </div>
+          <div class="perk-item">
+            <div class="perk-check"><svg viewBox="0 0 10 10"><polyline points="1.5,5.5 4,8 8.5,2"/></svg></div>
+            <span>Recognition &amp; prizes</span>
+          </div>
+          <div class="perk-item">
+            <div class="perk-check"><svg viewBox="0 0 10 10"><polyline points="1.5,5.5 4,8 8.5,2"/></svg></div>
+            <span>Portfolio-worthy work</span>
+          </div>
+          <div class="perk-item">
+            <div class="perk-check"><svg viewBox="0 0 10 10"><polyline points="1.5,5.5 4,8 8.5,2"/></svg></div>
+            <span>Network with top builders</span>
+          </div>
+          <div class="perk-item">
+            <div class="perk-check"><svg viewBox="0 0 10 10"><polyline points="1.5,5.5 4,8 8.5,2"/></svg></div>
+            <span>Lasting open-source legacy</span>
+          </div>
+        </div>
+      </div>
+      <div class="content-block">
+        <span class="label">// Schedule</span>
+        <h2 class="h-section" style="font-size:18pt;">The Timeline</h2>
+        <p class="body-text" style="font-size:8pt;">From your first idea to the final winner announcement.</p>
+        <div class="timeline-list">
+          <div class="tl-row done">
+            <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+            <div class="tl-info">
+              <div class="date">29 Jul 2026</div>
+              <div class="event">Registrations Open</div>
+            </div>
+          </div>
+          <div class="tl-row done">
+            <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+            <div class="tl-info">
+              <div class="date">Till 31 Aug 2026</div>
+              <div class="event">Registration Phase</div>
+            </div>
+          </div>
+          <div class="tl-row done">
+            <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+            <div class="tl-info">
+              <div class="date">1 – 5 Sep 2026</div>
+              <div class="event">Round 1 — Pitch Your Ideas</div>
+            </div>
+          </div>
+          <div class="tl-row done">
+            <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+            <div class="tl-info">
+              <div class="date">15 Sep 2026</div>
+              <div class="event">Round 1 Results Announced</div>
+            </div>
+          </div>
+          <div class="tl-row active">
+            <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+            <div class="tl-info">
+              <div class="date">16 – 20 Sep 2026</div>
+              <div class="event">Round 2 — Project &amp; Prototype Submissions</div>
+            </div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+            <div class="tl-info">
+              <div class="date">25 Sep 2026</div>
+              <div class="event">Round 2 Results Announced</div>
+            </div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+            <div class="tl-info">
+              <div class="date">26 – 30 Sep 2026</div>
+              <div class="event">Round 3 — Final Round</div>
+            </div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+            <div class="tl-info">
+              <div class="date">1 Oct 2026</div>
+              <div class="event">&#127942; Winners Declared</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="padding-top:5mm;border-top:1px solid rgba(232,96,32,0.12);display:flex;align-items:center;justify-content:space-between;">
+      <span class="body-text" style="font-size:7.5pt;">Every contribution lives on. Build something that matters.</span>
+      <span class="label" style="font-size:6pt;">mnmworks.xyz</span>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 5 - CTA / BACK COVER -->
+<div class="page" id="page-5">
+  <div class="deco-grid"></div>
+  <div class="deco-glow a" style="opacity:0.7;"></div>
+  <div class="deco-glow b" style="opacity:0.6;"></div>
+  <div class="deco-glow c"></div>
+  <div class="deco-corner tl"></div>
+  <div class="deco-corner tr"></div>
+  <div class="deco-corner bl"></div>
+  <div class="deco-corner br"></div>
+  <div class="orange-stripe"></div>
+  <div class="p5-inner">
+    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:18mm;height:18mm;opacity:0.85;">
+      <circle cx="60" cy="18" r="16" fill="#F9F7F4"/>
+      <circle cx="91.4" cy="36" r="16" fill="#F9F7F4" opacity="0.8"/>
+      <circle cx="91.4" cy="84" r="16" fill="#F9F7F4" opacity="0.6"/>
+      <circle cx="60" cy="102" r="16" fill="#F9F7F4" opacity="0.4"/>
+      <circle cx="28.6" cy="84" r="16" fill="#F9F7F4" opacity="0.6"/>
+      <circle cx="28.6" cy="36" r="16" fill="#F9F7F4" opacity="0.8"/>
+    </svg>
+    <h2 class="p5-big-text">Ready to<br><em>Build Real?</em></h2>
+    <p class="p5-sub">Stop building for grades. Start building for the world. Morrow is where your best work begins — and doesn't stop.</p>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3mm;">
+      <span class="label" style="font-size:7pt;">Register at</span>
+      <div class="p5-url-box"><span>mnmworks.xyz/competitions</span></div>
+    </div>
+    <div style="display:flex;gap:4mm;flex-wrap:wrap;justify-content:center;margin-top:2mm;">
+      <span class="pill">Registration Open</span>
+      <span class="pill">Jul – Oct 2026</span>
+      <span class="pill">Open Source</span>
+    </div>
+    <div style="height:1px;width:40mm;background:linear-gradient(90deg,transparent,rgba(232,96,32,0.4),transparent);"></div>
+    <p style="font-family:'Inter',sans-serif;font-size:8pt;color:rgba(249,247,244,0.3);text-align:center;max-width:100mm;line-height:1.6;">Morrow is an initiative by MnM — Makers Need More. We believe builders deserve more: more tools, more community, more impact.</p>
+    <div class="p5-footer-row">
+      <div class="p5-footer-brand">
+        <img src="https://mnmworks.xyz/logo.png" alt="MnM" style="width:7mm;height:7mm;object-fit:contain;" onerror="this.style.display='none'">
+        <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:9pt;color:rgba(249,247,244,0.5);letter-spacing:0.05em;">MnM</span>
+      </div>
+      <span class="p5-social">mnmworks.xyz &nbsp;&#183;&nbsp; github.com/makers-need-more</span>
+      <span style="font-family:'Space Mono',monospace;font-size:7pt;color:rgba(249,247,244,0.2);letter-spacing:0.1em;">05 / 05</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

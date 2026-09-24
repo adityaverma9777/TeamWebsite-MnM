@@ -559,13 +559,15 @@
     <section id="partner-carousel"
       style="padding: 6rem 0 4rem; overflow: hidden; position: relative; background-color: #ffffff;">
       <div class="container" style="text-align: center; margin-bottom: 3rem;">
-        <span class="section-label" style="display: inline-block; margin-bottom: 1rem; opacity: 0.9;">// exclusive partner</span>
+        <span class="section-label" style="display: inline-block; margin-bottom: 1rem; opacity: 0.9;">// platform
+          partner</span>
         <h2 class="hack-heading"
           style="font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: -0.02em; line-height: 1.1; max-width: 800px; margin: 0 auto; color: #000000; font-weight: 700;">
           <span class="hack-line" style="display: block;">Empowering</span>
           <span class="hack-line" style="display: block;">The Next Generation</span>
         </h2>
-        <p style="color: #a3a3a3; font-size: 1.1rem; max-width: 600px; margin: 1.5rem auto 0; line-height: 1.6; text-align: center;">
+        <p
+          style="color: #a3a3a3; font-size: 1.1rem; max-width: 600px; margin: 1.5rem auto 0; line-height: 1.6; text-align: center;">
           Backed by the best in the industry to fuel your growth, learning, and innovation journey.</p>
         <div style="margin-top: 1.5rem; display: flex; justify-content: center;">
           <div style="background: white; padding: 12px 24px; border-radius: 50px; display: inline-flex;">
@@ -783,6 +785,453 @@
               startAutoScroll();
             }
           });
+        });
+      </script>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- XYZ SPONSOR CAROUSEL SECTION -->
+    <!-- ============================================== -->
+    <section id="xyz-partner-carousel"
+      style="padding: 6rem 0 4rem; overflow: hidden; position: relative; background-color: #ffffff;">
+      <div class="container" style="text-align: center; margin-bottom: 3rem;">
+        <span class="section-label" style="display: inline-block; margin-bottom: 1rem; opacity: 0.9;">// domain
+          partner</span>
+        <h2 class="hack-heading"
+          style="font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: -0.02em; line-height: 1.1; max-width: 800px; margin: 0 auto; color: #000000; font-weight: 700;">
+          <span class="hack-line" style="display: block;">Your Domain.</span>
+          <span class="hack-line" style="display: block;">Your Identity.</span>
+        </h2>
+        <p
+          style="color: #a3a3a3; font-size: 1.1rem; max-width: 600px; margin: 1.5rem auto 0; line-height: 1.6; text-align: center;">
+          For every website, everywhere® — powered by the next-generation domain extension built for creators, coders,
+          and innovators.</p>
+        <div style="margin-top: 1.5rem; display: flex; justify-content: center;">
+          <div
+            style="background: white; padding: 12px 28px; border-radius: 50px; display: inline-flex; align-items: center; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
+            <img src="/xyz-logo-color.png" alt=".XYZ" style="height: 32px; width: auto; object-fit: contain;">
+          </div>
+        </div>
+      </div>
+
+      <style>
+        .xyz-card {
+          flex: 0 0 550px;
+          aspect-ratio: 16/9;
+          background: #ffffff;
+          border: 1px solid rgba(0, 0, 0, 0.07);
+          border-radius: 24px;
+          padding: 2.5rem 2.8rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          cursor: pointer;
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+          text-decoration: none;
+          overflow: hidden;
+          position: relative;
+          text-align: left;
+        }
+
+        .xyz-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 3px;
+          background: linear-gradient(90deg, #5b3bff, #00bfff, #ccff00);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        .xyz-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 20px 40px rgba(91, 59, 255, 0.12);
+          border-color: rgba(91, 59, 255, 0.15);
+        }
+
+        .xyz-card:hover::before {
+          opacity: 1;
+        }
+
+        .xyz-card-label {
+          font-size: 0.72rem;
+          font-weight: 700;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: #5b3bff;
+          margin-bottom: 0.6rem;
+        }
+
+        .xyz-card-title {
+          font-size: clamp(1.1rem, 2vw, 1.35rem);
+          font-weight: 700;
+          color: #111111;
+          line-height: 1.3;
+          margin-bottom: 0.9rem;
+        }
+
+        .xyz-card-body {
+          font-size: 0.9rem;
+          color: #666666;
+          line-height: 1.65;
+          flex: 1;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 5;
+          -webkit-box-orient: vertical;
+        }
+
+        .xyz-card-footer {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-top: 1.2rem;
+          padding-top: 1rem;
+          border-top: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .xyz-card-tag {
+          font-size: 0.72rem;
+          font-weight: 600;
+          color: #999999;
+          letter-spacing: 0.06em;
+        }
+
+        .xyz-card-arrow {
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+          background: #f0eeff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: background 0.2s ease;
+        }
+
+        .xyz-card:hover .xyz-card-arrow {
+          background: #5b3bff;
+        }
+
+        .xyz-card:hover .xyz-card-arrow svg {
+          stroke: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+          .xyz-card {
+            flex: 0 0 calc(100vw - 48px);
+            padding: 1.8rem 1.6rem;
+          }
+
+          .xyz-carousel-wrapper {
+            padding: 0 8px !important;
+          }
+
+          .xyz-carousel-track {
+            gap: 16px !important;
+          }
+
+          .xyz-carousel-control {
+            display: none !important;
+          }
+        }
+      </style>
+
+      <div class="xyz-carousel-wrapper"
+        style="position: relative; width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 60px;">
+        <button class="xyz-carousel-control xyz-prev" aria-label="Previous"
+          style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.1); color: #333; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; transition: all 0.3s ease;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <div class="xyz-carousel-track-container" style="overflow: hidden; width: 100%; padding: 20px 0;">
+          <div class="xyz-carousel-track" style="display: flex; gap: 32px; align-items: stretch; width: max-content;">
+            <a href="https://gen.xyz/" target="_blank" class="xyz-card">
+              <div>
+                <div class="xyz-card-label">Tagline</div>
+                <div class="xyz-card-title">For every website, everywhere®</div>
+                <div class="xyz-card-body">Made with ❤ in California for Generations X, Y, and Z. .xyz gives you the
+                  freedom of choice and the spark to innovate. Go you creators, you rebels, you coders and developers,
+                  you creatives, you inventors and innovators. Go #GenXYZ!</div>
+              </div>
+              <div class="xyz-card-footer">
+                <span class="xyz-card-tag">gen.xyz · Since June 2014</span>
+                <div class="xyz-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b3bff"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg></div>
+              </div>
+            </a>
+            <a href="https://gen.xyz/" target="_blank" class="xyz-card">
+              <div>
+                <div class="xyz-card-label">About .xyz</div>
+                <div class="xyz-card-title">The Domain for the Next Generation</div>
+                <div class="xyz-card-body">With influential adopters like MIT (Engine.xyz), the co-founders of Skype
+                  (Starship.xyz), Block (Block.xyz), and Paramount (Paramount.xyz), along with millions of others in
+                  over 230 countries and territories worldwide, .xyz is the go-to domain extension for the next
+                  generation of internet users.</div>
+              </div>
+              <div class="xyz-card-footer">
+                <span class="xyz-card-tag">230+ Countries &amp; Territories</span>
+                <div class="xyz-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b3bff"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg></div>
+              </div>
+            </a>
+            <a href="https://gen.xyz/" target="_blank" class="xyz-card">
+              <div>
+                <div class="xyz-card-label">Overview</div>
+                <div class="xyz-card-title">The Alphabet Ends in XYZ</div>
+                <div class="xyz-card-body">The alphabet ends in xyz, and so should your domain name. It's short and
+                  memorable, it's catchy, and it connects you with Generations X, Y, and Z. Just like you use x, y, and
+                  z to take on any meaning in a sentence, the .xyz domain can be whatever you want it to be.</div>
+              </div>
+              <div class="xyz-card-footer">
+                <span class="xyz-card-tag">Short &amp; Memorable</span>
+                <div class="xyz-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b3bff"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg></div>
+              </div>
+            </a>
+            <a href="https://gen.xyz/" target="_blank" class="xyz-card">
+              <div>
+                <div class="xyz-card-label">Impact</div>
+                <div class="xyz-card-title">Hit the Reset Button on the Internet</div>
+                <div class="xyz-card-body">.xyz has become the go-to domain ending for Generations X, Y and Z: the next
+                  generation of internet users — by hitting the reset button on the internet and giving millions of new
+                  internet users around the world a chance to get the domain name they want, with a domain ending that
+                  just makes sense.</div>
+              </div>
+              <div class="xyz-card-footer">
+                <span class="xyz-card-tag">Millions of Registrations Worldwide</span>
+                <div class="xyz-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b3bff"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg></div>
+              </div>
+            </a>
+            <a href="https://gen.xyz/" target="_blank" class="xyz-card">
+              <div>
+                <div class="xyz-card-label">Get Creative</div>
+                <div class="xyz-card-title">Your Domain Can Be Anything</div>
+                <div class="xyz-card-body">Get creative with a great name to the left of .xyz! Your clients and friends
+                  will remember your online presence with a .xyz domain. Just like you use "xyz" to take on any meaning
+                  in a sentence, the .xyz domain can be whatever you want it to be.</div>
+              </div>
+              <div class="xyz-card-footer">
+                <span class="xyz-card-tag">For Creators &amp; Rebels</span>
+                <div class="xyz-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b3bff"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg></div>
+              </div>
+            </a>
+            <a href="https://gen.xyz/" target="_blank" class="xyz-card">
+              <div>
+                <div class="xyz-card-label">Community</div>
+                <div class="xyz-card-title">Go #GenXYZ</div>
+                <div class="xyz-card-body">Go you creators, you rebels, you coders and developers, you creatives, you
+                  inventors and innovators. .xyz gives you the freedom of choice and the spark to innovate. Available in
+                  over 230 countries and territories worldwide — the domain for everyone, everywhere.</div>
+              </div>
+              <div class="xyz-card-footer">
+                <span class="xyz-card-tag">#GenXYZ · gen.xyz</span>
+                <div class="xyz-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b3bff"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg></div>
+              </div>
+            </a>
+            <a href="https://gen.xyz/" target="_blank" class="xyz-card">
+              <div>
+                <div class="xyz-card-label">Tagline</div>
+                <div class="xyz-card-title">For every website, everywhere®</div>
+                <div class="xyz-card-body">Made with ❤ in California for Generations X, Y, and Z. .xyz gives you the
+                  freedom of choice and the spark to innovate. Go you creators, you rebels, you coders and developers,
+                  you creatives, you inventors and innovators. Go #GenXYZ!</div>
+              </div>
+              <div class="xyz-card-footer">
+                <span class="xyz-card-tag">gen.xyz · Since June 2014</span>
+                <div class="xyz-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b3bff"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg></div>
+              </div>
+            </a>
+            <a href="https://gen.xyz/" target="_blank" class="xyz-card">
+              <div>
+                <div class="xyz-card-label">About .xyz</div>
+                <div class="xyz-card-title">The Domain for the Next Generation</div>
+                <div class="xyz-card-body">With influential adopters like MIT (Engine.xyz), the co-founders of Skype
+                  (Starship.xyz), Block (Block.xyz), and Paramount (Paramount.xyz), along with millions of others in
+                  over 230 countries and territories worldwide, .xyz is the go-to domain extension for the next
+                  generation of internet users.</div>
+              </div>
+              <div class="xyz-card-footer">
+                <span class="xyz-card-tag">230+ Countries &amp; Territories</span>
+                <div class="xyz-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b3bff"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg></div>
+              </div>
+            </a>
+            <a href="https://gen.xyz/" target="_blank" class="xyz-card">
+              <div>
+                <div class="xyz-card-label">Overview</div>
+                <div class="xyz-card-title">The Alphabet Ends in XYZ</div>
+                <div class="xyz-card-body">The alphabet ends in xyz, and so should your domain name. It's short and
+                  memorable, it's catchy, and it connects you with Generations X, Y, and Z. Just like you use x, y, and
+                  z to take on any meaning in a sentence, the .xyz domain can be whatever you want it to be.</div>
+              </div>
+              <div class="xyz-card-footer">
+                <span class="xyz-card-tag">Short &amp; Memorable</span>
+                <div class="xyz-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b3bff"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg></div>
+              </div>
+            </a>
+            <a href="https://gen.xyz/" target="_blank" class="xyz-card">
+              <div>
+                <div class="xyz-card-label">Impact</div>
+                <div class="xyz-card-title">Hit the Reset Button on the Internet</div>
+                <div class="xyz-card-body">.xyz has become the go-to domain ending for Generations X, Y and Z: the next
+                  generation of internet users — by hitting the reset button on the internet and giving millions of new
+                  internet users around the world a chance to get the domain name they want, with a domain ending that
+                  just makes sense.</div>
+              </div>
+              <div class="xyz-card-footer">
+                <span class="xyz-card-tag">Millions of Registrations Worldwide</span>
+                <div class="xyz-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b3bff"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg></div>
+              </div>
+            </a>
+            <a href="https://gen.xyz/" target="_blank" class="xyz-card">
+              <div>
+                <div class="xyz-card-label">Get Creative</div>
+                <div class="xyz-card-title">Your Domain Can Be Anything</div>
+                <div class="xyz-card-body">Get creative with a great name to the left of .xyz! Your clients and friends
+                  will remember your online presence with a .xyz domain. Just like you use "xyz" to take on any meaning
+                  in a sentence, the .xyz domain can be whatever you want it to be.</div>
+              </div>
+              <div class="xyz-card-footer">
+                <span class="xyz-card-tag">For Creators &amp; Rebels</span>
+                <div class="xyz-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b3bff"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg></div>
+              </div>
+            </a>
+            <a href="https://gen.xyz/" target="_blank" class="xyz-card">
+              <div>
+                <div class="xyz-card-label">Community</div>
+                <div class="xyz-card-title">Go #GenXYZ</div>
+                <div class="xyz-card-body">Go you creators, you rebels, you coders and developers, you creatives, you
+                  inventors and innovators. .xyz gives you the freedom of choice and the spark to innovate. Available in
+                  over 230 countries and territories worldwide — the domain for everyone, everywhere.</div>
+              </div>
+              <div class="xyz-card-footer">
+                <span class="xyz-card-tag">#GenXYZ · gen.xyz</span>
+                <div class="xyz-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b3bff"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg></div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <button class="xyz-carousel-control xyz-next" aria-label="Next"
+          style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.1); color: #333; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; transition: all 0.3s ease;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <style>
+        .xyz-carousel-control:hover {
+          background: #5b3bff !important;
+          color: white !important;
+          border-color: #5b3bff !important;
+          transform: translateY(-50%) scale(1.1) !important;
+        }
+
+        .xyz-carousel-control:hover svg {
+          stroke: white;
+        }
+      </style>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const xyzTrack = document.querySelector('.xyz-carousel-track');
+          const xyzPrevBtn = document.querySelector('.xyz-prev');
+          const xyzNextBtn = document.querySelector('.xyz-next');
+          let xyzAutoInterval;
+          let xyzAnimating = false;
+          const getXyzStep = () => {
+            const card = xyzTrack.children[0];
+            const style = window.getComputedStyle(xyzTrack);
+            const gap = parseFloat(style.gap) || 0;
+            return card.offsetWidth + gap;
+          };
+          const xyzNext = () => {
+            if (xyzAnimating || document.hidden) return;
+            xyzAnimating = true;
+            xyzTrack.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+            xyzTrack.style.transform = `translateX(-${getXyzStep()}px)`;
+            setTimeout(() => {
+              xyzTrack.style.transition = 'none';
+              xyzTrack.appendChild(xyzTrack.children[0]);
+              xyzTrack.style.transform = 'translateX(0)';
+              xyzAnimating = false;
+            }, 500);
+          };
+          const xyzPrev = () => {
+            if (xyzAnimating) return;
+            xyzAnimating = true;
+            xyzTrack.style.transition = 'none';
+            const step = getXyzStep();
+            xyzTrack.insertBefore(xyzTrack.lastElementChild, xyzTrack.children[0]);
+            xyzTrack.style.transform = `translateX(-${step}px)`;
+            xyzTrack.offsetHeight;
+            xyzTrack.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+            xyzTrack.style.transform = 'translateX(0)';
+            setTimeout(() => { xyzAnimating = false; }, 500);
+          };
+          const startXyz = () => {
+            clearInterval(xyzAutoInterval);
+            xyzAutoInterval = setInterval(xyzNext, 2800);
+          };
+          xyzNextBtn.addEventListener('click', () => { xyzNext(); startXyz(); });
+          xyzPrevBtn.addEventListener('click', () => { xyzPrev(); startXyz(); });
+          xyzTrack.addEventListener('mouseenter', () => clearInterval(xyzAutoInterval));
+          xyzTrack.addEventListener('mouseleave', startXyz);
+          let xyzTouchStartX = 0;
+          xyzTrack.addEventListener('touchstart', e => {
+            xyzTouchStartX = e.changedTouches[0].screenX;
+            clearInterval(xyzAutoInterval);
+          }, { passive: true });
+          xyzTrack.addEventListener('touchend', e => {
+            const dx = xyzTouchStartX - e.changedTouches[0].screenX;
+            if (dx > 50) xyzNext();
+            if (dx < -50) xyzPrev();
+            startXyz();
+          }, { passive: true });
+          document.addEventListener('visibilitychange', () => {
+            document.hidden ? clearInterval(xyzAutoInterval) : startXyz();
+          });
+          startXyz();
         });
       </script>
     </section>
