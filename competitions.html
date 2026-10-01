@@ -725,6 +725,141 @@
       border-color: #000;
       transform: scale(1.02);
     }
+    .winner-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 32px;
+      border-radius: 16px;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s;
+    }
+    .winner-card.gold { border-color: rgba(255, 215, 0, 0.3); }
+    .winner-card.silver { border-color: rgba(192, 192, 192, 0.3); }
+    .winner-card.bronze { border-color: rgba(205, 127, 50, 0.3); }
+    .winner-card:hover { transform: translateY(-5px); }
+    .winner-card.gold:hover { box-shadow: 0 0 20px rgba(255, 215, 0, 0.15); border-color: rgba(255, 215, 0, 0.6); }
+    .winner-card.silver:hover { box-shadow: 0 0 20px rgba(192, 192, 192, 0.15); border-color: rgba(192, 192, 192, 0.6); }
+    .winner-card.bronze:hover { box-shadow: 0 0 20px rgba(205, 127, 50, 0.15); border-color: rgba(205, 127, 50, 0.6); }
+    .trophy {
+      font-size: 48px;
+      margin-bottom: 16px;
+      text-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
+    .winner-team {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #F9F7F4;
+      margin-bottom: 8px;
+    }
+    .winner-project {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 18px;
+      color: #E86020;
+      margin-bottom: 24px;
+      font-weight: 500;
+    }
+    .winner-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .winner-links a {
+      color: #F9F7F4;
+      text-decoration: none;
+      font-family: 'Commit Mono', monospace;
+      font-size: 13px;
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      transition: background 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .winner-links a:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    .winner-members h4 {
+      font-family: 'Commit Mono', monospace;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.4);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      letter-spacing: 0.1em;
+    }
+    .member {
+      font-family: 'Satoshi', sans-serif;
+      margin-bottom: 12px;
+      padding-left: 16px;
+      border-left: 2px solid rgba(255, 255, 255, 0.1);
+    }
+    .member-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: #F9F7F4;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .member-role {
+      font-size: 12px;
+      color: #E86020;
+      background: rgba(232, 96, 32, 0.1);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    .member-org {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 4px;
+    }
+
+    .winners-grid-layout {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      margin-top: 64px;
+    }
+    
+    @media (max-width: 768px) {
+      .winners-grid-layout {
+        grid-template-columns: 1fr;
+      }
+      .winner-card {
+        padding: 24px 20px;
+      }
+      .winner-team {
+        font-size: 24px;
+      }
+      .winner-project {
+        font-size: 16px;
+      }
+      .trophy {
+        font-size: 40px;
+        margin-bottom: 12px;
+      }
+      .member-name {
+        flex-wrap: wrap;
+        row-gap: 4px;
+      }
+      .member-role {
+        margin-top: 2px;
+      }
+      .winner-links {
+        gap: 8px;
+      }
+      .winner-links a {
+        font-size: 12px;
+        padding: 8px 12px;
+        flex: 1 1 auto;
+        justify-content: center;
+        text-align: center;
+      }
+    }
   </style>
 </head>
 
@@ -955,27 +1090,118 @@
                 <button id="viewResultsBtn" class="view-results-btn">View Results</button>
             </div>
           </div>
-          <div class="tl-item active">
+          <div class="tl-item past">
             <div class="tl-marker"></div>
             <span class="tl-date">16 – 20 Sep 2026</span>
             <div class="tl-content">Round 2 : Project & Prototype Submissions</div>
           </div>
-          <div class="tl-item">
+          <div class="tl-item past">
             <div class="tl-marker"></div>
             <span class="tl-date">25 Sep 2026</span>
             <div class="tl-content">Round 2 Results</div>
           </div>
-          <div class="tl-item">
+          <div class="tl-item past">
             <div class="tl-marker"></div>
             <span class="tl-date">26 – 30 Sep 2026</span>
             <div class="tl-content">Round 3 : Final Round</div>
           </div>
-          <div class="tl-item">
-            <div class="tl-marker"></div>
-            <span class="tl-date">1 Oct 2026</span>
-            <div class="tl-content">Winners Declared</div>
+          <div class="tl-item active">
+            <div class="tl-marker" style="background: #FFD700; border-color: #FFD700; box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);"></div>
+            <span class="tl-date" style="color: #FFD700; font-weight: bold; font-size: 14px;">1 Oct 2026</span>
+            <div class="tl-content" style="color: #FFD700; font-size: 32px; font-weight: 700; text-transform: uppercase; text-shadow: 0 0 15px rgba(255,215,0,0.3);">Winners Declared</div>
           </div>
         </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <span class="section-label animate-up">// hall of fame</span>
+        <h2 class="section-title animate-up">Morrow 1.0 <span>Champions</span></h2>
+        <div class="winners-grid-layout animate-up d-1">
+          <div class="winner-card gold">
+            <div class="trophy">🏆</div>
+            <div class="winner-team">Git Commit</div>
+            <div class="winner-project">Drishti Kavach - AI Enhanced Indian Railways Security System</div>
+            <div class="winner-links">
+              <a href="https://github.com/MakersNeedMore-MnM/Round2-1mj23cs012" target="_blank">GitHub</a>
+              <a href="https://alvinxsonny.github.io/drishti-kavach/" target="_blank">Live App</a>
+              <a href="/Morrow%201.0%20Winners/6abd2de3d5652_drishti_kavach.pdf" target="_blank">Presentation</a>
+            </div>
+            <div class="winner-members">
+              <h4>Team Members</h4>
+              <div class="member">
+                <div class="member-name">Alvin Sonny <span class="member-role">Team Leader</span></div>
+                <div class="member-org">MVJ College of Engineering &bull; B.Tech CSE (4th Year)</div>
+              </div>
+              <div class="member">
+                <div class="member-name">Ganesha Thejaswi V</div>
+                <div class="member-org">MVJ College of Engineering &bull; B.Tech CSE (4th Year)</div>
+              </div>
+              <div class="member">
+                <div class="member-name">Gowri Krishnan</div>
+                <div class="member-org">MVJ College of Engineering &bull; B.Tech CSE (4th Year)</div>
+              </div>
+              <div class="member">
+                <div class="member-name">Ananya Sanjiv</div>
+                <div class="member-org">MVJ College of Engineering &bull; B.Tech CSE (4th Year)</div>
+              </div>
+            </div>
+          </div>
+          <div class="winner-card silver">
+            <div class="trophy">🥈</div>
+            <div class="winner-team">watchdogs</div>
+            <div class="winner-project">A.N.T.A.R.</div>
+            <div class="winner-links">
+              <a href="https://github.com/MakersNeedMore-MnM/Round2-madhurkarande3.git" target="_blank">GitHub</a>
+              <a href="https://antar-ebon.vercel.app/" target="_blank">Live App</a>
+            </div>
+            <div class="winner-members">
+              <h4>Team Members</h4>
+              <div class="member">
+                <div class="member-name">Madhur Karande <span class="member-role">Team Leader</span></div>
+                <div class="member-org">Physics Wallah &bull; 12th Grade</div>
+              </div>
+              <div class="member">
+                <div class="member-name">Arahant Kankal</div>
+                <div class="member-org">Symbiosis College of Arts &amp; Commerce (SCAC) &bull; 12th Grade</div>
+              </div>
+              <div class="member">
+                <div class="member-name">Mrigaj Waikar</div>
+                <div class="member-org">Symbiosis College of Arts &amp; Commerce (SCAC) &bull; 12th Grade</div>
+              </div>
+            </div>
+          </div>
+          <div class="winner-card bronze">
+            <div class="trophy">🥉</div>
+            <div class="winner-team">dsa files</div>
+            <div class="winner-project">Kavach Debug Mobile App</div>
+            <div class="winner-links">
+              <a href="https://github.com/MakersNeedMore-MnM/Round2-naman-verma1084" target="_blank">GitHub</a>
+              <a href="https://youtu.be/BepUM3pDUrQ?si=A7ojV1mBagJMY_Cg" target="_blank">Video Demo</a>
+              <a href="https://github.com/MakersNeedMore-MnM/Round2-naman-verma1084/releases/latest/download/kavach-debug.apk" target="_blank">Download APK</a>
+              <a href="/Morrow%201.0%20Winners/6a9ad0e01bfd2_kavachpdf.pdf" target="_blank">Presentation</a>
+            </div>
+            <div class="winner-members">
+              <h4>Team Members</h4>
+              <div class="member">
+                <div class="member-name">Naman Verma <span class="member-role">Team Leader</span></div>
+                <div class="member-org">BBDNIIT, Lucknow &bull; B.Tech CSE (2nd Year)</div>
+              </div>
+              <div class="member">
+                <div class="member-name">Palak Prajapati</div>
+                <div class="member-org">BBDNIIT, Lucknow &bull; B.Tech CSE (2nd Year)</div>
+              </div>
+              <div class="member">
+                <div class="member-name">Prameet Singh</div>
+                <div class="member-org">BBDNIIT, Lucknow &bull; B.Tech CSE (2nd Year)</div>
+              </div>
+              <div class="member">
+                <div class="member-name">Om Pratap Singh</div>
+                <div class="member-org">BBDNIIT, Lucknow &bull; B.Tech CSE (2nd Year)</div>
+              </div>
+          </div>
+        </div>
+        <div style="height: 80px;"></div>
       </div>
     </section>
   </main>
