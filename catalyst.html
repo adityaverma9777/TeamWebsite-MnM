@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalyst | Solo Coding Hackathon</title>
+  <link rel="icon" type="image/png" href="/catalyst/catalyst_square_logo_with_bg.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="catalyst.css">
+</head>
+
+<body>
+  <div style="overflow-x: clip; max-width: 100vw; width: 100%; position: relative;">
+  <!-- Global Background -->
+  <div class="cat-global-bg">
+    <div class="cat-orb cat-orb-1"></div>
+    <div class="cat-orb cat-orb-2"></div>
+    <div class="cat-orb cat-orb-3"></div>
+    <div class="cat-orb cat-orb-4"></div>
+    <div class="cat-orb cat-orb-5"></div>
+    <div class="cat-orb cat-orb-6"></div>
+    <div class="cat-orb cat-orb-7"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="cat-nav">
+    <div class="cat-container cat-nav-inner">
+      <a href="/catalyst.html" class="cat-brand" style="gap: 8px;">
+        <img src="/catalyst/catalyst_square_logo_with_bg.png" alt="MnM" class="cat-brand-img">
+        <img src="/catalyst/catalyst_complete_logo.png" alt="Catalyst" style="height: 24px; width: auto; filter: brightness(0) invert(1);">
+      </a>
+      <div class="cat-nav-links">
+        <a href="#about">About</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#prizes">Prizes</a>
+      </div>
+      <div class="cat-nav-actions">
+        <a href="https://chat.whatsapp.com/Leql1T248Ls3hKwSEpCurB" target="_blank"
+          class="cat-btn cat-btn-secondary">Join WhatsApp</a>
+        <a href="javascript:void(0)" class="cat-btn cat-btn-primary">Starting Soon</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="cat-hero" id="hero">
+    <div class="cat-container cat-hero-content">
+      <img src="/catalyst/BuildwithAI_Black_BG.png" alt="Build with AI" class="cat-hero-buildwithai-top">
+      <img src="/catalyst/catalyst_complete_logo.png" alt="CATALYST" class="cat-hero-logo">
+      <h1 class="cat-hero-title">
+        The Ultimate <br class="cat-mobile-br"><span>Solo Coding</span> <br class="cat-mobile-br">Hackathon.
+      </h1>
+      <p class="cat-hero-subtitle">
+        One builder. One prompt. One day to ship.
+      </p>
+      <div class="cat-hero-cta">
+        <a href="javascript:void(0)" class="cat-btn cat-btn-primary cat-btn-large">Registrations Starting Soon</a>
+      </div>
+
+      <div class="cat-hero-partners">
+        <div class="cat-partner-item">
+          <span class="cat-partner-label">Organiser</span>
+          <img src="/catalyst/mnm_logo_with_text_MnM_for_the_dark_bg.png" alt="MnM" class="cat-partner-mnm">
+        </div>
+        <div class="cat-partner-item">
+          <span class="cat-partner-label">AI Engine</span>
+          <img src="/catalyst/Google-Antigravity-Icon.png" alt="Google Antigravity" class="cat-partner-ag">
+        </div>
+        <div class="cat-partner-item">
+          <span class="cat-partner-label">Community Partner</span>
+          <img src="/catalyst/gdg_cropped.png" alt="Google Developers" class="cat-partner-gdg">
+        </div>
+        <div class="cat-partner-item">
+          <span class="cat-partner-label">Platform Partner</span>
+          <img src="/catalyst/H2S_White.png" alt="Hack2skill" class="cat-partner-h2s">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section id="about" class="cat-section">
+    <div class="cat-container">
+      <div class="cat-about-grid">
+        <div class="cat-about-text">
+          <h2 class="cat-section-title">What is Catalyst?</h2>
+          <p class="cat-lead">Catalyst is a high-energy, solo-participation coding hackathon designed to test your
+            ability to build with AI.</p>
+          <p class="cat-body">Brought to you by MnM in collaboration with PromptWars, you'll receive a surprise problem
+            statement on the day of the event. Your challenge? Use AI tools and sharp prompting to build a working
+            solution in just a few intense hours.</p>
+        </div>
+        <div class="cat-bento" id="bento-grid">
+          <div class="cat-3d-card card-spotlight">
+            <h3>Date</h3>
+            <p>8 Nov 2026</p>
+          </div>
+          <div class="cat-3d-card card-spotlight">
+            <h3>Format</h3>
+            <p>Solo Only</p>
+          </div>
+          <div class="cat-3d-card card-spotlight cat-bento-large">
+            <h3>Prize Pool</h3>
+            <p class="cat-highlight">₹15K – ₹50K</p>
+            <span style="color:var(--text-muted);font-size:0.875rem">Scales with number of participants.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- What is PromptWars -->
+      <div class="cat-about-grid" style="margin-top: 160px;">
+        <div class="cat-about-text">
+          <h2 class="cat-section-title">What is PromptWars?</h2>
+          <p class="cat-body">PromptWars is a challenge for anyone who loves building solutions, whether you’re a
+            developer, designer, professional, or just someone with passion for coding and having big ideas.</p>
+          <p class="cat-body">We're inviting everyone to this prompt-based challenge, where you’ll create solutions by
+            simply prompting and building using AI. Participants will showcase their problem-solving skills and stand a
+            chance to win big prizes.</p>
+        </div>
+        <div class="cat-bento" style="display: flex; justify-content: center; align-items: center;">
+          <img src="/catalyst/standee.png" alt="PromptWars Standee"
+            style="max-height: 450px; max-width: 100%; width: auto; object-fit: contain; border-radius: 24px; box-shadow: 0 16px 40px rgba(0,0,0,0.3);">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Antigravity Setup Section -->
+  <section id="setup" class="cat-section" style="padding-top: 80px; padding-bottom: 120px;">
+    <div class="cat-container">
+      <div class="cat-section-header" style="max-width: 1000px; text-align: left; margin: 0 0 64px 0;">
+        <h2 class="cat-section-title"
+          style="text-align: left; background: none; -webkit-text-fill-color: initial; color: white; display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+          Getting started with <img src="/catalyst/ag-logo-lockup.png" alt="Google Antigravity" class="cat-ag-logo">
+        </h2>
+        <p class="cat-body"
+          style="font-weight: 500; font-size: 1.25rem; color: #fff; max-width: 900px; margin-bottom: 24px; line-height: 1.6;">
+          Get a head start: <span style="color: var(--text-muted); font-weight: 400;">Follow these steps to install
+            Anitgravity, so you're ready to build the moment you walk through the doors.</span>
+        </p>
+        <a href="https://antigravity.google" target="_blank"
+          style="color: #00d2ff; text-decoration: none; font-size: 1.5rem; font-weight: 500; font-family: var(--font-heading); display: inline-block;">antigravity.google</a>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 32px;">
+
+        <!-- Step 1 -->
+        <div class="cat-3d-card card-spotlight cat-step-card">
+          <div class="cat-step-layout">
+            <div class="cat-step-left">
+              <div
+                style="font-size: 0.875rem; color: #00d2ff; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; font-weight: 600;">
+                Step 01</div>
+              <h3
+                style="color: #fff; font-family: var(--font-heading); font-size: 1.75rem; font-weight: 400; line-height: 1.2; margin: 0;">
+                Download & Install</h3>
+            </div>
+            <div class="cat-step-right">
+              <ul
+                style="color: var(--text-muted); font-size: 1rem; line-height: 1.6; padding-left: 20px; list-style-type: disc; display: flex; flex-direction: column; gap: 16px;">
+                <li><strong style="color: #fff; font-weight: 600;">Access the Platform:</strong> Navigate to <a
+                    href="https://antigravity.google"
+                    style="color: #fff; text-decoration: underline;">antigravity.google</a> and download the official
+                  installer.</li>
+                <li><strong style="color: #fff; font-weight: 600;">Select OS Architecture:</strong> Download the
+                  appropriate build for your development environment (Windows, macOS, or Linux).</li>
+                <li><strong style="color: #fff; font-weight: 600;">Execute Installation:</strong> Run the installer. The
+                  setup process is streamlined and built upon the familiar VS Code foundation.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="cat-3d-card card-spotlight cat-step-card">
+          <div class="cat-step-layout">
+            <div class="cat-step-left">
+              <div
+                style="font-size: 0.875rem; color: #00d2ff; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; font-weight: 600;">
+                Step 02</div>
+              <h3
+                style="color: #fff; font-family: var(--font-heading); font-size: 1.75rem; font-weight: 400; line-height: 1.2; margin: 0;">
+                Initial Setup</h3>
+            </div>
+            <div class="cat-step-right">
+              <p style="color: var(--text-main); font-size: 1rem; margin-bottom: 16px;">Launch the application to
+                initialize your environment configuration:</p>
+              <ul
+                style="color: var(--text-muted); font-size: 1rem; line-height: 1.6; padding-left: 20px; list-style-type: disc; display: flex; flex-direction: column; gap: 16px;">
+                <li><strong style="color: #fff; font-weight: 600;">Authentication:</strong> Sign in using your Google
+                  account to access the preview build.</li>
+                <li><strong style="color: #fff; font-weight: 600;">Environment Configuration:</strong> Seamlessly import
+                  your existing themes and keybindings from VS Code or Cursor, or initialize a fresh environment.</li>
+                <li><strong style="color: #fff; font-weight: 600;">AI Policy Selection:</strong> Define the autonomy
+                  level for your AI assistant.<br>
+                  <span style="font-size: 0.95rem; margin-top: 6px; display: inline-block; color: #00d2ff;"><strong
+                      style="font-weight: 600;">Recommended:</strong> Agent-Assisted (The AI handles safe tasks
+                    autonomously but requires authorization before executing major changes).</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="cat-3d-card card-spotlight cat-step-card">
+          <div class="cat-step-layout">
+            <div class="cat-step-left">
+              <div
+                style="font-size: 0.875rem; color: #00d2ff; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; font-weight: 600;">
+                Step 03</div>
+              <h3
+                style="color: #fff; font-family: var(--font-heading); font-size: 1.75rem; font-weight: 400; line-height: 1.2; margin: 0;">
+                Workspace Architecture</h3>
+            </div>
+            <div class="cat-step-right">
+              <p style="color: var(--text-main); font-size: 1rem; margin-bottom: 16px;">Antigravity requires a
+                dedicated, isolated workspace to execute operations.</p>
+              <ul
+                style="color: var(--text-muted); font-size: 1rem; line-height: 1.6; padding-left: 20px; list-style-type: disc; display: flex; flex-direction: column; gap: 16px;">
+                <li><strong style="color: #fff; font-weight: 600;">Launch Mission Control:</strong> Access the Agent
+                  Manager from the central dashboard.</li>
+                <li><strong style="color: #fff; font-weight: 600;">Initialize Environment:</strong> Select "+ Open
+                  Workspace" to create a dedicated context for the agent.</li>
+                <li><strong style="color: #fff; font-weight: 600;">Directory Allocation:</strong> Create and select a
+                  new local directory. This serves as the secure environment where the agent will generate your project
+                  architecture.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="cat-3d-card card-spotlight cat-step-card">
+          <div class="cat-step-layout">
+            <div class="cat-step-left">
+              <div
+                style="font-size: 0.875rem; color: #00d2ff; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; font-weight: 600;">
+                Step 04</div>
+              <h3
+                style="color: #fff; font-family: var(--font-heading); font-size: 1.75rem; font-weight: 400; line-height: 1.2; margin: 0;">
+                Prompt Deployment</h3>
+            </div>
+            <div class="cat-step-right">
+              <p style="color: var(--text-main); font-size: 1rem; margin-bottom: 16px;">Initiate development by
+                communicating directly with the Agent Side Panel.</p>
+              <ul
+                style="color: var(--text-muted); font-size: 1rem; line-height: 1.6; padding-left: 20px; list-style-type: disc; display: flex; flex-direction: column; gap: 16px;">
+                <li><strong style="color: #fff; font-weight: 600;">Activate Interface:</strong> Open the panel using the
+                  primary hotkey (Cmd + L or Ctrl + L).</li>
+                <li><strong style="color: #fff; font-weight: 600;">Engage Planning Mode:</strong> Enable "Planning Mode"
+                  to instruct the AI to architect a comprehensive solution strategy before executing code.</li>
+                <li><strong style="color: #fff; font-weight: 600;">Issue Directives:</strong> Provide explicit,
+                  functional specifications. <em>(e.g., "Develop a responsive dashboard interface with dark-mode support
+                    using HTML and CSS").</em></li>
+                <li><strong style="color: #fff; font-weight: 600;">Review & Validate:</strong> Monitor the agent's
+                  autonomous file generation. Use the built-in Browser Preview to instantly validate your build in
+                  real-time.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section id="timeline" class="cat-section cat-darker">
+    <div class="cat-container">
+      <div class="cat-section-header">
+        <h2 class="cat-section-title">Event Schedule</h2>
+        <p class="cat-section-desc">8 November 2026</p>
+      </div>
+
+      <div class="cat-timeline-wrapper">
+        <div class="cat-timeline-item">
+          <div class="cat-time">10:00 AM</div>
+          <div class="cat-event">
+            <h4>Challenge Reveal</h4>
+            <p>The surprise problem is announced on WhatsApp.</p>
+          </div>
+        </div>
+        <div class="cat-timeline-item cat-active">
+          <div class="cat-time">10:30 - 4:30 PM</div>
+          <div class="cat-event">
+            <h4>Build Window</h4>
+            <p>6 hours of uninterrupted coding.</p>
+          </div>
+        </div>
+        <div class="cat-timeline-item">
+          <div class="cat-time">4:30 - 5:00 PM</div>
+          <div class="cat-event">
+            <h4>Submission</h4>
+            <p>Finalize and upload your project.</p>
+          </div>
+        </div>
+        <div class="cat-timeline-item">
+          <div class="cat-time">6:00 PM</div>
+          <div class="cat-event">
+            <h4>Finale Presentations</h4>
+            <p>Top finalists demonstrate their builds.</p>
+          </div>
+        </div>
+        <div class="cat-timeline-item">
+          <div class="cat-time">8:00 PM</div>
+          <div class="cat-event">
+            <h4>Winner Announcement</h4>
+            <p>Prizes distributed and closing ceremony.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section id="register" class="cat-section cat-cta-section">
+    <div class="cat-container">
+      <div class="cat-cta-box card-spotlight">
+        <h2 class="cat-cta-title">Ready to Code?</h2>
+        <p class="cat-cta-desc">Registration closes November 7th. Don't miss out on ₹50K in prizes.</p>
+        <div class="cat-cta-buttons">
+          <a href="javascript:void(0)" class="cat-btn cat-btn-primary cat-btn-huge">Registrations Starting Soon</a>
+          <a href="https://chat.whatsapp.com/Leql1T248Ls3hKwSEpCurB" class="cat-btn cat-btn-secondary cat-btn-huge">Join
+            WhatsApp (Mandatory)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="cat-footer">
+    <div class="cat-container">
+      <div class="cat-footer-content">
+        <div class="cat-footer-brand">
+          <img src="/catalyst/catalyst_square_logo_without_bg.png" alt="Catalyst">
+          <span>Catalyst 2026</span>
+        </div>
+        <div class="cat-footer-links">
+          <a href="/competitions.html">All Competitions</a>
+          <a href="/about.html">About MnM</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  </div>
+
+  <script>
+    // Spotlight effect for cards
+    document.querySelectorAll('.card-spotlight').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+
+    // Nav blur scroll effect
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.cat-nav');
+      if (window.scrollY > 50) {
+        nav.style.background = 'rgba(0, 0, 0, 0.7)';
+        nav.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
+      } else {
+        nav.style.background = 'rgba(0, 0, 0, 0.4)';
+        nav.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+      }
+    });
+  </script>
+</body>
+
+</html>
