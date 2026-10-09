@@ -1,6 +1,5 @@
 # Makers Need More (MnM)
 
-![MnM README Banner](public/readme%20picture.png)
 
 MnM is a student-run organization and community platform that supports and builds open-source projects. 
 
