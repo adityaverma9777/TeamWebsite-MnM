@@ -36,7 +36,9 @@ export default defineConfig({
           admin: './admin.html',
           idcard: './idcard.html',
           round2: './round2.html',
-          catalyst: './catalyst.html'
+          catalyst: './catalyst.html',
+          catalystBrochure: './catalyst-brochure.html',
+          morrowBrochure: './morrow-brochure.html'
         }
       }
     },
