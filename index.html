@@ -189,7 +189,7 @@
 
           <!-- Video wrapper — starts small, scales up on scroll -->
           <div class="video-wrapper" id="video-zoom-wrapper">
-            <video id="intro-video" src="/My Video1.webm" autoplay loop muted playsinline
+            <video id="intro-video" src="/catalyst/Catalyst Teaser.webm" autoplay loop muted playsinline
               title="MnM community introduction video"
               aria-label="Makers Need More community introduction video"></video>
             <button id="mute-toggle" class="video-mute-btn">
@@ -206,7 +206,6 @@
                 <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
                 <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
               </svg>
-              <span id="mute-text">Unmute</span>
             </button>
           </div>
 
@@ -228,7 +227,6 @@
       document.addEventListener('DOMContentLoaded', () => {
         const video = document.getElementById('intro-video');
         const muteToggle = document.getElementById('mute-toggle');
-        const muteText = document.getElementById('mute-text');
         const iconMuted = document.getElementById('speaker-icon-muted');
         const iconUnmuted = document.getElementById('speaker-icon-unmuted');
 
@@ -239,12 +237,10 @@
           muteToggle.addEventListener('click', () => {
             if (video.muted) {
               video.muted = false;
-              muteText.textContent = 'Mute';
               iconMuted.style.display = 'none';
               iconUnmuted.style.display = 'block';
             } else {
               video.muted = true;
-              muteText.textContent = 'Unmute';
               iconMuted.style.display = 'block';
               iconUnmuted.style.display = 'none';
             }
