@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catalyst – Partnership Brochure | MnM × PromptWars</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #030305;
+    --white: #F2F0ED;
+    --dim: rgba(242,240,237,0.5);
+    --faint: rgba(242,240,237,0.25);
+    --ghost: rgba(242,240,237,0.08);
+    --g-blue: #4285F4;
+    --g-red: #EA4335;
+    --g-yellow: #FBBC04;
+    --g-green: #34A853;
+    --page-w: 210mm;
+    --page-h: 297mm;
+  }
+  body {
+    background: #111;
+    font-family: 'Inter', sans-serif;
+    color: var(--white);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .screen-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  .print-btn {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 100px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+  .print-btn:hover { transform: scale(1.04); box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+  .page {
+    width: var(--page-w);
+    height: var(--page-h);
+    margin: 32px auto;
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+  .g-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+    background-size: 21mm 21mm;
+    pointer-events: none;
+  }
+  .g-orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .corner { position: absolute; width: 8mm; height: 8mm; }
+  .corner::before, .corner::after { content: ''; position: absolute; background: rgba(255,255,255,0.1); }
+  .corner::before { width: 100%; height: 0.5px; top: 0; left: 0; }
+  .corner::after { width: 0.5px; height: 100%; top: 0; left: 0; }
+  .corner.tl { top: 7mm; left: 7mm; }
+  .corner.tr { top: 7mm; right: 7mm; transform: scaleX(-1); }
+  .corner.bl { bottom: 7mm; left: 7mm; transform: scaleY(-1); }
+  .corner.br { bottom: 7mm; right: 7mm; transform: scale(-1); }
+  .g-stripe {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2mm;
+    background: linear-gradient(180deg,
+      transparent 3%,
+      var(--g-blue) 18%,
+      var(--g-red) 40%,
+      var(--g-yellow) 62%,
+      var(--g-green) 84%,
+      transparent 97%
+    );
+  }
+  .g-stripe-bottom {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1.5mm;
+    background: linear-gradient(90deg, var(--g-blue), var(--g-red), var(--g-yellow), var(--g-green));
+  }
+  .mono {
+    font-family: 'Space Mono', monospace;
+    font-size: 6pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .syne { font-family: 'Syne', sans-serif; font-weight: 700; letter-spacing: -0.03em; }
+  .pg-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 4mm;
+    border-bottom: 0.5px solid var(--ghost);
+  }
+  .pg-brand {
+    display: flex;
+    align-items: center;
+    gap: 2.5mm;
+  }
+  .pg-brand img { width: 5.5mm; height: 5.5mm; object-fit: contain; border-radius: 1.2mm; }
+  .pg-brand span {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 7pt;
+    color: var(--faint);
+    letter-spacing: 0.05em;
+  }
+  .pg-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 6pt;
+    color: rgba(255,255,255,0.15);
+    letter-spacing: 0.1em;
+  }
+  .pg-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .pg-footer span {
+    font-family: 'Inter', sans-serif;
+    font-size: 6pt;
+    color: rgba(255,255,255,0.18);
+  }
+  @media print {
+    body { background: none; }
+    .screen-controls { display: none; }
+    .page { margin: 0; box-shadow: none; }
+    .page:last-child { page-break-after: auto; break-after: auto; }
+  }
+  @page { size: A4 portrait; margin: 0; }
+</style>
+</head>
+<body>
+<div class="screen-controls">
+  <button class="print-btn" onclick="window.print()">&#8595; Save as PDF</button>
+</div>
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 1 — COVER
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="g-grid"></div>
+  <div class="g-orb" style="width:200mm;height:200mm;top:-60mm;left:-60mm;background:radial-gradient(circle,rgba(66,133,244,0.12) 0%,transparent 60%);"></div>
+  <div class="g-orb" style="width:180mm;height:180mm;bottom:-50mm;right:-50mm;background:radial-gradient(circle,rgba(234,67,53,0.09) 0%,transparent 60%);"></div>
+  <div class="g-orb" style="width:140mm;height:140mm;top:45%;left:45%;background:radial-gradient(circle,rgba(52,168,83,0.06) 0%,transparent 55%);"></div>
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+  <div class="g-stripe"></div>
+  <div style="position:relative;width:100%;height:100%;display:flex;flex-direction:column;padding:14mm 14mm 10mm 14mm;">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:3mm;">
+        <img src="/logo.png" alt="MnM" style="width:8mm;height:8mm;object-fit:contain;">
+        <span class="syne" style="font-size:9pt;color:var(--white);letter-spacing:0.03em;">Makers Need More</span>
+      </div>
+      <span class="mono" style="color:var(--g-blue);">Partnership Proposal 2026</span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:0;">
+      <span class="mono" style="color:var(--faint);font-size:5.5pt;letter-spacing:0.5em;margin-bottom:5mm;">— MnM × PromptWars present —</span>
+      <img src="/catalyst/catalyst_complete_logo.png" alt="CATALYST" style="width:150mm;max-width:85%;height:auto;filter:brightness(0) invert(1) drop-shadow(0 4px 20px rgba(0,0,0,0.5));margin-bottom:4mm;">
+      <div style="width:100mm;height:0.5px;background:linear-gradient(90deg,transparent,rgba(66,133,244,0.5),rgba(234,67,53,0.5),rgba(251,188,4,0.5),rgba(52,168,83,0.5),transparent);margin-bottom:5mm;"></div>
+      <h1 class="syne" style="font-size:22pt;font-weight:800;line-height:1.15;letter-spacing:-0.03em;color:var(--white);margin-bottom:3mm;">
+        The Ultimate<br>Solo Coding Hackathon.
+      </h1>
+      <p style="font-size:9pt;font-weight:300;color:var(--dim);max-width:90mm;line-height:1.8;margin-bottom:6mm;">
+        One builder. One prompt. One day to ship.<br>A high-energy, AI-powered coding challenge.
+      </p>
+      <div style="display:flex;gap:12mm;margin-bottom:8mm;">
+        <div style="text-align:center;">
+          <div class="syne" style="font-size:18pt;color:var(--white);">8 Nov</div>
+          <div class="mono" style="color:var(--faint);font-size:5pt;margin-top:1mm;">Event Date</div>
+        </div>
+        <div style="width:0.5px;height:12mm;background:rgba(255,255,255,0.08);align-self:center;"></div>
+        <div style="text-align:center;">
+          <div class="syne" style="font-size:18pt;color:var(--white);">Solo</div>
+          <div class="mono" style="color:var(--faint);font-size:5pt;margin-top:1mm;">Format</div>
+        </div>
+        <div style="width:0.5px;height:12mm;background:rgba(255,255,255,0.08);align-self:center;"></div>
+        <div style="text-align:center;">
+          <div class="syne" style="font-size:18pt;color:var(--white);">₹50K</div>
+          <div class="mono" style="color:var(--faint);font-size:5pt;margin-top:1mm;">Prize Pool</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:3mm;margin-bottom:10mm;">
+        <span style="display:inline-block;padding:2mm 5mm;border-radius:100mm;border:0.5px solid rgba(66,133,244,0.35);background:rgba(66,133,244,0.05);color:var(--g-blue);font-family:'Space Mono',monospace;font-size:5.5pt;letter-spacing:0.12em;text-transform:uppercase;">AI-Powered</span>
+        <span style="display:inline-block;padding:2mm 5mm;border-radius:100mm;border:0.5px solid rgba(234,67,53,0.35);background:rgba(234,67,53,0.05);color:var(--g-red);font-family:'Space Mono',monospace;font-size:5.5pt;letter-spacing:0.12em;text-transform:uppercase;">Vibe Coding</span>
+        <span style="display:inline-block;padding:2mm 5mm;border-radius:100mm;border:0.5px solid rgba(52,168,83,0.35);background:rgba(52,168,83,0.05);color:var(--g-green);font-family:'Space Mono',monospace;font-size:5.5pt;letter-spacing:0.12em;text-transform:uppercase;">Build with AI</span>
+      </div>
+      <div style="width:160mm;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:0.5px solid var(--ghost);border-radius:3mm;overflow:hidden;background:rgba(255,255,255,0.015);">
+        <div style="padding:5mm 4mm;text-align:center;border-right:0.5px solid var(--ghost);">
+          <div class="mono" style="color:var(--faint);font-size:4.5pt;margin-bottom:3mm;">Organiser</div>
+          <img src="/catalyst/mnm_logo_with_text_MnM_for_the_dark_bg.png" alt="MnM" style="height:10mm;object-fit:contain;">
+        </div>
+        <div style="padding:5mm 4mm;text-align:center;border-right:0.5px solid var(--ghost);">
+          <div class="mono" style="color:var(--faint);font-size:4.5pt;margin-bottom:3mm;">AI Engine</div>
+          <img src="/catalyst/Google-Antigravity-Icon.png" alt="Antigravity" style="height:10mm;object-fit:contain;">
+        </div>
+        <div style="padding:5mm 4mm;text-align:center;border-right:0.5px solid var(--ghost);">
+          <div class="mono" style="color:var(--faint);font-size:4.5pt;margin-bottom:3mm;">Community</div>
+          <img src="/catalyst/gdg_cropped.png" alt="GDG" style="height:7mm;object-fit:contain;">
+        </div>
+        <div style="padding:5mm 4mm;text-align:center;">
+          <div class="mono" style="color:var(--faint);font-size:4.5pt;margin-bottom:3mm;">Platform</div>
+          <img src="/catalyst/H2S_White.png" alt="Hack2skill" style="height:10mm;object-fit:contain;">
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <span class="mono" style="color:rgba(255,255,255,0.15);font-size:5.5pt;">mnmworks.xyz/catalyst</span>
+      <span class="pg-num">01 / 06</span>
+    </div>
+  </div>
+</div>
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 2 — ABOUT
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="g-grid"></div>
+  <div class="g-orb" style="width:160mm;height:160mm;top:10%;left:-20%;background:radial-gradient(circle,rgba(66,133,244,0.08) 0%,transparent 55%);"></div>
+  <div class="g-orb" style="width:120mm;height:120mm;bottom:5%;right:-10%;background:radial-gradient(circle,rgba(251,188,4,0.06) 0%,transparent 55%);"></div>
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+  <div class="g-stripe"></div>
+  <div style="position:relative;width:100%;height:100%;display:grid;grid-template-rows:auto 1fr auto;padding:14mm 14mm 10mm 14mm;gap:6mm;">
+    <div class="pg-header">
+      <div class="pg-brand">
+        <img src="/catalyst/catalyst_square_logo_with_bg.png" alt="C">
+        <span>Catalyst 2026</span>
+      </div>
+      <span class="mono" style="color:var(--g-blue);">About the Event</span>
+      <span class="pg-num">02 / 06</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8mm;align-content:start;">
+      <div style="display:flex;flex-direction:column;gap:4mm;">
+        <span class="mono" style="color:var(--g-blue);">// What is Catalyst?</span>
+        <h2 class="syne" style="font-size:24pt;line-height:1.05;color:var(--white);">Build with AI.<br>Ship in Hours.</h2>
+        <p style="font-size:8.5pt;line-height:1.75;color:var(--dim);">Catalyst is a high-energy, solo-participation coding hackathon designed to test your ability to build with AI. Brought to you by <span style="color:var(--white);font-weight:600;">MnM</span> in collaboration with <span style="color:var(--white);font-weight:600;">PromptWars</span>.</p>
+        <p style="font-size:8.5pt;line-height:1.75;color:var(--dim);">Participants receive a surprise problem statement on the day of the event. The challenge? Use AI tools and sharp prompting to build a working solution in just a few intense hours.</p>
+        <div style="margin-top:2mm;padding:4.5mm 5mm;border-left:2px solid var(--g-blue);background:rgba(66,133,244,0.03);border-radius:0 2mm 2mm 0;">
+          <p style="font-family:'Syne',sans-serif;font-size:9pt;font-weight:600;color:var(--white);line-height:1.5;font-style:italic;">"No teams. No templates.<br>Just you, a prompt, and the clock."</p>
+        </div>
+        <div style="display:flex;gap:3mm;margin-top:3mm;">
+          <div style="flex:1;background:rgba(255,255,255,0.02);border:0.5px solid var(--ghost);border-radius:2.5mm;padding:4mm;text-align:center;">
+            <div class="syne" style="font-size:20pt;color:var(--g-blue);line-height:1;">6</div>
+            <div class="mono" style="color:var(--faint);font-size:4.5pt;margin-top:1.5mm;">Hours to Build</div>
+          </div>
+          <div style="flex:1;background:rgba(255,255,255,0.02);border:0.5px solid var(--ghost);border-radius:2.5mm;padding:4mm;text-align:center;">
+            <div class="syne" style="font-size:20pt;color:var(--g-red);line-height:1;">1</div>
+            <div class="mono" style="color:var(--faint);font-size:4.5pt;margin-top:1.5mm;">Person per Team</div>
+          </div>
+          <div style="flex:1;background:rgba(255,255,255,0.02);border:0.5px solid var(--ghost);border-radius:2.5mm;padding:4mm;text-align:center;">
+            <div class="syne" style="font-size:20pt;color:var(--g-green);line-height:1;">∞</div>
+            <div class="mono" style="color:var(--faint);font-size:4.5pt;margin-top:1.5mm;">AI Prompts Allowed</div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4mm;">
+        <span class="mono" style="color:var(--g-red);">// What is PromptWars?</span>
+        <h2 class="syne" style="font-size:24pt;line-height:1.05;color:var(--white);">Prompting is<br>the New Coding.</h2>
+        <p style="font-size:8.5pt;line-height:1.75;color:var(--dim);">PromptWars is a challenge for anyone who loves building — developers, designers, professionals, or anyone with big ideas and a sharp instinct for prompting.</p>
+        <p style="font-size:8.5pt;line-height:1.75;color:var(--dim);">Participants showcase their problem-solving skills through prompt-based development, creating real solutions using AI. It's where creativity meets engineering at speed.</p>
+        <div style="margin-top:2mm;display:flex;align-items:center;gap:4mm;padding:5mm;background:rgba(255,255,255,0.02);border:0.5px solid var(--ghost);border-radius:3mm;">
+          <img src="/catalyst/PW_logo_Primary_Black.png" alt="PromptWars" style="height:14mm;object-fit:contain;flex-shrink:0; filter: brightness(0) invert(1);">
+          <div style="flex:1;min-width:0;">
+            <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:9pt;color:var(--white);margin-bottom:1.5mm;">PromptWars</p>
+            <p style="font-size:7pt;color:var(--dim);line-height:1.6;">A global prompt-based challenge platform where builders create solutions entirely through AI-assisted workflows.</p>
+          </div>
+        </div>
+        <div style="margin-top:3mm;">
+          <span class="mono" style="color:var(--g-yellow);display:block;margin-bottom:2mm;">// AI Engine</span>
+          <div style="display:flex;align-items:center;gap:4mm;padding:5mm;background:linear-gradient(135deg,rgba(66,133,244,0.03),rgba(234,67,53,0.02));border:0.5px solid var(--ghost);border-radius:3mm;">
+            <img src="/catalyst/Google-Antigravity-Icon.png" alt="Antigravity" style="height:14mm;object-fit:contain;flex-shrink:0;">
+            <div style="flex:1;min-width:0;">
+              <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:9pt;color:var(--white);margin-bottom:1.5mm;">Google Antigravity</p>
+              <p style="font-size:7pt;color:var(--dim);line-height:1.6;">The official AI coding IDE. All participants build using Antigravity's agent-assisted development workflow.</p>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:auto;padding:4mm;background:rgba(234,67,53,0.03);border:0.5px solid rgba(234,67,53,0.12);border-radius:2.5mm;">
+          <p style="font-family:'Syne',sans-serif;font-size:8pt;font-weight:600;color:var(--white);margin-bottom:1.5mm;">Why Solo?</p>
+          <p style="font-size:7.5pt;color:var(--dim);line-height:1.65;">Solo participation ensures authentic skill assessment. Every line of code, every architectural decision is yours alone — making evaluation transparent and fair.</p>
+        </div>
+      </div>
+    </div>
+    <div class="pg-footer">
+      <span>Catalyst — A MnM × PromptWars Collaboration</span>
+      <span class="mono" style="font-size:5pt;color:var(--faint);">mnmworks.xyz</span>
+    </div>
+  </div>
+</div>
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 3 — EVENT FORMAT & SCHEDULE
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="g-grid"></div>
+  <div class="g-orb" style="width:150mm;height:150mm;bottom:-30mm;left:-20mm;background:radial-gradient(circle,rgba(52,168,83,0.07) 0%,transparent 55%);"></div>
+  <div class="g-orb" style="width:130mm;height:130mm;top:-20mm;right:-15mm;background:radial-gradient(circle,rgba(234,67,53,0.06) 0%,transparent 55%);"></div>
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+  <div class="g-stripe"></div>
+  <div style="position:relative;width:100%;height:100%;display:grid;grid-template-rows:auto 1fr auto;padding:14mm 14mm 10mm 14mm;gap:6mm;">
+    <div class="pg-header">
+      <div class="pg-brand">
+        <img src="/catalyst/catalyst_square_logo_with_bg.png" alt="C">
+        <span>Catalyst 2026</span>
+      </div>
+      <span class="mono" style="color:var(--g-green);">Event Format</span>
+      <span class="pg-num">03 / 06</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:6mm;">
+      <div>
+        <span class="mono" style="color:var(--g-green);display:block;margin-bottom:2mm;">// 8 November 2026</span>
+        <h2 class="syne" style="font-size:28pt;line-height:1;color:var(--white);">Event Day<br>Schedule.</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:42mm 1fr;gap:0;border:0.5px solid var(--ghost);border-radius:3mm;overflow:hidden;background:rgba(255,255,255,0.01);">
+        <div style="padding:5mm 4mm;border-bottom:0.5px solid var(--ghost);border-right:0.5px solid var(--ghost);display:flex;align-items:center;">
+          <span class="mono" style="color:var(--g-blue);font-size:7pt;letter-spacing:0.15em;">10:00 AM</span>
+        </div>
+        <div style="padding:5mm 5mm;border-bottom:0.5px solid var(--ghost);">
+          <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:10pt;color:var(--white);margin-bottom:1mm;">Challenge Reveal</p>
+          <p style="font-size:7.5pt;color:var(--dim);line-height:1.6;">The surprise problem statement is dropped on WhatsApp. Participants prepare their environment and read the brief.</p>
+        </div>
+        <div style="padding:5mm 4mm;border-bottom:0.5px solid var(--ghost);border-right:0.5px solid var(--ghost);display:flex;align-items:center;background:rgba(66,133,244,0.03);">
+          <span class="mono" style="color:var(--g-blue);font-size:7pt;letter-spacing:0.15em;">10:30 – 4:30</span>
+        </div>
+        <div style="padding:5mm 5mm;border-bottom:0.5px solid var(--ghost);background:rgba(66,133,244,0.03);position:relative;">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--g-blue);"></div>
+          <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:10pt;color:var(--g-blue);margin-bottom:1mm;">Build Window — 6 Hours</p>
+          <p style="font-size:7.5pt;color:var(--dim);line-height:1.6;">Uninterrupted coding. Participants build their solution using Google Antigravity. The core of the event.</p>
+        </div>
+        <div style="padding:5mm 4mm;border-bottom:0.5px solid var(--ghost);border-right:0.5px solid var(--ghost);display:flex;align-items:center;">
+          <span class="mono" style="color:var(--g-yellow);font-size:7pt;letter-spacing:0.15em;">4:30 – 5:00</span>
+        </div>
+        <div style="padding:5mm 5mm;border-bottom:0.5px solid var(--ghost);">
+          <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:10pt;color:var(--white);margin-bottom:1mm;">Submission Window</p>
+          <p style="font-size:7.5pt;color:var(--dim);line-height:1.6;">Finalize and upload projects to the submission platform. Last chance to polish and deploy.</p>
+        </div>
+        <div style="padding:5mm 4mm;border-bottom:0.5px solid var(--ghost);border-right:0.5px solid var(--ghost);display:flex;align-items:center;">
+          <span class="mono" style="color:var(--g-red);font-size:7pt;letter-spacing:0.15em;">6:00 PM</span>
+        </div>
+        <div style="padding:5mm 5mm;border-bottom:0.5px solid var(--ghost);">
+          <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:10pt;color:var(--white);margin-bottom:1mm;">Finale Presentations</p>
+          <p style="font-size:7.5pt;color:var(--dim);line-height:1.6;">Top finalists demonstrate their builds to a panel of judges and the live audience.</p>
+        </div>
+        <div style="padding:5mm 4mm;border-right:0.5px solid var(--ghost);display:flex;align-items:center;">
+          <span class="mono" style="color:var(--g-green);font-size:7pt;letter-spacing:0.15em;">8:00 PM</span>
+        </div>
+        <div style="padding:5mm 5mm;">
+          <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:10pt;color:var(--g-green);margin-bottom:1mm;">Winner Announcement</p>
+          <p style="font-size:7.5pt;color:var(--dim);line-height:1.6;">Prizes distributed and closing ceremony. Networking with judges and fellow builders.</p>
+        </div>
+      </div>
+      <div style="height:0.5px;background:linear-gradient(90deg,transparent,var(--ghost),transparent);"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:7mm;">
+        <div>
+          <span class="mono" style="color:var(--g-red);display:block;margin-bottom:2mm;">// Eligibility</span>
+          <h3 class="syne" style="font-size:14pt;color:var(--white);margin-bottom:3mm;">Who Can Participate?</h3>
+          <p style="font-size:8pt;color:var(--dim);line-height:1.7;margin-bottom:3mm;">Open to all skill levels — developers, designers, students, professionals, and AI enthusiasts.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:2mm;">
+            <span style="padding:1.5mm 3.5mm;border-radius:100mm;background:rgba(255,255,255,0.03);border:0.5px solid var(--ghost);font-family:'Space Mono',monospace;font-size:5.5pt;color:var(--dim);letter-spacing:0.08em;">Developers</span>
+            <span style="padding:1.5mm 3.5mm;border-radius:100mm;background:rgba(255,255,255,0.03);border:0.5px solid var(--ghost);font-family:'Space Mono',monospace;font-size:5.5pt;color:var(--dim);letter-spacing:0.08em;">Designers</span>
+            <span style="padding:1.5mm 3.5mm;border-radius:100mm;background:rgba(255,255,255,0.03);border:0.5px solid var(--ghost);font-family:'Space Mono',monospace;font-size:5.5pt;color:var(--dim);letter-spacing:0.08em;">Students</span>
+            <span style="padding:1.5mm 3.5mm;border-radius:100mm;background:rgba(255,255,255,0.03);border:0.5px solid var(--ghost);font-family:'Space Mono',monospace;font-size:5.5pt;color:var(--dim);letter-spacing:0.08em;">Professionals</span>
+            <span style="padding:1.5mm 3.5mm;border-radius:100mm;background:rgba(255,255,255,0.03);border:0.5px solid var(--ghost);font-family:'Space Mono',monospace;font-size:5.5pt;color:var(--dim);letter-spacing:0.08em;">AI Enthusiasts</span>
+            <span style="padding:1.5mm 3.5mm;border-radius:100mm;background:rgba(255,255,255,0.03);border:0.5px solid var(--ghost);font-family:'Space Mono',monospace;font-size:5.5pt;color:var(--dim);letter-spacing:0.08em;">Beginners</span>
+          </div>
+          <div style="margin-top:3mm;padding:3.5mm 4mm;background:rgba(52,168,83,0.03);border:0.5px solid rgba(52,168,83,0.15);border-radius:2mm;">
+            <p style="font-size:7pt;color:var(--dim);line-height:1.65;"><span style="color:var(--g-green);font-weight:600;">Requirements:</span> Laptop with internet · Google Antigravity installed · WhatsApp group joined · Registered on Hack2skill</p>
+          </div>
+        </div>
+        <div>
+          <span class="mono" style="color:var(--g-yellow);display:block;margin-bottom:2mm;">// Judging Criteria</span>
+          <h3 class="syne" style="font-size:14pt;color:var(--white);margin-bottom:3mm;">What We Look For</h3>
+          <div style="display:flex;flex-direction:column;gap:2.5mm;">
+            <div style="display:flex;align-items:center;gap:3mm;padding:3mm 4mm;background:rgba(255,255,255,0.015);border:0.5px solid var(--ghost);border-radius:2mm;">
+              <div style="width:5mm;height:5mm;border-radius:1.5mm;background:var(--g-blue);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+                <span style="font-size:7pt;color:#fff;">1</span>
+              </div>
+              <div>
+                <p style="font-family:'Syne',sans-serif;font-size:7.5pt;font-weight:700;color:var(--white);">Innovation & Creativity</p>
+                <p style="font-size:6pt;color:var(--dim);margin-top:0.5mm;">Originality of the approach and solution design</p>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:3mm;padding:3mm 4mm;background:rgba(255,255,255,0.015);border:0.5px solid var(--ghost);border-radius:2mm;">
+              <div style="width:5mm;height:5mm;border-radius:1.5mm;background:var(--g-red);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+                <span style="font-size:7pt;color:#fff;">2</span>
+              </div>
+              <div>
+                <p style="font-family:'Syne',sans-serif;font-size:7.5pt;font-weight:700;color:var(--white);">Technical Execution</p>
+                <p style="font-size:6pt;color:var(--dim);margin-top:0.5mm;">Code quality, architecture, and working deployment</p>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:3mm;padding:3mm 4mm;background:rgba(255,255,255,0.015);border:0.5px solid var(--ghost);border-radius:2mm;">
+              <div style="width:5mm;height:5mm;border-radius:1.5mm;background:var(--g-yellow);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+                <span style="font-size:7pt;color:#000;">3</span>
+              </div>
+              <div>
+                <p style="font-family:'Syne',sans-serif;font-size:7.5pt;font-weight:700;color:var(--white);">Prompt Engineering</p>
+                <p style="font-size:6pt;color:var(--dim);margin-top:0.5mm;">Effective use of AI tools and prompting strategy</p>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:3mm;padding:3mm 4mm;background:rgba(255,255,255,0.015);border:0.5px solid var(--ghost);border-radius:2mm;">
+              <div style="width:5mm;height:5mm;border-radius:1.5mm;background:var(--g-green);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+                <span style="font-size:7pt;color:#fff;">4</span>
+              </div>
+              <div>
+                <p style="font-family:'Syne',sans-serif;font-size:7.5pt;font-weight:700;color:var(--white);">UI/UX & Completeness</p>
+                <p style="font-size:6pt;color:var(--dim);margin-top:0.5mm;">Polish, user experience, and finished product quality</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pg-footer">
+      <span>Registration closes 7 November 2026</span>
+      <span class="mono" style="font-size:5pt;color:var(--faint);">mnmworks.xyz</span>
+    </div>
+  </div>
+</div>
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 4 — ABOUT MNM & TRACK RECORD
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="g-grid"></div>
+  <div class="g-orb" style="width:180mm;height:180mm;top:-40mm;right:-40mm;background:radial-gradient(circle,rgba(66,133,244,0.08) 0%,transparent 55%);"></div>
+  <div class="g-orb" style="width:140mm;height:140mm;bottom:-20mm;left:-15mm;background:radial-gradient(circle,rgba(52,168,83,0.06) 0%,transparent 55%);"></div>
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+  <div class="g-stripe"></div>
+  <div style="position:relative;width:100%;height:100%;display:grid;grid-template-rows:auto 1fr auto;padding:14mm 14mm 10mm 14mm;gap:6mm;">
+    <div class="pg-header">
+      <div class="pg-brand">
+        <img src="/catalyst/catalyst_square_logo_with_bg.png" alt="C">
+        <span>Catalyst 2026</span>
+      </div>
+      <span class="mono" style="color:var(--g-red);">Partners & Track Record</span>
+      <span class="pg-num">04 / 06</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:6mm;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:7mm;">
+        <div>
+          <span class="mono" style="color:var(--g-blue);display:block;margin-bottom:2mm;">// About MnM</span>
+          <h2 class="syne" style="font-size:22pt;line-height:1.05;color:var(--white);margin-bottom:3mm;">Makers<br>Need More.</h2>
+          <p style="font-size:8.5pt;line-height:1.75;color:var(--dim);">MnM is a student-run community focused on building open-source solutions that create real-world impact. Founded with the belief that builders need more than ideas — they need platforms, communities, and competitions to ship real work.</p>
+          <p style="font-size:8.5pt;line-height:1.75;color:var(--dim);margin-top:3mm;">We build tools, organise competitions, and create opportunities for the next generation of makers to prove their craft.</p>
+        </div>
+        <div>
+          <span class="mono" style="color:var(--g-yellow);display:block;margin-bottom:2mm;">// Morrow 1.0 — Proof of Execution</span>
+          <h2 class="syne" style="font-size:22pt;line-height:1.05;color:var(--white);margin-bottom:3mm;">Our Track<br>Record.</h2>
+          <p style="font-size:8.5pt;line-height:1.75;color:var(--dim);">MnM's debut event Morrow 1.0 demonstrated the team's ability to organise and execute large-scale hackathons with massive reach.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:3mm;margin-top:4mm;">
+            <div style="background:rgba(255,255,255,0.015);border:0.5px solid var(--ghost);border-radius:2.5mm;padding:4mm;text-align:center;">
+              <div class="syne" style="font-size:22pt;color:var(--g-blue);line-height:1;">1400+</div>
+              <div class="mono" style="color:var(--faint);font-size:4pt;margin-top:1.5mm;">Projects Submitted</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.015);border:0.5px solid var(--ghost);border-radius:2.5mm;padding:4mm;text-align:center;">
+              <div class="syne" style="font-size:22pt;color:var(--g-red);line-height:1;">600K+</div>
+              <div class="mono" style="color:var(--faint);font-size:4pt;margin-top:1.5mm;">Unstop Impressions</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.015);border:0.5px solid var(--ghost);border-radius:2.5mm;padding:4mm;text-align:center;">
+              <div class="syne" style="font-size:22pt;color:var(--g-yellow);line-height:1;">8</div>
+              <div class="mono" style="color:var(--faint);font-size:4pt;margin-top:1.5mm;">Challenge Domains</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.015);border:0.5px solid var(--ghost);border-radius:2.5mm;padding:4mm;text-align:center;">
+              <div class="syne" style="font-size:22pt;color:var(--g-green);line-height:1;">3</div>
+              <div class="mono" style="color:var(--faint);font-size:4pt;margin-top:1.5mm;">Competitive Rounds</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="height:0.5px;background:linear-gradient(90deg,transparent,var(--ghost),transparent);"></div>
+      <div>
+        <span class="mono" style="color:var(--g-green);display:block;margin-bottom:3mm;">// Current Partners</span>
+        <h3 class="syne" style="font-size:16pt;color:var(--white);margin-bottom:4mm;">Backed by Industry Leaders</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:3mm;">
+          <div style="display:flex;align-items:center;gap:4mm;padding:4.5mm 5mm;background:rgba(255,255,255,0.015);border:0.5px solid var(--ghost);border-radius:2.5mm;">
+            <img src="/catalyst/mnm_logo_with_text_MnM_for_the_dark_bg.png" alt="MnM" style="height:11mm;object-fit:contain;flex-shrink:0;">
+            <div style="flex:1;min-width:0;">
+              <div class="mono" style="color:var(--g-blue);font-size:4.5pt;margin-bottom:1mm;">Organiser</div>
+              <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:8pt;color:var(--white);">MnM — Makers Need More</p>
+              <p style="font-size:6.5pt;color:var(--dim);line-height:1.5;margin-top:1mm;">Student-run community building open-source solutions globally.</p>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:4mm;padding:4.5mm 5mm;background:rgba(255,255,255,0.015);border:0.5px solid var(--ghost);border-radius:2.5mm;">
+            <img src="/catalyst/PW_logo_Primary_Black.png" alt="PromptWars" style="height:9mm;object-fit:contain;flex-shrink:0; filter: brightness(0) invert(1);">
+            <div style="flex:1;min-width:0;">
+              <div class="mono" style="color:var(--g-red);font-size:4.5pt;margin-bottom:1mm;">Co-Organiser</div>
+              <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:8pt;color:var(--white);">PromptWars</p>
+              <p style="font-size:6.5pt;color:var(--dim);line-height:1.5;margin-top:1mm;">Global prompt-based development challenge platform.</p>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:4mm;padding:4.5mm 5mm;background:rgba(255,255,255,0.015);border:0.5px solid var(--ghost);border-radius:2.5mm;">
+            <img src="/catalyst/Google-Antigravity-Icon.png" alt="Antigravity" style="height:11mm;object-fit:contain;flex-shrink:0;">
+            <div style="flex:1;min-width:0;">
+              <div class="mono" style="color:var(--g-yellow);font-size:4.5pt;margin-bottom:1mm;">AI Engine Partner</div>
+              <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:8pt;color:var(--white);">Google Antigravity</p>
+              <p style="font-size:6.5pt;color:var(--dim);line-height:1.5;margin-top:1mm;">Google's AI-native code editor powering this hackathon.</p>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:4mm;padding:4.5mm 5mm;background:rgba(255,255,255,0.015);border:0.5px solid var(--ghost);border-radius:2.5mm;">
+            <img src="/catalyst/gdg_cropped.png" alt="GDG" style="height:7mm;object-fit:contain;flex-shrink:0;">
+            <div style="flex:1;min-width:0;">
+              <div class="mono" style="color:var(--g-green);font-size:4.5pt;margin-bottom:1mm;">Community Partner</div>
+              <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:8pt;color:var(--white);">Google Developer Groups</p>
+              <p style="font-size:6.5pt;color:var(--dim);line-height:1.5;margin-top:1mm;">Google's global developer community network.</p>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:4mm;padding:4.5mm 5mm;background:rgba(255,255,255,0.015);border:0.5px solid var(--ghost);border-radius:2.5mm;grid-column:span 2;">
+            <img src="/catalyst/H2S_White.png" alt="Hack2skill" style="height:11mm;object-fit:contain;flex-shrink:0;">
+            <div style="flex:1;min-width:0;">
+              <div class="mono" style="color:var(--g-blue);font-size:4.5pt;margin-bottom:1mm;">Platform Partner</div>
+              <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:8pt;color:var(--white);">Hack2skill</p>
+              <p style="font-size:6.5pt;color:var(--dim);line-height:1.5;margin-top:1mm;">Registration, submissions, and evaluation platform handling participant management and project workflows for the event.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pg-footer">
+      <span>admin@mnmworks.xyz · linkedin.com/company/makersneedmore</span>
+      <span class="mono" style="font-size:5pt;color:var(--faint);">mnmworks.xyz</span>
+    </div>
+  </div>
+</div>
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 5 — CAMPUS COLLABORATION
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="g-grid"></div>
+  <div class="g-orb" style="width:170mm;height:170mm;top:5%;left:-15%;background:radial-gradient(circle,rgba(66,133,244,0.07) 0%,transparent 55%);"></div>
+  <div class="g-orb" style="width:140mm;height:140mm;bottom:-20%;right:-10%;background:radial-gradient(circle,rgba(234,67,53,0.06) 0%,transparent 55%);"></div>
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+  <div class="g-stripe"></div>
+  <div style="position:relative;width:100%;height:100%;display:grid;grid-template-rows:auto 1fr auto;padding:14mm 14mm 10mm 14mm;gap:5mm;">
+    <div class="pg-header">
+      <div class="pg-brand">
+        <img src="/catalyst/catalyst_square_logo_with_bg.png" alt="C">
+        <span>Catalyst 2026</span>
+      </div>
+      <span class="mono" style="color:var(--g-yellow);">Campus Partnerships</span>
+      <span class="pg-num">05 / 06</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:5mm;">
+      <div>
+        <span class="mono" style="color:var(--g-yellow);display:block;margin-bottom:2mm;">// Partner with MnM</span>
+        <h2 class="syne" style="font-size:26pt;line-height:1;color:var(--white);">Campus<br>Collaboration.</h2>
+        <p style="font-size:8.5pt;color:var(--dim);line-height:1.7;margin-top:3mm;max-width:130mm;">We are looking to collaborate with universities, campus communities, and student tech groups to bring Catalyst to ambitious student builders. This is a purely non-monetary partnership focused on student growth and community building.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:4mm;">
+        <div style="display:flex;flex-direction:column;gap:4mm;">
+          <div style="padding:5mm;background:rgba(66,133,244,0.02);border:0.5px solid rgba(66,133,244,0.2);border-radius:3mm;position:relative;overflow:hidden;">
+            <div style="position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,var(--g-blue),transparent 80%);"></div>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:2.5mm;">
+              <h3 class="syne" style="font-size:12pt;color:var(--g-blue);">The Goal</h3>
+            </div>
+            <p style="font-size:7.5pt;color:var(--dim);line-height:1.65;">Our primary aim is to give students exposure to AI, open-source projects, and practical ways to contribute to real-world tech projects.</p>
+          </div>
+          <div style="padding:5mm;background:rgba(234,67,53,0.02);border:0.5px solid rgba(234,67,53,0.2);border-radius:3mm;position:relative;overflow:hidden;">
+            <div style="position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,var(--g-red),transparent 80%);"></div>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:2.5mm;">
+              <h3 class="syne" style="font-size:12pt;color:var(--g-red);">Long-Term Vision</h3>
+            </div>
+            <p style="font-size:7.5pt;color:var(--dim);line-height:1.65;">We want to work with campus communities beyond this event to create more open-source programmes, workshops, and student-led initiatives globally.</p>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4mm;">
+          <div style="padding:5mm;background:rgba(52,168,83,0.02);border:0.5px solid rgba(52,168,83,0.2);border-radius:3mm;position:relative;overflow:hidden;height:100%;">
+            <div style="position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,var(--g-green),transparent 80%);"></div>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:3mm;">
+              <h3 class="syne" style="font-size:12pt;color:var(--g-green);">Why Partner With Us?</h3>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:2.5mm;">
+              <div style="display:flex;align-items:flex-start;gap:2.5mm;">
+                <span style="color:var(--g-green);font-size:7pt;margin-top:0.5mm;flex-shrink:0;">→</span>
+                <span style="font-size:7.5pt;color:var(--dim);line-height:1.55;">Give your students exposure to state-of-the-art AI development.</span>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:2.5mm;">
+                <span style="color:var(--g-green);font-size:7pt;margin-top:0.5mm;flex-shrink:0;">→</span>
+                <span style="font-size:7.5pt;color:var(--dim);line-height:1.55;">Partner institutions and groups will be proudly featured on our official event page.</span>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:2.5mm;">
+                <span style="color:var(--g-green);font-size:7pt;margin-top:0.5mm;flex-shrink:0;">→</span>
+                <span style="font-size:7.5pt;color:var(--dim);line-height:1.55;">Opportunities for students to contribute to real-world open-source projects.</span>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:2.5mm;">
+                <span style="color:var(--g-green);font-size:7pt;margin-top:0.5mm;flex-shrink:0;">→</span>
+                <span style="font-size:7.5pt;color:var(--dim);line-height:1.55;">Connect your student leaders with a global network of builders.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="padding:4.5mm 5mm;border:0.5px solid var(--ghost);border-radius:2.5mm;background:rgba(255,255,255,0.015);margin-top:auto;">
+        <h3 class="syne" style="font-size:10pt;color:var(--white);margin-bottom:1.5mm;">Who are we looking for?</h3>
+        <p style="font-size:7.5pt;color:var(--dim);line-height:1.6;">If your campus has any <span style="color:var(--white);font-weight:600;">technical clubs</span>, <span style="color:var(--white);font-weight:600;">developer communities</span>, <span style="color:var(--white);font-weight:600;">coding groups</span>, <span style="color:var(--white);font-weight:600;">open-source groups</span>, or <span style="color:var(--white);font-weight:600;">student tech leaders</span>, please share their contact details with us so we can connect with them directly.</p>
+      </div>
+    </div>
+    <div class="pg-footer">
+      <span>For partnership inquiries: admin@mnmworks.xyz</span>
+      <span class="mono" style="font-size:5pt;color:var(--faint);">mnmworks.xyz</span>
+    </div>
+  </div>
+</div>
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 6 — BACK COVER / CTA
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="g-grid"></div>
+  <div class="g-orb" style="width:220mm;height:220mm;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(66,133,244,0.1) 0%,rgba(234,67,53,0.05) 40%,transparent 60%);"></div>
+  <div class="g-orb" style="width:160mm;height:160mm;bottom:-30mm;left:-20mm;background:radial-gradient(circle,rgba(52,168,83,0.06) 0%,transparent 55%);"></div>
+  <div class="g-orb" style="width:140mm;height:140mm;top:-20mm;right:-20mm;background:radial-gradient(circle,rgba(251,188,4,0.05) 0%,transparent 55%);"></div>
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+  <div class="g-stripe"></div>
+  <div class="g-stripe-bottom"></div>
+  <div style="position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16mm 18mm;">
+    <img src="/catalyst/catalyst_square_logo_without_bg.png" alt="Catalyst" style="width:20mm;height:20mm;object-fit:contain;margin-bottom:6mm;opacity:0.7;">
+    <span class="mono" style="color:var(--faint);font-size:5pt;letter-spacing:0.5em;margin-bottom:5mm;">— Partnership Proposal —</span>
+    <h2 class="syne" style="font-size:48pt;line-height:0.95;letter-spacing:-0.04em;color:var(--white);margin-bottom:5mm;">
+      Ready to<br>
+      <span style="background:linear-gradient(135deg, var(--g-blue) 0%, var(--g-red) 35%, var(--g-yellow) 65%, var(--g-green) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Catalyze</span><br>
+      Change?
+    </h2>
+    <p style="font-size:9.5pt;font-weight:300;color:var(--dim);max-width:100mm;line-height:1.8;margin-bottom:7mm;">
+      Join us in shaping the future of AI-powered development. Your partnership helps us create a transformative experience for India's next generation of builders.
+    </p>
+    <div style="width:30mm;height:0.5px;background:linear-gradient(90deg,transparent,var(--g-blue),transparent);margin-bottom:7mm;"></div>
+    <div style="display:flex;flex-direction:column;gap:3mm;margin-bottom:7mm;">
+      <div style="padding:3mm 10mm;border:0.5px solid rgba(66,133,244,0.3);border-radius:100mm;background:rgba(66,133,244,0.04);">
+        <span class="mono" style="font-size:7pt;color:var(--g-blue);letter-spacing:0.08em;">admin@mnmworks.xyz</span>
+      </div>
+      <div style="padding:3mm 10mm;border:0.5px solid var(--ghost);border-radius:100mm;background:rgba(255,255,255,0.02);">
+        <span class="mono" style="font-size:7pt;color:var(--dim);letter-spacing:0.08em;">mnmworks.xyz/catalyst</span>
+      </div>
+    </div>
+    <div style="display:flex;gap:3mm;">
+      <span style="display:inline-block;padding:2mm 5mm;border-radius:100mm;border:0.5px solid rgba(66,133,244,0.25);background:rgba(66,133,244,0.04);color:var(--g-blue);font-family:'Space Mono',monospace;font-size:5pt;letter-spacing:0.12em;text-transform:uppercase;">8 Nov 2026</span>
+      <span style="display:inline-block;padding:2mm 5mm;border-radius:100mm;border:0.5px solid rgba(234,67,53,0.25);background:rgba(234,67,53,0.04);color:var(--g-red);font-family:'Space Mono',monospace;font-size:5pt;letter-spacing:0.12em;text-transform:uppercase;">Solo Hackathon</span>
+      <span style="display:inline-block;padding:2mm 5mm;border-radius:100mm;border:0.5px solid rgba(52,168,83,0.25);background:rgba(52,168,83,0.04);color:var(--g-green);font-family:'Space Mono',monospace;font-size:5pt;letter-spacing:0.12em;text-transform:uppercase;">AI-Powered</span>
+    </div>
+    <div style="position:absolute;bottom:12mm;left:14mm;right:14mm;display:flex;align-items:center;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:3mm;">
+        <img src="/logo.png" alt="MnM" style="width:6mm;height:6mm;object-fit:contain;opacity:0.5;">
+        <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:8pt;color:rgba(255,255,255,0.35);letter-spacing:0.04em;">MnM</span>
+      </div>
+      <span class="mono" style="font-size:5pt;color:rgba(255,255,255,0.15);">github.com/MakersNeedMore-MnM · linkedin.com/company/makersneedmore</span>
+      <span class="pg-num">06 / 06</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>
