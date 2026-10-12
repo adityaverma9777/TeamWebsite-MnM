@@ -1,0 +1,1787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MnM Campus Chapters & Student Communities – Collaboration Catalogue 2026</title>
+<link rel="icon" type="image/png" href="/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg-dark: #050505;
+  --bg-card: rgba(255, 255, 255, 0.02);
+  --bg-card-hover: rgba(255, 255, 255, 0.04);
+  --white: #F4F4F2;
+  --dim: rgba(244, 244, 242, 0.65);
+  --faint: rgba(244, 244, 242, 0.35);
+  --ghost: rgba(244, 244, 242, 0.09);
+  --ghost-border: rgba(255, 255, 255, 0.1);
+  --lime: #C8FF00;
+  --lime-glow: rgba(200, 255, 0, 0.15);
+  --lime-dim: rgba(200, 255, 0, 0.08);
+  --cyan: #38E5FF;
+  --cyan-dim: rgba(56, 229, 255, 0.08);
+  --orange: #FF7A00;
+  --page-w: 210mm;
+  --page-h: 297mm;
+}
+html {
+  font-size: 16px;
+  background: #09090b;
+  color: var(--white);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body {
+  background: #0c0c0e;
+  color: var(--white);
+  min-height: 100vh;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.screen-nav {
+  position: fixed;
+  top: 18px;
+  right: 20px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(10, 10, 12, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+.nav-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(200, 255, 0, 0.08);
+  border: 1px solid rgba(200, 255, 0, 0.25);
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: var(--lime);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.nav-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--lime);
+  box-shadow: 0 0 10px var(--lime);
+  animation: pulseDot 2s infinite ease-in-out;
+}
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+.nav-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: var(--white);
+  color: #050505;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 8px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-action-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+}
+.nav-action-btn.lime-btn {
+  background: var(--lime);
+  color: #050505;
+}
+.nav-action-btn.lime-btn:hover {
+  box-shadow: 0 4px 24px rgba(200, 255, 0, 0.4);
+}
+.page-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 16px 80px;
+}
+.sheet {
+  width: var(--page-w);
+  height: var(--page-h);
+  background: var(--bg-dark);
+  position: relative;
+  overflow: hidden;
+  margin: 24px 0;
+  border-radius: 2px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  page-break-after: always;
+  break-after: page;
+}
+.canvas-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 18mm 18mm;
+  pointer-events: none;
+}
+.radial-spot {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(40px);
+}
+.tech-reticle {
+  position: absolute;
+  width: 10mm;
+  height: 10mm;
+  pointer-events: none;
+}
+.tech-reticle::before,
+.tech-reticle::after {
+  content: '';
+  position: absolute;
+  background: rgba(200, 255, 0, 0.3);
+}
+.tech-reticle::before {
+  width: 100%;
+  height: 1px;
+  top: 0;
+  left: 0;
+}
+.tech-reticle::after {
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.tech-reticle.tl { top: 8mm; left: 8mm; }
+.tech-reticle.tr { top: 8mm; right: 8mm; transform: scaleX(-1); }
+.tech-reticle.bl { bottom: 8mm; left: 8mm; transform: scaleY(-1); }
+.tech-reticle.br { bottom: 8mm; right: 8mm; transform: scale(-1); }
+.sheet-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 14mm 14mm 12mm 14mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 2;
+}
+.sheet-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 4mm;
+  border-bottom: 0.5px solid var(--ghost);
+}
+.brand-pill {
+  display: flex;
+  align-items: center;
+  gap: 3mm;
+}
+.brand-logo-img {
+  width: 6.5mm;
+  height: 6.5mm;
+  object-fit: contain;
+}
+.brand-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 8.5pt;
+  color: var(--white);
+  letter-spacing: 0.04em;
+}
+.brand-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 6pt;
+  color: var(--lime);
+  background: var(--lime-dim);
+  border: 0.5px solid rgba(200, 255, 0, 0.3);
+  padding: 1.5px 6px;
+  border-radius: 999px;
+  letter-spacing: 0.08em;
+}
+.doc-spec {
+  font-family: 'Space Mono', monospace;
+  font-size: 6pt;
+  color: var(--faint);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.page-tracker {
+  font-family: 'Space Mono', monospace;
+  font-size: 6pt;
+  color: var(--lime);
+  letter-spacing: 0.15em;
+  font-weight: 700;
+}
+.sheet-bottombar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 3.5mm;
+  border-top: 0.5px solid var(--ghost);
+}
+.sheet-bottombar-left {
+  display: flex;
+  align-items: center;
+  gap: 4mm;
+  font-family: 'Space Mono', monospace;
+  font-size: 5.5pt;
+  color: var(--faint);
+  letter-spacing: 0.08em;
+}
+.sheet-bottombar-right {
+  font-family: 'Space Mono', monospace;
+  font-size: 5.5pt;
+  color: var(--lime);
+  letter-spacing: 0.1em;
+}
+.mono-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 6.5pt;
+  color: var(--lime);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  display: flex;
+  align-items: center;
+  gap: 2mm;
+}
+.mono-label::before {
+  content: '//';
+  opacity: 0.5;
+}
+.hero-headline {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 32pt;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  color: var(--white);
+}
+.hero-headline span.lime-txt {
+  color: var(--lime);
+}
+.sub-headline {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 19pt;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--white);
+}
+.sub-headline span.lime-txt {
+  color: var(--lime);
+}
+.body-copy {
+  font-size: 8.5pt;
+  line-height: 1.65;
+  color: var(--dim);
+}
+.lead-copy {
+  font-size: 9.5pt;
+  line-height: 1.6;
+  color: var(--dim);
+}
+.c-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 2mm;
+  padding: 1.8mm 4.5mm;
+  border-radius: 999px;
+  font-family: 'Space Mono', monospace;
+  font-size: 5.8pt;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  border: 0.5px solid var(--ghost-border);
+  background: var(--bg-card);
+}
+.c-badge.lime {
+  color: var(--lime);
+  border-color: rgba(200, 255, 0, 0.35);
+  background: var(--lime-dim);
+}
+.c-badge.cyan {
+  color: var(--cyan);
+  border-color: rgba(56, 229, 255, 0.35);
+  background: var(--cyan-dim);
+}
+.vector-card {
+  background: rgba(255, 255, 255, 0.015);
+  border: 0.5px solid var(--ghost-border);
+  border-radius: 2.5mm;
+  padding: 4mm 4.5mm;
+  position: relative;
+  overflow: hidden;
+}
+.vector-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+}
+.vector-card.glow-lime {
+  border-color: rgba(200, 255, 0, 0.22);
+  background: linear-gradient(135deg, rgba(200, 255, 0, 0.02), rgba(255, 255, 255, 0.01));
+}
+.vector-card.glow-lime::before {
+  background: linear-gradient(90deg, transparent, var(--lime), transparent);
+}
+.vector-diagram {
+  width: 100%;
+  display: block;
+}
+.metric-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1mm;
+  padding: 3mm 3.5mm;
+  border-radius: 2mm;
+  background: rgba(255, 255, 255, 0.02);
+  border: 0.5px solid var(--ghost);
+}
+.metric-num {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 16pt;
+  line-height: 1;
+  color: var(--white);
+}
+.metric-num.lime { color: var(--lime); }
+.metric-num.cyan { color: var(--cyan); }
+.metric-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 5pt;
+  color: var(--faint);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.step-matrix {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2.5mm;
+}
+.step-node {
+  background: rgba(255, 255, 255, 0.015);
+  border: 0.5px solid var(--ghost-border);
+  border-radius: 2.5mm;
+  padding: 3.5mm 3mm;
+  display: flex;
+  flex-direction: column;
+  gap: 2mm;
+  position: relative;
+}
+.step-node.active-step {
+  border-color: rgba(200, 255, 0, 0.35);
+  background: rgba(200, 255, 0, 0.025);
+}
+.step-node-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.step-digit {
+  font-family: 'Space Mono', monospace;
+  font-size: 8pt;
+  font-weight: 700;
+  color: var(--lime);
+}
+.step-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 4.5pt;
+  letter-spacing: 0.08em;
+  color: var(--faint);
+  text-transform: uppercase;
+}
+.step-node-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  line-height: 1.2;
+  color: var(--white);
+}
+.step-node-desc {
+  font-size: 6pt;
+  line-height: 1.5;
+  color: var(--dim);
+}
+.step-node-footer {
+  margin-top: auto;
+  font-family: 'Space Mono', monospace;
+  font-size: 5pt;
+  color: var(--lime);
+}
+.pillar-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5mm;
+}
+.pillar-card {
+  padding: 4mm;
+  border-radius: 2.5mm;
+  background: rgba(255, 255, 255, 0.015);
+  border: 0.5px solid var(--ghost-border);
+  display: flex;
+  flex-direction: column;
+  gap: 2mm;
+}
+.pillar-header {
+  display: flex;
+  align-items: center;
+  gap: 2.5mm;
+}
+.pillar-icon-wrap {
+  width: 7mm;
+  height: 7mm;
+  border-radius: 1.8mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--lime-dim);
+  border: 0.5px solid rgba(200, 255, 0, 0.25);
+  color: var(--lime);
+  flex-shrink: 0;
+}
+.pillar-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: var(--white);
+}
+.pillar-text {
+  font-size: 7pt;
+  line-height: 1.55;
+  color: var(--dim);
+}
+.pillar-perks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1mm;
+  margin-top: 1mm;
+}
+.pillar-perks li {
+  font-size: 6.5pt;
+  color: var(--white);
+  display: flex;
+  align-items: baseline;
+  gap: 1.5mm;
+}
+.pillar-perks li::before {
+  content: '▸';
+  color: var(--lime);
+  font-size: 6pt;
+}
+.deliverable-matrix {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3.5mm;
+}
+.deliv-card {
+  border: 0.5px solid var(--ghost-border);
+  border-radius: 2.5mm;
+  padding: 4.5mm 4mm;
+  background: rgba(255, 255, 255, 0.015);
+  display: flex;
+  flex-direction: column;
+  gap: 2mm;
+  position: relative;
+}
+.deliv-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.deliv-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: var(--white);
+  line-height: 1.2;
+}
+.deliv-desc {
+  font-size: 7.2pt;
+  line-height: 1.55;
+  color: var(--dim);
+}
+.deliv-blueprint {
+  background: rgba(0, 0, 0, 0.4);
+  border: 0.5px solid rgba(255, 255, 255, 0.06);
+  border-radius: 2mm;
+  padding: 2.5mm 3mm;
+  margin-top: 1mm;
+}
+.deliv-spec-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1mm;
+}
+.deliv-spec-list li {
+  font-family: 'Space Mono', monospace;
+  font-size: 5.5pt;
+  color: var(--dim);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.deliv-spec-list li span.val {
+  color: var(--lime);
+  font-weight: 700;
+}
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2mm;
+  font-size: 6.8pt;
+}
+.comparison-table th {
+  font-family: 'Space Mono', monospace;
+  font-size: 5.5pt;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 2.5mm 3mm;
+  text-align: left;
+  border-bottom: 0.5px solid var(--ghost-border);
+  color: var(--faint);
+}
+.comparison-table th.highlight-col {
+  color: var(--lime);
+}
+.comparison-table td {
+  padding: 2.8mm 3mm;
+  border-bottom: 0.5px solid var(--ghost);
+  color: var(--dim);
+  vertical-align: top;
+  line-height: 1.45;
+}
+.comparison-table tr:hover td {
+  background: rgba(255, 255, 255, 0.015);
+}
+.comparison-table td.feature-name {
+  font-weight: 600;
+  color: var(--white);
+}
+.comparison-table td.highlight-cell {
+  color: var(--white);
+  background: rgba(200, 255, 0, 0.02);
+}
+.tag-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 1mm;
+  color: var(--lime);
+  font-family: 'Space Mono', monospace;
+  font-size: 6pt;
+  font-weight: 700;
+}
+.tag-cross {
+  display: inline-flex;
+  align-items: center;
+  gap: 1mm;
+  color: rgba(255, 255, 255, 0.25);
+  font-family: 'Space Mono', monospace;
+  font-size: 6pt;
+}
+.dm-hub-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 4mm;
+}
+.dm-channel-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3mm 3.5mm;
+  border-radius: 2mm;
+  border: 0.5px solid var(--ghost-border);
+  background: rgba(255, 255, 255, 0.02);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+}
+.dm-channel-row:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(200, 255, 0, 0.4);
+}
+.channel-meta {
+  display: flex;
+  align-items: center;
+  gap: 3mm;
+}
+.channel-icon {
+  width: 7mm;
+  height: 7mm;
+  border-radius: 1.5mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: 0.5px solid var(--ghost);
+  color: var(--lime);
+  font-size: 8pt;
+  font-weight: 700;
+  font-family: 'Space Mono', monospace;
+}
+.channel-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 7.5pt;
+  font-weight: 700;
+  color: var(--white);
+}
+.channel-handle {
+  font-family: 'Space Mono', monospace;
+  font-size: 5.5pt;
+  color: var(--faint);
+}
+.channel-cta {
+  font-family: 'Space Mono', monospace;
+  font-size: 5.5pt;
+  color: var(--lime);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 1mm;
+}
+.template-box {
+  background: rgba(0, 0, 0, 0.5);
+  border: 0.5px solid rgba(200, 255, 0, 0.25);
+  border-radius: 2mm;
+  padding: 3mm;
+  font-family: 'Space Mono', monospace;
+  font-size: 5.8pt;
+  line-height: 1.6;
+  color: rgba(244, 244, 242, 0.85);
+  position: relative;
+  user-select: all;
+}
+.copy-pill {
+  position: absolute;
+  top: 2.5mm;
+  right: 2.5mm;
+  padding: 1mm 2.5mm;
+  background: var(--lime);
+  color: #050505;
+  border-radius: 1mm;
+  font-size: 5pt;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+}
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3mm;
+  margin-top: 1.5mm;
+}
+.faq-item {
+  padding: 3mm;
+  border-radius: 2mm;
+  background: rgba(255, 255, 255, 0.015);
+  border: 0.5px solid var(--ghost);
+}
+.faq-q {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 7pt;
+  color: var(--white);
+  margin-bottom: 1mm;
+}
+.faq-a {
+  font-size: 6.2pt;
+  line-height: 1.5;
+  color: var(--dim);
+}
+.signature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3mm;
+  margin-top: 2mm;
+  padding-top: 3mm;
+  border-top: 0.5px solid var(--ghost);
+}
+.sig-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5mm;
+}
+.sig-line {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 7pt;
+  color: var(--white);
+}
+.sig-role {
+  font-family: 'Space Mono', monospace;
+  font-size: 5pt;
+  color: var(--faint);
+  text-transform: uppercase;
+}
+.sig-hash {
+  font-family: 'Space Mono', monospace;
+  font-size: 4.5pt;
+  color: var(--lime);
+}
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-backdrop.is-active {
+  display: flex;
+}
+.modal-box {
+  width: 100%;
+  max-width: 520px;
+  background: #0d0d10;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9);
+  position: relative;
+}
+.modal-close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: transparent;
+  border: none;
+  color: var(--faint);
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+}
+.modal-close-btn:hover {
+  color: var(--white);
+}
+.modal-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.modal-sub {
+  font-size: 13px;
+  color: var(--dim);
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.input-field {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--white);
+}
+.input-field:focus {
+  border-color: var(--lime);
+  background: rgba(200, 255, 0, 0.02);
+}
+.toast-msg {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: #000;
+  color: var(--lime);
+  border: 1px solid rgba(200, 255, 0, 0.4);
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  z-index: 3000;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+.toast-msg.show {
+  transform: translateX(-50%) translateY(0);
+}
+@media print {
+  body {
+    background: transparent;
+  }
+  .screen-nav, .modal-backdrop, .toast-msg {
+    display: none !important;
+  }
+  .page-container {
+    padding: 0;
+  }
+  .sheet {
+    margin: 0;
+    box-shadow: none;
+    border-radius: 0;
+    width: var(--page-w);
+    height: var(--page-h);
+  }
+  .sheet:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+}
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+@media screen and (max-width: 900px) {
+  .screen-nav {
+    top: auto;
+    bottom: 16px;
+    right: 50%;
+    transform: translateX(50%);
+    width: calc(100% - 32px);
+    max-width: 440px;
+    justify-content: space-between;
+  }
+  .page-container {
+    padding: 20px 10px 100px;
+  }
+  .sheet {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    min-height: auto;
+    margin: 16px 0;
+  }
+  .sheet-content {
+    padding: 24px 18px;
+    gap: 20px;
+  }
+  .hero-headline {
+    font-size: 26pt;
+  }
+  .sub-headline {
+    font-size: 16pt;
+  }
+  .step-matrix {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .pillar-grid, .deliverable-matrix, .faq-grid, .dm-hub-grid {
+    grid-template-columns: 1fr;
+  }
+  .signature-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+</style>
+</head>
+<body>
+<nav class="screen-nav" aria-label="Quick Controls">
+  <div class="nav-badge">
+    <span class="nav-badge-dot"></span>
+    <span>MnM Campus Alliance</span>
+  </div>
+  <button class="nav-action-btn lime-btn" id="openDmModalBtn" type="button">DM Us to Collab</button>
+  <button class="nav-action-btn" onclick="window.print()" type="button">&#8595; Export PDF</button>
+</nav>
+<main class="page-container">
+<section class="sheet" id="page-1">
+  <div class="canvas-grid"></div>
+  <div class="radial-spot" style="width:160mm;height:160mm;top:-40mm;right:-30mm;background:radial-gradient(circle,rgba(200,255,0,0.12) 0%,transparent 65%);"></div>
+  <div class="radial-spot" style="width:140mm;height:140mm;bottom:-30mm;left:-30mm;background:radial-gradient(circle,rgba(56,229,255,0.08) 0%,transparent 65%);"></div>
+  <div class="tech-reticle tl"></div>
+  <div class="tech-reticle tr"></div>
+  <div class="tech-reticle bl"></div>
+  <div class="tech-reticle br"></div>
+  <div class="sheet-content">
+    <header class="sheet-topbar">
+      <div class="brand-pill">
+        <img src="/catalyst/mnm_logo_with_text_MnM_for_the_dark_bg.png" alt="MnM" class="brand-logo-img">
+        <span class="brand-title">Makers Need More</span>
+        <span class="brand-tag">Ecosystem</span>
+      </div>
+      <div class="doc-spec">Catalogue Ref: MNM-CMP-2026-X1</div>
+      <div class="page-tracker">01 / 07</div>
+    </header>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:6mm;padding:4mm 0;">
+      <div style="display:flex;gap:2.5mm;flex-wrap:wrap;">
+        <span class="c-badge lime">Permanent Alliance</span>
+        <span class="c-badge cyan">100% Non-Monetary</span>
+        <span class="c-badge">Official Campus Guilds</span>
+      </div>
+      <div>
+        <h1 class="hero-headline">
+          CAMPUS<br>
+          <span class="lime-txt">COMMUNITIES</span><br>
+          CATALOGUE.
+        </h1>
+        <p class="lead-copy" style="max-width:145mm;margin-top:3.5mm;">
+          A permanent, non-monetary strategic collaboration catalogue for university tech societies, coding clubs, developer chapters, and student committees. Represent MnM on your campus, co-host flagship hackathons, and immortalize your community on our official global platform.
+        </p>
+      </div>
+      <div class="vector-card glow-lime" style="padding:4.5mm 5mm;">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3mm;">
+          <div class="metric-box">
+            <span class="metric-num lime">0.00</span>
+            <span class="metric-label">Monetary Cost / Fees</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-num">100%</span>
+            <span class="metric-label">Turnkey Platform Power</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-num cyan">Dedicated</span>
+            <span class="metric-label">Web Page on mnmworks.xyz</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-num lime">Official</span>
+            <span class="metric-label">Offer Letter & LinkedIn Post</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1.2fr 0.8fr;gap:4mm;align-items:center;">
+        <div class="vector-card" style="padding:3.5mm 4mm;">
+          <div class="mono-label" style="margin-bottom:1.5mm;">Strategic Mutual Promise</div>
+          <p class="body-copy" style="font-size:7.5pt;">
+            We do not sell sponsorships or franchise licences. We partner directly with student leaders to supercharge campus tech culture with battle-tested event software, national visibility, and career-defining credentials.
+          </p>
+        </div>
+        <div class="vector-card" style="padding:3.5mm 4mm;">
+          <div class="mono-label" style="margin-bottom:1.5mm;">Direct Access</div>
+          <p class="body-copy" style="font-size:7.5pt;">
+            DM us on Instagram or LinkedIn to start the collaboration. Our core council responds within 24 hours.
+          </p>
+        </div>
+      </div>
+    </div>
+    <footer class="sheet-bottombar">
+      <div class="sheet-bottombar-left">
+        <span>Makers Need More (MnM)</span>
+        <span>•</span>
+        <span>admin@mnmworks.xyz</span>
+        <span>•</span>
+        <span>mnmworks.xyz</span>
+      </div>
+      <div class="sheet-bottombar-right">SECTION 01: PROLOGUE & IDENTITY</div>
+    </footer>
+  </div>
+</section>
+<section class="sheet" id="page-2">
+  <div class="canvas-grid"></div>
+  <div class="radial-spot" style="width:150mm;height:150mm;top:10%;left:-20%;background:radial-gradient(circle,rgba(200,255,0,0.08) 0%,transparent 65%);"></div>
+  <div class="tech-reticle tl"></div>
+  <div class="tech-reticle tr"></div>
+  <div class="tech-reticle bl"></div>
+  <div class="tech-reticle br"></div>
+  <div class="sheet-content">
+    <header class="sheet-topbar">
+      <div class="brand-pill">
+        <img src="/catalyst/mnm_logo_with_text_MnM_for_the_dark_bg.png" alt="MnM" class="brand-logo-img">
+        <span class="brand-title">Makers Need More</span>
+      </div>
+      <div class="doc-spec">Core Thesis & Non-Monetary Charter</div>
+      <div class="page-tracker">02 / 07</div>
+    </header>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:2mm 0;">
+      <div>
+        <span class="mono-label">Why Partner With MnM</span>
+        <h2 class="sub-headline" style="margin-top:2mm;">
+          PURE BUILDER SYMBIOSIS.<br>
+          <span class="lime-txt">ZERO CORPORATE SLOP.</span>
+        </h2>
+        <p class="body-copy" style="margin-top:2mm;max-width:160mm;">
+          Student tech societies are the foundation of modern engineering talent. Yet every semester, campus teams get bogged down building submission forms, begging for corporate sponsorship crumbs, and struggling to give their core volunteers real institutional accreditation. MnM dismantles this overhead entirely.
+        </p>
+      </div>
+      <div class="pillar-grid">
+        <div class="pillar-card">
+          <div class="pillar-header">
+            <div class="pillar-icon-wrap">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div>
+              <h3 class="pillar-title">100% Non-Monetary Forever</h3>
+              <span class="doc-spec" style="font-size:5pt;color:var(--lime);">Zero Financial Obligation</span>
+            </div>
+          </div>
+          <p class="pillar-text">
+            No subscription fees, no registration cuts, and no gatekeeping. This alliance is built on open-source values and community equity. Everything we provide is completely free for your campus.
+          </p>
+          <ul class="pillar-perks">
+            <li>No budget needed from university or student council</li>
+            <li>No revenue splits or hidden platform charges</li>
+            <li>Strictly student-first non-profit governance</li>
+          </ul>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-header">
+            <div class="pillar-icon-wrap" style="color:var(--cyan);border-color:rgba(56,229,255,0.3);background:var(--cyan-dim);">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <div>
+              <h3 class="pillar-title">Dedicated Web Space</h3>
+              <span class="doc-spec" style="font-size:5pt;color:var(--cyan);">Verified Identity</span>
+            </div>
+          </div>
+          <p class="pillar-text">
+            Your society receives a permanent, verified profile page on our official website (<code style="color:var(--white);">mnmworks.xyz</code>) highlighting your club history, core members, social links, and events.
+          </p>
+          <ul class="pillar-perks">
+            <li>Custom vanity URL and permanent campus archive</li>
+            <li>Showcase your core committee leads to the global community</li>
+            <li>Backlink authority and verified campus badge</li>
+          </ul>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-header">
+            <div class="pillar-icon-wrap">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <div>
+              <h3 class="pillar-title">Turnkey Hackathon Infrastructure</h3>
+              <span class="doc-spec" style="font-size:5pt;color:var(--lime);">Engineered for Speed</span>
+            </div>
+          </div>
+          <p class="pillar-text">
+            Host campus ideathons and hackathons using MnM's production-grade event portal. We provide live registration flows, evaluation rubrics, automated scoring, and real-time dashboards.
+          </p>
+          <ul class="pillar-perks">
+            <li>Eliminates Google Sheets and chaotic submissions</li>
+            <li>Custom tracks in AI, Fullstack, Systems & Open Source</li>
+            <li>Live judge scoring portal and participant tracking</li>
+          </ul>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-header">
+            <div class="pillar-icon-wrap" style="color:var(--orange);border-color:rgba(255,122,0,0.3);background:rgba(255,122,0,0.08);">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+            </div>
+            <div>
+              <h3 class="pillar-title">Offer Letter & LinkedIn Post</h3>
+              <span class="doc-spec" style="font-size:5pt;color:var(--orange);">Career Acceleration</span>
+            </div>
+          </div>
+          <p class="pillar-text">
+            When students participate through your chapter, your leadership council receives an official signed Collaboration Partner Offer Letter and a spotlight endorsement post on MnM's official LinkedIn.
+          </p>
+          <ul class="pillar-perks">
+            <li>Signed credentials for faculty & institutional approval</li>
+            <li>Direct individual tags for core team leads on LinkedIn</li>
+            <li>High-signal proof of leadership and event execution</li>
+          </ul>
+        </div>
+      </div>
+      <div class="vector-card glow-lime" style="padding:3mm 4mm;display:flex;align-items:center;justify-content:space-between;">
+        <span class="mono-label" style="font-size:5.8pt;">Key Takeaway</span>
+        <span class="body-copy" style="font-size:7pt;color:var(--white);">
+          MnM handles the heavy digital lift. Your committee leads the ground execution and takes full pride of leadership.
+        </span>
+      </div>
+    </div>
+    <footer class="sheet-bottombar">
+      <div class="sheet-bottombar-left">
+        <span>Makers Need More (MnM)</span>
+        <span>•</span>
+        <span>Campus Alliance Charter</span>
+      </div>
+      <div class="sheet-bottombar-right">SECTION 02: THE ALLIANCE CHARTER</div>
+    </footer>
+  </div>
+</section>
+<section class="sheet" id="page-3">
+  <div class="canvas-grid"></div>
+  <div class="radial-spot" style="width:160mm;height:160mm;bottom:5%;right:-15%;background:radial-gradient(circle,rgba(56,229,255,0.08) 0%,transparent 65%);"></div>
+  <div class="tech-reticle tl"></div>
+  <div class="tech-reticle tr"></div>
+  <div class="tech-reticle bl"></div>
+  <div class="tech-reticle br"></div>
+  <div class="sheet-content">
+    <header class="sheet-topbar">
+      <div class="brand-pill">
+        <img src="/catalyst/mnm_logo_with_text_MnM_for_the_dark_bg.png" alt="MnM" class="brand-logo-img">
+        <span class="brand-title">Makers Need More</span>
+      </div>
+      <div class="doc-spec">Deliverables Matrix</div>
+      <div class="page-tracker">03 / 07</div>
+    </header>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:2mm 0;">
+      <div>
+        <span class="mono-label">Tangible Deliverables</span>
+        <h2 class="sub-headline" style="margin-top:2mm;">
+          WHAT YOUR COMMITTEE<br>
+          <span class="lime-txt">RECEIVES IN RETURN.</span>
+        </h2>
+        <p class="body-copy" style="margin-top:2mm;max-width:160mm;">
+          We believe in direct reciprocity. When your committee partners with MnM, you unlock tangible assets that elevate your club's stature within your college and across the national tech community.
+        </p>
+      </div>
+      <div class="deliverable-matrix">
+        <div class="deliv-card">
+          <div class="deliv-badge-row">
+            <span class="c-badge cyan">Web Presence</span>
+            <span class="doc-spec">01 / Deliverable</span>
+          </div>
+          <h3 class="deliv-title">Dedicated Showcase Page on Official Website</h3>
+          <p class="deliv-desc">
+            A permanent standalone web profile on <code style="color:var(--white);">mnmworks.xyz/community/[your-club]</code>. It features your society emblem, leadership biographies, student initiatives, and custom badge.
+          </p>
+          <div class="deliv-blueprint">
+            <ul class="deliv-spec-list">
+              <li><span>Profile URL</span><span class="val">mnmworks.xyz/[your-chapter]</span></li>
+              <li><span>Custom Chapter Emblem</span><span class="val">Verified Active</span></li>
+              <li><span>Leadership Roster</span><span class="val">Direct LinkedIn Links</span></li>
+              <li><span>Event Portfolio</span><span class="val">Interactive Archive</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="deliv-card">
+          <div class="deliv-badge-row">
+            <span class="c-badge lime">Platform Power</span>
+            <span class="doc-spec">02 / Deliverable</span>
+          </div>
+          <h3 class="deliv-title">Battle-Tested Event Platform & Tooling</h3>
+          <p class="deliv-desc">
+            Host campus competitions without touching server code. MnM equips your team with our registration engine, automated project submission portal, and judge evaluation dashboard.
+          </p>
+          <div class="deliv-blueprint">
+            <ul class="deliv-spec-list">
+              <li><span>Participant Onboarding</span><span class="val">1-Click Fast Track</span></li>
+              <li><span>Multi-Track Submissions</span><span class="val">Automated Check</span></li>
+              <li><span>Scoring & Rubrics</span><span class="val">Standardized Metric</span></li>
+              <li><span>Tech Support Team</span><span class="val">Dedicated Sync Channel</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="deliv-card">
+          <div class="deliv-badge-row">
+            <span class="c-badge">Formal Credential</span>
+            <span class="doc-spec">03 / Deliverable</span>
+          </div>
+          <h3 class="deliv-title">Official Offer Letter as Collaboration Partner</h3>
+          <p class="deliv-desc">
+            A formal, legally compliant Letter of Collaboration & Appointment from Makers Need More recognizing your core student team as authorized strategic partners.
+          </p>
+          <div class="deliv-blueprint">
+            <ul class="deliv-spec-list">
+              <li><span>Issuing Authority</span><span class="val">Makers Need More Council</span></li>
+              <li><span>Scope</span><span class="val">Annual Strategic Partnership</span></li>
+              <li><span>Institutional Utility</span><span class="val">College Dean / HOD Filing</span></li>
+              <li><span>Core Lead Credentials</span><span class="val">Individualized Offer Letters</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="deliv-card">
+          <div class="deliv-badge-row">
+            <span class="c-badge lime">Public Recognition</span>
+            <span class="doc-spec">04 / Deliverable</span>
+          </div>
+          <h3 class="deliv-title">Public LinkedIn Post & Team Endorsement</h3>
+          <p class="deliv-desc">
+            When students register and participate through your campus link, MnM publishes an official endorsement post on LinkedIn celebrating your committee and tagging leads.
+          </p>
+          <div class="deliv-blueprint">
+            <ul class="deliv-spec-list">
+              <li><span>Publication Venue</span><span class="val">linkedin.com/company/makersneedmore</span></li>
+              <li><span>Individual Tags</span><span class="val">All Core Council Leads</span></li>
+              <li><span>Audience Reach</span><span class="val">Recruiters, Builders, Founders</span></li>
+              <li><span>Permanent Verification</span><span class="val">Lifetime Public Record</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="vector-card" style="padding:3mm 4mm;display:flex;align-items:center;justify-content:space-between;">
+        <span class="mono-label" style="font-size:5.8pt;">Multi-Year Stability</span>
+        <span class="body-copy" style="font-size:7pt;">
+          Our alliance carries forward across graduating tenures, giving incoming student juniors a proven legacy platform to inherit.
+        </span>
+      </div>
+    </div>
+    <footer class="sheet-bottombar">
+      <div class="sheet-bottombar-left">
+        <span>Makers Need More (MnM)</span>
+        <span>•</span>
+        <span>Alliance Deliverables</span>
+      </div>
+      <div class="sheet-bottombar-right">SECTION 03: THE DELIVERABLES</div>
+    </footer>
+  </div>
+</section>
+<section class="sheet" id="page-4">
+  <div class="canvas-grid"></div>
+  <div class="radial-spot" style="width:170mm;height:170mm;top:15%;right:-10%;background:radial-gradient(circle,rgba(200,255,0,0.08) 0%,transparent 65%);"></div>
+  <div class="tech-reticle tl"></div>
+  <div class="tech-reticle tr"></div>
+  <div class="tech-reticle bl"></div>
+  <div class="tech-reticle br"></div>
+  <div class="sheet-content">
+    <header class="sheet-topbar">
+      <div class="brand-pill">
+        <img src="/catalyst/mnm_logo_with_text_MnM_for_the_dark_bg.png" alt="MnM" class="brand-logo-img">
+        <span class="brand-title">Makers Need More</span>
+      </div>
+      <div class="doc-spec">Workflow Architecture</div>
+      <div class="page-tracker">04 / 07</div>
+    </header>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:2mm 0;">
+      <div>
+        <span class="mono-label">Execution Pipeline</span>
+        <h2 class="sub-headline" style="margin-top:2mm;">
+          HOW WE COLLABORATE.<br>
+          <span class="lime-txt">FROM DM TO INDUCTION.</span>
+        </h2>
+        <p class="body-copy" style="margin-top:2mm;max-width:160mm;">
+          We designed the onboarding process to be frictionless. No months of committee bureaucracy. A simple 5-step pipeline takes your campus group from an initial DM to an officially inducted partner guild.
+        </p>
+      </div>
+      <div class="step-matrix">
+        <div class="step-node active-step">
+          <div class="step-node-header">
+            <span class="step-digit">01</span>
+            <span class="step-tag">Initial Ping</span>
+          </div>
+          <h4 class="step-node-title">DM Us on Socials</h4>
+          <p class="step-node-desc">
+            Your club president or convenor reaches out via Instagram DM, LinkedIn, or Email with your society name and college.
+          </p>
+          <div class="step-node-footer">Response &lt; 24h</div>
+        </div>
+        <div class="step-node">
+          <div class="step-node-header">
+            <span class="step-digit">02</span>
+            <span class="step-tag">Discovery</span>
+          </div>
+          <h4 class="step-node-title">15-Min Sync Call</h4>
+          <p class="step-node-desc">
+            A quick virtual chat with MnM council to review your campus calendar, club focus (AI/Web/App), and semester objectives.
+          </p>
+          <div class="step-node-footer">Mutual Alignment</div>
+        </div>
+        <div class="step-node">
+          <div class="step-node-header">
+            <span class="step-digit">03</span>
+            <span class="step-tag">Formalize</span>
+          </div>
+          <h4 class="step-node-title">Offer Letter & Page</h4>
+          <p class="step-node-desc">
+            We issue the formal Collaboration Partner Offer Letter and publish your dedicated community page on mnmworks.xyz.
+          </p>
+          <div class="step-node-footer">Live in 48 Hours</div>
+        </div>
+        <div class="step-node">
+          <div class="step-node-header">
+            <span class="step-digit">04</span>
+            <span class="step-tag">Activation</span>
+          </div>
+          <h4 class="step-node-title">Co-Host Events</h4>
+          <p class="step-node-desc">
+            Organize campus hackathons and workshops powered by MnM platform architecture and curriculum resources.
+          </p>
+          <div class="step-node-footer">Full Platform Suite</div>
+        </div>
+        <div class="step-node active-step">
+          <div class="step-node-header">
+            <span class="step-digit">05</span>
+            <span class="step-tag">Recognition</span>
+          </div>
+          <h4 class="step-node-title">LinkedIn Endorsement</h4>
+          <p class="step-node-desc">
+            On relevant participant milestones, MnM publishes an official LinkedIn post tagging your core leads individually.
+          </p>
+          <div class="step-node-footer">Public Accolade</div>
+        </div>
+      </div>
+      <div class="vector-card glow-lime" style="padding:4.5mm;">
+        <div class="mono-label" style="margin-bottom:2mm;">The Collaboration Timeline Specification</div>
+        <svg class="vector-diagram" viewBox="0 0 700 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="40" y1="40" x2="660" y2="40" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <line x1="40" y1="40" x2="520" y2="40" stroke="#C8FF00" stroke-width="2"/>
+          <circle cx="60" cy="40" r="10" fill="#050505" stroke="#C8FF00" stroke-width="2"/>
+          <circle cx="60" cy="40" r="4" fill="#C8FF00"/>
+          <text x="60" y="65" text-anchor="middle" fill="#C8FF00" font-family="'Space Mono', monospace" font-size="10">DAY 01: DM PING</text>
+          <circle cx="200" cy="40" r="8" fill="#050505" stroke="#38E5FF" stroke-width="2"/>
+          <circle cx="200" cy="40" r="3" fill="#38E5FF"/>
+          <text x="200" y="65" text-anchor="middle" fill="#38E5FF" font-family="'Space Mono', monospace" font-size="10">DAY 02: SYNC CALL</text>
+          <circle cx="360" cy="40" r="8" fill="#050505" stroke="#C8FF00" stroke-width="2"/>
+          <circle cx="360" cy="40" r="3" fill="#C8FF00"/>
+          <text x="360" y="65" text-anchor="middle" fill="#F4F4F2" font-family="'Space Mono', monospace" font-size="10">DAY 03: OFFER LETTER</text>
+          <circle cx="520" cy="40" r="10" fill="#050505" stroke="#C8FF00" stroke-width="2"/>
+          <circle cx="520" cy="40" r="4" fill="#C8FF00"/>
+          <text x="520" y="65" text-anchor="middle" fill="#C8FF00" font-family="'Space Mono', monospace" font-size="10">CO-HOST ACTIVATION</text>
+          <circle cx="640" cy="40" r="8" fill="#050505" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+          <text x="640" y="65" text-anchor="middle" fill="rgba(244,244,242,0.4)" font-family="'Space Mono', monospace" font-size="10">PUBLIC ENDORSEMENT</text>
+        </svg>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3mm;">
+        <div class="vector-card" style="padding:3mm 3.5mm;">
+          <span class="mono-label" style="font-size:5.5pt;">Communication Protocol</span>
+          <p class="body-copy" style="font-size:6.8pt;margin-top:1mm;">
+            We set up a private joint coordinator channel on WhatsApp, Telegram, or Discord so your team has instant contact with MnM leadership.
+          </p>
+        </div>
+        <div class="vector-card" style="padding:3mm 3.5mm;">
+          <span class="mono-label" style="font-size:5.5pt;">Zero Paperwork Lag</span>
+          <p class="body-copy" style="font-size:6.8pt;margin-top:1mm;">
+            Formal Offer Letters are generated digitally within 48 hours of alignment to ensure prompt submission for college administrative approval.
+          </p>
+        </div>
+      </div>
+    </div>
+    <footer class="sheet-bottombar">
+      <div class="sheet-bottombar-left">
+        <span>Makers Need More (MnM)</span>
+        <span>•</span>
+        <span>Lifecycle & Operations</span>
+      </div>
+      <div class="sheet-bottombar-right">SECTION 04: EXECUTION PIPELINE</div>
+    </footer>
+  </div>
+</section>
+<section class="sheet" id="page-5">
+  <div class="canvas-grid"></div>
+  <div class="radial-spot" style="width:160mm;height:160mm;top:-20mm;left:-20mm;background:radial-gradient(circle,rgba(56,229,255,0.09) 0%,transparent 65%);"></div>
+  <div class="tech-reticle tl"></div>
+  <div class="tech-reticle tr"></div>
+  <div class="tech-reticle bl"></div>
+  <div class="tech-reticle br"></div>
+  <div class="sheet-content">
+    <header class="sheet-topbar">
+      <div class="brand-pill">
+        <img src="/catalyst/mnm_logo_with_text_MnM_for_the_dark_bg.png" alt="MnM" class="brand-logo-img">
+        <span class="brand-title">Makers Need More</span>
+      </div>
+      <div class="doc-spec">Event Power & Architecture</div>
+      <div class="page-tracker">05 / 07</div>
+    </header>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:2mm 0;">
+      <div>
+        <span class="mono-label">Platform Capabilities</span>
+        <h2 class="sub-headline" style="margin-top:2mm;">
+          CAMPUS EVENT ENGINE.<br>
+          <span class="lime-txt">BUILT FOR SCALE.</span>
+        </h2>
+        <p class="body-copy" style="margin-top:2mm;max-width:160mm;">
+          Organizing hackathons usually requires juggling registrations, Google Drive folders, and broken forms. MnM provides student committees with a complete, production-grade event operating system.
+        </p>
+      </div>
+      <div style="display:grid;grid-template-columns:1.1fr 0.9fr;gap:4mm;align-items:start;">
+        <div style="display:flex;flex-direction:column;gap:2.5mm;">
+          <div class="vector-card" style="padding:3.5mm 4mm;">
+            <div style="display:flex;align-items:center;gap:2mm;margin-bottom:1.5mm;">
+              <span class="c-badge lime" style="padding:1mm 3mm;font-size:5pt;">ENGINE 01</span>
+              <h4 style="font-family:'Syne',sans-serif;font-size:8.5pt;color:var(--white);">Automated Submission & Verification</h4>
+            </div>
+            <p class="body-copy" style="font-size:7pt;">
+              Participants submit repositories, demo URLs, and video presentations into a dedicated portal that validates code activity, avoids plagiarism, and generates timestamped audit records.
+            </p>
+          </div>
+          <div class="vector-card" style="padding:3.5mm 4mm;">
+            <div style="display:flex;align-items:center;gap:2mm;margin-bottom:1.5mm;">
+              <span class="c-badge cyan" style="padding:1mm 3mm;font-size:5pt;">ENGINE 02</span>
+              <h4 style="font-family:'Syne',sans-serif;font-size:8.5pt;color:var(--white);">Standardized Evaluation Rubric</h4>
+            </div>
+            <p class="body-copy" style="font-size:7pt;">
+              Blind-judging dashboards with customizable scoring parameters (Code Quality, AI Prompt Craft, Viability, UX) prevent bias and streamline rounds without endless deliberative delays.
+            </p>
+          </div>
+          <div class="vector-card" style="padding:3.5mm 4mm;">
+            <div style="display:flex;align-items:center;gap:2mm;margin-bottom:1.5mm;">
+              <span class="c-badge" style="padding:1mm 3mm;font-size:5pt;">ENGINE 03</span>
+              <h4 style="font-family:'Syne',sans-serif;font-size:8.5pt;color:var(--white);">Problem Statement & Track Bank</h4>
+            </div>
+            <p class="body-copy" style="font-size:7pt;">
+              Access MnM's curated repository of real-world challenge tracks spanning Agentic AI, Open-Source DevTools, Privacy Infrastructure, and Fullstack systems ready for immediate deployment.
+            </p>
+          </div>
+        </div>
+        <div class="vector-card glow-lime" style="padding:4mm;">
+          <div class="mono-label" style="margin-bottom:2mm;">Live Portal Blueprint</div>
+          <div style="background:rgba(0,0,0,0.6);border:0.5px solid rgba(255,255,255,0.08);border-radius:2mm;padding:3.5mm;display:flex;flex-direction:column;gap:2mm;">
+            <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:0.5px solid var(--ghost);padding-bottom:1.5mm;">
+              <span style="font-family:'Space Mono',monospace;font-size:5.5pt;color:var(--lime);">[CAMPUS PORTAL ARCHITECTURE]</span>
+              <span style="font-family:'Space Mono',monospace;font-size:5pt;color:var(--faint);">STATUS: PRODUCTION</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:1.5mm;font-family:'Space Mono',monospace;font-size:5.5pt;">
+              <div style="display:flex;justify-content:space-between;color:var(--dim);">
+                <span>› Ingestion Gate:</span>
+                <span style="color:var(--white);">Custom College Domain / Sub-path</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;color:var(--dim);">
+                <span>› Registration Engine:</span>
+                <span style="color:var(--white);">Zero-Auth Solo & Team Flows</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;color:var(--dim);">
+                <span>› Judging Grid:</span>
+                <span style="color:var(--white);">Synchronized Cloud Evaluation</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;color:var(--dim);">
+                <span>› Analytics:</span>
+                <span style="color:var(--white);">Live Funnel & Retention Metrics</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;color:var(--dim);">
+                <span>› Certification Engine:</span>
+                <span style="color:var(--lime);">Automated Digital Verifications</span>
+              </div>
+            </div>
+            <div style="margin-top:2mm;padding-top:2mm;border-top:0.5px solid var(--ghost);display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-family:'Space Mono',monospace;font-size:5pt;color:var(--faint);">Campus Cost:</span>
+              <span style="font-family:'Space Mono',monospace;font-size:6pt;color:var(--lime);font-weight:700;">$0 / ₹0 (100% Non-Monetary)</span>
+            </div>
+          </div>
+          <p class="body-copy" style="font-size:6.5pt;margin-top:2.5mm;">
+            Your committee can brand the portal with your university society crest alongside MnM, preserving your college identity while benefiting from our enterprise-grade codebase.
+          </p>
+        </div>
+      </div>
+      <div class="vector-card" style="padding:3mm 4mm;display:flex;align-items:center;justify-content:space-between;">
+        <span class="mono-label" style="font-size:5.8pt;">Mentor & Judge Network</span>
+        <span class="body-copy" style="font-size:7pt;">
+          Need experienced external judges or speakers for your event? MnM connects your campus chapter with industry engineers and open-source contributors free of cost.
+        </span>
+      </div>
+    </div>
+    <footer class="sheet-bottombar">
+      <div class="sheet-bottombar-left">
+        <span>Makers Need More (MnM)</span>
+        <span>•</span>
+        <span>Infrastructure Matrix</span>
+      </div>
+      <div class="sheet-bottombar-right">SECTION 05: PLATFORM CAPABILITIES</div>
+    </footer>
+  </div>
+</section>
+<section class="sheet" id="page-6">
+  <div class="canvas-grid"></div>
+  <div class="radial-spot" style="width:160mm;height:160mm;bottom:-20mm;left:-10%;background:radial-gradient(circle,rgba(200,255,0,0.08) 0%,transparent 65%);"></div>
+  <div class="tech-reticle tl"></div>
+  <div class="tech-reticle tr"></div>
+  <div class="tech-reticle bl"></div>
+  <div class="tech-reticle br"></div>
+  <div class="sheet-content">
+    <header class="sheet-topbar">
+      <div class="brand-pill">
+        <img src="/catalyst/mnm_logo_with_text_MnM_for_the_dark_bg.png" alt="MnM" class="brand-logo-img">
+        <span class="brand-title">Makers Need More</span>
+      </div>
+      <div class="doc-spec">Commitments & Mutual Covenant</div>
+      <div class="page-tracker">06 / 07</div>
+    </header>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:2mm 0;">
+      <div>
+        <span class="mono-label">Mutual Covenant</span>
+        <h2 class="sub-headline" style="margin-top:2mm;">
+          WHAT WE GIVE vs.<br>
+          <span class="lime-txt">WHAT WE EXPECT.</span>
+        </h2>
+        <p class="body-copy" style="margin-top:2mm;max-width:160mm;">
+          To ensure every partnership thrives with zero ambiguity, here is the transparent breakdown of our permanent non-monetary alliance covenant.
+        </p>
+      </div>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th style="width:28%;">Area</th>
+            <th class="highlight-col" style="width:36%;">Provided by MnM to Your Committee</th>
+            <th style="width:36%;">Expected From Student Committee</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="feature-name">Web Showcase</td>
+            <td class="highlight-cell"><span class="tag-check">✓ Dedicated Web Page</span><br>Permanent profile on mnmworks.xyz with verified badge and committee roster.</td>
+            <td>Provide club description, high-resolution logo, core member links, and campus bio.</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Event Tech Suite</td>
+            <td class="highlight-cell"><span class="tag-check">✓ Complete Platform</span><br>Turnkey registration, judging portal, problem statements, and real-time dashboards.</td>
+            <td>Organize and execute ground logistics (classroom / auditorium booking or virtual hosts).</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Representation</td>
+            <td class="highlight-cell"><span class="tag-check">✓ Official Endorsement</span><br>Designation as an authorized MnM Partner Campus Chapter with official crest.</td>
+            <td>Represent MnM respectfully, display co-branding on event creative, and promote activities.</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Recognition & Letters</td>
+            <td class="highlight-cell"><span class="tag-check">✓ Formal Offer Letter</span><br>Signed institutional appointment document for college and faculty records.</td>
+            <td>Facilitate student participation and submit accurate list of active student builders.</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Public LinkedIn Post</td>
+            <td class="highlight-cell"><span class="tag-check">✓ Organization Spotlight</span><br>Dedicated post on MnM's LinkedIn company page tagging core leads individually.</td>
+            <td>Ensure a relevant, meaningful cohort of students joins through your chapter referral.</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Financial Obligation</td>
+            <td class="highlight-cell"><span class="tag-check">✓ $0 / ₹0 Forever</span><br>Strictly non-monetary, non-commercial, student-first open community.</td>
+            <td><span class="tag-cross">✕ No Fees Ever</span><br>Never charge students hidden fees under MnM's name.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3.5mm;">
+        <div class="vector-card glow-lime" style="padding:3.5mm 4mm;">
+          <div class="mono-label" style="font-size:5.5pt;margin-bottom:1mm;">Who is Eligible to Partner?</div>
+          <p class="body-copy" style="font-size:6.8pt;">
+            College Coding Societies, Technical Fests, ACM & IEEE Student Branches, GDGs on Campus, Cyber Security Clubs, AI Guilds, Departmental Councils, and Independent Student Collectives.
+          </p>
+        </div>
+        <div class="vector-card" style="padding:3.5mm 4mm;">
+          <div class="mono-label" style="font-size:5.5pt;margin-bottom:1mm;">Tenure Continuity Promise</div>
+          <p class="body-copy" style="font-size:6.8pt;">
+            When senior leads graduate, the campus partnership seamlessly transfers to junior convenors without re-negotiation. Your dedicated page remains permanently live.
+          </p>
+        </div>
+      </div>
+    </div>
+    <footer class="sheet-bottombar">
+      <div class="sheet-bottombar-left">
+        <span>Makers Need More (MnM)</span>
+        <span>•</span>
+        <span>Alliance Terms</span>
+      </div>
+      <div class="sheet-bottombar-right">SECTION 06: MUTUAL COVENANT</div>
+    </footer>
+  </div>
+</section>
+<section class="sheet" id="page-7">
+  <div class="canvas-grid"></div>
+  <div class="radial-spot" style="width:170mm;height:170mm;top:-30mm;right:-30mm;background:radial-gradient(circle,rgba(200,255,0,0.12) 0%,transparent 65%);"></div>
+  <div class="tech-reticle tl"></div>
+  <div class="tech-reticle tr"></div>
+  <div class="tech-reticle bl"></div>
+  <div class="tech-reticle br"></div>
+  <div class="sheet-content">
+    <header class="sheet-topbar">
+      <div class="brand-pill">
+        <img src="/catalyst/mnm_logo_with_text_MnM_for_the_dark_bg.png" alt="MnM" class="brand-logo-img">
+        <span class="brand-title">Makers Need More</span>
+      </div>
+      <div class="doc-spec">Connection Terminal & Direct Message</div>
+      <div class="page-tracker">07 / 07</div>
+    </header>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:2mm 0;">
+      <div>
+        <span class="mono-label">Initiate Partnership</span>
+        <h2 class="sub-headline" style="margin-top:2mm;">
+          READY TO COLLABORATE?<br>
+          <span class="lime-txt">SEND US A DIRECT MESSAGE.</span>
+        </h2>
+        <p class="body-copy" style="margin-top:2mm;max-width:160mm;">
+          No complex proposals or pitch decks required. Simply send a DM through any of our official channels below, and the MnM leadership council will reach out to schedule your chapter onboarding.
+        </p>
+      </div>
+      <div class="dm-hub-grid">
+        <div style="display:flex;flex-direction:column;gap:2.5mm;">
+          <a href="https://www.linkedin.com/company/makersneedmore" target="_blank" rel="noopener noreferrer" class="dm-channel-row">
+            <div class="channel-meta">
+              <div class="channel-icon">in</div>
+              <div>
+                <div class="channel-title">LinkedIn Message</div>
+                <div class="channel-handle">linkedin.com/company/makersneedmore</div>
+              </div>
+            </div>
+            <div class="channel-cta">DM on LinkedIn &rarr;</div>
+          </a>
+          <a href="mailto:admin@mnmworks.xyz?subject=%5BCampus%20Alliance%5D%20Collaboration%20Inquiry%20%E2%80%93%20%3CYour%20Club%20Name%3E&body=Hi%20MnM%20Team%2C%0A%0AWe%20would%20love%20to%20partner%20with%20Makers%20Need%20More%20as%20an%20official%20Campus%20Chapter.%0A%0AClub%20Name%3A%20%0ACollege%20%2F%20University%3A%20%0ALead%20Name%20%26%20Role%3A%20%0AContact%20Number%20%2F%20WhatsApp%3A%20%0A%0ALooking%20forward%20to%20connecting!" class="dm-channel-row">
+            <div class="channel-meta">
+              <div class="channel-icon">@</div>
+              <div>
+                <div class="channel-title">Direct Council Email</div>
+                <div class="channel-handle">admin@mnmworks.xyz</div>
+              </div>
+            </div>
+            <div class="channel-cta">Send Email &rarr;</div>
+          </a>
+          <div class="dm-channel-row" style="cursor:default;">
+            <div class="channel-meta">
+              <div class="channel-icon">IG</div>
+              <div>
+                <div class="channel-title">Instagram Direct Message</div>
+                <div class="channel-handle">DM @makersneedmore</div>
+              </div>
+            </div>
+            <div class="channel-cta">Active Mon-Sun</div>
+          </div>
+          <div class="vector-card" style="padding:3mm 3.5mm;">
+            <div class="mono-label" style="font-size:5.5pt;margin-bottom:1mm;">Response SLA</div>
+            <p class="body-copy" style="font-size:6.8pt;">
+              We guarantee a response from our leadership team within 24 hours of receiving your direct message.
+            </p>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:2mm;">
+          <div class="mono-label" style="font-size:5.5pt;">Quick DM Copy-Paste Template</div>
+          <div class="template-box" id="templateText">
+            <button class="copy-pill" id="copyTemplateBtn" type="button">Copy</button>
+"Hi MnM team, we are from [Club/Society Name] at [College/University]. We saw the Campus Chapters Catalogue and would love to partner with MnM to represent on campus, co-host events with your platform, and receive our dedicated website feature and official collaboration offer letter. Let's get in touch!"
+          </div>
+          <div class="vector-card glow-lime" style="padding:3mm 3.5mm;">
+            <span class="mono-label" style="font-size:5.2pt;">Fast Track Form</span>
+            <p class="body-copy" style="font-size:6.5pt;margin-top:1mm;">
+              Prefer a direct form submission? Click the "DM Us to Collab" button on top right to submit your details directly.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="mono-label" style="font-size:5.5pt;">Frequently Asked Inquiries</div>
+        <div class="faq-grid">
+          <div class="faq-item">
+            <div class="faq-q">Do we need faculty permission before sending a DM?</div>
+            <div class="faq-a">No. You can DM us right away. Once we align, we issue the formal Offer Letter which you can present to your HOD or Dean for seamless college endorsement.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">Is there any monetary catch or cost later on?</div>
+            <div class="faq-a">Zero. This is a permanent, non-monetary student alliance under MnM. Neither party pays any fee. We strictly support builder culture.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">When do we receive our official LinkedIn endorsement?</div>
+            <div class="faq-a">Once your chapter successfully activates an event or builder cohort, MnM publishes the spotlight post on LinkedIn tagging every core council member.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">Can our club still host our own independent events?</div>
+            <div class="faq-a">Absolutely. You maintain 100% club autonomy. You can use MnM's platform for your own hackathons whenever you choose.</div>
+          </div>
+        </div>
+      </div>
+      <div class="signature-grid">
+        <div class="sig-cell">
+          <div class="sig-line">Makers Need More (MnM)</div>
+          <div class="sig-role">Core Governance Council</div>
+          <div class="sig-hash">AUTH: MNM-CORE-ALLIANCE</div>
+        </div>
+        <div class="sig-cell">
+          <div class="sig-line">Official Website</div>
+          <div class="sig-role">https://mnmworks.xyz</div>
+          <div class="sig-hash">ENCRYPTION: VERIFIED SSL</div>
+        </div>
+        <div class="sig-cell">
+          <div class="sig-line">Inquiries & Partnerships</div>
+          <div class="sig-role">admin@mnmworks.xyz</div>
+          <div class="sig-hash">STATUS: OPEN FOR ACADEMIC SEASON 2026</div>
+        </div>
+      </div>
+    </div>
+    <footer class="sheet-bottombar">
+      <div class="sheet-bottombar-left">
+        <span>Makers Need More (MnM)</span>
+        <span>•</span>
+        <span>Initiation Terminal</span>
+      </div>
+      <div class="sheet-bottombar-right">SECTION 07: INITIATION & DIRECT MESSAGE</div>
+    </footer>
+  </div>
+</section>
+</main>
+<div class="modal-backdrop" id="collabModal">
+  <div class="modal-box">
+    <button class="modal-close-btn" id="closeDmModalBtn" type="button">&times;</button>
+    <div class="mono-label" style="font-size:6pt;margin-bottom:4px;">Direct Partnership Initiation</div>
+    <h3 class="modal-title">Partner With MnM</h3>
+    <p class="modal-sub">
+      Submit your campus group details below or send a DM directly. Our council will get in touch with your team within 24 hours.
+    </p>
+    <form class="modal-form" id="collabForm">
+      <input type="text" id="clubName" class="input-field" placeholder="Student Committee / Society Name" required>
+      <input type="text" id="collegeName" class="input-field" placeholder="College / University & City" required>
+      <input type="text" id="leadName" class="input-field" placeholder="Lead Representative Name & Role (e.g. President / Convenor)" required>
+      <input type="email" id="leadEmail" class="input-field" placeholder="Official Email Address" required>
+      <input type="tel" id="leadPhone" class="input-field" placeholder="WhatsApp / Contact Number" required>
+      <textarea id="clubNotes" class="input-field" rows="3" placeholder="Brief note on your club and upcoming semester events (optional)"></textarea>
+      <button type="submit" class="nav-action-btn lime-btn" style="width:100%;justify-content:center;padding:12px;">Submit Alliance Request &rarr;</button>
+    </form>
+    <div style="margin-top:14px;text-align:center;">
+      <a href="https://www.linkedin.com/company/makersneedmore" target="_blank" rel="noopener noreferrer" style="font-family:'Space Mono',monospace;font-size:10px;color:var(--lime);text-decoration:none;">Or click here to DM us directly on LinkedIn &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="toast-msg" id="toastMsg">Template copied to clipboard!</div>
+<script>
+const copyBtn = document.getElementById('copyTemplateBtn');
+const toastMsg = document.getElementById('toastMsg');
+if (copyBtn) {
+  copyBtn.addEventListener('click', () => {
+    const text = document.getElementById('templateText').innerText.replace('Copy', '').trim();
+    navigator.clipboard.writeText(text).then(() => {
+      showToast('Template copied to clipboard!');
+    }).catch(() => {
+      showToast('Copied to clipboard');
+    });
+  });
+}
+function showToast(msg) {
+  if (!toastMsg) return;
+  toastMsg.textContent = msg;
+  toastMsg.classList.add('show');
+  setTimeout(() => {
+    toastMsg.classList.remove('show');
+  }, 2500);
+}
+const modal = document.getElementById('collabModal');
+const openBtn = document.getElementById('openDmModalBtn');
+const closeBtn = document.getElementById('closeDmModalBtn');
+if (openBtn && modal) {
+  openBtn.addEventListener('click', () => {
+    modal.classList.add('is-active');
+  });
+}
+if (closeBtn && modal) {
+  closeBtn.addEventListener('click', () => {
+    modal.classList.remove('is-active');
+  });
+}
+if (modal) {
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('is-active');
+    }
+  });
+}
+const collabForm = document.getElementById('collabForm');
+if (collabForm) {
+  collabForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const club = document.getElementById('clubName').value;
+    const college = document.getElementById('collegeName').value;
+    const lead = document.getElementById('leadName').value;
+    const email = document.getElementById('leadEmail').value;
+    const phone = document.getElementById('leadPhone').value;
+    const notes = document.getElementById('clubNotes').value;
+    const subject = encodeURIComponent(`[Campus Alliance Request] ${club} (${college}) × MnM`);
+    const body = encodeURIComponent(`Hi MnM Team,\n\nWe are submitting an Alliance Request to collaborate with Makers Need More:\n\nClub/Society: ${club}\nCollege/University: ${college}\nLead Contact: ${lead}\nEmail: ${email}\nPhone/WhatsApp: ${phone}\nNotes: ${notes}\n\nLooking forward to hearing from you!`);
+    window.location.href = `mailto:admin@mnmworks.xyz?subject=${subject}&body=${body}`;
+    if (modal) modal.classList.remove('is-active');
+    showToast('Preparing your email client...');
+  });
+}
+</script>
+</body>
+</html>

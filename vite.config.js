@@ -38,7 +38,9 @@ export default defineConfig({
           round2: './round2.html',
           catalyst: './catalyst.html',
           catalystBrochure: './catalyst-brochure.html',
-          morrowBrochure: './morrow-brochure.html'
+          morrowBrochure: './morrow-brochure.html',
+          campusCatalogue: './campus-catalogue.html',
+          communityCatalogue: './community-catalogue.html'
         }
       }
     },
