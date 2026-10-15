@@ -1,4 +1,4 @@
-﻿const nav = document.getElementById('cat-nav');
+const nav = document.getElementById('cat-nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 40);
 }, { passive: true });
@@ -11,9 +11,9 @@ menuToggle.addEventListener('click', openMenu);
 mobileClose.addEventListener('click', closeMenu);
 mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
-const REG_CLOSE = new Date('2026-11-07T23:59:59+05:30');
-const HACK_START = new Date('2026-11-08T10:00:00+05:30');
-const HACK_END = new Date('2026-11-08T20:00:00+05:30');
+const REG_CLOSE = new Date('2026-11-14T00:00:00+05:30');
+const HACK_START = new Date('2026-11-15T09:00:00+05:30');
+const HACK_END = new Date('2026-11-15T20:00:00+05:30');
 const labelEl = document.getElementById('cat-countdown-label');
 const gridEl = document.getElementById('cat-countdown-grid');
 const dEl = document.getElementById('cd-days');
