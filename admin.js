@@ -1660,10 +1660,9 @@ document.getElementById('btn-generate-offer')?.addEventListener('click', async (
   const dateStr = now.toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '.');
   const timeStr = now.toLocaleTimeString('en-IN', { hour12: false });
   doc.text(`Date: ${dateStr} at ${timeStr} IST`, stampX + 2, stampY + 8);
-  doc.text('Digitally signed by:', stampX + 2, stampY + 11.5);
+  doc.text('Digitally signed & confirmed:', stampX + 2, stampY + 11.5);
   doc.setFont('helvetica', 'bold');
-  doc.text('Manika Kutiyal (COO)', stampX + 2, stampY + 14.5);
-  doc.text('Aditya Verma (CTO)', stampX + 2, stampY + 17.5);
+  doc.text('MnM Team', stampX + 2, stampY + 14.5);
 
   y += 5;
   const footerH = idCardUrl ? 28 : 16;

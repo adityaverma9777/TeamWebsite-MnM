@@ -151,7 +151,29 @@
               <span class="proj-card-cta">View Details →</span>
             </div>
           </div>
-
+          <div class="proj-card contrib-slide-up" id="kavach-card" onclick="openProjectModal('kavach')"
+            role="button" tabindex="0" aria-label="View Kavach project details">
+            <div class="proj-card-header">
+              <img src="/kavachlogo.svg" alt="Kavach Logo" class="proj-card-logo">
+              <div class="proj-card-meta">
+                <span class="proj-card-label commit-mono">// android app</span>
+                <h3 class="proj-card-name">Kavach</h3>
+              </div>
+              <span class="proj-card-status">Active</span>
+            </div>
+            <p class="proj-card-desc">An on-device cybersecurity and fraud prevention Android app engineered for senior citizens. Automatically intercepts scam SMS, inspects WhatsApp messages, analyzes unknown APKs before installation, and alerts trusted family contacts offline.</p>
+            <div class="proj-card-tags">
+              <span class="proj-tag">Android</span>
+              <span class="proj-tag">Kotlin</span>
+              <span class="proj-tag">BroadcastReceiver</span>
+              <span class="proj-tag">Static Analysis</span>
+              <span class="proj-tag">TTS Voice</span>
+              <span class="proj-tag">Firebase Auth</span>
+            </div>
+            <div class="proj-card-footer">
+              <span class="proj-card-cta">View Details →</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -281,6 +303,107 @@
             </div>
           </div>
         </div>
+        <div id="proj-modal-content-kavach" style="display: none;">
+          <div class="proj-modal-header">
+            <img src="/kavachlogo.svg" alt="Kavach Logo" class="proj-modal-logo">
+            <div>
+              <span class="commit-mono proj-modal-label">// open source project</span>
+              <h2 id="proj-modal-title-kavach" class="proj-modal-title">Kavach</h2>
+              <p class="proj-modal-tagline">Digital Safety & Scam Protection for Senior Citizens · वरिष्ठ नागरिकों के लिए डिजिटल सुरक्षा</p>
+            </div>
+          </div>
+          <div class="proj-modal-body">
+            <p class="proj-modal-desc">Kavach ("shield" in Hindi) is a privacy-first Android app safeguarding senior citizens from digital financial fraud — OTP scams, fake KYC / account-blocked SMS, extortion threats, lottery baits, and malicious APKs distributed via WhatsApp. Operating <strong>100% offline</strong> with zero telemetry, Kavach scores threats locally, reads out warnings aloud in plain English or Hindi using on-device text-to-speech, and instantly alerts a trusted family member when high-risk activity is detected.</p>
+            <div class="proj-modal-features">
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
+                </span>
+                <div>
+                  <strong>Automatic SMS Interception</strong>
+                  <p>On-device BroadcastReceiver scans incoming SMS in real time, detecting phishing links, banking extortion, urgency patterns, and OTP solicitations with zero cloud transmission.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                  </svg>
+                </span>
+                <div>
+                  <strong>WhatsApp & Clipboard Scanner</strong>
+                  <p>One-tap verification for suspicious forwarded WhatsApp and Telegram messages with bilingual risk assessment (LOW, SUSPICIOUS, HIGH) and audio readout in English and Hindi.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
+                </span>
+                <div>
+                  <strong>Pre-Install APK Analysis</strong>
+                  <p>Deep static manifest analysis inspecting dangerous permissions (READ_SMS, accessibility services, device admin) to flag and block banking trojans before installation.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                </span>
+                <div>
+                  <strong>Trusted Contact & Emergency SOS</strong>
+                  <p>Dispatches privacy-safe SMS alerts to a designated family member on high-risk detections, with one-tap dialing for National Cybercrime Helpline 1930 and Chakshu reporting.</p>
+                </div>
+              </div>
+            </div>
+            <div class="proj-modal-stack">
+              <h4>Tech Stack</h4>
+              <div class="proj-modal-tags">
+                <span class="proj-tag">Android SDK (minSdk 26)</span>
+                <span class="proj-tag">Kotlin</span>
+                <span class="proj-tag">WebView Bridge</span>
+                <span class="proj-tag">BroadcastReceiver</span>
+                <span class="proj-tag">PackageManager Static Analysis</span>
+                <span class="proj-tag">TextToSpeech (en-IN / hi-IN)</span>
+                <span class="proj-tag">SQLite Threat DB</span>
+                <span class="proj-tag">Firebase Phone Auth</span>
+              </div>
+            </div>
+            <div class="proj-modal-actions">
+              <a href="https://github.com/MakersNeedMore-MnM/Round2-naman-verma1084/releases/latest/download/kavach-debug.apk" target="_blank" rel="noopener noreferrer"
+                class="proj-action-btn proj-action-primary" id="kavach-apk-btn">↗ Download APK</a>
+              <a href="https://github.com/MakersNeedMore-MnM/Round2-naman-verma1084" target="_blank" rel="noopener noreferrer"
+                class="proj-action-btn proj-action-secondary" id="kavach-github-btn">GitHub Repo</a>
+            </div>
+            <div class="proj-contrib-guide">
+              <span class="commit-mono proj-modal-label">// how to contribute</span>
+              <h4>Want to contribute to Kavach?</h4>
+              <ol class="proj-contrib-steps">
+                <li>Sign up on <strong>mnmworks.xyz</strong> to create your MnM member account.</li>
+                <li>Fork the <a href="https://github.com/MakersNeedMore-MnM/Round2-naman-verma1084" target="_blank"
+                    rel="noopener noreferrer">Kavach repository</a> on GitHub.</li>
+                <li>Pick an open task: fraud heuristic detection, regional voice synthesis, senior-friendly UI themes, or static APK parsing optimizations.</li>
+                <li>Submit a clean Pull Request with clear documentation and verification steps for your module.</li>
+                <li>Navigate to the <strong>Submit</strong> section in your MnM Dashboard, submit your fork URL, and describe your improvements.</li>
+                <li>Coordinate with the MnM engineering review team for validation and merge.</li>
+              </ol>
+              <p class="proj-contrib-note">If it is taking longer than expected, mail us at <a
+                  href="mailto:admin@mnmworks.xyz">admin@mnmworks.xyz</a> for faster validation and review.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -350,30 +473,53 @@
   <script type="module" src="/main.js"></script>
   <script>
     const _modalOverlay = document.getElementById('project-modal-overlay');
-
+    const _modalDialog = _modalOverlay ? _modalOverlay.querySelector('.proj-modal') : null;
     function openProjectModal(id) {
+      if (!_modalOverlay) return;
+      const allContents = document.querySelectorAll('[id^="proj-modal-content-"]');
+      allContents.forEach(el => el.style.display = 'none');
+      const target = document.getElementById('proj-modal-content-' + id);
+      if (target) {
+        target.style.display = 'block';
+        if (_modalDialog) {
+          _modalDialog.scrollTop = 0;
+          const titleEl = target.querySelector('.proj-modal-title');
+          if (titleEl && titleEl.id) {
+            _modalDialog.setAttribute('aria-labelledby', titleEl.id);
+          }
+        }
+      }
       _modalOverlay.classList.add('active');
       _modalOverlay.setAttribute('aria-hidden', 'false');
       if (window._lenis) window._lenis.stop();
     }
-
     function closeProjectModal(e) {
       if (e && e.target !== _modalOverlay && !e.target.classList.contains('proj-modal-close')) return;
       _modalOverlay.classList.remove('active');
       _modalOverlay.setAttribute('aria-hidden', 'true');
       if (window._lenis) window._lenis.start();
     }
-
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeProjectModal();
     });
-
-    document.getElementById('streetiq-card').addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openProjectModal('streetiq');
-      }
-    });
+    const streetiqCard = document.getElementById('streetiq-card');
+    if (streetiqCard) {
+      streetiqCard.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openProjectModal('streetiq');
+        }
+      });
+    }
+    const kavachCard = document.getElementById('kavach-card');
+    if (kavachCard) {
+      kavachCard.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openProjectModal('kavach');
+        }
+      });
+    }
   </script>
 
 </body>
