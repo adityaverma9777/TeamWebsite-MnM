@@ -20,6 +20,7 @@
     }
   ],
   "rewrites": [
+    { "source": "/confirmcatalyst", "destination": "/confirmcatalyst.html" },
     { "source": "/id/:id", "destination": "/idcard.html" }
   ],
   "trailingSlash": false
