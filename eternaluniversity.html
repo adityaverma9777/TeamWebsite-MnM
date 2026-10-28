@@ -1249,7 +1249,7 @@
         };
       }
 
-      window.submitCatalystConfirmation = async function(formData) {
+      window.submitEternalUniversityRegistration = async function(formData) {
         try {
           localStorage.setItem(SUBMISSION_KEY, JSON.stringify(formData));
           const allSubmissions = JSON.parse(localStorage.getItem('catalyst_submissions_log_v1') || '[]');
@@ -1258,19 +1258,27 @@
         } catch (e) {}
         if (supabase) {
           try {
-            await supabase.from('catalyst_confirmations').insert([{
+            const { error } = await supabase.from('eternal_university_registrations').insert([{
               full_name: formData.fullName,
               primary_email: formData.primaryEmail,
-              phone_whatsapp: formData.phoneWhatsapp || '',
               adaption_email: formData.adaptionEmail,
               adaption_completed: formData.adaptionCompleted,
               h2s_completed: formData.h2sCompleted,
+              orbix_completed: formData.orbixCompleted,
+              telegram_completed: formData.telegramCompleted,
+              whatsapp_completed: formData.whatsappCompleted,
               declaration_accepted: formData.declarationAccepted,
               submitted_at_ist: formData.submittedAtIST,
               submission_date_ist: formData.submissionDateIST,
               submission_time_ist: formData.submissionTimeIST
             }]);
-          } catch (err) {}
+            if (error) {
+              throw error;
+            }
+          } catch (err) {
+            console.error('Eternal University registration could not be saved to Supabase.', err);
+            return { success: false };
+          }
         }
         return { success: true };
       };
@@ -1354,7 +1362,7 @@
         submitBtn.textContent = 'Recording confirmation...';
 
         try {
-          const res = await window.submitCatalystConfirmation(submissionData);
+          const res = await window.submitEternalUniversityRegistration(submissionData);
           if (res && res.success) {
             localStorage.removeItem(STORAGE_KEY);
             document.getElementById('summary-name').textContent = fullName;
