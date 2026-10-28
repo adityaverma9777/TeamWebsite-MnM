@@ -21,6 +21,7 @@
   ],
   "rewrites": [
     { "source": "/confirmcatalyst", "destination": "/confirmcatalyst.html" },
+    { "source": "/eternaluniversity", "destination": "/eternaluniversity.html" },
     { "source": "/id/:id", "destination": "/idcard.html" }
   ],
   "trailingSlash": false

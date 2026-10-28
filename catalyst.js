@@ -5,8 +5,8 @@ window.addEventListener('scroll', () => {
 const menuToggle = document.getElementById('cat-menu-toggle');
 const mobileMenu = document.getElementById('cat-mobile-menu');
 const mobileClose = document.getElementById('cat-mobile-close');
-function openMenu() { mobileMenu.classList.add('open'); menuToggle.setAttribute('aria-expanded','true'); document.body.style.overflow = 'hidden'; }
-function closeMenu() { mobileMenu.classList.remove('open'); menuToggle.setAttribute('aria-expanded','false'); document.body.style.overflow = ''; }
+function openMenu() { mobileMenu.classList.add('open'); menuToggle.setAttribute('aria-expanded', 'true'); document.body.style.overflow = 'hidden'; }
+function closeMenu() { mobileMenu.classList.remove('open'); menuToggle.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; }
 menuToggle.addEventListener('click', openMenu);
 mobileClose.addEventListener('click', closeMenu);
 mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
@@ -61,7 +61,7 @@ if (canvas) {
     particles.length = 0;
     const count = Math.min(80, Math.floor(w / 18));
     for (let i = 0; i < count; i++) {
-      particles.push({ x: Math.random()*w, y: Math.random()*h, vx: (Math.random()-.5)*.3, vy: (Math.random()-.5)*.3, r: Math.random()*1.5+.5, o: Math.random()*.4+.1 });
+      particles.push({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - .5) * .3, vy: (Math.random() - .5) * .3, r: Math.random() * 1.5 + .5, o: Math.random() * .4 + .1 });
     }
   }
   resize();
@@ -74,20 +74,20 @@ if (canvas) {
       if (p.x < 0) p.x = w; if (p.x > w) p.x = 0;
       if (p.y < 0) p.y = h; if (p.y > h) p.y = 0;
       ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(229,57,53,${p.o})`;
       ctx.fill();
     });
     for (let i = 0; i < particles.length; i++) {
-      for (let j = i+1; j < particles.length; j++) {
+      for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
         const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx*dx + dy*dy);
+        const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < 120) {
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(229,57,53,${.08*(1-dist/120)})`;
+          ctx.strokeStyle = `rgba(229,57,53,${.08 * (1 - dist / 120)})`;
           ctx.lineWidth = .5;
           ctx.stroke();
         }

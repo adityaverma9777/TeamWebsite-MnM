@@ -726,15 +726,6 @@ p.cat-perk-text {
   letter-spacing: 0.06em;
   line-height: 1.2;
 }
-@media (max-width: 640px) {
-  .cat-bento {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-  .cat-highlight-compact {
-    font-size: 1.75rem;
-  }
-}
 
 .cat-timeline-wrapper {
   max-width: 880px;
@@ -1102,22 +1093,81 @@ p.cat-perk-text {
     white-space: nowrap; 
     margin-top: 16px; 
   }
-  .cat-bento { grid-template-columns: 1fr; gap: 16px; }
-  .cat-bento-large { grid-column: span 1; }
-  
+  .cat-bento {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    perspective: none;
+  }
+  .cat-bento-large {
+    grid-column: span 2;
+  }
   .cat-about-text .cat-section-title { text-align: center; }
   .cat-about-text p { text-align: justify; }
-  
-  /* Antigravity Setup Mobile Header */
   #setup .cat-section-header { text-align: center !important; }
   #setup .cat-section-title { justify-content: center !important; text-align: center !important; }
   #setup .cat-body { text-align: justify !important; }
-  
-  /* Fix 3D text disappearing and reduce card size */
-  .cat-bento .cat-3d-card { padding: 32px 24px; border-radius: 24px; }
-  .cat-bento .cat-3d-card h3 { transform: none; font-size: 0.875rem; margin-bottom: 8px; }
-  .cat-bento .cat-3d-card p { transform: none; font-size: 1.5rem; }
-  .cat-bento-large .cat-highlight { font-size: 2.5rem !important; }
+  .cat-bento .cat-3d-card {
+    padding: 10px 12px;
+    border-radius: 12px;
+    height: auto;
+    overflow: visible;
+    transform: none !important;
+  }
+  .cat-bento .cat-card-compact {
+    min-height: 56px;
+    justify-content: center;
+  }
+  .cat-bento .cat-card-micro-label {
+    font-size: 0.625rem;
+    letter-spacing: 0.05em;
+  }
+  .cat-bento p.cat-card-micro-val {
+    font-size: 0.95rem;
+    margin-top: 2px;
+    transform: none;
+  }
+  .cat-bento .cat-pool-compact {
+    min-height: 72px;
+    padding: 12px 14px;
+    gap: 4px;
+  }
+  .cat-bento .cat-highlight-compact {
+    font-size: 1.5rem;
+    line-height: 1.1;
+  }
+  .cat-bento p.cat-pool-note {
+    font-size: 0.65rem;
+    transform: none;
+  }
+  .cat-bento .cat-perk-card {
+    min-height: 80px;
+    padding: 10px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 4px;
+  }
+  .cat-bento .cat-perk-val {
+    font-size: clamp(0.78rem, 3.2vw, 0.85rem);
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .cat-bento .cat-perk-val-sub {
+    font-size: 0.525rem;
+    padding: 1px 4px;
+    letter-spacing: 0.04em;
+  }
+  .cat-bento p.cat-perk-text {
+    font-size: clamp(0.6rem, 2.5vw, 0.65rem);
+    line-height: 1.35;
+    color: #8e8e93;
+    font-weight: 400;
+    margin: 0;
+    transform: none;
+  }
   .cat-cta-box { padding: 48px 24px; border-radius: 24px; }
   .cat-cta-title { font-size: 2.5rem; margin-bottom: 16px; }
   .cat-cta-desc { font-size: 1.125rem; margin-bottom: 32px; }

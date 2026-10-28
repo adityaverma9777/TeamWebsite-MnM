@@ -15,6 +15,12 @@ export default defineConfig({
             res.end(readFileSync(pagePath, 'utf-8'));
             return;
           }
+          if (req.url && (req.url === '/eternaluniversity' || req.url.startsWith('/eternaluniversity?'))) {
+            const pagePath = resolve(__dirname, 'eternaluniversity.html');
+            res.setHeader('Content-Type', 'text/html');
+            res.end(readFileSync(pagePath, 'utf-8'));
+            return;
+          }
           if (req.url && req.url.startsWith('/id/')) {
             const idcardPath = resolve(__dirname, 'idcard.html');
             res.setHeader('Content-Type', 'text/html');
@@ -44,6 +50,7 @@ export default defineConfig({
           round2: './round2.html',
           catalyst: './catalyst.html',
           confirmcatalyst: './confirmcatalyst.html',
+          eternaluniversity: './eternaluniversity.html',
           catalystBrochure: './catalyst-brochure.html',
           morrowBrochure: './morrow-brochure.html',
           campusCatalogue: './campus-catalogue.html',
