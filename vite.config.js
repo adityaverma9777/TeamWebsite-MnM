@@ -54,7 +54,8 @@ export default defineConfig({
           catalystBrochure: './catalyst-brochure.html',
           morrowBrochure: './morrow-brochure.html',
           campusCatalogue: './campus-catalogue.html',
-          communityCatalogue: './community-catalogue.html'
+          communityCatalogue: './community-catalogue.html',
+          orbix: './orbix.html'
         }
       }
     },
