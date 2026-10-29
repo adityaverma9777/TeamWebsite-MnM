@@ -1408,7 +1408,7 @@ h1, h2, h3, h4, h5, h6 {
   .orb-prize-pool-banner { padding: 24px 18px; border-radius: 18px; }
   .orb-prize-bottom-banner { padding: 24px 18px; border-radius: 18px; }
 
-  .orb-hero-partners { grid-template-columns: repeat(2, 1fr); gap: 24px; padding: 24px; }
+  .orb-hero-partners { grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 24px 20px; }
 
   .orb-cta-box { padding: 48px 24px; border-radius: 24px; }
   .orb-cta-title { font-size: 2.5rem; margin-bottom: 16px; }
@@ -1430,4 +1430,31 @@ h1, h2, h3, h4, h5, h6 {
   .orb-card-title { font-size: 1.3rem; }
   .orb-card-range { font-size: 0.775rem; line-height: 1.4; }
   .orb-subevent-row { flex-direction: column; gap: 2px; font-size: 0.9rem; }
+
+  .orb-hero-partners {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 24px 20px;
+    max-width: 340px;
+    width: 100%;
+  }
+  .orb-partner-item {
+    height: auto;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .orb-partner-item:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  .orb-partner-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+  }
 }
