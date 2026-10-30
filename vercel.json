@@ -41,6 +41,10 @@
       "destination": "/orbix.html"
     },
     {
+      "source": "/orbixclaim",
+      "destination": "/orbixclaim.html"
+    },
+    {
       "source": "/confirmcatalyst",
       "destination": "/confirmcatalyst.html"
     },

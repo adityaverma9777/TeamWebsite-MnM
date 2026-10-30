@@ -21,6 +21,12 @@ export default defineConfig({
             res.end(readFileSync(pagePath, 'utf-8'));
             return;
           }
+          if (req.url && (req.url === '/orbixclaim' || req.url.startsWith('/orbixclaim?'))) {
+            const pagePath = resolve(__dirname, 'orbixclaim.html');
+            res.setHeader('Content-Type', 'text/html');
+            res.end(readFileSync(pagePath, 'utf-8'));
+            return;
+          }
           if (req.url && (req.url === '/confirmcatalyst' || req.url.startsWith('/confirmcatalyst?'))) {
             const pagePath = resolve(__dirname, 'confirmcatalyst.html');
             res.setHeader('Content-Type', 'text/html');
@@ -68,7 +74,8 @@ export default defineConfig({
           morrowBrochure: './morrow-brochure.html',
           campusCatalogue: './campus-catalogue.html',
           communityCatalogue: './community-catalogue.html',
-          orbix: './orbix.html'
+          orbix: './orbix.html',
+          orbixclaim: './orbixclaim.html'
         }
       }
     },
