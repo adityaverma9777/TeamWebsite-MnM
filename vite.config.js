@@ -9,6 +9,18 @@ export default defineConfig({
       name: 'id-card-rewrite',
       configureServer(server) {
         server.middlewares.use((req, res, next) => {
+          if (req.url && (req.url === '/manitya' || req.url.startsWith('/manitya?'))) {
+            const pagePath = resolve(__dirname, 'manitya.html');
+            res.setHeader('Content-Type', 'text/html');
+            res.end(readFileSync(pagePath, 'utf-8'));
+            return;
+          }
+          if (req.url && (req.url === '/orbix' || req.url.startsWith('/orbix?'))) {
+            const pagePath = resolve(__dirname, 'orbix.html');
+            res.setHeader('Content-Type', 'text/html');
+            res.end(readFileSync(pagePath, 'utf-8'));
+            return;
+          }
           if (req.url && (req.url === '/confirmcatalyst' || req.url.startsWith('/confirmcatalyst?'))) {
             const pagePath = resolve(__dirname, 'confirmcatalyst.html');
             res.setHeader('Content-Type', 'text/html');
@@ -38,6 +50,7 @@ export default defineConfig({
       rollupOptions: {
         input: {
           main: './index.html',
+          manitya: './manitya.html',
           dashboard: './dashboard.html',
           competitions: './competitions.html',
           morrow: './morrow.html',
