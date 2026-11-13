@@ -31,6 +31,6 @@ const PORT = 3001;
 app.listen(PORT, () => {
     console.log(`\n\n=============================================================`);
     console.log(`🚀 LOCAL TEST SERVER RUNNING AT: http://localhost:${PORT}`);
-    console.log(`To test the backend locally, open: http://localhost:${PORT}/round2.html`);
+    console.log(`To test the backend locally, open: http://localhost:${PORT}/round2morrow.html`);
     console.log(`=============================================================\n\n`);
 });

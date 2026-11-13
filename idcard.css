@@ -1,8 +1,8 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root {
-  --lime: #C8FF00;
-  --lime-dim: rgba(200, 255, 0, 0.15);
-  --lime-glow: rgba(200, 255, 0, 0.4);
+  --lime: #ea281e;
+  --lime-dim: rgba(234, 40, 30, 0.15);
+  --lime-glow: rgba(234, 40, 30, 0.4);
   --black: #0A0A0A;
   --void: #050505;
   --card-surface: #111111;
@@ -107,8 +107,8 @@ body {
   letter-spacing: 1px;
   padding: 4px 10px;
   border-radius: 100px;
-  background: rgba(200, 255, 0, 0.12);
-  color: #65a30d;
+  background: rgba(234, 40, 30, 0.12);
+  color: #ea281e;
 }
 .info-name {
   font-family: 'Agile', 'Inter', sans-serif;

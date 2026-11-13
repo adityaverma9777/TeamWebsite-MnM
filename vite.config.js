@@ -39,6 +39,18 @@ export default defineConfig({
             res.end(readFileSync(pagePath, 'utf-8'));
             return;
           }
+          if (req.url && (req.url === '/communitycatalouge' || req.url.startsWith('/communitycatalouge?') || req.url === '/communitycatalogue' || req.url.startsWith('/communitycatalogue?'))) {
+            const pagePath = resolve(__dirname, 'communitycatalouge.html');
+            res.setHeader('Content-Type', 'text/html');
+            res.end(readFileSync(pagePath, 'utf-8'));
+            return;
+          }
+          if (req.url && (req.url === '/round2morrow' || req.url.startsWith('/round2morrow?') || req.url === '/round2' || req.url.startsWith('/round2?'))) {
+            const pagePath = resolve(__dirname, 'round2morrow.html');
+            res.setHeader('Content-Type', 'text/html');
+            res.end(readFileSync(pagePath, 'utf-8'));
+            return;
+          }
           if (req.url && req.url.startsWith('/id/')) {
             const idcardPath = resolve(__dirname, 'idcard.html');
             res.setHeader('Content-Type', 'text/html');
@@ -62,18 +74,18 @@ export default defineConfig({
           morrow: './morrow.html',
           contribute: './contribute.html',
           about: './about.html',
+          founders: './founders.html',
           sponsors: './sponsors.html',
           careers: './careers.html',
           admin: './admin.html',
           idcard: './idcard.html',
-          round2: './round2.html',
+          round2morrow: './round2morrow.html',
           catalyst: './catalyst.html',
           confirmcatalyst: './confirmcatalyst.html',
           eternaluniversity: './eternaluniversity.html',
-          catalystBrochure: './catalyst-brochure.html',
-          morrowBrochure: './morrow-brochure.html',
-          campusCatalogue: './campus-catalogue.html',
           communityCatalogue: './community-catalogue.html',
+          communitycatalouge: './communitycatalouge.html',
+          communitycatalogue: './communitycatalogue.html',
           orbix: './orbix.html',
           orbixclaim: './orbixclaim.html'
         }

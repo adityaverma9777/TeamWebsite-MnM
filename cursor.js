@@ -1,42 +1,84 @@
 import { gsap } from 'gsap';
-
 export function initCursor() {
-  const cursorInner = document.getElementById('cursor-inner');
-  const cursorOuter = document.getElementById('cursor-outer');
-  const cursorLabel = document.getElementById('cursor-label');
-  
-  if (!cursorInner || !cursorOuter) return;
-
+  const isMobile = () => window.innerWidth <= 960 || window.matchMedia('(hover: none), (pointer: coarse)').matches;
+  let cursor = document.getElementById('furrow-cursor');
+  if (!cursor) {
+    cursor = document.createElement('div');
+    cursor.id = 'furrow-cursor';
+    document.body.appendChild(cursor);
+  }
+  const oldInner = document.getElementById('cursor-inner');
+  const oldOuter = document.getElementById('cursor-outer');
+  if (oldInner) oldInner.style.display = 'none';
+  if (oldOuter) oldOuter.style.display = 'none';
+  if (isMobile()) {
+    cursor.style.display = 'none';
+  }
   let mouseX = window.innerWidth / 2;
   let mouseY = window.innerHeight / 2;
-  let outerX = mouseX;
-  let outerY = mouseY;
-
+  let cursorX = mouseX;
+  let cursorY = mouseY;
+  let lockedTarget = null;
+  let isHovered = false;
+  window.addEventListener('touchstart', () => {
+    cursor.style.display = 'none';
+    lockedTarget = null;
+  }, { passive: true });
+  window.addEventListener('resize', () => {
+    if (isMobile()) {
+      cursor.style.display = 'none';
+      lockedTarget = null;
+    } else {
+      cursor.style.display = '';
+    }
+  });
   window.addEventListener('mousemove', (e) => {
+    if (isMobile()) return;
+    cursor.style.display = '';
     mouseX = e.clientX;
     mouseY = e.clientY;
-    cursorInner.style.transform = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0)`;
   }, { passive: true });
-
   gsap.ticker.add(() => {
-    outerX += (mouseX - outerX) * 0.18;
-    outerY += (mouseY - outerY) * 0.18;
-    gsap.set(cursorOuter, { x: outerX, y: outerY });
+    if (isMobile()) return;
+    let targetX = mouseX;
+    let targetY = mouseY;
+    if (lockedTarget) {
+      const rect = lockedTarget.getBoundingClientRect();
+      targetX = rect.left + rect.width / 2;
+      targetY = rect.top + rect.height / 2;
+    }
+    cursorX += (targetX - cursorX) * 0.25;
+    cursorY += (targetY - cursorY) * 0.25;
+    cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
   });
-
-  document.addEventListener('mousedown', () => gsap.to(cursorOuter, { scale: 0.75, duration: 0.12, ease: 'power2.out' }));
-  document.addEventListener('mouseup', () => gsap.to(cursorOuter, { scale: 1, duration: 0.2, ease: 'elastic.out(1,0.5)' }));
-  
-  document.querySelectorAll('[data-cursor]').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      if(cursorLabel) cursorLabel.textContent = el.dataset.cursor;
-      cursorOuter.classList.add('expanded');
-      gsap.to(cursorInner, { opacity: 0, duration: 0.2 });
+  document.addEventListener('mousedown', (e) => {
+    if (isMobile() || e.pointerType === 'touch') return;
+    cursor.classList.add('pressed');
+  });
+  document.addEventListener('mouseup', () => {
+    if (isMobile()) return;
+    cursor.classList.remove('pressed');
+  });
+  const interactiveSelectors = 'a, button, .btn-pill, .magnetic, .navbar-cta, .nav-link, [data-cursor], .accordion-toggle, input, select, textarea';
+  function bindInteractive(el) {
+    el.addEventListener('mouseenter', (e) => {
+      if (isMobile() || e.pointerType === 'touch') return;
+      isHovered = true;
+      cursor.classList.add('bordered');
+      if (el.classList.contains('magnetic') || el.classList.contains('navbar-cta') || el.classList.contains('btn-pill')) {
+        lockedTarget = el;
+      }
     });
     el.addEventListener('mouseleave', () => {
-      cursorOuter.classList.remove('expanded');
-      if(cursorLabel) cursorLabel.textContent = '';
-      gsap.to(cursorInner, { opacity: 1, duration: 0.2 });
+      if (isMobile()) return;
+      isHovered = false;
+      cursor.classList.remove('bordered');
+      lockedTarget = null;
     });
+  }
+  document.querySelectorAll(interactiveSelectors).forEach(bindInteractive);
+  const observer = new MutationObserver(() => {
+    document.querySelectorAll(interactiveSelectors).forEach(bindInteractive);
   });
+  observer.observe(document.body, { childList: true, subtree: true });
 }

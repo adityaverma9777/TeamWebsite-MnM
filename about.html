@@ -39,13 +39,6 @@
 <body>
   <div id="cursor-inner"></div>
   <div id="cursor-outer"><span id="cursor-label"></span></div>
-  <div id="preloader">
-    <div id="preloader-line">
-      <div id="preloader-progress"></div>
-    </div>
-    <div id="preloader-text">Loading...</div>
-  </div>
-  
   <nav id="navbar" class="navbar-island">
     <div class="navbar-inner">
       <a href="index.html" class="navbar-brand">
@@ -75,7 +68,6 @@
       <div class="hero-grain"></div>
       <div class="container about-hero-container">
         <div class="about-text-content">
-          <span class="section-label lime-label about-fade-in">// who we are</span>
           <h1 class="about-page-heading about-fade-in">
             <span class="hero-line">we are a</span>
             <span class="hero-line">non-profit</span>
@@ -111,18 +103,24 @@
             <div class="mission-features">
               <div class="mission-feature about-slide-up" style="transition-delay: 0.1s;">
                 <span class="feature-icon commit-mono">01</span>
-                <h4>Privacy First</h4>
-                <p>Your data belongs to you. We focus on building a safe space.</p>
+                <div class="mission-feature-body">
+                  <h4>Privacy First</h4>
+                  <p>Your data belongs to you. We focus on building a safe space.</p>
+                </div>
               </div>
               <div class="mission-feature about-slide-up" style="transition-delay: 0.2s;">
                 <span class="feature-icon commit-mono">02</span>
-                <h4>100% Free</h4>
-                <p>No paywalls, no hidden charges. Knowledge should be accessible to all.</p>
+                <div class="mission-feature-body">
+                  <h4>100% Free</h4>
+                  <p>No paywalls, no hidden charges. Knowledge should be accessible to all.</p>
+                </div>
               </div>
               <div class="mission-feature about-slide-up" style="transition-delay: 0.3s;">
                 <span class="feature-icon commit-mono">03</span>
-                <h4>Healthy Innovation</h4>
-                <p>A supportive environment designed for constructive feedback and growth.</p>
+                <div class="mission-feature-body">
+                  <h4>Healthy Innovation</h4>
+                  <p>A supportive environment designed for constructive feedback and growth.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -132,12 +130,10 @@
 
     <section id="about-future" class="future-section">
       <div class="container">
-        <span class="section-label about-fade-in">// looking ahead</span>
         <h2 class="future-heading about-fade-in">
           <span class="about-line">building</span>
           <span class="about-line">tomorrow.</span>
         </h2>
-        
         <div class="future-timeline">
           <div class="timeline-item about-slide-up">
             <div class="timeline-dot"></div>
@@ -164,36 +160,68 @@
       </div>
     </section>
 
-    <section id="contact">
-      <div class="container">
-        <h2 class="contact-heading">
-          <span class="contact-line">let's make</span>
-          <span class="contact-line">something worth</span>
-          <span class="contact-line">shipping.</span>
-        </h2>
-        <div class="contact-links">
-          <a href="https://github.com/MakersNeedMore-MnM" onclick="openProfileModal('GitHub'); return false;" class="contact-row" data-cursor="open">
-            <span class="contact-row-name">GitHub</span>
-            <span class="contact-row-arrow">→</span>
-            <div class="contact-row-fill"></div>
-          </a>
-          <a href="mailto:admin@mnmworks.xyz" class="contact-row" data-cursor="open">
-            <span class="contact-row-name">Email</span>
-            <span class="contact-row-arrow">→</span>
-            <div class="contact-row-fill"></div>
-          </a>
-          <a href="https://www.linkedin.com/company/makersneedmore" onclick="openProfileModal('LinkedIn'); return false;" class="contact-row" data-cursor="open">
-            <span class="contact-row-name">LinkedIn</span>
-            <span class="contact-row-arrow">→</span>
-            <div class="contact-row-fill"></div>
-          </a>
+    <footer id="site-red-footer" class="site-red-footer">
+      <div class="red-footer-container">
+        <div class="red-footer-main">
+          <div class="red-footer-left">
+            <div class="red-footer-brand">
+              <div class="red-footer-logo-wrap">
+                <img src="/logo.png" alt="MnM Spinning Logo" class="red-footer-spin-logo">
+              </div>
+            </div>
+            <div class="red-footer-address">
+              <p class="red-footer-addr-org">Makers Need More (MnM)</p>
+              <p class="red-footer-addr-line">Student Innovation &amp; Open-Source Community</p>
+              <p class="red-footer-addr-line">Shamsabad, Farrukhabad</p>
+              <p class="red-footer-addr-line">Uttar Pradesh, India 209503</p>
+              <a href="mailto:admin@mnmworks.xyz" class="red-footer-addr-link">admin@mnmworks.xyz</a>
+            </div>
+          </div>
+          <div class="red-footer-nav">
+            <div class="red-footer-col">
+              <span class="red-footer-col-title">Explore</span>
+              <div class="red-footer-btn-list">
+                <a href="/" class="red-footer-btn">Home</a>
+                <a href="about.html" class="red-footer-btn">About</a>
+                <a href="founders.html" class="red-footer-btn">Founders</a>
+                <a href="competitions.html" class="red-footer-btn">Competitions</a>
+                <a href="contribute.html" class="red-footer-btn">Contribute</a>
+                <a href="careers.html" class="red-footer-btn">Careers</a>
+                <a href="sponsors.html" class="red-footer-btn">Sponsors</a>
+              </div>
+            </div>
+            <div class="red-footer-col">
+              <span class="red-footer-col-title">Events</span>
+              <div class="red-footer-btn-list">
+                <a href="catalyst.html" class="red-footer-btn">Catalyst</a>
+                <a href="morrow.html" class="red-footer-btn">Morrow</a>
+                <a href="orbix.html" class="red-footer-btn">Orbix</a>
+                <a href="manitya.html" class="red-footer-btn">Manitya</a>
+              </div>
+            </div>
+            <div class="red-footer-col">
+              <span class="red-footer-col-title">Community</span>
+              <div class="red-footer-btn-list">
+                <a href="/communitycatalouge" class="red-footer-btn">Community Catalogue</a>
+                <a href="eternaluniversity.html" class="red-footer-btn">Eternal University</a>
+              </div>
+            </div>
+            <div class="red-footer-col">
+              <span class="red-footer-col-title">Connect</span>
+              <div class="red-footer-btn-list">
+                <a href="mailto:admin@mnmworks.xyz" class="red-footer-btn">Email Us</a>
+                <a href="https://github.com/MakersNeedMore-MnM" target="_blank" rel="noopener noreferrer" class="red-footer-btn">GitHub</a>
+                <a href="https://www.linkedin.com/company/makersneedmore" target="_blank" rel="noopener noreferrer" class="red-footer-btn">LinkedIn</a>
+              </div>
+            </div>
+          </div>
         </div>
-        <p class="footer-credit commit-mono">MnM · 2026 · A student-run community building open-source solutions globally.</p>
-        <div class="footer-logo-container">
-          <img src="/Makers%20Need%20More.png" alt="Makers Need More" class="footer-logo-image">
+        <div class="red-footer-bottom">
+          <span class="red-footer-copy commit-mono">&copy; 2026 Makers Need More &middot; Non-Profit &middot; Open Source</span>
+          <span class="red-footer-tagline commit-mono">built by students, for students.</span>
         </div>
       </div>
-    </section>
+    </footer>
 
     <div id="profile-modal-overlay" class="profile-modal-overlay">
       <div class="profile-modal">

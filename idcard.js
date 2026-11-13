@@ -29,8 +29,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const statusEl = document.getElementById('det-status');
     statusEl.textContent = data.status;
     if (data.status === 'active') {
-      statusEl.style.background = 'rgba(200, 255, 0, 0.12)';
-      statusEl.style.color = '#65a30d';
+      statusEl.style.background = 'rgba(234, 40, 30, 0.12)';
+      statusEl.style.color = '#ea281e';
     } else {
       statusEl.style.background = 'rgba(239,68,68,0.1)';
       statusEl.style.color = '#ef4444';
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     canvas.width = W;
     canvas.height = cardH;
     const ctx = canvas.getContext('2d');
-    const lime = '#C8FF00';
+    const lime = '#ea281e';
     const bg = '#050505';
     const white = '#ffffff';
     function roundRect(x, y, w, h, r) {

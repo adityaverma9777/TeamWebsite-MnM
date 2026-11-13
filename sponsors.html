@@ -35,16 +35,9 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="sponsors-page">
   <div id="cursor-inner"></div>
   <div id="cursor-outer"><span id="cursor-label"></span></div>
-  <div id="preloader">
-    <div id="preloader-line">
-      <div id="preloader-progress"></div>
-    </div>
-    <div id="preloader-text">Loading...</div>
-  </div>
-  
   <nav id="navbar" class="navbar-island">
     <div class="navbar-inner">
       <a href="index.html" class="navbar-brand">
@@ -70,11 +63,9 @@
 
   <main id="main">
     <section id="sponsors-hero" class="page-hero">
-      <canvas id="sponsors-hero-canvas"></canvas>
       <div class="hero-grain"></div>
       <div class="container sponsors-hero-container">
         <div class="sponsors-text-content">
-          <span class="section-label lime-label sponsors-fade-in">// fuel the future</span>
           <h1 class="sponsors-page-heading sponsors-fade-in">
             <span class="hero-line">power up</span>
             <span class="hero-line">this initiative <span class="lime-period">.</span></span>
@@ -88,14 +79,13 @@
     <section class="sponsors-showcase-section" style="padding: 4rem 0 2rem; background: var(--black);">
       <div class="container">
         <div style="text-align: center; margin-bottom: 2.5rem;">
-          <span class="section-label lime-label sponsors-slide-up" style="display: inline-block; margin-bottom: 0.8rem;">// partners &amp; sponsors</span>
           <h2 class="sponsors-section-title sponsors-slide-up" style="margin-bottom: 0.8rem;">Our Partners &amp; Sponsors</h2>
-          <p class="sponsors-slide-up" style="color: var(--slate); font-size: 1rem; max-width: 600px; margin: 0 auto; line-height: 1.6;">Powering student developers and creators worldwide through premier hackathons, infrastructure, and tools.</p>
+          <p class="sponsors-slide-up sponsors-showcase-sub" style="color: var(--slate); font-size: 1rem; max-width: 600px; margin: 0 auto; line-height: 1.6;">Powering student developers and creators worldwide through premier hackathons, infrastructure, and tools.</p>
         </div>
         <div class="sponsors-grid">
           <a href="https://hack2skill.com/" target="_blank" rel="noopener noreferrer" class="sponsor-card platinum sponsors-slide-up">
             <div class="sponsor-logo-container">
-              <img src="/hack2skill sponsor image.png" alt="Hack2skill" class="sponsor-logo">
+              <img src="/sponsors/hack2skill.png" alt="Hack2skill" class="sponsor-logo">
             </div>
             <div class="sponsor-overlay">
               <span class="sponsor-name">Hack2skill</span>
@@ -104,7 +94,7 @@
           </a>
           <a href="https://unstop.com/" target="_blank" rel="noopener noreferrer" class="sponsor-card gold sponsors-slide-up">
             <div class="sponsor-logo-container">
-              <img src="/unstop/Unstop-Logo-Blue-Extra-Large.jpg" alt="Unstop" class="sponsor-logo" style="mix-blend-mode: multiply;">
+              <img src="/sponsors/unstop.png" alt="Unstop" class="sponsor-logo">
             </div>
             <div class="sponsor-overlay">
               <span class="sponsor-name">Unstop</span>
@@ -113,7 +103,7 @@
           </a>
           <a href="https://gen.xyz/" target="_blank" rel="noopener noreferrer" class="sponsor-card silver sponsors-slide-up">
             <div class="sponsor-logo-container">
-              <img src="/xyz-logo-color.png" alt=".XYZ" class="sponsor-logo">
+              <img src="/sponsors/xyz.png" alt=".XYZ" class="sponsor-logo">
             </div>
             <div class="sponsor-overlay">
               <span class="sponsor-name">.XYZ Domains</span>
@@ -131,11 +121,101 @@
           </a>
           <a href="https://adaptionlabs.ai/" target="_blank" rel="noopener noreferrer" class="sponsor-card platinum sponsors-slide-up">
             <div class="sponsor-logo-container">
-              <img src="/adaption/adaption-logo-black.svg" alt="Adaption Labs" class="sponsor-logo">
+              <img src="/sponsors/adaption.svg" alt="Adaption Labs" class="sponsor-logo">
             </div>
             <div class="sponsor-overlay">
               <span class="sponsor-name">Adaption Labs</span>
               <span class="sponsor-tier">AI Infrastructure Partner</span>
+            </div>
+          </a>
+          <a href="https://cv.site/" target="_blank" rel="noopener noreferrer" class="sponsor-card silver sponsors-slide-up">
+            <div class="sponsor-logo-container">
+              <img src="/sponsors/dot-cv.png" alt=".CV" class="sponsor-logo">
+            </div>
+            <div class="sponsor-overlay">
+              <span class="sponsor-name">.CV</span>
+              <span class="sponsor-tier">Domain &amp; Platform Partner</span>
+            </div>
+          </a>
+          <a href="https://eternaluniversity.edu.in/" target="_blank" rel="noopener noreferrer" class="sponsor-card gold sponsors-slide-up">
+            <div class="sponsor-logo-container">
+              <img src="/sponsors/eternal-university.png" alt="Eternal University" class="sponsor-logo">
+            </div>
+            <div class="sponsor-overlay">
+              <span class="sponsor-name">Eternal University</span>
+              <span class="sponsor-tier">Academic &amp; Institutional Partner</span>
+            </div>
+          </a>
+          <a href="https://devfolio.co/" target="_blank" rel="noopener noreferrer" class="sponsor-card gold sponsors-slide-up">
+            <div class="sponsor-logo-container">
+              <img src="/sponsors/devfolio.webp" alt="Devfolio" class="sponsor-logo">
+            </div>
+            <div class="sponsor-overlay">
+              <span class="sponsor-name">Devfolio</span>
+              <span class="sponsor-tier">Hackathon Platform Partner</span>
+            </div>
+          </a>
+          <a href="https://eventopia.in/" target="_blank" rel="noopener noreferrer" class="sponsor-card silver sponsors-slide-up">
+            <div class="sponsor-logo-container">
+              <img src="/sponsors/eventopia.png" alt="Eventopia" class="sponsor-logo">
+            </div>
+            <div class="sponsor-overlay">
+              <span class="sponsor-name">Eventopia</span>
+              <span class="sponsor-tier">Event Platform Partner</span>
+            </div>
+          </a>
+          <a href="https://antigravity.dev/" target="_blank" rel="noopener noreferrer" class="sponsor-card platinum sponsors-slide-up">
+            <div class="sponsor-logo-container">
+              <img src="/sponsors/google-antigravity.png" alt="Google Antigravity" class="sponsor-logo">
+            </div>
+            <div class="sponsor-overlay">
+              <span class="sponsor-name">Google Antigravity</span>
+              <span class="sponsor-tier">AI Tools Partner</span>
+            </div>
+          </a>
+          <a href="https://developers.google.com/" target="_blank" rel="noopener noreferrer" class="sponsor-card platinum sponsors-slide-up">
+            <div class="sponsor-logo-container">
+              <img src="/sponsors/google-developers.png" alt="Google for Developers" class="sponsor-logo">
+            </div>
+            <div class="sponsor-overlay">
+              <span class="sponsor-name">Google for Developers</span>
+              <span class="sponsor-tier">Technology Partner</span>
+            </div>
+          </a>
+          <a href="https://www.hackerearth.com/" target="_blank" rel="noopener noreferrer" class="sponsor-card gold sponsors-slide-up">
+            <div class="sponsor-logo-container">
+              <img src="/sponsors/hackerearth.png" alt="HackerEarth" class="sponsor-logo">
+            </div>
+            <div class="sponsor-overlay">
+              <span class="sponsor-name">HackerEarth</span>
+              <span class="sponsor-tier">Platform Partner</span>
+            </div>
+          </a>
+          <a href="https://hackermate.in/" target="_blank" rel="noopener noreferrer" class="sponsor-card silver sponsors-slide-up">
+            <div class="sponsor-logo-container">
+              <img src="/sponsors/hackermate.png" alt="HackerMate" class="sponsor-logo">
+            </div>
+            <div class="sponsor-overlay">
+              <span class="sponsor-name">HackerMate</span>
+              <span class="sponsor-tier">Community Partner</span>
+            </div>
+          </a>
+          <a href="https://internshala.com/" target="_blank" rel="noopener noreferrer" class="sponsor-card gold sponsors-slide-up">
+            <div class="sponsor-logo-container">
+              <img src="/sponsors/internshala.jpg" alt="Internshala" class="sponsor-logo">
+            </div>
+            <div class="sponsor-overlay">
+              <span class="sponsor-name">Internshala</span>
+              <span class="sponsor-tier">Career &amp; Internship Partner</span>
+            </div>
+          </a>
+          <a href="https://uptoskills.com/" target="_blank" rel="noopener noreferrer" class="sponsor-card silver sponsors-slide-up">
+            <div class="sponsor-logo-container">
+              <img src="/sponsors/uptoskills.png" alt="UptoSkills" class="sponsor-logo">
+            </div>
+            <div class="sponsor-overlay">
+              <span class="sponsor-name">UptoSkills</span>
+              <span class="sponsor-tier">Skill Development Partner</span>
             </div>
           </a>
         </div>
@@ -192,36 +272,68 @@
       </div>
     </section>
 
-    <section id="contact">
-      <div class="container">
-        <h2 class="contact-heading">
-          <span class="contact-line">let's make</span>
-          <span class="contact-line">something worth</span>
-          <span class="contact-line">shipping.</span>
-        </h2>
-        <div class="contact-links">
-          <a href="https://github.com/MakersNeedMore-MnM" onclick="openProfileModal('GitHub'); return false;" class="contact-row" data-cursor="open">
-            <span class="contact-row-name">GitHub</span>
-            <span class="contact-row-arrow">→</span>
-            <div class="contact-row-fill"></div>
-          </a>
-          <a href="mailto:admin@mnmworks.xyz" class="contact-row" data-cursor="open">
-            <span class="contact-row-name">Email</span>
-            <span class="contact-row-arrow">→</span>
-            <div class="contact-row-fill"></div>
-          </a>
-          <a href="https://www.linkedin.com/company/makersneedmore" onclick="openProfileModal('LinkedIn'); return false;" class="contact-row" data-cursor="open">
-            <span class="contact-row-name">LinkedIn</span>
-            <span class="contact-row-arrow">→</span>
-            <div class="contact-row-fill"></div>
-          </a>
+    <footer id="site-red-footer" class="site-red-footer">
+      <div class="red-footer-container">
+        <div class="red-footer-main">
+          <div class="red-footer-left">
+            <div class="red-footer-brand">
+              <div class="red-footer-logo-wrap">
+                <img src="/logo.png" alt="MnM Spinning Logo" class="red-footer-spin-logo">
+              </div>
+            </div>
+            <div class="red-footer-address">
+              <p class="red-footer-addr-org">Makers Need More (MnM)</p>
+              <p class="red-footer-addr-line">Student Innovation &amp; Open-Source Community</p>
+              <p class="red-footer-addr-line">Shamsabad, Farrukhabad</p>
+              <p class="red-footer-addr-line">Uttar Pradesh, India 209503</p>
+              <a href="mailto:admin@mnmworks.xyz" class="red-footer-addr-link">admin@mnmworks.xyz</a>
+            </div>
+          </div>
+          <div class="red-footer-nav">
+            <div class="red-footer-col">
+              <span class="red-footer-col-title">Explore</span>
+              <div class="red-footer-btn-list">
+                <a href="/" class="red-footer-btn">Home</a>
+                <a href="about.html" class="red-footer-btn">About</a>
+                <a href="founders.html" class="red-footer-btn">Founders</a>
+                <a href="competitions.html" class="red-footer-btn">Competitions</a>
+                <a href="contribute.html" class="red-footer-btn">Contribute</a>
+                <a href="careers.html" class="red-footer-btn">Careers</a>
+                <a href="sponsors.html" class="red-footer-btn">Sponsors</a>
+              </div>
+            </div>
+            <div class="red-footer-col">
+              <span class="red-footer-col-title">Events</span>
+              <div class="red-footer-btn-list">
+                <a href="catalyst.html" class="red-footer-btn">Catalyst</a>
+                <a href="morrow.html" class="red-footer-btn">Morrow</a>
+                <a href="orbix.html" class="red-footer-btn">Orbix</a>
+                <a href="manitya.html" class="red-footer-btn">Manitya</a>
+              </div>
+            </div>
+            <div class="red-footer-col">
+              <span class="red-footer-col-title">Community</span>
+              <div class="red-footer-btn-list">
+                <a href="/communitycatalouge" class="red-footer-btn">Community Catalogue</a>
+                <a href="eternaluniversity.html" class="red-footer-btn">Eternal University</a>
+              </div>
+            </div>
+            <div class="red-footer-col">
+              <span class="red-footer-col-title">Connect</span>
+              <div class="red-footer-btn-list">
+                <a href="mailto:admin@mnmworks.xyz" class="red-footer-btn">Email Us</a>
+                <a href="https://github.com/MakersNeedMore-MnM" target="_blank" rel="noopener noreferrer" class="red-footer-btn">GitHub</a>
+                <a href="https://www.linkedin.com/company/makersneedmore" target="_blank" rel="noopener noreferrer" class="red-footer-btn">LinkedIn</a>
+              </div>
+            </div>
+          </div>
         </div>
-        <p class="footer-credit commit-mono">MnM · 2026 · A student-run community building open-source solutions globally.</p>
-        <div class="footer-logo-container">
-          <img src="/Makers%20Need%20More.png" alt="Makers Need More" class="footer-logo-image">
+        <div class="red-footer-bottom">
+          <span class="red-footer-copy commit-mono">&copy; 2026 Makers Need More &middot; Non-Profit &middot; Open Source</span>
+          <span class="red-footer-tagline commit-mono">built by students, for students.</span>
         </div>
       </div>
-    </section>
+    </footer>
 
     <div id="profile-modal-overlay" class="profile-modal-overlay">
       <div class="profile-modal">

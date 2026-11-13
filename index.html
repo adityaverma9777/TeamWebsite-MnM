@@ -72,12 +72,6 @@
 <body>
   <div id="cursor-inner"></div>
   <div id="cursor-outer"><span id="cursor-label"></span></div>
-  <div id="preloader">
-    <div id="preloader-line">
-      <div id="preloader-progress"></div>
-    </div>
-    <div id="preloader-text">Loading...</div>
-  </div>
   <nav id="navbar" class="navbar-island">
     <div class="navbar-inner">
       <a href="#" class="navbar-brand">
@@ -100,34 +94,113 @@
       </div>
     </div>
   </nav>
+  <div class="comp-red-backdrop" id="comp-red-backdrop" style="display: none; transform: translateX(-100%);">
+    <div class="comp-red-container">
+      <header class="comp-red-header">
+        <a href="index.html" class="comp-red-brand">
+          <span class="navbar-logo" style="background:#000;">
+            <img src="/logo.png" alt="MnM logo" class="navbar-logo-img">
+          </span>
+          <span class="comp-red-title">// MnM · Competitions</span>
+        </a>
+        <button class="comp-red-close magnetic" id="comp-red-close" aria-label="Close Competitions" data-cursor="Close">
+          <span>Close</span>
+          <div class="comp-close-icon">
+            <span class="close-bar bar-1"></span>
+            <span class="close-bar bar-2"></span>
+          </div>
+        </button>
+      </header>
+      <nav class="comp-red-nav">
+        <ul class="comp-red-list" id="comp-red-list">
+          <li class="comp-red-item">
+            <a href="morrow.html" class="comp-red-link" data-video="video-morrow">
+              <span class="comp-arrow-box">
+                <svg viewBox="0 0 101 57" aria-hidden="true">
+                  <path
+                    d="M33 34H0V24h81.429L66 7.884 73.548 0l19.877 20.763.027-.029L101 28.618 73.829 57l-7.548-7.884L80.753 34H33z"
+                    fill="#000" fill-rule="evenodd" />
+                </svg>
+              </span>
+              <span class="comp-name">Morrow 1.0</span>
+            </a>
+          </li>
+          <li class="comp-red-item">
+            <a href="catalyst.html" class="comp-red-link" data-video="video-catalyst">
+              <span class="comp-arrow-box">
+                <svg viewBox="0 0 101 57" aria-hidden="true">
+                  <path
+                    d="M33 34H0V24h81.429L66 7.884 73.548 0l19.877 20.763.027-.029L101 28.618 73.829 57l-7.548-7.884L80.753 34H33z"
+                    fill="#000" fill-rule="evenodd" />
+                </svg>
+              </span>
+              <span class="comp-name">Catalyst</span>
+            </a>
+          </li>
+          <li class="comp-red-item">
+            <a href="orbix.html" class="comp-red-link" data-video="video-orbix">
+              <span class="comp-arrow-box">
+                <svg viewBox="0 0 101 57" aria-hidden="true">
+                  <path
+                    d="M33 34H0V24h81.429L66 7.884 73.548 0l19.877 20.763.027-.029L101 28.618 73.829 57l-7.548-7.884L80.753 34H33z"
+                    fill="#000" fill-rule="evenodd" />
+                </svg>
+              </span>
+              <span class="comp-name">ORBIX</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <footer class="comp-red-footer">
+        <div class="comp-footer-left">
+          <a href="mailto:admin@mnmworks.xyz" class="comp-footer-link">admin@mnmworks.xyz</a>
+          <span class="comp-footer-copy">© MnM 2026</span>
+        </div>
+        <div class="comp-footer-right">
+          <a href="https://github.com/MakersNeedMore-MnM" target="_blank" rel="noopener"
+            class="comp-footer-social">GitHub</a>
+          <a href="https://www.linkedin.com/company/makersneedmore" target="_blank" rel="noopener"
+            class="comp-footer-social">LinkedIn</a>
+        </div>
+      </footer>
+    </div>
+    <div class="comp-video-container" id="comp-video-container">
+      <div class="comp-video-reveal" id="comp-video-reveal">
+        <div class="comp-idle-logo-wrap">
+          <img src="/logo-black.png" alt="MnM" class="comp-idle-logo">
+        </div>
+      </div>
+      <video class="comp-bg-video" id="video-morrow" src="/My Video1.webm" loop muted playsinline preload="auto"></video>
+      <video class="comp-bg-video" id="video-catalyst" src="/catalyst/Catalyst Teaser.webm" loop muted playsinline preload="auto"></video>
+      <video class="comp-bg-video" id="video-orbix" src="/orbix/orbix.mp4" loop muted playsinline preload="auto"></video>
+    </div>
+  </div>
   <main id="main">
-    <section id="hero">
-      <canvas id="hero-canvas"></canvas>
+    <section id="hero" class="furrow-hero">
+      <div class="hero-video-wrap">
+        <video id="hero-bg-video" src="/MnM%20India%20Campaign%20video.webm" autoplay loop muted playsinline></video>
+      </div>
+      <canvas id="hero-scratch-canvas"></canvas>
       <div class="hero-grain"></div>
       <div class="hero-layout">
         <div class="hero-text-col">
           <h1 class="hero-heading" id="hero-heading">
-            <span class="hero-line">we write code</span>
-            <span class="hero-line">to create</span>
-            <span class="hero-line">an impact <span class="lime-period"> .</span></span>
+            <span class="hero-line">MAKERS</span>
+            <span class="hero-line">NEED MORE<span class="red-period">.</span></span>
           </h1>
           <p class="hero-sub">
             a student community. unreasonable output.<br>
             building at the speed of thought<br>
             and shipping before you're ready.
           </p>
-
           <div class="hero-cta-row">
             <a href="contribute.html" class="btn-pill magnetic" id="hero-cta"
               style="display: inline-flex; justify-content: center; align-items: center; text-align: center; text-decoration: none;">Contribute</a>
           </div>
         </div>
-        <div class="hero-3d-col">
-          <div id="hero-3d"></div>
-        </div>
       </div>
       <div class="scroll-indicator">
-        <span class="scroll-text">scroll</span>
+        <span class="scroll-text">SCRATCH OR SCROLL</span>
         <div class="scroll-line"></div>
       </div>
     </section>
@@ -182,1699 +255,289 @@
       </div>
     </section>
 
-    <!-- Scroll-driven video zoom section -->
-    <section id="video-scroll-container">
-      <div id="video-pin-target">
-        <div class="video-zoom-inner">
-
-          <!-- Video wrapper — starts small, scales up on scroll -->
-          <div class="video-wrapper" id="video-zoom-wrapper">
-            <video id="intro-video" src="/catalyst/Catalyst Teaser.webm" autoplay loop muted playsinline
-              title="MnM community introduction video"
-              aria-label="Makers Need More community introduction video"></video>
-            <button id="mute-toggle" class="video-mute-btn">
-              <svg id="speaker-icon-muted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                <line x1="23" y1="9" x2="17" y2="15"></line>
-                <line x1="17" y1="9" x2="23" y2="15"></line>
-              </svg>
-              <svg id="speaker-icon-unmuted" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                style="display: none;">
-                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-              </svg>
-            </button>
-          </div>
-
-          <!-- Text revealed after video reaches full size -->
-          <div class="video-intro-text" id="video-intro-text">
-            <h2 class="video-intro-heading">
-              Makers Need More<span style="color: var(--lime);">.</span>
-            </h2>
-            <p class="video-intro-sub">
-              More minds. More solutions. More humanity.
+    <section id="society-overview" class="soc-section-wrap">
+      <div class="soc-container">
+        <div class="soc-hero-block">
+          <h2 class="soc-section-heading">
+            Empowering Students Globally Without Barriers<span class="soc-red-dot">.</span>
+          </h2>
+          <div class="soc-lead-grid">
+            <p class="soc-lead-text">
+              Makers Need More (MnM) is an open student community where anyone can learn by building real things. We believe true engineering skills don't come from memorizing textbooks or watching endless tutorials - they come from getting your hands dirty with real code, collaborating with passionate peers, and shipping software that real people use. Everything we offer is 100% free for students with zero paywalls and no hidden costs. From hackathons and workshops to contributing to open-source software, we give you the guidance, tools, and platform to build a real portfolio. We also give back to society by building free websites and digital tools for underprivileged small businesses.
             </p>
           </div>
-
+        </div>
+        <div class="soc-stats-grid">
+          <div class="soc-stat-card">
+            <div class="soc-stat-num">1.4M<span class="soc-stat-plus">+</span></div>
+            <div class="soc-stat-label">Event Impressions</div>
+            <div class="soc-stat-sub">Across technical camps, outreach, and hackathons</div>
+          </div>
+          <div class="soc-stat-card">
+            <div class="soc-stat-num">6,000<span class="soc-stat-plus">+</span></div>
+            <div class="soc-stat-label">Global Participants</div>
+            <div class="soc-stat-sub">Students collaborating across universities</div>
+          </div>
+          <div class="soc-stat-card">
+            <div class="soc-stat-num">1,400<span class="soc-stat-plus">+</span></div>
+            <div class="soc-stat-label">Projects Built</div>
+            <div class="soc-stat-sub">From first prototypes to production deployments</div>
+          </div>
+          <div class="soc-stat-card">
+            <div class="soc-stat-num">90<span class="soc-stat-plus">+</span></div>
+            <div class="soc-stat-label">Student Interns</div>
+            <div class="soc-stat-sub">Mentored on real, industry-grade production code</div>
+          </div>
+        </div>
+        <div class="soc-gallery-block" id="soc-gallery">
+          <div class="soc-gallery-header">
+            <div>
+              <h3 class="soc-gallery-title">Moments From Our Campus Diary<span class="soc-red-dot">.</span></h3>
+              <p class="soc-gallery-sub">Technical camps, code bootcamps, and student mentorship sessions hosted live
+                across partner universities.</p>
+            </div>
+            <div class="soc-gallery-controls">
+              <button class="soc-gallery-btn" id="soc-gallery-prev" aria-label="Previous image">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+              </button>
+              <button class="soc-gallery-btn" id="soc-gallery-next" aria-label="Next image">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="soc-gallery-slider-wrap">
+            <div class="soc-gallery-track" id="soc-gallery-track">
+              <div class="soc-gallery-card">
+                <img src="/events/event-1.jpg" alt="MnM Campus Outreach" class="soc-gallery-img" loading="lazy">
+              </div>
+              <div class="soc-gallery-card">
+                <img src="/events/event-2.jpg" alt="MnM Campus Outreach" class="soc-gallery-img" loading="lazy">
+              </div>
+              <div class="soc-gallery-card">
+                <img src="/events/event-3.jpg" alt="MnM Campus Outreach" class="soc-gallery-img" loading="lazy">
+              </div>
+              <div class="soc-gallery-card">
+                <img src="/events/event-4.jpg" alt="MnM Campus Outreach" class="soc-gallery-img" loading="lazy">
+              </div>
+              <div class="soc-gallery-card">
+                <img src="/events/event-5.jpg" alt="MnM Campus Outreach" class="soc-gallery-img" loading="lazy">
+              </div>
+              <div class="soc-gallery-card">
+                <img src="/events/event-6.jpg" alt="MnM Campus Outreach" class="soc-gallery-img" loading="lazy">
+              </div>
+            </div>
+          </div>
+          <div class="soc-gallery-dots" id="soc-gallery-dots"></div>
+        </div>
+        <div class="soc-group-block">
+          <div class="soc-header-row">
+            <h2 class="soc-section-heading">
+              End-to-End Engineering & Digital Services<span class="soc-red-dot">.</span>
+            </h2>
+            <p class="soc-header-desc">
+              Our student teams design, engineer, and ship production software across the modern tech stack.
+            </p>
+          </div>
+          <div class="soc-services-grid">
+            <div class="soc-service-card">
+              <h3 class="soc-service-name">Frontend Development</h3>
+              <p class="soc-service-summary">
+                Fast, responsive, and accessible user interfaces built with React, Next.js, and Tailwind CSS. We make
+                sure every screen loads instantly and feels great to interact with.
+              </p>
+            </div>
+            <div class="soc-service-card">
+              <h3 class="soc-service-name">Backend Engineering</h3>
+              <p class="soc-service-summary">
+                Solid server systems, clean REST and GraphQL APIs, and reliable databases powered by Node.js, Python,
+                FastAPI, and PostgreSQL. Built for reliability and heavy traffic.
+              </p>
+            </div>
+            <div class="soc-service-card">
+              <h3 class="soc-service-name">AI & Intelligent Systems</h3>
+              <p class="soc-service-summary">
+                Practical machine learning pipelines, model deployment, and automation. We integrate artificial
+                intelligence into real tools that solve everyday operational bottlenecks.
+              </p>
+            </div>
+            <div class="soc-service-card">
+              <h3 class="soc-service-name">Full-Stack Digital Products</h3>
+              <p class="soc-service-summary">
+                Complete digital applications from concept to live deployment. Includes secure user authentication,
+                database management, payment processing, and cloud hosting.
+              </p>
+            </div>
+            <div class="soc-service-card soc-probono-card">
+              <h3 class="soc-service-name">Free Digital Infrastructure for Small Businesses</h3>
+              <p class="soc-service-summary">
+                We believe tech should build bridges, not barriers. We design, build, and deploy free modern websites
+                and cloud infrastructure for underprivileged small businesses, helping local founders establish their
+                digital presence at zero cost.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="soc-group-block">
+          <div class="soc-header-row">
+            <h2 class="soc-section-heading">
+              Built on Core Values<span class="soc-red-dot">.</span>
+            </h2>
+            <p class="soc-header-desc">
+              Three founding principles guide every project, competition, and event we organize.
+            </p>
+          </div>
+          <div class="soc-values-grid">
+            <div class="soc-value-card">
+              <div class="soc-value-num">01</div>
+              <h3 class="soc-value-title">Privacy First</h3>
+              <p class="soc-value-desc">
+                Your data belongs to you. We build safe, secure, and zero-tracking spaces where student work, identity,
+                and ideas are strictly respected.
+              </p>
+            </div>
+            <div class="soc-value-card">
+              <div class="soc-value-num">02</div>
+              <h3 class="soc-value-title">100% Free Access</h3>
+              <p class="soc-value-desc">
+                No paywalls, no subscriptions, and zero hidden charges. Practical learning and mentorship should always
+                be open to every motivated student.
+              </p>
+            </div>
+            <div class="soc-value-card">
+              <div class="soc-value-num">03</div>
+              <h3 class="soc-value-title">Learn by Doing</h3>
+              <p class="soc-value-desc">
+                We foster a supportive environment where experimentation is celebrated, mistakes are seen as progress,
+                and real skills are built by shipping.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="soc-group-block">
+          <div class="soc-header-row">
+            <h2 class="soc-section-heading">
+              Built by Students, for Students<span class="soc-red-dot">.</span>
+            </h2>
+            <p class="soc-header-desc">
+              A self-governing community created to replace theory-heavy education with hands-on development and social
+              impact.
+            </p>
+          </div>
+          <div class="soc-community-grid">
+            <div class="soc-community-card">
+              <h3 class="soc-community-title">A Clear Path into Real Tech</h3>
+              <p class="soc-community-copy">
+                Starting out in software development is confusing and full of hurdles. We created MnM to give students a
+                direct path: participate in hackathons, work on open-source codebases, collaborate with mentors, and
+                graduate with a verifiable public record of shipped software.
+              </p>
+            </div>
+            <div class="soc-community-card">
+              <h3 class="soc-community-title">Solving Real Community Problems</h3>
+              <p class="soc-community-copy">
+                College should mean far more than just exams and lectures. We channel student talent into building free
+                websites and tools for small local businesses, ensuring our members learn empathy, teamwork, and
+                practical problem solving alongside technical excellence.
+              </p>
+            </div>
+            <div class="soc-community-card">
+              <h3 class="soc-community-title">Verified Career Credentials</h3>
+              <p class="soc-community-copy">
+                Interns gain hands-on production experience, custom email accounts for LinkedIn verification, physical
+                completion certificates, and direct referral opportunities - turning community contribution into career
+                acceleration.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="soc-actions-row">
+          <a href="careers.html" class="soc-btn-primary">Apply for Internships & Careers →</a>
+          <a href="competitions.html" class="soc-btn-secondary" data-section="competitions">Explore Competitions</a>
+          <a href="contribute.html" class="soc-btn-secondary">Contribute to Open Source</a>
+          <a href="mailto:admin@mnmworks.xyz" class="soc-btn-secondary">Contact: admin@mnmworks.xyz</a>
         </div>
       </div>
     </section>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const video = document.getElementById('intro-video');
-        const muteToggle = document.getElementById('mute-toggle');
-        const iconMuted = document.getElementById('speaker-icon-muted');
-        const iconUnmuted = document.getElementById('speaker-icon-unmuted');
-
-        if (muteToggle && video) {
-          muteToggle.addEventListener('mouseenter', () => muteToggle.style.background = 'rgba(0,0,0,0.7)');
-          muteToggle.addEventListener('mouseleave', () => muteToggle.style.background = 'rgba(0,0,0,0.5)');
-
-          muteToggle.addEventListener('click', () => {
-            if (video.muted) {
-              video.muted = false;
-              iconMuted.style.display = 'none';
-              iconUnmuted.style.display = 'block';
-            } else {
-              video.muted = true;
-              iconMuted.style.display = 'block';
-              iconUnmuted.style.display = 'none';
-            }
-          });
-        }
-      });
-    </script>
-
-    <section id="features">
-      <div class="features-container">
-        <!-- Card 1 -->
-        <div class="feature-card">
-          <div class="feature-card-content">
-            <span class="feature-badge">01</span>
-            <h3 class="feature-title">Competitions</h3>
-            <p class="feature-desc">View ongoing competitions, check your registration status, build teams, and compete
-              with the best to discover top open-source solutions for unanswered problems.</p>
-            <a href="competitions.html" class="feature-link">View Competitions <span class="arrow">→</span></a>
-          </div>
-          <div class="feature-card-graphic">
-            <div class="svg-anim-wrapper graphic-1">
-              <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="100" cy="100" r="80" stroke="#C8FF00" stroke-width="2" stroke-dasharray="10 10"
-                  class="spin-slow" />
-                <circle cx="100" cy="100" r="50" stroke="#000000" stroke-width="4" stroke-dasharray="20 20"
-                  class="spin-reverse-fast" />
-                <circle cx="100" cy="100" r="20" fill="#C8FF00" class="pulse" />
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="feature-card reverse">
-          <div class="feature-card-content">
-            <span class="feature-badge">02</span>
-            <h3 class="feature-title">Contribute</h3>
-            <p class="feature-desc">Discover projects that need your expertise. Contribute code, climb the leaderboard,
-              share your achievements on social media, and help build sustainable solutions.</p>
-            <a href="contribute.html" class="feature-link">Start Contributing <span class="arrow">→</span></a>
-          </div>
-          <div class="feature-card-graphic">
-            <div class="svg-anim-wrapper graphic-2">
-              <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- 3D Isometric Cube -->
-                <g class="iso-cube">
-                  <!-- Floating core piece -->
-                  <polygon points="100,25 120,36.5 100,48 80,36.5" fill="#C8FF00" class="iso-float" />
-
-                  <!-- Top Face -->
-                  <polygon points="100,50 143.3,75 100,100 56.7,75" fill="#C8FF00" class="iso-top" />
-
-                  <!-- Left Face -->
-                  <polygon points="56.7,75 100,100 100,150 56.7,125" fill="#000000" class="iso-left" />
-
-                  <!-- Right Face -->
-                  <polygon points="100,100 143.3,75 143.3,125 100,150" fill="#fcfcfc" stroke="#000000" stroke-width="4"
-                    stroke-linejoin="round" class="iso-right" />
-
-                  <!-- Bottom decorative shadow line -->
-                  <line x1="56.7" y1="165" x2="143.3" y2="165" stroke="#C8FF00" stroke-width="2" class="iso-shadow" />
-                </g>
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="feature-card">
-          <div class="feature-card-content">
-            <span class="feature-badge">03</span>
-            <h3 class="feature-title">Got an Idea?</h3>
-            <p class="feature-desc">Submit your repository to our platform. If you're seeking contributions, your
-              project will be evaluated, showcased here, and opened to our community.</p>
-            <a href="contribute.html" class="feature-link">Submit Repo <span class="arrow">→</span></a>
-          </div>
-          <div class="feature-card-graphic">
-            <div class="svg-anim-wrapper graphic-3">
-              <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <polygon points="100,25 165,62.5 165,137.5 100,175 35,137.5 35,62.5" stroke="#000" stroke-width="1"
-                  class="hex-anim-1" />
-                <polygon points="100,40 152,70 152,130 100,160 48,130 48,70" stroke="#C8FF00" stroke-width="2.5"
-                  class="hex-anim-2" />
-                <polygon points="100,55 139,77.5 139,122.5 100,145 61,122.5 61,77.5" fill="#000" class="hex-anim-3" />
-                <circle cx="100" cy="100" r="16" fill="#C8FF00" class="hex-core" />
-                <circle cx="100" cy="100" r="6" fill="#000" />
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 4 -->
-        <div class="feature-card reverse">
-          <div class="feature-card-content">
-            <span class="feature-badge">04</span>
-            <h3 class="feature-title">Sponsor Us</h3>
-            <p class="feature-desc">Built for visionaries. Connect with our talented pool of developers and sponsor our
-              initiatives to drive innovation forward.</p>
-            <a href="sponsors.html" class="feature-link">Become a Sponsor <span class="arrow">→</span></a>
-          </div>
-          <div class="feature-card-graphic">
-            <div class="svg-anim-wrapper graphic-4">
-              <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="50" r="10" fill="#000" class="node-1" />
-                <circle cx="150" cy="50" r="15" fill="#C8FF00" class="node-2" />
-                <circle cx="100" cy="150" r="20" fill="#000" class="node-3" />
-                <line x1="50" y1="50" x2="150" y2="50" stroke="#C8FF00" stroke-width="2" class="line-1" />
-                <line x1="150" y1="50" x2="100" y2="150" stroke="#000" stroke-width="2" class="line-2" />
-                <line x1="100" y1="150" x2="50" y2="50" stroke="#C8FF00" stroke-width="4" class="line-3" />
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 5 -->
-        <div class="feature-card">
-          <div class="feature-card-content">
-            <span class="feature-badge">05</span>
-            <h3 class="feature-title">Careers</h3>
-            <p class="feature-desc">Level up your career with MnM. Join us as a Campus Ambassador to represent us at
-              your university or secure an Open Source Internship to gain hands-on experience and build global
-              solutions.</p>
-            <a href="careers.html" class="feature-link">Explore Careers <span class="arrow">→</span></a>
-          </div>
-          <div class="feature-card-graphic">
-            <div class="svg-anim-wrapper graphic-5">
-              <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Stars in the background -->
-                <circle cx="50" cy="40" r="2" fill="#C8FF00" class="pulse" />
-                <circle cx="150" cy="60" r="3" fill="#fff" class="pulse" />
-                <circle cx="70" cy="120" r="1.5" fill="#C8FF00" class="pulse" />
-                <circle cx="130" cy="140" r="2" fill="#fff" class="pulse" />
-
-                <!-- Rocket Group that floats -->
-                <g class="float-anim">
-                  <!-- Rocket Flame/Thrust (Pulsing) -->
-                  <path d="M90 140 L100 165 L110 140 Z" fill="#C8FF00" class="pulse" />
-
-                  <!-- Rocket Body -->
-                  <path d="M100 50 C110 75 115 100 115 130 L85 130 C85 100 90 75 100 50 Z" fill="#000" stroke="#C8FF00"
-                    stroke-width="2.5" />
-
-                  <!-- Fins -->
-                  <path d="M85 115 L70 135 L85 130 Z" fill="#C8FF00" />
-                  <path d="M115 115 L130 135 L115 130 Z" fill="#C8FF00" />
-
-                  <!-- Window -->
-                  <circle cx="100" cy="90" r="6" fill="#C8FF00" />
-                </g>
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="stack">
-      <div class="stack-hero">
-        <div class="stack-hero-text">
-          <span class="section-label lime-label">// community arsenal</span>
+    <section id="stack" class="dark-section" style="background: #000000; padding: 100px 0 120px;">
+      <div class="container" style="max-width: 1280px; margin: 0 auto; padding: 0 32px;">
+        <div style="margin-bottom: 3.5rem;">
+          <span class="section-label red-label"
+            style="color: #d8232a; display: inline-block; margin-bottom: 0.75rem;">// our sponsors &amp; partners</span>
           <h2 class="stack-heading">
-            <span class="stack-line">we didn't</span>
-            <span class="stack-line">just learn it ,</span>
-            <span class="stack-line">we used it .</span>
+            <span class="stack-line">sponsored</span>
+            <span class="stack-line">by the best<span class="red-period" style="color: #d8232a;">.</span></span>
           </h2>
+          <p
+            style="color: rgba(255, 255, 255, 0.7); font-size: clamp(1.05rem, 1.8vw, 1.2rem); max-width: 680px; line-height: 1.6; margin: 1.25rem 0 0;">
+            Backed by premier technology ecosystems, platforms, universities, and developer communities empowering
+            student builders worldwide.
+          </p>
         </div>
-        <div class="stack-cube-wrap">
-          <canvas id="stack-canvas"></canvas>
-          <div class="stack-cube-ring" id="stack-cube-ring">
-
-          </div>
+        <div class="sponsors-elegant-grid">
+          <a href="https://developers.google.com/" target="_blank" rel="noopener noreferrer" class="sponsor-brand-card"
+            aria-label="Google Developers">
+            <img src="/sponsors/google-developers.png" alt="Google Developers" class="sponsor-brand-logo">
+          </a>
+          <a href="https://hack2skill.com/" target="_blank" rel="noopener noreferrer" class="sponsor-brand-card"
+            aria-label="Hack2Skill">
+            <img src="/sponsors/hack2skill.png" alt="Hack2Skill" class="sponsor-brand-logo">
+          </a>
+          <a href="https://devfolio.co/" target="_blank" rel="noopener noreferrer" class="sponsor-brand-card"
+            aria-label="Devfolio">
+            <img src="/sponsors/devfolio.webp" alt="Devfolio" class="sponsor-brand-logo">
+          </a>
+          <a href="https://unstop.com/" target="_blank" rel="noopener noreferrer" class="sponsor-brand-card"
+            aria-label="Unstop">
+            <img src="/sponsors/unstop.png" alt="Unstop" class="sponsor-brand-logo">
+          </a>
+          <a href="https://gen.xyz/" target="_blank" rel="noopener noreferrer" class="sponsor-brand-card"
+            aria-label=".xyz">
+            <img src="/sponsors/xyz.png" alt=".xyz" class="sponsor-brand-logo">
+          </a>
+          <a href="https://www.hackerearth.com/" target="_blank" rel="noopener noreferrer" class="sponsor-brand-card"
+            aria-label="HackerEarth">
+            <img src="/sponsors/hackerearth.png" alt="HackerEarth" class="sponsor-brand-logo">
+          </a>
+          <a href="https://uptoskills.com/" target="_blank" rel="noopener noreferrer" class="sponsor-brand-card"
+            aria-label="UpToSkills">
+            <img src="/sponsors/uptoskills.png" alt="UpToSkills" class="sponsor-brand-logo">
+          </a>
+          <a href="https://antigravity.google/" target="_blank" rel="noopener noreferrer" class="sponsor-brand-card"
+            aria-label="Google Antigravity">
+            <img src="/sponsors/google-antigravity.png" alt="Google Antigravity" class="sponsor-brand-logo">
+          </a>
+          <a href="https://adaptionlabs.ai/" target="_blank" rel="noopener noreferrer" class="sponsor-brand-card"
+            aria-label="Adaption">
+            <img src="/sponsors/adaption.svg" alt="Adaption" class="sponsor-brand-logo">
+          </a>
+          <a href="https://eventopia.in/" target="_blank" rel="noopener noreferrer" class="sponsor-brand-card"
+            aria-label="Eventopia">
+            <img src="/sponsors/eventopia.png" alt="Eventopia" class="sponsor-brand-logo">
+          </a>
+          <a href="https://hackermate.com/" target="_blank" rel="noopener noreferrer" class="sponsor-brand-card"
+            aria-label="HackerMate">
+            <img src="/sponsors/hackermate.png" alt="HackerMate" class="sponsor-brand-logo">
+          </a>
+          <a href="https://internshala.com/" target="_blank" rel="noopener noreferrer" class="sponsor-brand-card"
+            aria-label="Internshala">
+            <img src="/sponsors/internshala.jpg" alt="Internshala" class="sponsor-brand-logo">
+          </a>
+          <a href="https://cv.site/" target="_blank" rel="noopener noreferrer" class="sponsor-brand-card"
+            aria-label=".CV">
+            <img src="/sponsors/dot-cv.png" alt=".CV" class="sponsor-brand-logo">
+          </a>
+          <a href="https://eternaluniversity.edu.in/" target="_blank" rel="noopener noreferrer"
+            class="sponsor-brand-card" aria-label="Eternal University" style="padding: 10px 16px;">
+            <img src="/sponsors/eternal-university.png" alt="Eternal University"
+              class="sponsor-brand-logo sponsor-brand-logo-lg">
+          </a>
         </div>
-      </div>
-      <div class="stack-marquee-viewport">
-        <div class="stack-marquee-inner">
-
-          <div class="stack-marquee-track">
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"
-                class="tech-svg"><span>Python</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
-                alt="TypeScript" class="tech-svg"><span>TypeScript</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                alt="JavaScript" class="tech-svg"><span>JavaScript</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"
-                class="tech-svg"><span>Java</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++"
-                class="tech-svg"><span>C++</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB"
-                class="tech-svg"><span>MongoDB</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express"
-                class="tech-svg invert-icon"><span>Express</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"
-                class="tech-svg"><span>React</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js"
-                class="tech-svg"><span>Node.js</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch"
-                class="tech-svg"><span>PyTorch</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy"
-                class="tech-svg"><span>NumPy</span></div>
-            <div class="tech-icon-card"><span class="emoji-icon">🤗</span><span>Hugging Face</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI"
-                class="tech-svg"><span>FastAPI</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis"
-                class="tech-svg"><span>Redis</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
-                alt="PostgreSQL" class="tech-svg"><span>PostgreSQL</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js"
-                class="tech-svg invert-icon"><span>Next.js</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
-                alt="Tailwind CSS" class="tech-svg"><span>Tailwind CSS</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"
-                class="tech-svg"><span>HTML5</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"
-                class="tech-svg"><span>Docker</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg"
-                alt="Google Cloud" class="tech-svg"><span>Google Cloud</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"
-                class="tech-svg"><span>Git</span></div>
-          </div>
-
-          <div class="stack-marquee-track" aria-hidden="true">
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"
-                class="tech-svg"><span>Python</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
-                alt="TypeScript" class="tech-svg"><span>TypeScript</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                alt="JavaScript" class="tech-svg"><span>JavaScript</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"
-                class="tech-svg"><span>Java</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++"
-                class="tech-svg"><span>C++</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB"
-                class="tech-svg"><span>MongoDB</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express"
-                class="tech-svg invert-icon"><span>Express</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"
-                class="tech-svg"><span>React</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js"
-                class="tech-svg"><span>Node.js</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch"
-                class="tech-svg"><span>PyTorch</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy"
-                class="tech-svg"><span>NumPy</span></div>
-            <div class="tech-icon-card"><span class="emoji-icon">🤗</span><span>Hugging Face</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI"
-                class="tech-svg"><span>FastAPI</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis"
-                class="tech-svg"><span>Redis</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
-                alt="PostgreSQL" class="tech-svg"><span>PostgreSQL</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js"
-                class="tech-svg invert-icon"><span>Next.js</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
-                alt="Tailwind CSS" class="tech-svg"><span>Tailwind CSS</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"
-                class="tech-svg"><span>HTML5</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"
-                class="tech-svg"><span>Docker</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg"
-                alt="Google Cloud" class="tech-svg"><span>Google Cloud</span></div>
-            <div class="tech-icon-card"><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"
-                class="tech-svg"><span>Git</span></div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================== -->
-    <!-- SPONSOR CAROUSEL SECTION -->
-    <!-- ============================================== -->
-    <section id="partner-carousel"
-      style="padding: 6rem 0 4rem; overflow: hidden; position: relative; background-color: #ffffff;">
-      <div class="container" style="text-align: center; margin-bottom: 3rem;">
-        <span class="section-label" style="display: inline-block; margin-bottom: 1rem; opacity: 0.9;">// platform
-          partner</span>
-        <h2 class="hack-heading"
-          style="font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: -0.02em; line-height: 1.1; max-width: 800px; margin: 0 auto; color: #000000; font-weight: 700;">
-          <span class="hack-line" style="display: block;">Empowering</span>
-          <span class="hack-line" style="display: block;">The Next Generation</span>
-        </h2>
-        <p
-          style="color: #a3a3a3; font-size: 1.1rem; max-width: 600px; margin: 1.5rem auto 0; line-height: 1.6; text-align: center;">
-          Backed by the best in the industry to fuel your growth, learning, and innovation journey.</p>
-        <div style="margin-top: 1.5rem; display: flex; justify-content: center;">
-          <div style="background: white; padding: 12px 24px; border-radius: 50px; display: inline-flex;">
-            <img src="/unstop/Unstop-Logo-Blue-Extra-Large.jpg" alt="Unstop"
-              style="height: 32px; width: auto; object-fit: contain; mix-blend-mode: multiply;">
-          </div>
-        </div>
-      </div>
-
-      <style>
-        .carousel-control:hover {
-          background: var(--lime, #ccff00) !important;
-          color: black !important;
-          border-color: var(--lime, #ccff00) !important;
-          transform: translateY(-50%) scale(1.1) !important;
-        }
-
-        .sponsor-card {
-          flex: 0 0 550px;
-          aspect-ratio: 16/9;
-          background: #ffffff;
-          border: 1px solid rgba(255, 255, 255, 0.05);
-          border-radius: 24px;
-          padding: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-          text-decoration: none;
-          overflow: hidden;
-        }
-
-        .sponsor-card:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 20px 40px rgba(204, 255, 0, 0.15);
-          border-color: rgba(255, 255, 255, 0.15);
-        }
-
-        .sponsor-card img {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-          transition: transform 0.4s ease;
-        }
-
-        .sponsor-card:hover img {
-          transform: scale(1.08);
-        }
-
-        @media (max-width: 768px) {
-          .sponsor-card {
-            flex: 0 0 calc(100vw - 48px);
-            padding: 0;
-          }
-
-          .carousel-wrapper {
-            padding: 0 8px !important;
-          }
-
-          .carousel-track {
-            gap: 16px !important;
-          }
-
-          .carousel-control {
-            display: none !important;
-          }
-        }
-      </style>
-
-      <div class="carousel-wrapper"
-        style="position: relative; width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 60px;">
-        <!-- Left Control -->
-        <button class="carousel-control prev" aria-label="Previous"
-          style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; backdrop-filter: blur(10px); transition: all 0.3s ease;">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="15 18 9 12 15 6"></polyline>
-          </svg>
-        </button>
-
-        <!-- Carousel Track -->
-        <div class="carousel-track-container" style="overflow: hidden; width: 100%; padding: 20px 0;">
-          <div class="carousel-track" style="display: flex; gap: 32px; align-items: center; width: max-content;">
-            <!-- Carousel Items -->
-            <a href="https://unstop.com/" target="_blank" class="sponsor-card">
-              <img src="/unstop/1.JPG" alt="Unstop Partner Post 1">
-            </a>
-            <a href="https://unstop.com/" target="_blank" class="sponsor-card">
-              <img src="/unstop/2.JPG" alt="Unstop Partner Post 2">
-            </a>
-            <a href="https://unstop.com/" target="_blank" class="sponsor-card">
-              <img src="/unstop/3.JPG" alt="Unstop Partner Post 3">
-            </a>
-            <a href="https://unstop.com/" target="_blank" class="sponsor-card">
-              <img src="/unstop/4.JPG" alt="Unstop Partner Post 4">
-            </a>
-            <!-- Duplicate for smoother infinite scroll loop -->
-            <a href="https://unstop.com/" target="_blank" class="sponsor-card">
-              <img src="/unstop/1.JPG" alt="Unstop Partner Post 1">
-            </a>
-            <a href="https://unstop.com/" target="_blank" class="sponsor-card">
-              <img src="/unstop/2.JPG" alt="Unstop Partner Post 2">
-            </a>
-            <a href="https://unstop.com/" target="_blank" class="sponsor-card">
-              <img src="/unstop/3.JPG" alt="Unstop Partner Post 3">
-            </a>
-            <a href="https://unstop.com/" target="_blank" class="sponsor-card">
-              <img src="/unstop/4.JPG" alt="Unstop Partner Post 4">
-            </a>
-          </div>
-        </div>
-
-        <!-- Right Control -->
-        <button class="carousel-control next" aria-label="Next"
-          style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; backdrop-filter: blur(10px); transition: all 0.3s ease;">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="9 18 15 12 9 6"></polyline>
-          </svg>
-        </button>
-      </div>
-
-      <script>
-        document.addEventListener('DOMContentLoaded', () => {
-          const track = document.querySelector('.carousel-track');
-          const prevBtn = document.querySelector('.carousel-control.prev');
-          const nextBtn = document.querySelector('.carousel-control.next');
-          let autoScrollInterval;
-          let isAnimating = false;
-
-          const getGapAndWidth = () => {
-            const card = track.children[0];
-            const style = window.getComputedStyle(track);
-            const gap = parseFloat(style.gap) || 0;
-            return card.offsetWidth + gap;
-          };
-
-          const nextSlide = () => {
-            if (isAnimating || document.hidden) return;
-            isAnimating = true;
-            track.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
-            const moveAmount = getGapAndWidth();
-            track.style.transform = `translateX(-${moveAmount}px)`;
-
-            setTimeout(() => {
-              track.style.transition = 'none';
-              track.appendChild(track.children[0]);
-              track.style.transform = 'translateX(0)';
-              isAnimating = false;
-            }, 500);
-          };
-
-          const prevSlide = () => {
-            if (isAnimating) return;
-            isAnimating = true;
-            track.style.transition = 'none';
-            const moveAmount = getGapAndWidth();
-            track.insertBefore(track.lastElementChild, track.children[0]);
-            track.style.transform = `translateX(-${moveAmount}px)`;
-
-            // Force reflow
-            track.offsetHeight;
-
-            track.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
-            track.style.transform = 'translateX(0)';
-
-            setTimeout(() => {
-              isAnimating = false;
-            }, 500);
-          };
-
-          const startAutoScroll = () => {
-            clearInterval(autoScrollInterval);
-            autoScrollInterval = setInterval(nextSlide, 2500);
-          };
-
-          nextBtn.addEventListener('click', () => {
-            nextSlide();
-            startAutoScroll();
-          });
-
-          prevBtn.addEventListener('click', () => {
-            prevSlide();
-            startAutoScroll();
-          });
-
-          track.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
-          track.addEventListener('mouseleave', startAutoScroll);
-
-          // Add simple swipe detection for mobile
-          let touchStartX = 0;
-          let touchEndX = 0;
-
-          track.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-            clearInterval(autoScrollInterval);
-          }, { passive: true });
-
-          track.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            if (touchStartX - touchEndX > 50) nextSlide();
-            if (touchEndX - touchStartX > 50) prevSlide();
-            startAutoScroll();
-          }, { passive: true });
-
-          startAutoScroll();
-
-          // Handle visibility change so it doesn't break when tab is inactive
-          document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-              clearInterval(autoScrollInterval);
-            } else {
-              startAutoScroll();
-            }
-          });
-        });
-      </script>
-    </section>
-    <section id="hack2skill-partner-carousel"
-      style="padding: 6rem 0 4rem; overflow: hidden; position: relative; background-color: #ffffff;">
-      <div class="container" style="text-align: center; margin-bottom: 3rem;">
-        <span class="section-label" style="display: inline-block; margin-bottom: 1rem; opacity: 0.9;">// platform
-          partner</span>
-        <h2 class="hack-heading"
-          style="font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: -0.02em; line-height: 1.1; max-width: 800px; margin: 0 auto; color: #000000; font-weight: 700;">
-          <span class="hack-line" style="display: block;">India's Premier</span>
-          <span class="hack-line" style="display: block;">Hackathon Platform</span>
-        </h2>
-        <p
-          style="color: #a3a3a3; font-size: 1.1rem; max-width: 600px; margin: 1.5rem auto 0; line-height: 1.6; text-align: center;">
-          Organize the best hackathons, tech camps, and innovation challenges to empower the next wave of builders.</p>
-        <div style="margin-top: 1.5rem; display: flex; justify-content: center;">
-          <div style="background: white; padding: 12px 28px; border-radius: 50px; display: inline-flex; align-items: center; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
-            <img src="/hack2skill sponsor image.png" alt="Hack2skill"
-              style="height: 32px; width: auto; object-fit: contain;">
-          </div>
-        </div>
-      </div>
-      <style>
-        .h2s-carousel-control:hover {
-          background: var(--lime, #ccff00) !important;
-          color: black !important;
-          border-color: var(--lime, #ccff00) !important;
-          transform: translateY(-50%) scale(1.1) !important;
-        }
-        .h2s-sponsor-card {
-          flex: 0 0 550px;
-          aspect-ratio: 16/9;
-          background: #ffffff;
-          border: 1px solid rgba(0, 0, 0, 0.08);
-          border-radius: 24px;
-          padding: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-          text-decoration: none;
-          overflow: hidden;
-        }
-        .h2s-sponsor-card:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 20px 40px rgba(204, 255, 0, 0.15);
-          border-color: rgba(0, 0, 0, 0.15);
-        }
-        .h2s-sponsor-card img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.4s ease;
-          display: block;
-        }
-        .h2s-sponsor-card:hover img {
-          transform: scale(1.06);
-        }
-        @media (max-width: 768px) {
-          .h2s-sponsor-card {
-            flex: 0 0 calc(100vw - 48px);
-            padding: 0;
-          }
-          .h2s-carousel-wrapper {
-            padding: 0 8px !important;
-          }
-          .h2s-carousel-track {
-            gap: 16px !important;
-          }
-          .h2s-carousel-control {
-            display: none !important;
-          }
-        }
-      </style>
-      <div class="h2s-carousel-wrapper"
-        style="position: relative; width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 60px;">
-        <button class="h2s-carousel-control h2s-prev" aria-label="Previous"
-          style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.1); color: #000; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; backdrop-filter: blur(10px); transition: all 0.3s ease;">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="15 18 9 12 15 6"></polyline>
-          </svg>
-        </button>
-        <div class="h2s-carousel-track-container" style="overflow: hidden; width: 100%; padding: 20px 0;">
-          <div class="h2s-carousel-track" style="display: flex; gap: 32px; align-items: center; width: max-content;">
-            <a href="https://hack2skill.com/" target="_blank" rel="noopener noreferrer" class="h2s-sponsor-card">
-              <img src="/hack2skill/1p.webp" alt="Hack2skill Event Post 1">
-            </a>
-            <a href="https://hack2skill.com/" target="_blank" rel="noopener noreferrer" class="h2s-sponsor-card">
-              <img src="/hack2skill/banner1.webp" alt="Hack2skill Event Post 2">
-            </a>
-            <a href="https://hack2skill.com/" target="_blank" rel="noopener noreferrer" class="h2s-sponsor-card">
-              <img src="/hack2skill/banner2.webp" alt="Hack2skill Event Post 3">
-            </a>
-            <a href="https://hack2skill.com/" target="_blank" rel="noopener noreferrer" class="h2s-sponsor-card">
-              <img src="/hack2skill/banner3.webp" alt="Hack2skill Event Post 4">
-            </a>
-            <a href="https://hack2skill.com/" target="_blank" rel="noopener noreferrer" class="h2s-sponsor-card">
-              <img src="/hack2skill/banner4.webp" alt="Hack2skill Event Post 5">
-            </a>
-            <a href="https://hack2skill.com/" target="_blank" rel="noopener noreferrer" class="h2s-sponsor-card">
-              <img src="/hack2skill/banner5.webp" alt="Hack2skill Event Post 6">
-            </a>
-            <a href="https://hack2skill.com/" target="_blank" rel="noopener noreferrer" class="h2s-sponsor-card">
-              <img src="/hack2skill/1p.webp" alt="Hack2skill Event Post 1">
-            </a>
-            <a href="https://hack2skill.com/" target="_blank" rel="noopener noreferrer" class="h2s-sponsor-card">
-              <img src="/hack2skill/banner1.webp" alt="Hack2skill Event Post 2">
-            </a>
-            <a href="https://hack2skill.com/" target="_blank" rel="noopener noreferrer" class="h2s-sponsor-card">
-              <img src="/hack2skill/banner2.webp" alt="Hack2skill Event Post 3">
-            </a>
-            <a href="https://hack2skill.com/" target="_blank" rel="noopener noreferrer" class="h2s-sponsor-card">
-              <img src="/hack2skill/banner3.webp" alt="Hack2skill Event Post 4">
-            </a>
-            <a href="https://hack2skill.com/" target="_blank" rel="noopener noreferrer" class="h2s-sponsor-card">
-              <img src="/hack2skill/banner4.webp" alt="Hack2skill Event Post 5">
-            </a>
-            <a href="https://hack2skill.com/" target="_blank" rel="noopener noreferrer" class="h2s-sponsor-card">
-              <img src="/hack2skill/banner5.webp" alt="Hack2skill Event Post 6">
-            </a>
-          </div>
-        </div>
-        <button class="h2s-carousel-control h2s-next" aria-label="Next"
-          style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.1); color: #000; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; backdrop-filter: blur(10px); transition: all 0.3s ease;">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="9 18 15 12 9 6"></polyline>
-          </svg>
-        </button>
-      </div>
-      <script>
-        document.addEventListener('DOMContentLoaded', () => {
-          const track = document.querySelector('.h2s-carousel-track');
-          const prevBtn = document.querySelector('.h2s-carousel-control.h2s-prev');
-          const nextBtn = document.querySelector('.h2s-carousel-control.h2s-next');
-          if (!track || !prevBtn || !nextBtn) return;
-          let autoScrollInterval;
-          let isAnimating = false;
-          const getGapAndWidth = () => {
-            const card = track.children[0];
-            const style = window.getComputedStyle(track);
-            const gap = parseFloat(style.gap) || 0;
-            return card.offsetWidth + gap;
-          };
-          const nextSlide = () => {
-            if (isAnimating || document.hidden) return;
-            isAnimating = true;
-            track.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
-            const moveAmount = getGapAndWidth();
-            track.style.transform = `translateX(-${moveAmount}px)`;
-            setTimeout(() => {
-              track.style.transition = 'none';
-              track.appendChild(track.children[0]);
-              track.style.transform = 'translateX(0)';
-              isAnimating = false;
-            }, 500);
-          };
-          const prevSlide = () => {
-            if (isAnimating) return;
-            isAnimating = true;
-            track.style.transition = 'none';
-            const moveAmount = getGapAndWidth();
-            track.insertBefore(track.lastElementChild, track.children[0]);
-            track.style.transform = `translateX(-${moveAmount}px)`;
-            track.offsetHeight;
-            track.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
-            track.style.transform = 'translateX(0)';
-            setTimeout(() => {
-              isAnimating = false;
-            }, 500);
-          };
-          const startAutoScroll = () => {
-            clearInterval(autoScrollInterval);
-            autoScrollInterval = setInterval(nextSlide, 2600);
-          };
-          nextBtn.addEventListener('click', () => {
-            nextSlide();
-            startAutoScroll();
-          });
-          prevBtn.addEventListener('click', () => {
-            prevSlide();
-            startAutoScroll();
-          });
-          track.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
-          track.addEventListener('mouseleave', startAutoScroll);
-          let touchStartX = 0;
-          let touchEndX = 0;
-          track.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-            clearInterval(autoScrollInterval);
-          }, { passive: true });
-          track.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            if (touchStartX - touchEndX > 50) nextSlide();
-            if (touchEndX - touchStartX > 50) prevSlide();
-            startAutoScroll();
-          }, { passive: true });
-          startAutoScroll();
-          document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-              clearInterval(autoScrollInterval);
-            } else {
-              startAutoScroll();
-            }
-          });
-        });
-      </script>
-    </section>
-    <section id="gdg-partner-carousel"
-      style="padding: 6rem 0 4rem; overflow: hidden; position: relative; background-color: #ffffff;">
-      <div class="container" style="text-align: center; margin-bottom: 3rem;">
-        <span class="section-label" style="display: inline-block; margin-bottom: 1rem; opacity: 0.9;">// community
-          partner</span>
-        <h2 class="hack-heading"
-          style="font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: -0.02em; line-height: 1.1; max-width: 800px; margin: 0 auto; color: #000000; font-weight: 700;">
-          <span class="hack-line" style="display: block;">Google Developer Groups</span>
-          <span class="hack-line" style="display: block;">Building Together</span>
-        </h2>
-        <p
-          style="color: #a3a3a3; font-size: 1.1rem; max-width: 600px; margin: 1.5rem auto 0; line-height: 1.6; text-align: center;">
-          Connecting developers, open-source creators, and students to learn, build, and grow with Google technologies.</p>
-        <div style="margin-top: 1.5rem; display: flex; justify-content: center;">
-          <div style="background: white; padding: 12px 28px; border-radius: 50px; display: inline-flex; align-items: center; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
-            <img src="/gdg/gdg-logo.svg" alt="Google Developer Groups"
-              style="height: 32px; width: auto; object-fit: contain;">
-          </div>
-        </div>
-      </div>
-      <style>
-        .gdg-carousel-control:hover {
-          background: #4285f4 !important;
-          color: white !important;
-          border-color: #4285f4 !important;
-          transform: translateY(-50%) scale(1.1) !important;
-        }
-        .gdg-sponsor-card {
-          flex: 0 0 550px;
-          aspect-ratio: 16/9;
-          background: #ffffff;
-          border: 1px solid rgba(0, 0, 0, 0.08);
-          border-radius: 24px;
-          padding: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-          text-decoration: none;
-          overflow: hidden;
-        }
-        .gdg-sponsor-card:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 20px 40px rgba(66, 133, 244, 0.18);
-          border-color: rgba(66, 133, 244, 0.3);
-        }
-        .gdg-sponsor-card img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.4s ease;
-          display: block;
-        }
-        .gdg-sponsor-card:hover img {
-          transform: scale(1.06);
-        }
-        @media (max-width: 768px) {
-          .gdg-sponsor-card {
-            flex: 0 0 calc(100vw - 48px);
-            padding: 0;
-          }
-          .gdg-carousel-wrapper {
-            padding: 0 8px !important;
-          }
-          .gdg-carousel-track {
-            gap: 16px !important;
-          }
-          .gdg-carousel-control {
-            display: none !important;
-          }
-        }
-      </style>
-      <div class="gdg-carousel-wrapper"
-        style="position: relative; width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 60px;">
-        <button class="gdg-carousel-control gdg-prev" aria-label="Previous"
-          style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.1); color: #000; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; backdrop-filter: blur(10px); transition: all 0.3s ease;">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="15 18 9 12 15 6"></polyline>
-          </svg>
-        </button>
-        <div class="gdg-carousel-track-container" style="overflow: hidden; width: 100%; padding: 20px 0;">
-          <div class="gdg-carousel-track" style="display: flex; gap: 32px; align-items: center; width: max-content;">
-            <a href="https://developers.google.com/community/gdg" target="_blank" rel="noopener noreferrer" class="gdg-sponsor-card">
-              <img src="/gdg/about.png" alt="Google Developer Groups Community Hall">
-            </a>
-            <a href="https://developers.google.com/community/gdg" target="_blank" rel="noopener noreferrer" class="gdg-sponsor-card">
-              <img src="/gdg/clip-img1.webp" alt="Google Developer Groups Session 1">
-            </a>
-            <a href="https://developers.google.com/community/gdg" target="_blank" rel="noopener noreferrer" class="gdg-sponsor-card">
-              <img src="/gdg/clip-img2.webp" alt="Google Developer Groups Session 2">
-            </a>
-            <a href="https://developers.google.com/community/gdg" target="_blank" rel="noopener noreferrer" class="gdg-sponsor-card">
-              <img src="/gdg/clip-img3.webp" alt="Google Developer Groups Session 3">
-            </a>
-            <a href="https://developers.google.com/community/gdg" target="_blank" rel="noopener noreferrer" class="gdg-sponsor-card">
-              <img src="/gdg/clip-img4.webp" alt="Google Developer Groups Session 4">
-            </a>
-            <a href="https://developers.google.com/community/gdg" target="_blank" rel="noopener noreferrer" class="gdg-sponsor-card">
-              <img src="/gdg/clip-img7.webp" alt="Google Developer Groups Session 5">
-            </a>
-            <a href="https://developers.google.com/community/gdg" target="_blank" rel="noopener noreferrer" class="gdg-sponsor-card">
-              <img src="/gdg/about.png" alt="Google Developer Groups Community Hall">
-            </a>
-            <a href="https://developers.google.com/community/gdg" target="_blank" rel="noopener noreferrer" class="gdg-sponsor-card">
-              <img src="/gdg/clip-img1.webp" alt="Google Developer Groups Session 1">
-            </a>
-            <a href="https://developers.google.com/community/gdg" target="_blank" rel="noopener noreferrer" class="gdg-sponsor-card">
-              <img src="/gdg/clip-img2.webp" alt="Google Developer Groups Session 2">
-            </a>
-            <a href="https://developers.google.com/community/gdg" target="_blank" rel="noopener noreferrer" class="gdg-sponsor-card">
-              <img src="/gdg/clip-img3.webp" alt="Google Developer Groups Session 3">
-            </a>
-            <a href="https://developers.google.com/community/gdg" target="_blank" rel="noopener noreferrer" class="gdg-sponsor-card">
-              <img src="/gdg/clip-img4.webp" alt="Google Developer Groups Session 4">
-            </a>
-            <a href="https://developers.google.com/community/gdg" target="_blank" rel="noopener noreferrer" class="gdg-sponsor-card">
-              <img src="/gdg/clip-img7.webp" alt="Google Developer Groups Session 5">
-            </a>
-          </div>
-        </div>
-        <button class="gdg-carousel-control gdg-next" aria-label="Next"
-          style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.1); color: #000; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; backdrop-filter: blur(10px); transition: all 0.3s ease;">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="9 18 15 12 9 6"></polyline>
-          </svg>
-        </button>
-      </div>
-      <script>
-        document.addEventListener('DOMContentLoaded', () => {
-          const track = document.querySelector('.gdg-carousel-track');
-          const prevBtn = document.querySelector('.gdg-carousel-control.gdg-prev');
-          const nextBtn = document.querySelector('.gdg-carousel-control.gdg-next');
-          if (!track || !prevBtn || !nextBtn) return;
-          let autoScrollInterval;
-          let isAnimating = false;
-          const getGapAndWidth = () => {
-            const card = track.children[0];
-            const style = window.getComputedStyle(track);
-            const gap = parseFloat(style.gap) || 0;
-            return card.offsetWidth + gap;
-          };
-          const nextSlide = () => {
-            if (isAnimating || document.hidden) return;
-            isAnimating = true;
-            track.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
-            const moveAmount = getGapAndWidth();
-            track.style.transform = `translateX(-${moveAmount}px)`;
-            setTimeout(() => {
-              track.style.transition = 'none';
-              track.appendChild(track.children[0]);
-              track.style.transform = 'translateX(0)';
-              isAnimating = false;
-            }, 500);
-          };
-          const prevSlide = () => {
-            if (isAnimating) return;
-            isAnimating = true;
-            track.style.transition = 'none';
-            const moveAmount = getGapAndWidth();
-            track.insertBefore(track.lastElementChild, track.children[0]);
-            track.style.transform = `translateX(-${moveAmount}px)`;
-            track.offsetHeight;
-            track.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
-            track.style.transform = 'translateX(0)';
-            setTimeout(() => {
-              isAnimating = false;
-            }, 500);
-          };
-          const startAutoScroll = () => {
-            clearInterval(autoScrollInterval);
-            autoScrollInterval = setInterval(nextSlide, 2700);
-          };
-          nextBtn.addEventListener('click', () => {
-            nextSlide();
-            startAutoScroll();
-          });
-          prevBtn.addEventListener('click', () => {
-            prevSlide();
-            startAutoScroll();
-          });
-          track.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
-          track.addEventListener('mouseleave', startAutoScroll);
-          let touchStartX = 0;
-          let touchEndX = 0;
-          track.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-            clearInterval(autoScrollInterval);
-          }, { passive: true });
-          track.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            if (touchStartX - touchEndX > 50) nextSlide();
-            if (touchEndX - touchStartX > 50) prevSlide();
-            startAutoScroll();
-          }, { passive: true });
-          startAutoScroll();
-          document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-              clearInterval(autoScrollInterval);
-            } else {
-              startAutoScroll();
-            }
-          });
-        });
-      </script>
-    </section>
-    <!-- ============================================== -->
-    <!-- XYZ SPONSOR CAROUSEL SECTION -->
-    <!-- ============================================== -->
-    <section id="xyz-partner-carousel"
-      style="padding: 6rem 0 4rem; overflow: hidden; position: relative; background-color: #ffffff;">
-      <div class="container" style="text-align: center; margin-bottom: 3rem;">
-        <span class="section-label" style="display: inline-block; margin-bottom: 1rem; opacity: 0.9;">// domain
-          partner</span>
-        <h2 class="hack-heading"
-          style="font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: -0.02em; line-height: 1.1; max-width: 800px; margin: 0 auto; color: #000000; font-weight: 700;">
-          <span class="hack-line" style="display: block;">Your Domain.</span>
-          <span class="hack-line" style="display: block;">Your Identity.</span>
-        </h2>
-        <p
-          style="color: #a3a3a3; font-size: 1.1rem; max-width: 600px; margin: 1.5rem auto 0; line-height: 1.6; text-align: center;">
-          For every website, everywhere® — powered by the next-generation domain extension built for creators, coders,
-          and innovators.</p>
-        <div style="margin-top: 1.5rem; display: flex; justify-content: center;">
-          <div
-            style="background: white; padding: 12px 28px; border-radius: 50px; display: inline-flex; align-items: center; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
-            <img src="/xyz-logo-color.png" alt=".XYZ" style="height: 32px; width: auto; object-fit: contain;">
-          </div>
-        </div>
-      </div>
-
-      <style>
-        .xyz-card {
-          flex: 0 0 550px;
-          aspect-ratio: 16/9;
-          background: #ffffff;
-          border: 1px solid rgba(0, 0, 0, 0.07);
-          border-radius: 24px;
-          padding: 2.5rem 2.8rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          cursor: pointer;
-          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-          text-decoration: none;
-          overflow: hidden;
-          position: relative;
-          text-align: left;
-        }
-
-        .xyz-card::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 3px;
-          background: linear-gradient(90deg, #5b3bff, #00bfff, #ccff00);
-          opacity: 0;
-          transition: opacity 0.3s ease;
-        }
-
-        .xyz-card:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 20px 40px rgba(91, 59, 255, 0.12);
-          border-color: rgba(91, 59, 255, 0.15);
-        }
-
-        .xyz-card:hover::before {
-          opacity: 1;
-        }
-
-        .xyz-card-label {
-          font-size: 0.72rem;
-          font-weight: 700;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          color: #5b3bff;
-          margin-bottom: 0.6rem;
-        }
-
-        .xyz-card-title {
-          font-size: clamp(1.1rem, 2vw, 1.35rem);
-          font-weight: 700;
-          color: #111111;
-          line-height: 1.3;
-          margin-bottom: 0.9rem;
-        }
-
-        .xyz-card-body {
-          font-size: 0.9rem;
-          color: #666666;
-          line-height: 1.65;
-          flex: 1;
-          overflow: hidden;
-          display: -webkit-box;
-          -webkit-line-clamp: 5;
-          line-clamp: 5;
-          -webkit-box-orient: vertical;
-        }
-
-        .xyz-card-footer {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          margin-top: 1.2rem;
-          padding-top: 1rem;
-          border-top: 1px solid rgba(0, 0, 0, 0.06);
-        }
-
-        .xyz-card-tag {
-          font-size: 0.72rem;
-          font-weight: 600;
-          color: #999999;
-          letter-spacing: 0.06em;
-        }
-
-        .xyz-card-arrow {
-          width: 28px;
-          height: 28px;
-          border-radius: 50%;
-          background: #f0eeff;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: background 0.2s ease;
-        }
-
-        .xyz-card:hover .xyz-card-arrow {
-          background: #5b3bff;
-        }
-
-        .xyz-card:hover .xyz-card-arrow svg {
-          stroke: #ffffff;
-        }
-
-        @media (max-width: 768px) {
-          .xyz-card {
-            flex: 0 0 calc(100vw - 48px);
-            padding: 1.8rem 1.6rem;
-          }
-
-          .xyz-carousel-wrapper {
-            padding: 0 8px !important;
-          }
-
-          .xyz-carousel-track {
-            gap: 16px !important;
-          }
-
-          .xyz-carousel-control {
-            display: none !important;
-          }
-        }
-      </style>
-
-      <div class="xyz-carousel-wrapper"
-        style="position: relative; width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 60px;">
-        <button class="xyz-carousel-control xyz-prev" aria-label="Previous"
-          style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.1); color: #333; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; transition: all 0.3s ease;">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="15 18 9 12 15 6"></polyline>
-          </svg>
-        </button>
-
-        <div class="xyz-carousel-track-container" style="overflow: hidden; width: 100%; padding: 20px 0;">
-          <div class="xyz-carousel-track" style="display: flex; gap: 32px; align-items: stretch; width: max-content;">
-            <a href="https://gen.xyz/" target="_blank" class="xyz-card">
-              <div>
-                <div class="xyz-card-label">Tagline</div>
-                <div class="xyz-card-title">For every website, everywhere®</div>
-                <div class="xyz-card-body">Made with ❤ in California for Generations X, Y, and Z. .xyz gives you the
-                  freedom of choice and the spark to innovate. Go you creators, you rebels, you coders and developers,
-                  you creatives, you inventors and innovators. Go #GenXYZ!</div>
-              </div>
-              <div class="xyz-card-footer">
-                <span class="xyz-card-tag">gen.xyz · Since June 2014</span>
-                <div class="xyz-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b3bff"
-                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                  </svg></div>
-              </div>
-            </a>
-            <a href="https://gen.xyz/" target="_blank" class="xyz-card">
-              <div>
-                <div class="xyz-card-label">About .xyz</div>
-                <div class="xyz-card-title">The Domain for the Next Generation</div>
-                <div class="xyz-card-body">With influential adopters like MIT (Engine.xyz), the co-founders of Skype
-                  (Starship.xyz), Block (Block.xyz), and Paramount (Paramount.xyz), along with millions of others in
-                  over 230 countries and territories worldwide, .xyz is the go-to domain extension for the next
-                  generation of internet users.</div>
-              </div>
-              <div class="xyz-card-footer">
-                <span class="xyz-card-tag">230+ Countries &amp; Territories</span>
-                <div class="xyz-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b3bff"
-                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                  </svg></div>
-              </div>
-            </a>
-            <a href="https://gen.xyz/" target="_blank" class="xyz-card">
-              <div>
-                <div class="xyz-card-label">Overview</div>
-                <div class="xyz-card-title">The Alphabet Ends in XYZ</div>
-                <div class="xyz-card-body">The alphabet ends in xyz, and so should your domain name. It's short and
-                  memorable, it's catchy, and it connects you with Generations X, Y, and Z. Just like you use x, y, and
-                  z to take on any meaning in a sentence, the .xyz domain can be whatever you want it to be.</div>
-              </div>
-              <div class="xyz-card-footer">
-                <span class="xyz-card-tag">Short &amp; Memorable</span>
-                <div class="xyz-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b3bff"
-                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                  </svg></div>
-              </div>
-            </a>
-            <a href="https://gen.xyz/" target="_blank" class="xyz-card">
-              <div>
-                <div class="xyz-card-label">Impact</div>
-                <div class="xyz-card-title">Hit the Reset Button on the Internet</div>
-                <div class="xyz-card-body">.xyz has become the go-to domain ending for Generations X, Y and Z: the next
-                  generation of internet users — by hitting the reset button on the internet and giving millions of new
-                  internet users around the world a chance to get the domain name they want, with a domain ending that
-                  just makes sense.</div>
-              </div>
-              <div class="xyz-card-footer">
-                <span class="xyz-card-tag">Millions of Registrations Worldwide</span>
-                <div class="xyz-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b3bff"
-                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                  </svg></div>
-              </div>
-            </a>
-            <a href="https://gen.xyz/" target="_blank" class="xyz-card">
-              <div>
-                <div class="xyz-card-label">Get Creative</div>
-                <div class="xyz-card-title">Your Domain Can Be Anything</div>
-                <div class="xyz-card-body">Get creative with a great name to the left of .xyz! Your clients and friends
-                  will remember your online presence with a .xyz domain. Just like you use "xyz" to take on any meaning
-                  in a sentence, the .xyz domain can be whatever you want it to be.</div>
-              </div>
-              <div class="xyz-card-footer">
-                <span class="xyz-card-tag">For Creators &amp; Rebels</span>
-                <div class="xyz-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b3bff"
-                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                  </svg></div>
-              </div>
-            </a>
-            <a href="https://gen.xyz/" target="_blank" class="xyz-card">
-              <div>
-                <div class="xyz-card-label">Community</div>
-                <div class="xyz-card-title">Go #GenXYZ</div>
-                <div class="xyz-card-body">Go you creators, you rebels, you coders and developers, you creatives, you
-                  inventors and innovators. .xyz gives you the freedom of choice and the spark to innovate. Available in
-                  over 230 countries and territories worldwide — the domain for everyone, everywhere.</div>
-              </div>
-              <div class="xyz-card-footer">
-                <span class="xyz-card-tag">#GenXYZ · gen.xyz</span>
-                <div class="xyz-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b3bff"
-                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                  </svg></div>
-              </div>
-            </a>
-            <a href="https://gen.xyz/" target="_blank" class="xyz-card">
-              <div>
-                <div class="xyz-card-label">Tagline</div>
-                <div class="xyz-card-title">For every website, everywhere®</div>
-                <div class="xyz-card-body">Made with ❤ in California for Generations X, Y, and Z. .xyz gives you the
-                  freedom of choice and the spark to innovate. Go you creators, you rebels, you coders and developers,
-                  you creatives, you inventors and innovators. Go #GenXYZ!</div>
-              </div>
-              <div class="xyz-card-footer">
-                <span class="xyz-card-tag">gen.xyz · Since June 2014</span>
-                <div class="xyz-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b3bff"
-                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                  </svg></div>
-              </div>
-            </a>
-            <a href="https://gen.xyz/" target="_blank" class="xyz-card">
-              <div>
-                <div class="xyz-card-label">About .xyz</div>
-                <div class="xyz-card-title">The Domain for the Next Generation</div>
-                <div class="xyz-card-body">With influential adopters like MIT (Engine.xyz), the co-founders of Skype
-                  (Starship.xyz), Block (Block.xyz), and Paramount (Paramount.xyz), along with millions of others in
-                  over 230 countries and territories worldwide, .xyz is the go-to domain extension for the next
-                  generation of internet users.</div>
-              </div>
-              <div class="xyz-card-footer">
-                <span class="xyz-card-tag">230+ Countries &amp; Territories</span>
-                <div class="xyz-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b3bff"
-                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                  </svg></div>
-              </div>
-            </a>
-            <a href="https://gen.xyz/" target="_blank" class="xyz-card">
-              <div>
-                <div class="xyz-card-label">Overview</div>
-                <div class="xyz-card-title">The Alphabet Ends in XYZ</div>
-                <div class="xyz-card-body">The alphabet ends in xyz, and so should your domain name. It's short and
-                  memorable, it's catchy, and it connects you with Generations X, Y, and Z. Just like you use x, y, and
-                  z to take on any meaning in a sentence, the .xyz domain can be whatever you want it to be.</div>
-              </div>
-              <div class="xyz-card-footer">
-                <span class="xyz-card-tag">Short &amp; Memorable</span>
-                <div class="xyz-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b3bff"
-                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                  </svg></div>
-              </div>
-            </a>
-            <a href="https://gen.xyz/" target="_blank" class="xyz-card">
-              <div>
-                <div class="xyz-card-label">Impact</div>
-                <div class="xyz-card-title">Hit the Reset Button on the Internet</div>
-                <div class="xyz-card-body">.xyz has become the go-to domain ending for Generations X, Y and Z: the next
-                  generation of internet users — by hitting the reset button on the internet and giving millions of new
-                  internet users around the world a chance to get the domain name they want, with a domain ending that
-                  just makes sense.</div>
-              </div>
-              <div class="xyz-card-footer">
-                <span class="xyz-card-tag">Millions of Registrations Worldwide</span>
-                <div class="xyz-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b3bff"
-                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                  </svg></div>
-              </div>
-            </a>
-            <a href="https://gen.xyz/" target="_blank" class="xyz-card">
-              <div>
-                <div class="xyz-card-label">Get Creative</div>
-                <div class="xyz-card-title">Your Domain Can Be Anything</div>
-                <div class="xyz-card-body">Get creative with a great name to the left of .xyz! Your clients and friends
-                  will remember your online presence with a .xyz domain. Just like you use "xyz" to take on any meaning
-                  in a sentence, the .xyz domain can be whatever you want it to be.</div>
-              </div>
-              <div class="xyz-card-footer">
-                <span class="xyz-card-tag">For Creators &amp; Rebels</span>
-                <div class="xyz-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b3bff"
-                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                  </svg></div>
-              </div>
-            </a>
-            <a href="https://gen.xyz/" target="_blank" class="xyz-card">
-              <div>
-                <div class="xyz-card-label">Community</div>
-                <div class="xyz-card-title">Go #GenXYZ</div>
-                <div class="xyz-card-body">Go you creators, you rebels, you coders and developers, you creatives, you
-                  inventors and innovators. .xyz gives you the freedom of choice and the spark to innovate. Available in
-                  over 230 countries and territories worldwide — the domain for everyone, everywhere.</div>
-              </div>
-              <div class="xyz-card-footer">
-                <span class="xyz-card-tag">#GenXYZ · gen.xyz</span>
-                <div class="xyz-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b3bff"
-                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                  </svg></div>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <button class="xyz-carousel-control xyz-next" aria-label="Next"
-          style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.1); color: #333; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; transition: all 0.3s ease;">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="9 18 15 12 9 6"></polyline>
-          </svg>
-        </button>
-      </div>
-
-      <style>
-        .xyz-carousel-control:hover {
-          background: #5b3bff !important;
-          color: white !important;
-          border-color: #5b3bff !important;
-          transform: translateY(-50%) scale(1.1) !important;
-        }
-
-        .xyz-carousel-control:hover svg {
-          stroke: white;
-        }
-      </style>
-
-      <script>
-        document.addEventListener('DOMContentLoaded', () => {
-          const xyzTrack = document.querySelector('.xyz-carousel-track');
-          const xyzPrevBtn = document.querySelector('.xyz-prev');
-          const xyzNextBtn = document.querySelector('.xyz-next');
-          let xyzAutoInterval;
-          let xyzAnimating = false;
-          const getXyzStep = () => {
-            const card = xyzTrack.children[0];
-            const style = window.getComputedStyle(xyzTrack);
-            const gap = parseFloat(style.gap) || 0;
-            return card.offsetWidth + gap;
-          };
-          const xyzNext = () => {
-            if (xyzAnimating || document.hidden) return;
-            xyzAnimating = true;
-            xyzTrack.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
-            xyzTrack.style.transform = `translateX(-${getXyzStep()}px)`;
-            setTimeout(() => {
-              xyzTrack.style.transition = 'none';
-              xyzTrack.appendChild(xyzTrack.children[0]);
-              xyzTrack.style.transform = 'translateX(0)';
-              xyzAnimating = false;
-            }, 500);
-          };
-          const xyzPrev = () => {
-            if (xyzAnimating) return;
-            xyzAnimating = true;
-            xyzTrack.style.transition = 'none';
-            const step = getXyzStep();
-            xyzTrack.insertBefore(xyzTrack.lastElementChild, xyzTrack.children[0]);
-            xyzTrack.style.transform = `translateX(-${step}px)`;
-            xyzTrack.offsetHeight;
-            xyzTrack.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
-            xyzTrack.style.transform = 'translateX(0)';
-            setTimeout(() => { xyzAnimating = false; }, 500);
-          };
-          const startXyz = () => {
-            clearInterval(xyzAutoInterval);
-            xyzAutoInterval = setInterval(xyzNext, 2800);
-          };
-          xyzNextBtn.addEventListener('click', () => { xyzNext(); startXyz(); });
-          xyzPrevBtn.addEventListener('click', () => { xyzPrev(); startXyz(); });
-          xyzTrack.addEventListener('mouseenter', () => clearInterval(xyzAutoInterval));
-          xyzTrack.addEventListener('mouseleave', startXyz);
-          let xyzTouchStartX = 0;
-          xyzTrack.addEventListener('touchstart', e => {
-            xyzTouchStartX = e.changedTouches[0].screenX;
-            clearInterval(xyzAutoInterval);
-          }, { passive: true });
-          xyzTrack.addEventListener('touchend', e => {
-            const dx = xyzTouchStartX - e.changedTouches[0].screenX;
-            if (dx > 50) xyzNext();
-            if (dx < -50) xyzPrev();
-            startXyz();
-          }, { passive: true });
-          document.addEventListener('visibilitychange', () => {
-            document.hidden ? clearInterval(xyzAutoInterval) : startXyz();
-          });
-          startXyz();
-        });
-      </script>
-    </section>
-
-    <!-- ============================================== -->
-    <!-- ADAPTION LABS SPONSOR CAROUSEL SECTION -->
-    <!-- ============================================== -->
-    <section id="adaption-partner-carousel"
-      style="padding: 6rem 0 4rem; overflow: hidden; position: relative; background-color: #ffffff;">
-      <div class="container" style="text-align: center; margin-bottom: 3rem;">
-        <span class="section-label" style="display: inline-block; margin-bottom: 1rem; opacity: 0.9;">// ai infrastructure partner</span>
-        <h2 class="hack-heading"
-          style="font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: -0.02em; line-height: 1.1; max-width: 800px; margin: 0 auto; color: #000000; font-weight: 700;">
-          <span class="hack-line" style="display: block;">Adaptive AI That</span>
-          <span class="hack-line" style="display: block;">Continuously Learns.</span>
-        </h2>
-        <p
-          style="color: #a3a3a3; font-size: 1.1rem; max-width: 600px; margin: 1.5rem auto 0; line-height: 1.6; text-align: center;">
-          Adaption Labs is the full stack platform for custom model training, data optimization, and continuous
-          learning at inference — powering AI workloads with free credits for student builders.</p>
-        <div style="margin-top: 1.5rem; display: flex; justify-content: center;">
-          <div style="background: white; padding: 12px 28px; border-radius: 50px; display: inline-flex; align-items: center; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
-            <img src="/adaption/adaption-logo-black.svg" alt="Adaption Labs" style="height: 32px; width: auto; object-fit: contain;">
-          </div>
-        </div>
-      </div>
-      <style>
-        .adaption-carousel-control:hover {
-          background: #000000 !important;
-          color: white !important;
-          border-color: #000000 !important;
-          transform: translateY(-50%) scale(1.1) !important;
-        }
-        .adaption-carousel-control:hover svg {
-          stroke: white;
-        }
-        .adaption-card {
-          flex: 0 0 550px;
-          aspect-ratio: 16/9;
-          background: #ffffff;
-          border: 1px solid rgba(0, 0, 0, 0.08);
-          border-radius: 24px;
-          padding: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-          text-decoration: none;
-          overflow: hidden;
-        }
-        .adaption-card:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-          border-color: rgba(0, 0, 0, 0.15);
-        }
-        .adaption-card img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.4s ease;
-          display: block;
-        }
-        .adaption-card:hover img {
-          transform: scale(1.06);
-        }
-        @media (max-width: 768px) {
-          .adaption-card {
-            flex: 0 0 calc(100vw - 48px);
-            padding: 0;
-          }
-          .adaption-carousel-wrapper {
-            padding: 0 8px !important;
-          }
-          .adaption-carousel-track {
-            gap: 16px !important;
-          }
-          .adaption-carousel-control {
-            display: none !important;
-          }
-        }
-      </style>
-      <div class="adaption-carousel-wrapper"
-        style="position: relative; width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 60px;">
-        <button class="adaption-carousel-control adaption-prev" aria-label="Previous"
-          style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.1); color: #000; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; backdrop-filter: blur(10px); transition: all 0.3s ease;">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="15 18 9 12 15 6"></polyline>
-          </svg>
-        </button>
-        <div class="adaption-carousel-track-container" style="overflow: hidden; width: 100%; padding: 20px 0;">
-          <div class="adaption-carousel-track" style="display: flex; gap: 32px; align-items: center; width: max-content;">
-            <a href="https://adaptionlabs.ai/" target="_blank" rel="noopener noreferrer" class="adaption-card">
-              <img src="/adaption/opengraph-image.jpg" alt="Adaption Labs Overview">
-            </a>
-            <a href="https://adaptionlabs.ai/" target="_blank" rel="noopener noreferrer" class="adaption-card">
-              <img src="/adaption/Screenshot%202026-10-23%20144405.png" alt="Adaption Labs Platform 1">
-            </a>
-            <a href="https://adaptionlabs.ai/" target="_blank" rel="noopener noreferrer" class="adaption-card">
-              <img src="/adaption/Screenshot%202026-10-23%20144421.png" alt="Adaption Labs Platform 2">
-            </a>
-            <a href="https://adaptionlabs.ai/" target="_blank" rel="noopener noreferrer" class="adaption-card">
-              <img src="/adaption/Screenshot%202026-10-23%20144440.png" alt="Adaption Labs Platform 3">
-            </a>
-            <a href="https://adaptionlabs.ai/" target="_blank" rel="noopener noreferrer" class="adaption-card">
-              <img src="/adaption/opengraph-image.jpg" alt="Adaption Labs Overview">
-            </a>
-            <a href="https://adaptionlabs.ai/" target="_blank" rel="noopener noreferrer" class="adaption-card">
-              <img src="/adaption/Screenshot%202026-10-23%20144405.png" alt="Adaption Labs Platform 1">
-            </a>
-            <a href="https://adaptionlabs.ai/" target="_blank" rel="noopener noreferrer" class="adaption-card">
-              <img src="/adaption/Screenshot%202026-10-23%20144421.png" alt="Adaption Labs Platform 2">
-            </a>
-            <a href="https://adaptionlabs.ai/" target="_blank" rel="noopener noreferrer" class="adaption-card">
-              <img src="/adaption/Screenshot%202026-10-23%20144440.png" alt="Adaption Labs Platform 3">
-            </a>
-          </div>
-        </div>
-        <button class="adaption-carousel-control adaption-next" aria-label="Next"
-          style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.1); color: #000; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; backdrop-filter: blur(10px); transition: all 0.3s ease;">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="9 18 15 12 9 6"></polyline>
-          </svg>
-        </button>
-      </div>
-    </section>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const adaptionTrack = document.querySelector('.adaption-carousel-track');
-        const adaptionPrevBtn = document.querySelector('.adaption-prev');
-        const adaptionNextBtn = document.querySelector('.adaption-next');
-        let adaptionAutoInterval;
-        let adaptionAnimating = false;
-        const getAdaptionStep = () => {
-          const card = adaptionTrack.children[0];
-          const style = window.getComputedStyle(adaptionTrack);
-          const gap = parseFloat(style.gap) || 0;
-          return card.offsetWidth + gap;
-        };
-        const adaptionNext = () => {
-          if (adaptionAnimating || document.hidden) return;
-          adaptionAnimating = true;
-          adaptionTrack.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
-          adaptionTrack.style.transform = `translateX(-${getAdaptionStep()}px)`;
-          setTimeout(() => {
-            adaptionTrack.style.transition = 'none';
-            adaptionTrack.appendChild(adaptionTrack.children[0]);
-            adaptionTrack.style.transform = 'translateX(0)';
-            adaptionAnimating = false;
-          }, 500);
-        };
-        const adaptionPrev = () => {
-          if (adaptionAnimating) return;
-          adaptionAnimating = true;
-          adaptionTrack.style.transition = 'none';
-          const step = getAdaptionStep();
-          adaptionTrack.insertBefore(adaptionTrack.lastElementChild, adaptionTrack.children[0]);
-          adaptionTrack.style.transform = `translateX(-${step}px)`;
-          adaptionTrack.offsetHeight;
-          adaptionTrack.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
-          adaptionTrack.style.transform = 'translateX(0)';
-          setTimeout(() => { adaptionAnimating = false; }, 500);
-        };
-        const startAdaption = () => {
-          clearInterval(adaptionAutoInterval);
-          adaptionAutoInterval = setInterval(adaptionNext, 2700);
-        };
-        adaptionNextBtn.addEventListener('click', () => { adaptionNext(); startAdaption(); });
-        adaptionPrevBtn.addEventListener('click', () => { adaptionPrev(); startAdaption(); });
-        adaptionTrack.addEventListener('mouseenter', () => clearInterval(adaptionAutoInterval));
-        adaptionTrack.addEventListener('mouseleave', startAdaption);
-        let adaptionTouchStartX = 0;
-        adaptionTrack.addEventListener('touchstart', e => {
-          adaptionTouchStartX = e.changedTouches[0].screenX;
-          clearInterval(adaptionAutoInterval);
-        }, { passive: true });
-        adaptionTrack.addEventListener('touchend', e => {
-          const dx = adaptionTouchStartX - e.changedTouches[0].screenX;
-          if (dx > 50) adaptionNext();
-          if (dx < -50) adaptionPrev();
-          startAdaption();
-        }, { passive: true });
-        document.addEventListener('visibilitychange', () => {
-          document.hidden ? clearInterval(adaptionAutoInterval) : startAdaption();
-        });
-        startAdaption();
-      });
-    </script>
-
-    <section id="hackathons">
-      <div class="container"
-        style="transform: translateY(-40px); display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
-        <div>
-          <span class="section-label">// partner with us</span>
-          <h2 class="hack-heading">
-            <span class="hack-line">fuel</span>
-            <span class="hack-line">innovation</span>
-            <span class="hack-line">and</span>
-            <span class="hack-line">sponsor <span class="hack-destroy">us.</span></span>
-          </h2>
-        </div>
-        <a href="mailto:admin@mnmworks.xyz" class="btn-pill magnetic">Contact Us</a>
-      </div>
-      <div class="hack-timeline-wrap" id="home-sponsors-timeline-wrap" style="display: none;">
-        <div class="hack-watermark" id="hack-watermark">0</div>
-        <div class="hack-timeline-scroll" id="hack-timeline-scroll">
-          <div class="hack-entries" id="hack-entries">
-            <!-- Dynamic sponsor entries will be injected here -->
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-
-    <section id="manifesto">
-      <div class="manifesto-inner">
-        <p class="manifesto-line" data-line="1">&ldquo;the best time</p>
-        <p class="manifesto-line" data-line="2">to start building</p>
-        <p class="manifesto-line" data-line="3">was yesterday.</p>
-        <p class="manifesto-gap">&nbsp;</p>
-        <p class="manifesto-line" data-line="4">we started</p>
-        <p class="manifesto-line" data-line="5">the day before.&rdquo;</p>
-        <div class="manifesto-rule" id="manifesto-rule"></div>
-        <span class="manifesto-credit commit-mono">— M &amp; M &nbsp;·&nbsp; 2026</span>
       </div>
     </section>
     <section id="contact">
@@ -1903,13 +566,70 @@
             <div class="contact-row-fill"></div>
           </a>
         </div>
-        <p class="footer-credit commit-mono">MnM · 2026 · A student-run community building open-source solutions
-          globally.</p>
-        <div class="footer-logo-container">
-          <img src="/Makers%20Need%20More.png" alt="Makers Need More" class="footer-logo-image">
-        </div>
       </div>
     </section>
+    <footer id="site-red-footer" class="site-red-footer">
+      <div class="red-footer-container">
+        <div class="red-footer-main">
+          <div class="red-footer-left">
+            <div class="red-footer-brand">
+              <div class="red-footer-logo-wrap">
+                <img src="/logo.png" alt="MnM Spinning Logo" class="red-footer-spin-logo">
+              </div>
+            </div>
+            <div class="red-footer-address">
+              <p class="red-footer-addr-org">Makers Need More (MnM)</p>
+              <p class="red-footer-addr-line">Student Innovation &amp; Open-Source Community</p>
+              <p class="red-footer-addr-line">Shamsabad, Farrukhabad</p>
+              <p class="red-footer-addr-line">Uttar Pradesh, India 209503</p>
+              <a href="mailto:admin@mnmworks.xyz" class="red-footer-addr-link">admin@mnmworks.xyz</a>
+            </div>
+          </div>
+          <div class="red-footer-nav">
+            <div class="red-footer-col">
+              <span class="red-footer-col-title">Explore</span>
+              <div class="red-footer-btn-list">
+                <a href="/" class="red-footer-btn">Home</a>
+                <a href="about.html" class="red-footer-btn">About</a>
+                <a href="founders.html" class="red-footer-btn">Founders</a>
+                <a href="competitions.html" class="red-footer-btn">Competitions</a>
+                <a href="contribute.html" class="red-footer-btn">Contribute</a>
+                <a href="careers.html" class="red-footer-btn">Careers</a>
+                <a href="sponsors.html" class="red-footer-btn">Sponsors</a>
+              </div>
+            </div>
+            <div class="red-footer-col">
+              <span class="red-footer-col-title">Events</span>
+              <div class="red-footer-btn-list">
+                <a href="catalyst.html" class="red-footer-btn">Catalyst</a>
+                <a href="morrow.html" class="red-footer-btn">Morrow</a>
+                <a href="orbix.html" class="red-footer-btn">Orbix</a>
+                <a href="manitya.html" class="red-footer-btn">Manitya</a>
+              </div>
+            </div>
+            <div class="red-footer-col">
+              <span class="red-footer-col-title">Community</span>
+              <div class="red-footer-btn-list">
+                <a href="/communitycatalouge" class="red-footer-btn">Community Catalogue</a>
+                <a href="eternaluniversity.html" class="red-footer-btn">Eternal University</a>
+              </div>
+            </div>
+            <div class="red-footer-col">
+              <span class="red-footer-col-title">Connect</span>
+              <div class="red-footer-btn-list">
+                <a href="mailto:admin@mnmworks.xyz" class="red-footer-btn">Email Us</a>
+                <a href="https://github.com/MakersNeedMore-MnM" target="_blank" rel="noopener noreferrer" class="red-footer-btn">GitHub</a>
+                <a href="https://www.linkedin.com/company/makersneedmore" target="_blank" rel="noopener noreferrer" class="red-footer-btn">LinkedIn</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="red-footer-bottom">
+          <span class="red-footer-copy commit-mono">&copy; 2026 Makers Need More &middot; Non-Profit &middot; Open Source</span>
+          <span class="red-footer-tagline commit-mono">built by students, for students.</span>
+        </div>
+      </div>
+    </footer>
 
     <div id="profile-modal-overlay" class="profile-modal-overlay">
       <div class="profile-modal">

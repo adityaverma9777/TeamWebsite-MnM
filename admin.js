@@ -1485,7 +1485,7 @@ document.getElementById('btn-generate-offer')?.addEventListener('click', async (
   await new Promise(r => { if (logoImg.complete) r(); else { logoImg.onload = r; logoImg.onerror = r; } });
   doc.setFillColor(10, 10, 10);
   doc.rect(0, 0, pw, 42, 'F');
-  doc.setFillColor(200, 255, 0);
+  doc.setFillColor(234, 40, 30);
   doc.rect(0, 40, pw, 2, 'F');
   try {
     const canvas = document.createElement('canvas');
@@ -1498,7 +1498,7 @@ document.getElementById('btn-generate-offer')?.addEventListener('click', async (
   } catch (e) { }
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(22);
-  doc.setTextColor(200, 255, 0);
+  doc.setTextColor(234, 40, 30);
   doc.text('MnM', mx + 17, 23);
   doc.setFontSize(8);
   doc.setTextColor(160, 160, 160);
@@ -1668,7 +1668,7 @@ document.getElementById('btn-generate-offer')?.addEventListener('click', async (
   const footerH = idCardUrl ? 28 : 16;
   doc.setFillColor(10, 10, 10);
   doc.rect(0, ph - footerH, pw, footerH, 'F');
-  doc.setFillColor(200, 255, 0);
+  doc.setFillColor(234, 40, 30);
   doc.rect(0, ph - footerH, pw, 1.5, 'F');
   if (idCardUrl) {
     let qrDataUrl = null;
@@ -1691,7 +1691,7 @@ document.getElementById('btn-generate-offer')?.addEventListener('click', async (
     doc.setFontSize(7);
     doc.setTextColor(150, 150, 150);
     doc.text('This offer can be verified by scanning the QR code or visiting:', mx + 18, ph - footerH + 14);
-    doc.setTextColor(200, 255, 0);
+    doc.setTextColor(234, 40, 30);
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(7.5);
     doc.text(idCardUrl, mx + 18, ph - footerH + 19);

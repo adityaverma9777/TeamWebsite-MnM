@@ -43,13 +43,6 @@
 <body>
   <div id="cursor-inner"></div>
   <div id="cursor-outer"><span id="cursor-label"></span></div>
-  <div id="preloader">
-    <div id="preloader-line">
-      <div id="preloader-progress"></div>
-    </div>
-    <div id="preloader-text">Loading...</div>
-  </div>
-
   <nav id="navbar" class="navbar-island">
     <div class="navbar-inner">
       <a href="index.html" class="navbar-brand">
@@ -75,11 +68,9 @@
 
   <main id="main">
     <section id="contrib-hero" class="page-hero">
-      <canvas id="contrib-hero-canvas"></canvas>
       <div class="hero-grain"></div>
       <div class="container contrib-hero-container">
         <div class="contrib-text-content">
-          <span class="section-label lime-label contrib-fade-in">// join the movement</span>
           <h1 class="contrib-page-heading contrib-fade-in">
             <span class="hero-line">build with us.</span>
             <span class="hero-line">learn & grow.</span>
@@ -125,20 +116,15 @@
       <div class="container">
         <h2 class="contrib-section-title contrib-slide-up">Active Repositories</h2>
         <div id="cms-contrib-grid" class="contrib-grid">
-
-          <div class="proj-card contrib-slide-up" id="streetiq-card" onclick="openProjectModal('streetiq')"
+          <div class="proj-card proj-card-red contrib-slide-up" id="streetiq-card" onclick="openProjectModal('streetiq')"
             role="button" tabindex="0" aria-label="View StreetIQ project details">
             <div class="proj-card-header">
-              <img src="/streetiqlogo.png" alt="StreetIQ Logo" class="proj-card-logo">
               <div class="proj-card-meta">
-                <span class="proj-card-label commit-mono">// open source</span>
                 <h3 class="proj-card-name">StreetIQ</h3>
               </div>
               <span class="proj-card-status">Active</span>
             </div>
-            <p class="proj-card-desc">An AI-powered road intelligence & navigation platform that turns every driver into
-              a road surveyor. Real-time hazard detection using a custom-trained YOLOv8 model running entirely
-              in-browser via TensorFlow.js.</p>
+            <p class="proj-card-desc">An AI-powered road intelligence and navigation platform that turns every driver into a road surveyor. Real-time hazard detection using a custom-trained YOLOv8 model running entirely in-browser via TensorFlow.js.</p>
             <div class="proj-card-tags">
               <span class="proj-tag">React</span>
               <span class="proj-tag">TensorFlow.js</span>
@@ -151,12 +137,10 @@
               <span class="proj-card-cta">View Details →</span>
             </div>
           </div>
-          <div class="proj-card contrib-slide-up" id="kavach-card" onclick="openProjectModal('kavach')"
+          <div class="proj-card proj-card-red contrib-slide-up" id="kavach-card" onclick="openProjectModal('kavach')"
             role="button" tabindex="0" aria-label="View Kavach project details">
             <div class="proj-card-header">
-              <img src="/kavachlogo.svg" alt="Kavach Logo" class="proj-card-logo">
               <div class="proj-card-meta">
-                <span class="proj-card-label commit-mono">// android app</span>
                 <h3 class="proj-card-name">Kavach</h3>
               </div>
               <span class="proj-card-status">Active</span>
@@ -174,6 +158,195 @@
               <span class="proj-card-cta">View Details →</span>
             </div>
           </div>
+          <div class="proj-card proj-card-red contrib-slide-up" id="antar-card" onclick="openProjectModal('antar')"
+            role="button" tabindex="0" aria-label="View ANTAR project details">
+            <div class="proj-card-header">
+              <div class="proj-card-meta">
+                <h3 class="proj-card-name">ANTAR</h3>
+              </div>
+              <span class="proj-card-status">Active</span>
+            </div>
+            <p class="proj-card-desc">An intelligent vehicular route anomaly detection system that identifies when expected vehicles fail to arrive at checkpoints, running high-performance detection models directly in-browser with complete offline capabilities.</p>
+            <div class="proj-card-tags">
+              <span class="proj-tag">Python</span>
+              <span class="proj-tag">FastAPI</span>
+              <span class="proj-tag">JavaScript</span>
+              <span class="proj-tag">Leaflet</span>
+              <span class="proj-tag">GeoSpatial</span>
+              <span class="proj-tag">Vercel</span>
+            </div>
+            <div class="proj-card-footer">
+              <span class="proj-card-cta">View Details →</span>
+            </div>
+          </div>
+          <div class="proj-card proj-card-red contrib-slide-up" id="cargoproof-card" onclick="openProjectModal('cargoproof')"
+            role="button" tabindex="0" aria-label="View CargoProof project details">
+            <div class="proj-card-header">
+              <div class="proj-card-meta">
+                <h3 class="proj-card-name">CargoProof</h3>
+              </div>
+              <span class="proj-card-status">Active</span>
+            </div>
+            <p class="proj-card-desc">An agent-native cargo verification and settlement system that purchases independent evidence per shipment through x402 micropayments on Algorand Testnet with automated deterministic dispute resolution.</p>
+            <div class="proj-card-tags">
+              <span class="proj-tag">Algorand</span>
+              <span class="proj-tag">Web3</span>
+              <span class="proj-tag">FastAPI</span>
+              <span class="proj-tag">Node.js</span>
+              <span class="proj-tag">TypeScript</span>
+              <span class="proj-tag">Python</span>
+            </div>
+            <div class="proj-card-footer">
+              <span class="proj-card-cta">View Details →</span>
+            </div>
+          </div>
+          <div class="proj-card proj-card-red contrib-slide-up" id="resqnet-card" onclick="openProjectModal('resqnet')"
+            role="button" tabindex="0" aria-label="View ResQNet project details">
+            <div class="proj-card-header">
+              <div class="proj-card-meta">
+                <h3 class="proj-card-name">ResQNet</h3>
+              </div>
+              <span class="proj-card-status">Active</span>
+            </div>
+            <p class="proj-card-desc">An AI emergency response and coordination intelligence grid featuring kinematic crash sensing, Bayesian multi-source fusion, 0-100 polytrauma triage, and OSRM road graph routing.</p>
+            <div class="proj-card-tags">
+              <span class="proj-tag">Android</span>
+              <span class="proj-tag">Express</span>
+              <span class="proj-tag">MongoDB</span>
+              <span class="proj-tag">Node.js</span>
+              <span class="proj-tag">OSRM</span>
+              <span class="proj-tag">Computer Vision</span>
+            </div>
+            <div class="proj-card-footer">
+              <span class="proj-card-cta">View Details →</span>
+            </div>
+          </div>
+          <div class="proj-card proj-card-red contrib-slide-up" id="honeypot-orchestrator-card" onclick="openProjectModal('honeypot-orchestrator')"
+            role="button" tabindex="0" aria-label="View Honeypot Orchestrator project details">
+            <div class="proj-card-header">
+              <div class="proj-card-meta">
+                <h3 class="proj-card-name">Honeypot Orchestrator</h3>
+              </div>
+              <span class="proj-card-status">Active</span>
+            </div>
+            <p class="proj-card-desc">An AI-assisted cybersecurity deception and threat analysis platform that deploys decoy services to capture suspicious activity, classify attack behavior, and visualize attack progression in real time.</p>
+            <div class="proj-card-tags">
+              <span class="proj-tag">Python</span>
+              <span class="proj-tag">Flask</span>
+              <span class="proj-tag">React</span>
+              <span class="proj-tag">Threat Analysis</span>
+              <span class="proj-tag">Deception Tech</span>
+              <span class="proj-tag">Vite</span>
+            </div>
+            <div class="proj-card-footer">
+              <span class="proj-card-cta">View Details →</span>
+            </div>
+          </div>
+          <div class="proj-card proj-card-red contrib-slide-up" id="emergency-ecard-card" onclick="openProjectModal('emergency-ecard')"
+            role="button" tabindex="0" aria-label="View Emergency E-Card project details">
+            <div class="proj-card-header">
+              <div class="proj-card-meta">
+                <h3 class="proj-card-name">Emergency E-Card</h3>
+              </div>
+              <span class="proj-card-status">Active</span>
+            </div>
+            <p class="proj-card-desc">A location-aware emergency assistance platform that combines a digital emergency medical profile with instant SOS alerts, real-time geolocation broadcasting, and nearby first-responder coordination.</p>
+            <div class="proj-card-tags">
+              <span class="proj-tag">React</span>
+              <span class="proj-tag">FastAPI</span>
+              <span class="proj-tag">PostgreSQL</span>
+              <span class="proj-tag">WebSockets</span>
+              <span class="proj-tag">TailwindCSS</span>
+              <span class="proj-tag">Vite</span>
+            </div>
+            <div class="proj-card-footer">
+              <span class="proj-card-cta">View Details →</span>
+            </div>
+          </div>
+          <div class="proj-card proj-card-red contrib-slide-up" id="parakh-card" onclick="openProjectModal('parakh')"
+            role="button" tabindex="0" aria-label="View Parakh (परख) project details">
+            <div class="proj-card-header">
+              <div class="proj-card-meta">
+                <h3 class="proj-card-name">Parakh (परख)</h3>
+              </div>
+              <span class="proj-card-status">Active</span>
+            </div>
+            <p class="proj-card-desc">A high-performance deepfake face detection and synthetic media verification system engineered to distinguish authentic from manipulated visual media using deep neural classification and attention heatmaps.</p>
+            <div class="proj-card-tags">
+              <span class="proj-tag">PyTorch</span>
+              <span class="proj-tag">OpenCV</span>
+              <span class="proj-tag">Next.js</span>
+              <span class="proj-tag">Deep Learning</span>
+              <span class="proj-tag">FaceForensics++</span>
+              <span class="proj-tag">Node.js</span>
+            </div>
+            <div class="proj-card-footer">
+              <span class="proj-card-cta">View Details →</span>
+            </div>
+          </div>
+          <div class="proj-card proj-card-red contrib-slide-up" id="rescuegrid-ai-card" onclick="openProjectModal('rescuegrid-ai')"
+            role="button" tabindex="0" aria-label="View RescueGrid AI project details">
+            <div class="proj-card-header">
+              <div class="proj-card-meta">
+                <h3 class="proj-card-name">RescueGrid AI</h3>
+              </div>
+              <span class="proj-card-status">Active</span>
+            </div>
+            <p class="proj-card-desc">An AI-powered disaster response and emergency management platform enabling real-time incident reporting, dynamic priority scoring, live disaster maps, and automated responder resource coordination.</p>
+            <div class="proj-card-tags">
+              <span class="proj-tag">Docker</span>
+              <span class="proj-tag">Express</span>
+              <span class="proj-tag">Node.js</span>
+              <span class="proj-tag">PostgreSQL</span>
+              <span class="proj-tag">Live Mapping</span>
+              <span class="proj-tag">AI Triage</span>
+            </div>
+            <div class="proj-card-footer">
+              <span class="proj-card-cta">View Details →</span>
+            </div>
+          </div>
+          <div class="proj-card proj-card-red contrib-slide-up" id="farmoptima-card" onclick="openProjectModal('farmoptima')"
+            role="button" tabindex="0" aria-label="View FarmOptima project details">
+            <div class="proj-card-header">
+              <div class="proj-card-meta">
+                <h3 class="proj-card-name">FarmOptima</h3>
+              </div>
+              <span class="proj-card-status">Active</span>
+            </div>
+            <p class="proj-card-desc">An agricultural market intelligence platform that calculates Expected Net Realization, evaluating mandi prices, transportation costs, market charges, and spoilage risk to maximize farmer income.</p>
+            <div class="proj-card-tags">
+              <span class="proj-tag">Next.js</span>
+              <span class="proj-tag">React</span>
+              <span class="proj-tag">TailwindCSS</span>
+              <span class="proj-tag">Node.js</span>
+              <span class="proj-tag">AgriTech</span>
+              <span class="proj-tag">Data Analytics</span>
+            </div>
+            <div class="proj-card-footer">
+              <span class="proj-card-cta">View Details →</span>
+            </div>
+          </div>
+          <div class="proj-card proj-card-red contrib-slide-up" id="morrowmesh-card" onclick="openProjectModal('morrowmesh')"
+            role="button" tabindex="0" aria-label="View MorrowMesh project details">
+            <div class="proj-card-header">
+              <div class="proj-card-meta">
+                <h3 class="proj-card-name">MorrowMesh</h3>
+              </div>
+              <span class="proj-card-status">Active</span>
+            </div>
+            <p class="proj-card-desc">An offline-first emergency mesh communication and disaster coordination network that turns civilian devices into an ad-hoc resilient network when cellular infrastructure fails.</p>
+            <div class="proj-card-tags">
+              <span class="proj-tag">React</span>
+              <span class="proj-tag">TypeScript</span>
+              <span class="proj-tag">FastAPI</span>
+              <span class="proj-tag">Python</span>
+              <span class="proj-tag">Mesh Networks</span>
+              <span class="proj-tag">Offline-First</span>
+            </div>
+            <div class="proj-card-footer">
+              <span class="proj-card-cta">View Details →</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -181,88 +354,53 @@
     <div id="project-modal-overlay" class="proj-modal-overlay" onclick="closeProjectModal(event)" aria-hidden="true">
       <div class="proj-modal" role="dialog" aria-modal="true" aria-labelledby="proj-modal-title" data-lenis-prevent>
         <button class="proj-modal-close" onclick="closeProjectModal()" aria-label="Close">×</button>
-
         <div id="proj-modal-content-streetiq">
           <div class="proj-modal-header">
-            <img src="/streetiqlogo.png" alt="StreetIQ Logo" class="proj-modal-logo">
             <div>
-              <span class="commit-mono proj-modal-label">// open source project</span>
-              <h2 id="proj-modal-title" class="proj-modal-title">StreetIQ</h2>
+              <h2 id="proj-modal-title-streetiq" class="proj-modal-title">StreetIQ</h2>
               <p class="proj-modal-tagline">The AI-Powered Road Intelligence & Navigation Platform</p>
             </div>
           </div>
-
           <div class="proj-modal-body">
-            <p class="proj-modal-desc">StreetIQ is a next-generation navigation platform that tells you <strong>what is
-                actually on the road</strong>. It provides real-time turn-by-turn navigation overlaid with live
-              crowdsourced hazard data potholes, waterlogging, cracks, and debris detected entirely on-device using a
-              custom-trained YOLOv8 model running in the browser at 15fps via TensorFlow.js. Video feeds are never sent
-              to a server. Only GPS coordinates and hazard metadata are transmitted, preserving absolute privacy.</p>
-
+            <p class="proj-modal-desc">StreetIQ is a next-generation navigation platform that tells you what is actually on the road. It provides real-time turn-by-turn navigation overlaid with live crowdsourced hazard data potholes, waterlogging, cracks, and debris detected entirely on-device using a custom-trained YOLOv8 model running in the browser at 15fps via TensorFlow.js. Video feeds are never sent to a server. Only GPS coordinates and hazard metadata are transmitted, preserving absolute privacy.</p>
             <div class="proj-modal-features">
               <div class="proj-feature">
                 <span class="proj-feature-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="11" width="18" height="10" rx="2" />
-                    <circle cx="12" cy="5" r="2" />
-                    <path d="M12 7v4M8 11V9a4 4 0 0 1 8 0v2" />
-                    <line x1="8" y1="15" x2="8" y2="17" />
-                    <line x1="12" y1="15" x2="12" y2="17" />
-                    <line x1="16" y1="15" x2="16" y2="17" />
-                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
                 </span>
                 <div>
                   <strong>Custom-Trained YOLOv8 Model</strong>
-                  <p>Hand-trained on thousands of real Indian road images to detect cracks, potholes, waterlogging, and
-                    debris across varied lighting and traffic conditions.</p>
+                  <p>Hand-trained on thousands of real Indian road images to detect cracks, potholes, waterlogging, and debris across varied lighting and traffic conditions.</p>
                 </div>
               </div>
               <div class="proj-feature">
                 <span class="proj-feature-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    <polyline points="9 12 11 14 15 10" />
-                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
                 </span>
                 <div>
                   <strong>On-Device AI — Zero Video Uploads</strong>
-                  <p>All inference runs locally in your browser. Nothing leaves your device except GPS coordinates when
-                    a hazard is confirmed.</p>
+                  <p>All inference runs locally in your browser. Nothing leaves your device except GPS coordinates when a hazard is confirmed.</p>
                 </div>
               </div>
               <div class="proj-feature">
                 <span class="proj-feature-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
                 </span>
                 <div>
                   <strong>Real-Time Hazard Broadcasting</strong>
-                  <p>The moment a hazard is detected, WebSockets instantly broadcast it to every other driver in the
-                    area via the Supabase Realtime backend.</p>
+                  <p>The moment a hazard is detected, WebSockets instantly broadcast it to every other driver in the area via the Supabase Realtime backend.</p>
                 </div>
               </div>
               <div class="proj-feature">
                 <span class="proj-feature-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10" />
-                    <line x1="2" y1="12" x2="22" y2="12" />
-                    <path
-                      d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
                 </span>
                 <div>
                   <strong>Full Navigation Stack</strong>
-                  <p>Smooth turn-by-turn navigation powered by OSRM with custom traffic multipliers and Photon geocoding
-                    — no third-party map API required.</p>
+                  <p>Smooth turn-by-turn navigation powered by OSRM with custom traffic multipliers and Photon geocoding without third-party map API reliance.</p>
                 </div>
               </div>
             </div>
-
             <div class="proj-modal-stack">
               <h4>Tech Stack</h4>
               <div class="proj-modal-tags">
@@ -276,52 +414,39 @@
                 <span class="proj-tag">React-Leaflet</span>
               </div>
             </div>
-
             <div class="proj-modal-actions">
               <a href="https://streetiqmaps.vercel.app/" target="_blank" rel="noopener noreferrer"
                 class="proj-action-btn proj-action-primary" id="streetiq-demo-btn">↗ Live Demo</a>
               <a href="https://github.com/MakersNeedMore-MnM/StreetIQ" target="_blank" rel="noopener noreferrer"
                 class="proj-action-btn proj-action-secondary" id="streetiq-github-btn">GitHub Repo</a>
             </div>
-
             <div class="proj-contrib-guide">
-              <span class="commit-mono proj-modal-label">// how to contribute</span>
               <h4>Want to contribute to StreetIQ?</h4>
               <ol class="proj-contrib-steps">
                 <li>Sign up on <strong>mnmworks.xyz</strong> to create your MnM member account.</li>
-                <li>Fork the <a href="https://github.com/MakersNeedMore-MnM/StreetIQ" target="_blank"
-                    rel="noopener noreferrer">StreetIQ repository</a> on GitHub.</li>
-                <li>Make your changes in the forked repo — bug fixes, new features, improvements, anything meaningful.
-                </li>
-                <li>Raise a Pull Request with proper documentation describing what you changed and why.</li>
-                <li>Head to the <strong>Submit</strong> section of your MnM Dashboard, paste your fork link, and write a
-                  description of your contribution.</li>
-                <li>Wait for review, approval, and feedback from the MnM team.</li>
+                <li>Fork the <a href="https://github.com/MakersNeedMore-MnM/StreetIQ" target="_blank" rel="noopener noreferrer">StreetIQ repository</a> on GitHub.</li>
+                <li>Pick an open task, fix bugs, or build new features in your forked repo.</li>
+                <li>Submit a clean Pull Request with clear documentation describing your changes.</li>
+                <li>Head to the <strong>Submit</strong> section in your MnM Dashboard, submit your fork link, and summarize your contribution.</li>
+                <li>Coordinate with the MnM engineering review team for validation and verification.</li>
               </ol>
-              <p class="proj-contrib-note">If it is taking longer than expected, mail us at <a
-                  href="mailto:admin@mnmworks.xyz">admin@mnmworks.xyz</a> for faster validation and review.</p>
+              <p class="proj-contrib-note">If it is taking longer than expected, mail us at <a href="mailto:admin@mnmworks.xyz">admin@mnmworks.xyz</a> for faster review.</p>
             </div>
           </div>
         </div>
         <div id="proj-modal-content-kavach" style="display: none;">
           <div class="proj-modal-header">
-            <img src="/kavachlogo.svg" alt="Kavach Logo" class="proj-modal-logo">
             <div>
-              <span class="commit-mono proj-modal-label">// open source project</span>
               <h2 id="proj-modal-title-kavach" class="proj-modal-title">Kavach</h2>
               <p class="proj-modal-tagline">Digital Safety & Scam Protection for Senior Citizens · वरिष्ठ नागरिकों के लिए डिजिटल सुरक्षा</p>
             </div>
           </div>
           <div class="proj-modal-body">
-            <p class="proj-modal-desc">Kavach ("shield" in Hindi) is a privacy-first Android app safeguarding senior citizens from digital financial fraud — OTP scams, fake KYC / account-blocked SMS, extortion threats, lottery baits, and malicious APKs distributed via WhatsApp. Operating <strong>100% offline</strong> with zero telemetry, Kavach scores threats locally, reads out warnings aloud in plain English or Hindi using on-device text-to-speech, and instantly alerts a trusted family member when high-risk activity is detected.</p>
+            <p class="proj-modal-desc">Kavach ("shield" in Hindi) is a privacy-first Android app safeguarding senior citizens from digital financial fraud — OTP scams, fake KYC / account-blocked SMS, extortion threats, lottery baits, and malicious APKs distributed via WhatsApp. Operating 100% offline with zero telemetry, Kavach scores threats locally, reads out warnings aloud in plain English or Hindi using on-device text-to-speech, and instantly alerts a trusted family member when high-risk activity is detected.</p>
             <div class="proj-modal-features">
               <div class="proj-feature">
                 <span class="proj-feature-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                    <polyline points="22,6 12,13 2,6" />
-                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
                 </span>
                 <div>
                   <strong>Automatic SMS Interception</strong>
@@ -330,10 +455,7 @@
               </div>
               <div class="proj-feature">
                 <span class="proj-feature-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
                 </span>
                 <div>
                   <strong>WhatsApp & Clipboard Scanner</strong>
@@ -342,10 +464,7 @@
               </div>
               <div class="proj-feature">
                 <span class="proj-feature-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
                 </span>
                 <div>
                   <strong>Pre-Install APK Analysis</strong>
@@ -354,17 +473,11 @@
               </div>
               <div class="proj-feature">
                 <span class="proj-feature-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                    <circle cx="9" cy="7" r="4" />
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
                 </span>
                 <div>
                   <strong>Trusted Contact & Emergency SOS</strong>
-                  <p>Dispatches privacy-safe SMS alerts to a designated family member on high-risk detections, with one-tap dialing for National Cybercrime Helpline 1930 and Chakshu reporting.</p>
+                  <p>Dispatches privacy-safe SMS alerts to a designated family member on high-risk detections, with one-tap dialing for National Cybercrime Helpline 1930.</p>
                 </div>
               </div>
             </div>
@@ -383,80 +496,799 @@
             </div>
             <div class="proj-modal-actions">
               <a href="https://github.com/MakersNeedMore-MnM/Round2-naman-verma1084/releases/latest/download/kavach-debug.apk" target="_blank" rel="noopener noreferrer"
-                class="proj-action-btn proj-action-primary" id="kavach-apk-btn">↗ Download APK</a>
+                class="proj-action-btn proj-action-primary" id="kavach-demo-btn">↗ Download APK</a>
               <a href="https://github.com/MakersNeedMore-MnM/Round2-naman-verma1084" target="_blank" rel="noopener noreferrer"
                 class="proj-action-btn proj-action-secondary" id="kavach-github-btn">GitHub Repo</a>
             </div>
             <div class="proj-contrib-guide">
-              <span class="commit-mono proj-modal-label">// how to contribute</span>
               <h4>Want to contribute to Kavach?</h4>
               <ol class="proj-contrib-steps">
                 <li>Sign up on <strong>mnmworks.xyz</strong> to create your MnM member account.</li>
-                <li>Fork the <a href="https://github.com/MakersNeedMore-MnM/Round2-naman-verma1084" target="_blank"
-                    rel="noopener noreferrer">Kavach repository</a> on GitHub.</li>
-                <li>Pick an open task: fraud heuristic detection, regional voice synthesis, senior-friendly UI themes, or static APK parsing optimizations.</li>
-                <li>Submit a clean Pull Request with clear documentation and verification steps for your module.</li>
-                <li>Navigate to the <strong>Submit</strong> section in your MnM Dashboard, submit your fork URL, and describe your improvements.</li>
-                <li>Coordinate with the MnM engineering review team for validation and merge.</li>
+                <li>Fork the <a href="https://github.com/MakersNeedMore-MnM/Round2-naman-verma1084" target="_blank" rel="noopener noreferrer">Kavach repository</a> on GitHub.</li>
+                <li>Pick an open task, fix bugs, or build new features in your forked repo.</li>
+                <li>Submit a clean Pull Request with clear documentation describing your changes.</li>
+                <li>Head to the <strong>Submit</strong> section in your MnM Dashboard, submit your fork link, and summarize your contribution.</li>
+                <li>Coordinate with the MnM engineering review team for validation and verification.</li>
               </ol>
-              <p class="proj-contrib-note">If it is taking longer than expected, mail us at <a
-                  href="mailto:admin@mnmworks.xyz">admin@mnmworks.xyz</a> for faster validation and review.</p>
+              <p class="proj-contrib-note">If it is taking longer than expected, mail us at <a href="mailto:admin@mnmworks.xyz">admin@mnmworks.xyz</a> for faster review.</p>
+            </div>
+          </div>
+        </div>
+        <div id="proj-modal-content-antar" style="display: none;">
+          <div class="proj-modal-header">
+            <div>
+              <h2 id="proj-modal-title-antar" class="proj-modal-title">ANTAR</h2>
+              <p class="proj-modal-tagline">The Road Notices When You Don't Arrive — Intelligent Corridor Anomaly Detection</p>
+            </div>
+          </div>
+          <div class="proj-modal-body">
+            <p class="proj-modal-desc">ANTAR is a client-first road monitoring and anomaly detection platform designed to detect missing vehicles and corridor disruptions. Operating with a zero-install architecture that runs entirely in the browser, ANTAR evaluates trajectory deviations, unexpected checkpoint delays, and road segment congestion to trigger predictive assistance before an incident escalates into a crisis.</p>
+            <div class="proj-modal-features">
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>In-Browser Spatial Intelligence</strong>
+                  <p>Real-time vehicle journey prediction and anomaly detection running fully on-device with zero server transmission of raw sensor telemetry.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Offline-Ready Architecture</strong>
+                  <p>Zero cloud dependency for local simulation, checkpoint verification, and offline topological route graph parsing.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Deterministic Delay Scoring</strong>
+                  <p>Calculates probabilistic arrival windows based on road terrain, historical transit averages, and environmental factors.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Interactive Corridor Visualizer</strong>
+                  <p>Dynamic map interface visualizing active transit paths, danger zones, bottleneck segments, and anomalous stop flags.</p>
+                </div>
+              </div>
+            </div>
+            <div class="proj-modal-stack">
+              <h4>Tech Stack</h4>
+              <div class="proj-modal-tags">
+                <span class="proj-tag">Python</span>
+                <span class="proj-tag">FastAPI</span>
+                <span class="proj-tag">JavaScript (ES6+)</span>
+                <span class="proj-tag">Leaflet</span>
+                <span class="proj-tag">GeoJSON</span>
+                <span class="proj-tag">Vercel</span>
+                <span class="proj-tag">HTML5 Canvas</span>
+              </div>
+            </div>
+            <div class="proj-modal-actions">
+              <a href="https://antar-ebon.vercel.app" target="_blank" rel="noopener noreferrer"
+                class="proj-action-btn proj-action-primary" id="antar-demo-btn">↗ Live Demo</a>
+              <a href="https://github.com/MakersNeedMore-MnM/Round2-madhurkarande3" target="_blank" rel="noopener noreferrer"
+                class="proj-action-btn proj-action-secondary" id="antar-github-btn">GitHub Repo</a>
+            </div>
+            <div class="proj-contrib-guide">
+              <h4>Want to contribute to ANTAR?</h4>
+              <ol class="proj-contrib-steps">
+                <li>Sign up on <strong>mnmworks.xyz</strong> to create your MnM member account.</li>
+                <li>Fork the <a href="https://github.com/MakersNeedMore-MnM/Round2-madhurkarande3" target="_blank" rel="noopener noreferrer">ANTAR repository</a> on GitHub.</li>
+                <li>Pick an open task, fix bugs, or build new features in your forked repo.</li>
+                <li>Submit a clean Pull Request with clear documentation describing your changes.</li>
+                <li>Head to the <strong>Submit</strong> section in your MnM Dashboard, submit your fork link, and summarize your contribution.</li>
+                <li>Coordinate with the MnM engineering review team for validation and verification.</li>
+              </ol>
+              <p class="proj-contrib-note">If it is taking longer than expected, mail us at <a href="mailto:admin@mnmworks.xyz">admin@mnmworks.xyz</a> for faster review.</p>
+            </div>
+          </div>
+        </div>
+        <div id="proj-modal-content-cargoproof" style="display: none;">
+          <div class="proj-modal-header">
+            <div>
+              <h2 id="proj-modal-title-cargoproof" class="proj-modal-title">CargoProof</h2>
+              <p class="proj-modal-tagline">Pay for Evidence. Verify the Claim. Settle with Proof.</p>
+            </div>
+          </div>
+          <div class="proj-modal-body">
+            <p class="proj-modal-desc">CargoProof bridges real-world logistics with decentralized finance by enabling autonomous AI agents to purchase independent multi-modal evidence per shipment via x402 micropayments on the Algorand blockchain. A deterministic rule-based verification engine processes sensor telemetry, carrier bills of lading, and damage reports to execute automated escrow releases, holds, or rejections with cryptographic audit trails.</p>
+            <div class="proj-modal-features">
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Algorand x402 Micropayments</strong>
+                  <p>Procures authenticated third-party sensor telemetry and surveyor reports on-chain using micro-transactions with instant finality.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Deterministic Rule Engine</strong>
+                  <p>Eliminates subjective arbitration by executing rule-based tri-state settlement: VERIFIED Release, HOLD Review, or REJECT.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Autonomous Agent Architecture</strong>
+                  <p>AI agents evaluate damage claims, cross-verify carrier GPS logs, and settle escrow balances without human bottlenecking.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Cryptographic Audit Ledger</strong>
+                  <p>Generates tamper-proof proofs of verification for insurance underwriters, freight forwarders, and logistics operators.</p>
+                </div>
+              </div>
+            </div>
+            <div class="proj-modal-stack">
+              <h4>Tech Stack</h4>
+              <div class="proj-modal-tags">
+                <span class="proj-tag">Algorand SDK</span>
+                <span class="proj-tag">x402 Protocol</span>
+                <span class="proj-tag">FastAPI</span>
+                <span class="proj-tag">Node.js</span>
+                <span class="proj-tag">TypeScript</span>
+                <span class="proj-tag">Python</span>
+                <span class="proj-tag">SQLite</span>
+              </div>
+            </div>
+            <div class="proj-modal-actions">
+              <a href="https://github.com/MakersNeedMore-MnM/Round2-dineshkumarvr-cse2025" target="_blank" rel="noopener noreferrer"
+                class="proj-action-btn proj-action-secondary" id="cargoproof-github-btn">GitHub Repo</a>
+            </div>
+            <div class="proj-contrib-guide">
+              <h4>Want to contribute to CargoProof?</h4>
+              <ol class="proj-contrib-steps">
+                <li>Sign up on <strong>mnmworks.xyz</strong> to create your MnM member account.</li>
+                <li>Fork the <a href="https://github.com/MakersNeedMore-MnM/Round2-dineshkumarvr-cse2025" target="_blank" rel="noopener noreferrer">CargoProof repository</a> on GitHub.</li>
+                <li>Pick an open task, fix bugs, or build new features in your forked repo.</li>
+                <li>Submit a clean Pull Request with clear documentation describing your changes.</li>
+                <li>Head to the <strong>Submit</strong> section in your MnM Dashboard, submit your fork link, and summarize your contribution.</li>
+                <li>Coordinate with the MnM engineering review team for validation and verification.</li>
+              </ol>
+              <p class="proj-contrib-note">If it is taking longer than expected, mail us at <a href="mailto:admin@mnmworks.xyz">admin@mnmworks.xyz</a> for faster review.</p>
+            </div>
+          </div>
+        </div>
+        <div id="proj-modal-content-resqnet" style="display: none;">
+          <div class="proj-modal-header">
+            <div>
+              <h2 id="proj-modal-title-resqnet" class="proj-modal-title">ResQNet</h2>
+              <p class="proj-modal-tagline">AI Emergency Response & Coordination Intelligence Grid</p>
+            </div>
+          </div>
+          <div class="proj-modal-body">
+            <p class="proj-modal-desc">ResQNet transforms emergency trauma dispatch by integrating autonomous kinematic crash sensing on mobile devices with a high-throughput Bayesian fusion backend. ResQNet calculates a 0–100 polytrauma injury severity score within seconds of impact, automatically alerts the nearest trauma centers with zero-minute pre-alerts, and dynamically routes ambulances using live OSRM road graph topology.</p>
+            <div class="proj-modal-features">
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Autonomous Crash Sensing</strong>
+                  <p>On-device accelerometer and gyroscope heuristics detect collision impact profiles with high accuracy.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Bayesian Multi-Source Fusion</strong>
+                  <p>Fuses impact telemetry, caller acoustic stress analysis, and camera feeds to eliminate false alarms and prioritize dispatch.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>0–100 Polytrauma Injury Triage</strong>
+                  <p>Predicts clinical injury severity to recommend Level 1, 2, or 3 trauma center dispatch and specialized surgery preparation.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Zero-Minute Hospital Pre-Alerts</strong>
+                  <p>Transmits patient vitals, ETA, and emergency blood transfusion requirements to emergency room teams while in transit.</p>
+                </div>
+              </div>
+            </div>
+            <div class="proj-modal-stack">
+              <h4>Tech Stack</h4>
+              <div class="proj-modal-tags">
+                <span class="proj-tag">Android</span>
+                <span class="proj-tag">Node.js</span>
+                <span class="proj-tag">Express</span>
+                <span class="proj-tag">MongoDB</span>
+                <span class="proj-tag">OSRM (Open Source Routing Machine)</span>
+                <span class="proj-tag">Socket.io</span>
+                <span class="proj-tag">Computer Vision</span>
+              </div>
+            </div>
+            <div class="proj-modal-actions">
+              <a href="https://github.com/MakersNeedMore-MnM/Round2-Nexora" target="_blank" rel="noopener noreferrer"
+                class="proj-action-btn proj-action-secondary" id="resqnet-github-btn">GitHub Repo</a>
+            </div>
+            <div class="proj-contrib-guide">
+              <h4>Want to contribute to ResQNet?</h4>
+              <ol class="proj-contrib-steps">
+                <li>Sign up on <strong>mnmworks.xyz</strong> to create your MnM member account.</li>
+                <li>Fork the <a href="https://github.com/MakersNeedMore-MnM/Round2-Nexora" target="_blank" rel="noopener noreferrer">ResQNet repository</a> on GitHub.</li>
+                <li>Pick an open task, fix bugs, or build new features in your forked repo.</li>
+                <li>Submit a clean Pull Request with clear documentation describing your changes.</li>
+                <li>Head to the <strong>Submit</strong> section in your MnM Dashboard, submit your fork link, and summarize your contribution.</li>
+                <li>Coordinate with the MnM engineering review team for validation and verification.</li>
+              </ol>
+              <p class="proj-contrib-note">If it is taking longer than expected, mail us at <a href="mailto:admin@mnmworks.xyz">admin@mnmworks.xyz</a> for faster review.</p>
+            </div>
+          </div>
+        </div>
+        <div id="proj-modal-content-honeypot-orchestrator" style="display: none;">
+          <div class="proj-modal-header">
+            <div>
+              <h2 id="proj-modal-title-honeypot-orchestrator" class="proj-modal-title">Honeypot Orchestrator</h2>
+              <p class="proj-modal-tagline">AI-Assisted Cybersecurity Deception & Threat Analysis Platform</p>
+            </div>
+          </div>
+          <div class="proj-modal-body">
+            <p class="proj-modal-desc">Honeypot Orchestrator is a modular cyber deception platform engineered for security operations teams and researchers. By spinning up lightweight, realistic decoy services (SSH, FTP, HTTP, Database), the system intercepts malicious probes, parses attacker behavioral patterns, trains machine learning classifiers on zero-day payloads, and correlates attacker kill-chains on a live interactive command dashboard.</p>
+            <div class="proj-modal-features">
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Multi-Service Decoy Emulation</strong>
+                  <p>Configurable decoy listeners simulating vulnerable enterprise servers to attract adversaries and isolate malicious actors.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>ML Attack-Chain Classification</strong>
+                  <p>Categorizes automated scanning bots, credential stuffers, brute-force attacks, and targeted exploits in real time.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Real-Time Kill-Chain Visualization</strong>
+                  <p>Tracks attacker lateral movement, command execution history, and dropped payloads through an interactive dashboard.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Dynamic Threat Scoring</strong>
+                  <p>Scores origin IP addresses, ASN reputation, and vulnerability probe intensities to automate firewall rule synthesis.</p>
+                </div>
+              </div>
+            </div>
+            <div class="proj-modal-stack">
+              <h4>Tech Stack</h4>
+              <div class="proj-modal-tags">
+                <span class="proj-tag">Python</span>
+                <span class="proj-tag">Flask</span>
+                <span class="proj-tag">React</span>
+                <span class="proj-tag">Vite</span>
+                <span class="proj-tag">TailwindCSS</span>
+                <span class="proj-tag">Machine Learning Classifiers</span>
+                <span class="proj-tag">SQLite</span>
+                <span class="proj-tag">Socket.io</span>
+              </div>
+            </div>
+            <div class="proj-modal-actions">
+              <a href="https://github.com/MakersNeedMore-MnM/Round2-WayMakers---" target="_blank" rel="noopener noreferrer"
+                class="proj-action-btn proj-action-secondary" id="honeypot-orchestrator-github-btn">GitHub Repo</a>
+            </div>
+            <div class="proj-contrib-guide">
+              <h4>Want to contribute to Honeypot Orchestrator?</h4>
+              <ol class="proj-contrib-steps">
+                <li>Sign up on <strong>mnmworks.xyz</strong> to create your MnM member account.</li>
+                <li>Fork the <a href="https://github.com/MakersNeedMore-MnM/Round2-WayMakers---" target="_blank" rel="noopener noreferrer">Honeypot Orchestrator repository</a> on GitHub.</li>
+                <li>Pick an open task, fix bugs, or build new features in your forked repo.</li>
+                <li>Submit a clean Pull Request with clear documentation describing your changes.</li>
+                <li>Head to the <strong>Submit</strong> section in your MnM Dashboard, submit your fork link, and summarize your contribution.</li>
+                <li>Coordinate with the MnM engineering review team for validation and verification.</li>
+              </ol>
+              <p class="proj-contrib-note">If it is taking longer than expected, mail us at <a href="mailto:admin@mnmworks.xyz">admin@mnmworks.xyz</a> for faster review.</p>
+            </div>
+          </div>
+        </div>
+        <div id="proj-modal-content-emergency-ecard" style="display: none;">
+          <div class="proj-modal-header">
+            <div>
+              <h2 id="proj-modal-title-emergency-ecard" class="proj-modal-title">Emergency E-Card</h2>
+              <p class="proj-modal-tagline">The fastest help is often the person standing closest to you.</p>
+            </div>
+          </div>
+          <div class="proj-modal-body">
+            <p class="proj-modal-desc">Emergency E-Card is an open-source emergency coordination platform connecting individuals in distress with both emergency services and vetted nearby citizen responders. By pairing a secure, QR-accessible digital medical card (blood type, allergies, emergency contacts) with instantaneous WebSockets geolocation broadcasting, Emergency E-Card bridges critical golden-hour response gaps.</p>
+            <div class="proj-modal-features">
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Instant One-Tap SOS Broadcast</strong>
+                  <p>Pushes live GPS coordinates and medical vitals to designated emergency contacts and nearby responders simultaneously.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Scannable Medical Emergency Profile</strong>
+                  <p>Instant lockscreen / wallet QR code allowing first responders to view critical health data without unlocking the device.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Hyperlocal Bystander Network</strong>
+                  <p>Alerts registered first-aid trained civilians within 500m for rapid CPR and immediate assistance before ambulances arrive.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Real-Time Dispatch Tracking</strong>
+                  <p>WebSockets bidirectional coordination showing responder ETAs, status confirmations, and live route updates.</p>
+                </div>
+              </div>
+            </div>
+            <div class="proj-modal-stack">
+              <h4>Tech Stack</h4>
+              <div class="proj-modal-tags">
+                <span class="proj-tag">React 18</span>
+                <span class="proj-tag">Vite</span>
+                <span class="proj-tag">FastAPI</span>
+                <span class="proj-tag">PostgreSQL</span>
+                <span class="proj-tag">WebSockets</span>
+                <span class="proj-tag">Leaflet Maps</span>
+                <span class="proj-tag">TailwindCSS</span>
+              </div>
+            </div>
+            <div class="proj-modal-actions">
+              <a href="https://emergency-e-card-1.onrender.com" target="_blank" rel="noopener noreferrer"
+                class="proj-action-btn proj-action-primary" id="emergency-ecard-demo-btn">↗ Live Demo</a>
+              <a href="https://github.com/MakersNeedMore-MnM/Round2-BIT-CRAFT" target="_blank" rel="noopener noreferrer"
+                class="proj-action-btn proj-action-secondary" id="emergency-ecard-github-btn">GitHub Repo</a>
+            </div>
+            <div class="proj-contrib-guide">
+              <h4>Want to contribute to Emergency E-Card?</h4>
+              <ol class="proj-contrib-steps">
+                <li>Sign up on <strong>mnmworks.xyz</strong> to create your MnM member account.</li>
+                <li>Fork the <a href="https://github.com/MakersNeedMore-MnM/Round2-BIT-CRAFT" target="_blank" rel="noopener noreferrer">Emergency E-Card repository</a> on GitHub.</li>
+                <li>Pick an open task, fix bugs, or build new features in your forked repo.</li>
+                <li>Submit a clean Pull Request with clear documentation describing your changes.</li>
+                <li>Head to the <strong>Submit</strong> section in your MnM Dashboard, submit your fork link, and summarize your contribution.</li>
+                <li>Coordinate with the MnM engineering review team for validation and verification.</li>
+              </ol>
+              <p class="proj-contrib-note">If it is taking longer than expected, mail us at <a href="mailto:admin@mnmworks.xyz">admin@mnmworks.xyz</a> for faster review.</p>
+            </div>
+          </div>
+        </div>
+        <div id="proj-modal-content-parakh" style="display: none;">
+          <div class="proj-modal-header">
+            <div>
+              <h2 id="proj-modal-title-parakh" class="proj-modal-title">Parakh (परख)</h2>
+              <p class="proj-modal-tagline">High-Performance Deepfake Face Detection & Synthetic Media Verification</p>
+            </div>
+          </div>
+          <div class="proj-modal-body">
+            <p class="proj-modal-desc">Parakh (Hindi for "scrutiny/test") is a specialized computer vision and deep learning system built to combat synthetic media threats, identity fraud, and AI-generated disinformation. Benchmark-trained against industry-standard datasets like FaceForensics++, Parakh detects subtle frame blending artifacts, temporal eye-blink inconsistencies, and frequency-domain anomalies across image and video uploads.</p>
+            <div class="proj-modal-features">
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Binary Deepfake Classifier</strong>
+                  <p>Deep convolutional & transformer network trained on thousands of authentic and manipulated faces for high-precision inference.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Spatial Attention Heatmaps</strong>
+                  <p>Highlights exact facial regions showing blending boundaries, skin warping, texture inconsistencies, and generative artifacts.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Video Temporal Frame Analysis</strong>
+                  <p>Examines inter-frame consistency, eye-blink frequency, micro-expressions, and audio-lip synchronization across video streams.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Privacy-First Processing</strong>
+                  <p>Media is processed transiently in memory with zero permanent facial data retention or third-party cloud exposure.</p>
+                </div>
+              </div>
+            </div>
+            <div class="proj-modal-stack">
+              <h4>Tech Stack</h4>
+              <div class="proj-modal-tags">
+                <span class="proj-tag">PyTorch</span>
+                <span class="proj-tag">OpenCV</span>
+                <span class="proj-tag">Next.js</span>
+                <span class="proj-tag">Python</span>
+                <span class="proj-tag">Node.js</span>
+                <span class="proj-tag">TailwindCSS</span>
+                <span class="proj-tag">TorchVision</span>
+              </div>
+            </div>
+            <div class="proj-modal-actions">
+              <a href="https://github.com/MakersNeedMore-MnM/parakh" target="_blank" rel="noopener noreferrer"
+                class="proj-action-btn proj-action-secondary" id="parakh-github-btn">GitHub Repo</a>
+            </div>
+            <div class="proj-contrib-guide">
+              <h4>Want to contribute to Parakh (परख)?</h4>
+              <ol class="proj-contrib-steps">
+                <li>Sign up on <strong>mnmworks.xyz</strong> to create your MnM member account.</li>
+                <li>Fork the <a href="https://github.com/MakersNeedMore-MnM/parakh" target="_blank" rel="noopener noreferrer">Parakh (परख) repository</a> on GitHub.</li>
+                <li>Pick an open task, fix bugs, or build new features in your forked repo.</li>
+                <li>Submit a clean Pull Request with clear documentation describing your changes.</li>
+                <li>Head to the <strong>Submit</strong> section in your MnM Dashboard, submit your fork link, and summarize your contribution.</li>
+                <li>Coordinate with the MnM engineering review team for validation and verification.</li>
+              </ol>
+              <p class="proj-contrib-note">If it is taking longer than expected, mail us at <a href="mailto:admin@mnmworks.xyz">admin@mnmworks.xyz</a> for faster review.</p>
+            </div>
+          </div>
+        </div>
+        <div id="proj-modal-content-rescuegrid-ai" style="display: none;">
+          <div class="proj-modal-header">
+            <div>
+              <h2 id="proj-modal-title-rescuegrid-ai" class="proj-modal-title">RescueGrid AI</h2>
+              <p class="proj-modal-tagline">AI-Powered Disaster Response & Emergency Management Platform</p>
+            </div>
+          </div>
+          <div class="proj-modal-body">
+            <p class="proj-modal-desc">RescueGrid AI is an emergency dispatch and disaster mitigation system designed for municipal authorities, rescue squads, and affected citizens. During floods, earthquakes, or urban emergencies, the platform aggregates crowdsourced SOS reports, extracts vital location details via NLP, calculates emergency severity scores, and maps resource allocations in real time.</p>
+            <div class="proj-modal-features">
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>NLP Incident Intelligence</strong>
+                  <p>Extracts critical rescue parameters—number of trapped persons, medical urgency—from unstructured text and emergency voice reports.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Dynamic Priority Triage</strong>
+                  <p>Automated risk scoring algorithm prioritizing high-fatality, medical emergency, and flood-submerged requests for immediate action.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Live Geospatial Crisis Map</strong>
+                  <p>Heatmaps of ongoing hazards, safe shelter zones, relief distribution points, and deployed rescue teams.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Automated Resource Allocation</strong>
+                  <p>Matches available emergency supplies and rescue teams to the nearest high-priority incidents based on proximity and gear.</p>
+                </div>
+              </div>
+            </div>
+            <div class="proj-modal-stack">
+              <h4>Tech Stack</h4>
+              <div class="proj-modal-tags">
+                <span class="proj-tag">Node.js</span>
+                <span class="proj-tag">Express</span>
+                <span class="proj-tag">PostgreSQL</span>
+                <span class="proj-tag">Docker</span>
+                <span class="proj-tag">Leaflet / Mapbox</span>
+                <span class="proj-tag">React</span>
+                <span class="proj-tag">Socket.io</span>
+              </div>
+            </div>
+            <div class="proj-modal-actions">
+              <a href="https://github.com/MakersNeedMore-MnM/Round2-Code-Catalysts" target="_blank" rel="noopener noreferrer"
+                class="proj-action-btn proj-action-secondary" id="rescuegrid-ai-github-btn">GitHub Repo</a>
+            </div>
+            <div class="proj-contrib-guide">
+              <h4>Want to contribute to RescueGrid AI?</h4>
+              <ol class="proj-contrib-steps">
+                <li>Sign up on <strong>mnmworks.xyz</strong> to create your MnM member account.</li>
+                <li>Fork the <a href="https://github.com/MakersNeedMore-MnM/Round2-Code-Catalysts" target="_blank" rel="noopener noreferrer">RescueGrid AI repository</a> on GitHub.</li>
+                <li>Pick an open task, fix bugs, or build new features in your forked repo.</li>
+                <li>Submit a clean Pull Request with clear documentation describing your changes.</li>
+                <li>Head to the <strong>Submit</strong> section in your MnM Dashboard, submit your fork link, and summarize your contribution.</li>
+                <li>Coordinate with the MnM engineering review team for validation and verification.</li>
+              </ol>
+              <p class="proj-contrib-note">If it is taking longer than expected, mail us at <a href="mailto:admin@mnmworks.xyz">admin@mnmworks.xyz</a> for faster review.</p>
+            </div>
+          </div>
+        </div>
+        <div id="proj-modal-content-farmoptima" style="display: none;">
+          <div class="proj-modal-header">
+            <div>
+              <h2 id="proj-modal-title-farmoptima" class="proj-modal-title">FarmOptima</h2>
+              <p class="proj-modal-tagline">AI-Powered Crop Selling & Mandi Market Optimization</p>
+            </div>
+          </div>
+          <div class="proj-modal-body">
+            <p class="proj-modal-desc">FarmOptima revolutionizes agricultural commerce for farmers by replacing guesswork with economic data science. Rather than chasing headline mandi prices that may be negated by distant transport fees, FarmOptima calculates the "Expected Net Realization" per quintal, considering vehicle rental fees, toll charges, local APMC mandi cess, loading costs, and perishable spoilage risks.</p>
+            <div class="proj-modal-features">
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Expected Net Realization Engine</strong>
+                  <p>Calculates true take-home profit by deducting logistics, toll costs, loading charges, and mandi commissions from rates.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Multi-Mandi Price Comparison</strong>
+                  <p>Aggregates and compares real-time agricultural commodity prices across nearby regional and interstate mandis.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Perishable Spoilage Risk Modeling</strong>
+                  <p>Evaluates transit duration against crop shelf-life to prevent transit quality degradation and distress selling.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Multilingual Farmer UI</strong>
+                  <p>Clean, high-contrast interface designed for mobile accessibility and regional language support.</p>
+                </div>
+              </div>
+            </div>
+            <div class="proj-modal-stack">
+              <h4>Tech Stack</h4>
+              <div class="proj-modal-tags">
+                <span class="proj-tag">Next.js</span>
+                <span class="proj-tag">React</span>
+                <span class="proj-tag">Node.js</span>
+                <span class="proj-tag">TailwindCSS</span>
+                <span class="proj-tag">Chart.js</span>
+                <span class="proj-tag">REST APIs</span>
+              </div>
+            </div>
+            <div class="proj-modal-actions">
+              <a href="https://github.com/MakersNeedMore-MnM/Round2-guptadiksha2025" target="_blank" rel="noopener noreferrer"
+                class="proj-action-btn proj-action-secondary" id="farmoptima-github-btn">GitHub Repo</a>
+            </div>
+            <div class="proj-contrib-guide">
+              <h4>Want to contribute to FarmOptima?</h4>
+              <ol class="proj-contrib-steps">
+                <li>Sign up on <strong>mnmworks.xyz</strong> to create your MnM member account.</li>
+                <li>Fork the <a href="https://github.com/MakersNeedMore-MnM/Round2-guptadiksha2025" target="_blank" rel="noopener noreferrer">FarmOptima repository</a> on GitHub.</li>
+                <li>Pick an open task, fix bugs, or build new features in your forked repo.</li>
+                <li>Submit a clean Pull Request with clear documentation describing your changes.</li>
+                <li>Head to the <strong>Submit</strong> section in your MnM Dashboard, submit your fork link, and summarize your contribution.</li>
+                <li>Coordinate with the MnM engineering review team for validation and verification.</li>
+              </ol>
+              <p class="proj-contrib-note">If it is taking longer than expected, mail us at <a href="mailto:admin@mnmworks.xyz">admin@mnmworks.xyz</a> for faster review.</p>
+            </div>
+          </div>
+        </div>
+        <div id="proj-modal-content-morrowmesh" style="display: none;">
+          <div class="proj-modal-header">
+            <div>
+              <h2 id="proj-modal-title-morrowmesh" class="proj-modal-title">MorrowMesh</h2>
+              <p class="proj-modal-tagline">When the network fails, the people become the network.</p>
+            </div>
+          </div>
+          <div class="proj-modal-body">
+            <p class="proj-modal-desc">MorrowMesh is an offline-first disaster coordination and decentralized communications platform built on the premise that resilient emergency networks can be constructed from everyday civilian hardware. When cellular towers collapse during hurricanes or earthquakes, MorrowMesh enables peer-to-peer relaying of SOS beacons, medical supply requests, and shelter coordinates across localized ad-hoc wireless bridges.</p>
+            <div class="proj-modal-features">
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Offline-First Mesh Protocol</strong>
+                  <p>Operates completely independent of active cellular data or internet connectivity using ad-hoc localized networks.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Peer-to-Peer SOS Relay</strong>
+                  <p>Messages hop across nearby devices until reaching an internet-connected gateway or official rescue headquarters.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Decentralized Incident Board</strong>
+                  <p>Local crisis bulletin board for food distribution points, medical supply coordination, and family status checks.</p>
+                </div>
+              </div>
+              <div class="proj-feature">
+                <span class="proj-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </span>
+                <div>
+                  <strong>Low-Power Wireless Optimization</strong>
+                  <p>Engineered for minimal battery consumption and standard mobile Wi-Fi Direct and Bluetooth hardware.</p>
+                </div>
+              </div>
+            </div>
+            <div class="proj-modal-stack">
+              <h4>Tech Stack</h4>
+              <div class="proj-modal-tags">
+                <span class="proj-tag">React</span>
+                <span class="proj-tag">TypeScript</span>
+                <span class="proj-tag">FastAPI</span>
+                <span class="proj-tag">Python</span>
+                <span class="proj-tag">WebRTC / Wi-Fi Direct</span>
+                <span class="proj-tag">IndexedDB</span>
+                <span class="proj-tag">TailwindCSS</span>
+              </div>
+            </div>
+            <div class="proj-modal-actions">
+              <a href="https://github.com/MakersNeedMore-MnM/Round2-HackShastra" target="_blank" rel="noopener noreferrer"
+                class="proj-action-btn proj-action-secondary" id="morrowmesh-github-btn">GitHub Repo</a>
+            </div>
+            <div class="proj-contrib-guide">
+              <h4>Want to contribute to MorrowMesh?</h4>
+              <ol class="proj-contrib-steps">
+                <li>Sign up on <strong>mnmworks.xyz</strong> to create your MnM member account.</li>
+                <li>Fork the <a href="https://github.com/MakersNeedMore-MnM/Round2-HackShastra" target="_blank" rel="noopener noreferrer">MorrowMesh repository</a> on GitHub.</li>
+                <li>Pick an open task, fix bugs, or build new features in your forked repo.</li>
+                <li>Submit a clean Pull Request with clear documentation describing your changes.</li>
+                <li>Head to the <strong>Submit</strong> section in your MnM Dashboard, submit your fork link, and summarize your contribution.</li>
+                <li>Coordinate with the MnM engineering review team for validation and verification.</li>
+              </ol>
+              <p class="proj-contrib-note">If it is taking longer than expected, mail us at <a href="mailto:admin@mnmworks.xyz">admin@mnmworks.xyz</a> for faster review.</p>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <section id="contact">
-      <div class="container">
-        <h2 class="contact-heading">
-          <span class="contact-line">let's make</span>
-          <span class="contact-line">something worth</span>
-          <span class="contact-line">shipping.</span>
-        </h2>
-        <div class="contact-links">
-          <a href="https://github.com/MakersNeedMore-MnM" onclick="openProfileModal('GitHub'); return false;"
-            class="contact-row" data-cursor="open">
-            <span class="contact-row-name">GitHub</span>
-            <span class="contact-row-arrow">→</span>
-            <div class="contact-row-fill"></div>
-          </a>
-          <a href="mailto:admin@mnmworks.xyz" class="contact-row" data-cursor="open">
-            <span class="contact-row-name">Email</span>
-            <span class="contact-row-arrow">→</span>
-            <div class="contact-row-fill"></div>
-          </a>
-          <a href="https://www.linkedin.com/company/makersneedmore"
-            onclick="openProfileModal('LinkedIn'); return false;" class="contact-row" data-cursor="open">
-            <span class="contact-row-name">LinkedIn</span>
-            <span class="contact-row-arrow">→</span>
-            <div class="contact-row-fill"></div>
-          </a>
+    <footer id="site-red-footer" class="site-red-footer">
+      <div class="red-footer-container">
+        <div class="red-footer-main">
+          <div class="red-footer-left">
+            <div class="red-footer-brand">
+              <div class="red-footer-logo-wrap">
+                <img src="/logo.png" alt="MnM Spinning Logo" class="red-footer-spin-logo">
+              </div>
+            </div>
+            <div class="red-footer-address">
+              <p class="red-footer-addr-org">Makers Need More (MnM)</p>
+              <p class="red-footer-addr-line">Student Innovation &amp; Open-Source Community</p>
+              <p class="red-footer-addr-line">Shamsabad, Farrukhabad</p>
+              <p class="red-footer-addr-line">Uttar Pradesh, India 209503</p>
+              <a href="mailto:admin@mnmworks.xyz" class="red-footer-addr-link">admin@mnmworks.xyz</a>
+            </div>
+          </div>
+          <div class="red-footer-nav">
+            <div class="red-footer-col">
+              <span class="red-footer-col-title">Explore</span>
+              <div class="red-footer-btn-list">
+                <a href="/" class="red-footer-btn">Home</a>
+                <a href="about.html" class="red-footer-btn">About</a>
+                <a href="founders.html" class="red-footer-btn">Founders</a>
+                <a href="competitions.html" class="red-footer-btn">Competitions</a>
+                <a href="contribute.html" class="red-footer-btn">Contribute</a>
+                <a href="careers.html" class="red-footer-btn">Careers</a>
+                <a href="sponsors.html" class="red-footer-btn">Sponsors</a>
+              </div>
+            </div>
+            <div class="red-footer-col">
+              <span class="red-footer-col-title">Events</span>
+              <div class="red-footer-btn-list">
+                <a href="catalyst.html" class="red-footer-btn">Catalyst</a>
+                <a href="morrow.html" class="red-footer-btn">Morrow</a>
+                <a href="orbix.html" class="red-footer-btn">Orbix</a>
+                <a href="manitya.html" class="red-footer-btn">Manitya</a>
+              </div>
+            </div>
+            <div class="red-footer-col">
+              <span class="red-footer-col-title">Community</span>
+              <div class="red-footer-btn-list">
+                <a href="/communitycatalouge" class="red-footer-btn">Community Catalogue</a>
+                <a href="eternaluniversity.html" class="red-footer-btn">Eternal University</a>
+              </div>
+            </div>
+            <div class="red-footer-col">
+              <span class="red-footer-col-title">Connect</span>
+              <div class="red-footer-btn-list">
+                <a href="mailto:admin@mnmworks.xyz" class="red-footer-btn">Email Us</a>
+                <a href="https://github.com/MakersNeedMore-MnM" target="_blank" rel="noopener noreferrer" class="red-footer-btn">GitHub</a>
+                <a href="https://www.linkedin.com/company/makersneedmore" target="_blank" rel="noopener noreferrer" class="red-footer-btn">LinkedIn</a>
+              </div>
+            </div>
+          </div>
         </div>
-        <p class="footer-credit commit-mono">MnM · 2026 · A student-run community building open-source solutions
-          globally.</p>
-        <div class="footer-logo-container">
-          <img src="/Makers%20Need%20More.png" alt="Makers Need More" class="footer-logo-image">
+        <div class="red-footer-bottom">
+          <span class="red-footer-copy commit-mono">&copy; 2026 Makers Need More &middot; Non-Profit &middot; Open Source</span>
+          <span class="red-footer-tagline commit-mono">built by students, for students.</span>
         </div>
       </div>
-    </section>
+    </footer>
 
     <div id="profile-modal-overlay" class="profile-modal-overlay">
       <div class="profile-modal">
         <button id="profile-modal-close" class="profile-modal-close">&times;</button>
-        <span class="commit-mono modal-label">// select profile</span>
         <h3 class="modal-title" id="modal-platform-name">GitHub</h3>
         <div class="modal-buttons">
           <a href="#" id="modal-link-mnm" class="btn-pill" target="_blank">Makers Need More</a>
-          <!-- <a href="#" id="modal-link-manika" class="btn-pill" target="_blank">Manika Kutiyal</a> -->
-          <!-- <a href="#" id="modal-link-aditya" class="btn-pill" target="_blank">Aditya Verma</a> -->
         </div>
       </div>
     </div>
 
     <div id="onboarding-modal-overlay" class="profile-modal-overlay">
       <div class="profile-modal">
-        <span class="commit-mono modal-label">// complete profile</span>
         <h3 class="modal-title">Welcome!</h3>
         <p style="color: var(--slate); font-size: 15px; margin-bottom: 24px;">Please provide a few details to complete
           your profile.</p>
@@ -502,24 +1334,18 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeProjectModal();
     });
-    const streetiqCard = document.getElementById('streetiq-card');
-    if (streetiqCard) {
-      streetiqCard.addEventListener('keydown', function (e) {
+    document.querySelectorAll('.proj-card').forEach(function (card) {
+      card.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          openProjectModal('streetiq');
+          var fn = card.getAttribute('onclick');
+          if (fn) {
+            var match = fn.match(/openProjectModal\('([^']+)'\)/);
+            if (match && match[1]) openProjectModal(match[1]);
+          }
         }
       });
-    }
-    const kavachCard = document.getElementById('kavach-card');
-    if (kavachCard) {
-      kavachCard.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          openProjectModal('kavach');
-        }
-      });
-    }
+    });
   </script>
 
 </body>
