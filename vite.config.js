@@ -33,6 +33,12 @@ export default defineConfig({
             res.end(readFileSync(pagePath, 'utf-8'));
             return;
           }
+          if (req.url && (req.url === '/verifycatalyst' || req.url.startsWith('/verifycatalyst?'))) {
+            const pagePath = resolve(__dirname, 'verifycatalyst.html');
+            res.setHeader('Content-Type', 'text/html');
+            res.end(readFileSync(pagePath, 'utf-8'));
+            return;
+          }
           if (req.url && (req.url === '/eternaluniversity' || req.url.startsWith('/eternaluniversity?'))) {
             const pagePath = resolve(__dirname, 'eternaluniversity.html');
             res.setHeader('Content-Type', 'text/html');
@@ -82,6 +88,7 @@ export default defineConfig({
           round2morrow: './round2morrow.html',
           catalyst: './catalyst.html',
           confirmcatalyst: './confirmcatalyst.html',
+          verifycatalyst: './verifycatalyst.html',
           eternaluniversity: './eternaluniversity.html',
           communityCatalogue: './community-catalogue.html',
           communitycatalouge: './communitycatalouge.html',

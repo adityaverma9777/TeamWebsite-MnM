@@ -49,6 +49,10 @@
       "destination": "/confirmcatalyst.html"
     },
     {
+      "source": "/verifycatalyst",
+      "destination": "/verifycatalyst.html"
+    },
+    {
       "source": "/eternaluniversity",
       "destination": "/eternaluniversity.html"
     },
