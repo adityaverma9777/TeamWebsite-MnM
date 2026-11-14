@@ -426,11 +426,13 @@ html, body {
 }
 .chat-form {
   display: flex;
-  gap: 0.75rem;
+  flex-direction: row;
+  gap: 0.6rem;
   align-items: flex-end;
 }
 .textarea-container {
   flex: 1;
+  min-width: 0;
   position: relative;
 }
 #chatInput {
@@ -440,13 +442,14 @@ html, body {
   background: #ffffff;
   border: 1px solid #cbd5e1;
   border-radius: 12px;
-  padding: 0.75rem 1rem;
+  padding: 0.7rem 1rem;
   font-family: var(--font-body);
   font-size: 0.925rem;
-  line-height: 1.45;
+  line-height: 1.5;
   color: var(--text-main);
   outline: none;
-  min-height: 46px;
+  display: block;
+  min-height: 44px;
   max-height: 140px;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
@@ -458,18 +461,20 @@ html, body {
   color: var(--text-subtle);
 }
 .btn-submit {
-  width: 46px;
-  height: 46px;
+  width: 44px;
+  height: 44px;
   border-radius: 12px;
   background: var(--accent);
-  border: 1px solid var(--accent);
+  border: none;
   color: #ffffff;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  flex-basis: 44px;
   align-self: flex-end;
+  margin-bottom: 0;
   transition: background-color 0.15s ease, opacity 0.15s ease;
 }
 .btn-submit:hover:not(:disabled) {
