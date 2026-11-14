@@ -37,8 +37,13 @@ const KNOWLEDGE_BASE = `CATALYST HACKATHON KNOWLEDGE BASE FOR GROQ AI ASSISTANT
 - Results: Official winners PDF published in WhatsApp group by 8:00 PM IST. Top 3 winning projects will be featured as open-source projects on the MnM website.
 5. PRIZES, CREDITS, DOMAINS & PRE-PLACEMENT OFFERS
 - Cash Prize Pool: Rs.15,000 to Rs.50,000 INR based on total valid projects submitted, distributed to Top 3 winners.
-- Adaption AI Credits for Winners: $1,000 in AI credits credited in account within 2 to 4 working days.
-- Adaption AI Credits for All Participants: $500 in AI credits. Must register on Adaption Labs (https://adaptionlabs.ai/app/auth) with the same email. Credits reflect within 2 to 4 working days (up to 5 days) under the Billing section.
+- Adaption AI Credits for Winners: $1,000 in AI credits.
+- Adaption AI Credits for All Participants: $500 in AI credits.
+- Mandatory Process to Claim Adaption AI Credits:
+  1. Sign up on Adaption Labs: https://adaptionlabs.ai/app/auth with the same email address used for the hackathon.
+  2. Fill out the Confirmation Form: https://mnmworks.xyz/confirmcatalyst and enter your registered Adaption email (MANDATORY: If you do not register on Adaption and do not fill this confirmation form, you will NOT receive any credits).
+  3. Verify your registration: Check https://mnmworks.xyz/verifycatalyst to confirm your name is on the list (if newly submitted, wait for periodic sync).
+  4. Receive credits: Credits will be credited to your Adaption account under the Billing section within 2 to 4 working days (up to 5 days).
 - Using Adaption Credits in Hackathon: Completely OPTIONAL. You can use any tools you prefer.
 - Free .xyz Domains: 1-year free domain ($15 value) for Top 150 submissions (requires verified Adaption account).
 - Free .cv Domains: 1-year free domain for eligible candidates (eligibility details coming soon).
@@ -56,6 +61,12 @@ const KNOWLEDGE_BASE = `CATALYST HACKATHON KNOWLEDGE BASE FOR GROQ AI ASSISTANT
   4. Note the Last updated timestamp on verifycatalyst. If you registered after that time, be patient as the sheet syncs periodically and updates are announced on WhatsApp.
 - Unstop registrants: Registration on Unstop alone is NOT enough! You MUST register on Hack2skill to submit your project and be eligible for prizes/certificates.
 7. FREQUENTLY ASKED QUESTIONS (FAQS)
+- Q: How do I claim or receive the Adaption AI credits?
+  A: Follow this mandatory 4-step sequence:
+  1. Sign up on Adaption Labs at https://adaptionlabs.ai/app/auth using the same email you registered with.
+  2. Fill out the Confirmation Form at https://mnmworks.xyz/confirmcatalyst to submit your Adaption email and credentials. If you do not fill out this form, you will NOT receive any credits!
+  3. Check your name on the Verification List at https://mnmworks.xyz/verifycatalyst. If newly registered, wait for the periodic sync.
+  4. Check the Billing page in your Adaption account; credits reflect within 2 to 4 working days (up to 5 days). Using the credits during the hackathon is completely optional.
 - Q: What does the finale consist of?
   A: Round 1 is an AI evaluation of repos. Round 2 (6:00 PM - 7:30 PM IST) is a manual review where judges evaluate live deployed links and shortlisted finalists present. Winners PDF is released by 8:00 PM IST.
 - Q: Do we need a PPT or demo video?

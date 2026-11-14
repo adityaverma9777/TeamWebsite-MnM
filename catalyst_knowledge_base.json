@@ -110,6 +110,18 @@
       "offer_type": "Pre-Placement Interviews (PPI) and Pre-Placement Offers (PPO) for paid job roles at Makers Need More (MnM).",
       "eligibility": "Winners and standout candidates with unique solutions and high-quality code.",
       "outcome": "Clear interview to become part of the MnM Core Team. Multiple job openings available. CTC and role terms are discussed directly with the candidate. Selected candidates will receive official email communication."
+    },
+    "adaption_ai_credits": {
+      "winners": ",000 in AI credits credited in account within 2 to 4 working days",
+      "participants": " in AI credits",
+      "mandatory_claiming_steps": [
+        "1. Sign up on Adaption Labs (https://adaptionlabs.ai/app/auth) using the same email address as hackathon registration.",
+        "2. Fill out the Confirmation Form (https://mnmworks.xyz/confirmcatalyst) and submit registered Adaption email (MANDATORY: Without this form, credits will NOT be credited).",
+        "3. Verify your registration on the Verification Sheet (https://mnmworks.xyz/verifycatalyst).",
+        "4. Receive credits in Adaption account under Billing page within 2 to 4 working days (up to 5 days)."
+      ],
+      "usage_mandatory": false,
+      "usage_note": "Using Adaption AI credits during the hackathon is completely optional."
     }
   },
   "participant_verification_guide": {
