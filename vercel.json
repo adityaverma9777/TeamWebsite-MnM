@@ -65,5 +65,10 @@
       "destination": "/idcard.html"
     }
   ],
+  "functions": {
+    "api/chat.js": {
+      "maxDuration": 30
+    }
+  },
   "trailingSlash": false
 }

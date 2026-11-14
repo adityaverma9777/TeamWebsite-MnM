@@ -701,8 +701,13 @@ html, body {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: chatHistory })
       });
-      const data = await res.json();
       typingIndicator.classList.remove('visible');
+      let data = null;
+      try {
+        data = await res.json();
+      } catch {
+        data = { error: 'Server returned an unexpected response (HTTP ' + res.status + '). Please try again.' };
+      }
       if (res.status === 429) {
         appendMessage('assistant', 'You are sending messages too quickly. Please wait a minute and try again.');
         chatHistory.pop();
@@ -710,19 +715,19 @@ html, body {
         chatInput.focus();
         return;
       }
-      if (!res.ok || data.error) {
-        appendMessage('assistant', data.error || 'Unable to connect to the assistant. Please try again.');
+      if (!res.ok || (data && data.error)) {
+        appendMessage('assistant', (data && data.error) ? data.error : 'Server error ' + res.status + '. Please try again.');
         chatHistory.pop();
         btnSend.disabled = false;
         chatInput.focus();
         return;
       }
-      const reply = data.reply || 'No response generated.';
+      const reply = (data && data.reply) ? data.reply : 'No response generated.';
       chatHistory.push({ role: 'assistant', content: reply });
       appendMessage('assistant', reply);
-    } catch {
+    } catch (err) {
       typingIndicator.classList.remove('visible');
-      appendMessage('assistant', 'Network connection error. Please check your internet and try again.');
+      appendMessage('assistant', 'Request failed: ' + (err.message || 'Please check your connection.'));
       chatHistory.pop();
     } finally {
       btnSend.disabled = false;

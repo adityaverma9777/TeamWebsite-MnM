@@ -135,7 +135,7 @@ export default async function handler(req, res) {
   }
   const apiKey = process.env.GROQ_API_KEY;
   if (!apiKey) {
-    res.status(500).json({ error: 'Server configuration error. Please try again later.' });
+    res.status(500).json({ error: 'Server configuration error: GROQ_API_KEY is not set in environment variables.' });
     return;
   }
   const { messages } = req.body || {};
@@ -181,7 +181,7 @@ export default async function handler(req, res) {
     }
     const reply = data.choices?.[0]?.message?.content || 'No response generated.';
     res.status(200).json({ reply });
-  } catch {
-    res.status(500).json({ error: 'Network error. Please check your connection and try again.' });
+  } catch (err) {
+    res.status(500).json({ error: 'Groq request failed: ' + (err?.message || 'Unknown error. Please try again.') });
   }
 }
