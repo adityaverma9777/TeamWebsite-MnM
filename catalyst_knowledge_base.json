@@ -1,0 +1,146 @@
+{
+  "event_name": "PromptWars × Catalyst",
+  "tagline": "The Ultimate Solo Coding Hackathon. One builder. One prompt. One day to ship.",
+  "organizer": "Makers Need More (MnM)",
+  "collaboration": "PromptWars",
+  "organizing_team_leads": "Manika & Aditya (representing MnM organizing team)",
+  "powered_by": "Google for Developers",
+  "partners": {
+    "ai_engine": "Google Antigravity (antigravity.google)",
+    "community_partner": "Google Developer Groups (GDG)",
+    "platform_partner": "Hack2skill",
+    "ai_infrastructure": "Adaption Labs",
+    "domain_partners": ".XYZ Domains & .cv"
+  },
+  "event_date": "15 November 2026",
+  "registration_fee": "Free of cost (100% free registration for all participants)",
+  "format": "Solo participation only (strictly individual builders, no teams permitted)",
+  "mode": "100% Online / Virtual (Links, stream URLs, and challenge details sent on official WhatsApp)",
+  "ai_tools_allowed": "Any AI tools allowed (Google Antigravity, Gemini, ChatGPT, Claude, Cursor, v0, Copilot, or any other prompt-based AI platform). Using Google Antigravity is supported but NOT mandatory.",
+  "tech_stack_restriction": "No restrictions on frameworks, programming languages, or libraries (React, Next.js, HTML/CSS/JS, Python, Node, Flutter, etc. are all permitted)",
+  "official_links": {
+    "website": "https://mnmworks.xyz",
+    "catalyst_event_page": "https://mnmworks.xyz/catalyst.html",
+    "verify_registration": "https://mnmworks.xyz/verifycatalyst",
+    "confirmation_form": "https://mnmworks.xyz/confirmcatalyst",
+    "whatsapp_community": "https://chat.whatsapp.com/K4osxzcF9LtDS5rYthOLtY",
+    "hack2skill_registration": "https://hack2skill.com/event/promptwars-x-catalyst?utm_source=hack2skill&utm_medium=homepage",
+    "adaption_signup": "https://adaptionlabs.ai/app/auth",
+    "antigravity_download": "https://antigravity.google"
+  },
+  "timeline_schedule_ist": {
+    "date": "15 November 2026",
+    "timezone": "Asia/Kolkata (IST)",
+    "stages": [
+      {
+        "time": "09:00 AM - 09:30 AM IST",
+        "phase": "Opening Ceremony & Problem Statement Reveal",
+        "description": "Opening call on meeting link shared in WhatsApp. Official surprise problem statement unveiled live."
+      },
+      {
+        "time": "09:30 AM - 04:30 PM IST",
+        "phase": "Hacking / 7-Hour Build Window",
+        "description": "Work on prototype, develop in a fresh GitHub repo, and deploy working web application."
+      },
+      {
+        "time": "04:30 PM - 05:00 PM IST",
+        "phase": "Project Submission Window (Hack2skill)",
+        "description": "Submissions open on Hack2skill from 4:30 PM to 5:00 PM IST strictly. Only 1 single submission is required."
+      },
+      {
+        "time": "06:00 PM - 07:30 PM IST",
+        "phase": "Finale & Manual Review (Round 2)",
+        "description": "Manual jury evaluation. Shortlisted finalists present and demo live deployed links before judges."
+      },
+      {
+        "time": "07:30 PM - 08:00 PM IST",
+        "phase": "Winner Announcement & Closing",
+        "description": "Official winners PDF released by 8:00 PM IST in the WhatsApp group. Top 3 projects featured as open source on MnM website."
+      }
+    ]
+  },
+  "submission_requirements": {
+    "platform": "Hack2skill (Mandatory - final submissions are accepted ONLY on Hack2skill)",
+    "deadline": "15 November 2026 between 04:30 PM and 05:00 PM IST (strictly within timeline)",
+    "single_submission_rule": "Participants submit only once through the Hack2skill portal.",
+    "deliverables": [
+      {
+        "item": "1. GitHub Repository Link",
+        "requirement": "Must be a fresh, public repository created during the hackathon containing complete source code. Incomplete code will not qualify for Round 2."
+      },
+      {
+        "item": "2. Working Deployed Link",
+        "requirement": "Must be a functional live working prototype deployed on platforms like Vercel, Render, Netlify, GitHub Pages, etc."
+      },
+      {
+        "item": "3. LinkedIn Post Link (Mandatory Form Field)",
+        "requirement": "Must post on LinkedIn explaining the project, problem statement, solution, and tech stack used. Must tag @MNM on LinkedIn. Include pictures/screenshots or demo video of deployed link. Voiceover is NOT mandatory. A post template is shared in WhatsApp."
+      }
+    ],
+    "no_ppt_required": "No presentation deck (PPT) is needed. No pitch deck required."
+  },
+  "judging_process": {
+    "round_1_ai_evaluation": {
+      "evaluator": "AI-based Evaluator provided by Google for Developers and Hack2skill",
+      "method": "The AI clones each submitted repository, reads lines of code, and scores based on: 1) Uniqueness and originality of the idea, 2) Code quality and structure, 3) Scalability of the proposed solution, 4) UI/UX implementation."
+    },
+    "round_2_manual_jury_review": {
+      "evaluator": "Panel of Human Judges & MnM Core Team",
+      "jury_members": "Includes jury members from IIT Kharagpur, Muskan, and MnM leadership",
+      "method": "Jury evaluates shortlisted candidates on deployed live demo, problem statement relevance, idea uniqueness, and LinkedIn post structure. Judges decide the final winners."
+    },
+    "results_release": "Official PDF containing winners published in WhatsApp community by 8:00 PM IST."
+  },
+  "prizes_and_rewards": {
+    "cash_prize_pool": "₹15,000 to ₹50,000 INR based on total valid projects submitted with repo, deployed link, and LinkedIn post. Distributed to top 3 winners.",
+    "top_3_winners_spotlight": "Top 3 winning projects will be permanently featured as open-source projects on the official Makers Need More (MnM) website.",
+    "adaption_credits_winners": "$1,000 in AI credits on Adaption Labs for top winners (credited within 2 to 4 working days).",
+    "adaption_credits_participants": "$500 in AI credits on Adaption Labs for all verified participants who sign up on Adaption with their registered email.",
+    "adaption_credits_faq": {
+      "how_to_claim": "Sign up on Adaption Labs (https://adaptionlabs.ai/app/auth) using the exact registered email ID.",
+      "processing_time": "Credited within 2 to 4 working days (up to 5 days). If not visible yet, wait 2-4 working days.",
+      "how_to_check": "Log into your Adaption Labs account and visit the Billing section.",
+      "usage_mandatory": "NO. Using Adaption credits during the hackathon is completely optional. You can build with any tech stack or AI tool."
+    },
+    "xyz_domains": "Free 1-year .xyz domain ($15 value) for the top 150 project submissions (requires verified Adaption account).",
+    "cv_domains": "Free 1-year .cv domain for eligible candidates (detailed eligibility will be shared).",
+    "participation_certificate": "Provided to every participant who makes a valid submission on Hack2skill (with repo link, deployed link, and LinkedIn post).",
+    "swag_merchandise": "T-shirts, diaries, pens, bookmarks, and stickers for winners.",
+    "ppo_and_career_roles": {
+      "offer_type": "Pre-Placement Interviews (PPI) and Pre-Placement Offers (PPO) for paid job roles at Makers Need More (MnM).",
+      "eligibility": "Winners and standout candidates with unique solutions and high-quality code.",
+      "outcome": "Clear interview to become part of the MnM Core Team. Multiple job openings available. CTC and role terms are discussed directly with the candidate. Selected candidates will receive official email communication."
+    }
+  },
+  "participant_verification_guide": {
+    "verification_portal": "https://mnmworks.xyz/verifycatalyst",
+    "confirmation_portal": "https://mnmworks.xyz/confirmcatalyst",
+    "how_it_works": "Search your name on mnmworks.xyz/verifycatalyst. If your name appears, you are verified.",
+    "if_name_missing_steps": [
+      "1. Check if you are registered on Hack2skill by visiting https://hack2skill.com/event/promptwars-x-catalyst?utm_source=hack2skill&utm_medium=homepage.",
+      "2. If not registered on Hack2skill, register immediately.",
+      "3. Go to mnmworks.xyz/confirmcatalyst and fill the 3 steps:",
+      "   - Step 1: Sign up on Adaption Labs (https://adaptionlabs.ai/app/auth) and provide the signup email.",
+      "   - Step 2: Register on Hack2skill with the same email.",
+      "   - Step 3: Join the official WhatsApp group (https://chat.whatsapp.com/K4osxzcF9LtDS5rYthOLtY).",
+      "4. The verification page shows a 'Last updated' timestamp. If you registered after that time, be patient. The sheet is synced periodically and updates are announced in WhatsApp."
+    ],
+    "unstop_warning": "If you registered ONLY on Unstop, you are NOT eligible for Catalyst until you also register on Hack2skill! Submissions are accepted only on Hack2skill."
+  },
+  "meeting_transcript_faqs": {
+    "what_does_the_finale_consist_of": "Round 1 is evaluated automatically by Google & Hack2skill AI. In Round 2 (Finale from 6:00 PM to 7:30 PM IST), jury members review deployed links and shortlisted finalists present their live projects. Winners PDF is released by 8:00 PM IST.",
+    "is_a_ppt_or_pitch_deck_needed": "No. No PPT or slide deck is required. Focus on a clean GitHub repo and working deployed URL.",
+    "is_a_demo_video_mandatory": "No. A demo video is not mandatory. You can include screenshots/photos of the deployed project in your LinkedIn post. Voiceover is also not mandatory.",
+    "can_i_use_google_antigravity": "Yes! Google Antigravity is supported, but it is not mandatory. You can use ChatGPT, Claude, Cursor, v0, Gemini, or any tool.",
+    "what_if_my_project_is_incomplete": "Incomplete projects without a working deployed link will not be considered for Round 2 evaluation or prizes.",
+    "how_do_i_get_the_adaption_ai_credits": "Sign up on Adaption Labs with your registered email and complete the confirmation form. Credits are disbursed within 2 to 4 working days and appear under the Billing page.",
+    "must_i_use_adaption_credits_during_hackathon": "No. It is completely optional. You can build with any tech stack or AI service.",
+    "difference_between_repo_link_and_deployed_link": "Repo link is the public GitHub repository containing source code. Deployed link is the live web app hosted on Vercel, Render, Netlify, etc.",
+    "what_should_be_in_the_linkedin_post": "Overview of what you built, the problem statement addressed, tech stack used, uniqueness of your solution, and tagging @MNM. A template will be shared in WhatsApp.",
+    "how_many_times_do_i_submit": "Only once! You submit your GitHub repo link, deployed live link, and LinkedIn post link together on Hack2skill between 4:30 PM and 5:00 PM IST.",
+    "what_are_the_job_roles_at_mnm": "Paid roles in the MnM Core Team. Winners and standout coders receive pre-placement interviews. CTC and roles are discussed directly with candidate.",
+    "what_if_my_name_is_missing_in_verify_catalyst": "Ensure you have registered on Hack2skill and completed the confirmation form. Check the 'Last updated' timestamp on the page; if you registered after that timestamp, wait for the next database sync announced on WhatsApp.",
+    "who_receives_certificates": "Every participant who makes a valid submission on Hack2skill with a GitHub repo, deployed URL, and LinkedIn post will receive a participation certificate.",
+    "what_time_is_the_morning_meeting": "At 09:00 AM IST on 15 November 2026. The meeting link will be shared in the WhatsApp group."
+  }
+}

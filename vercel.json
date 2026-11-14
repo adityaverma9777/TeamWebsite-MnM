@@ -53,6 +53,10 @@
       "destination": "/verifycatalyst.html"
     },
     {
+      "source": "/catalystassistance",
+      "destination": "/catalystassistance.html"
+    },
+    {
       "source": "/eternaluniversity",
       "destination": "/eternaluniversity.html"
     },

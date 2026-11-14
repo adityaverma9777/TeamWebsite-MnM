@@ -1,0 +1,79 @@
+CATALYST HACKATHON KNOWLEDGE BASE FOR GROQ AI ASSISTANT
+1. EVENT OVERVIEW & IDENTITY
+- Event Name: PromptWars × Catalyst (Solo Coding Hackathon)
+- Organizer: Makers Need More (MnM) in collaboration with PromptWars
+- Organizing Leads: Manika & Aditya (representing MnM)
+- Powered By: Google for Developers
+- Platform Partner: Hack2skill
+- AI Infrastructure: Adaption Labs
+- Community Partner: Google Developer Groups (GDG)
+- Domain Partners: .XYZ Domains & .cv
+- Official Website: https://mnmworks.xyz
+- Event Page: https://mnmworks.xyz/catalyst.html
+- Event Date: 15 November 2026
+- Registration Fee: 100% Free of charge
+- Event Format: Strictly solo participation (individual builders only, no teams permitted)
+- Event Mode: 100% Online / Virtual (Links, stream URLs, and challenge details sent on official WhatsApp)
+- Permitted AI Tools: Any AI tools allowed (Google Antigravity, Gemini, ChatGPT, Claude, Cursor, v0, Copilot, or any prompt-based AI platform). Using Google Antigravity is encouraged but NOT mandatory.
+- Tech Stack: Free choice of frameworks and languages (React, Next.js, HTML/CSS/JS, Python, Node, Flutter, etc.)
+2. OFFICIAL EVENT TIMELINE (15 NOVEMBER 2026, IST)
+- 09:00 AM – 09:30 AM IST: Opening Meeting & Problem Statement Reveal (Call link shared in WhatsApp group; surprise problem statement released)
+- 09:30 AM – 04:30 PM IST: 7-Hour Build Window (Work on prototype in fresh GitHub repo and deploy working web application)
+- 04:30 PM – 05:00 PM IST: Mandatory Project Submission Window on Hack2skill (Single submission only)
+- 06:00 PM – 07:30 PM IST: Finale & Manual Review (Round 2 before human judges)
+- 07:30 PM – 08:00 PM IST: Winner Announcement & Closing Ceremony (Official PDF of winners released by 8:00 PM IST)
+3. SUBMISSION REQUIREMENTS (SINGLE SUBMISSION ON HACK2SKILL)
+- Submissions open strictly between 04:30 PM and 05:00 PM IST on Hack2skill
+- Deliverable 1: Public GitHub repository link containing clean, fresh source code created on hackathon day. Incomplete projects will not be considered.
+- Deliverable 2: Working deployed live URL of the application (hosted on Vercel, Render, Netlify, GitHub Pages, etc.)
+- Deliverable 3: Public LinkedIn post link tagging @MNM on LinkedIn, explaining the project, problem statement, solution, and tech stack used, with screenshots or video. Voiceover is NOT mandatory. A post template is provided in WhatsApp.
+- No PPT required: No presentation deck or pitch deck is needed.
+4. TWO-STAGE JUDGING & EVALUATION
+- Round 1 (AI Evaluation): Google for Developers & Hack2skill AI evaluator clones the repo, reads code lines, and evaluates uniqueness, code quality, scalability, and UI/UX.
+- Round 2 (Manual Review & Finale, 6:00 PM – 7:30 PM IST): Panel of human judges including jury members from IIT Kharagpur, Muskan, and MnM core team evaluate live deployed links, problem relevance, originality, and LinkedIn post.
+- Results: Official winners PDF published in WhatsApp group by 8:00 PM IST. Top 3 winning projects will be featured as open-source projects on the MnM website.
+5. PRIZES, CREDITS, DOMAINS & PRE-PLACEMENT OFFERS
+- Cash Prize Pool: ₹15,000 to ₹50,000 INR based on total valid projects submitted, distributed to Top 3 winners.
+- Adaption AI Credits for Winners: $1,000 in AI credits credited in account within 2 to 4 working days.
+- Adaption AI Credits for All Participants: $500 in AI credits. Must register on Adaption Labs (https://adaptionlabs.ai/app/auth) with the same email. Credits reflect within 2 to 4 working days (up to 5 days) under the Billing section.
+- Using Adaption Credits in Hackathon: Completely OPTIONAL. You can use any tools you prefer.
+- Free .xyz Domains: 1-year free domain ($15 value) for Top 150 submissions (requires verified Adaption account).
+- Free .cv Domains: 1-year free domain for eligible candidates (eligibility details coming soon).
+- Participation Certificates: Issued to all participants who make a valid submission (repo + deployed link + LinkedIn post).
+- Winner Merchandise: T-shirts, diaries, pens, bookmarks, and stickers.
+- Pre-Placement Offers (PPOs) & Paid Jobs: Winners and standout builders will receive pre-placement interviews (PPI) for paid job openings in the MnM Core Team. CTC and packages discussed directly with candidates.
+6. VERIFICATION & REGISTRATION FLOW
+- Verification Link: https://mnmworks.xyz/verifycatalyst
+- Confirmation Form: https://mnmworks.xyz/confirmcatalyst
+- WhatsApp Group (Mandatory): https://chat.whatsapp.com/K4osxzcF9LtDS5rYthOLtY
+- If name is missing from verifycatalyst:
+  1. Check Hack2skill registration (https://hack2skill.com/event/promptwars-x-catalyst?utm_source=hack2skill&utm_medium=homepage).
+  2. If not registered on Hack2skill, register immediately.
+  3. Fill the confirmation form on mnmworks.xyz/confirmcatalyst (signup on Adaption, register on Hack2skill, join WhatsApp).
+  4. Note the 'Last updated' timestamp on verifycatalyst. If you registered after that time, be patient as the sheet syncs periodically and updates are announced on WhatsApp.
+- Unstop registrants: Registration on Unstop alone is NOT enough! You MUST register on Hack2skill to submit your project and be eligible for prizes/certificates.
+7. FREQUENTLY ASKED QUESTIONS (FAQS) FROM THE MEETING
+- Q: What does the finale consist of?
+  A: Round 1 is an AI evaluation of repos. Round 2 (6:00 PM - 7:30 PM IST) is a manual review where judges evaluate live deployed links and shortlisted finalists present. Winners PDF is released by 8:00 PM IST.
+- Q: Do we need a PPT or demo video?
+  A: No PPT is required. Demo video is optional (screenshots/photos of the deployed project in the LinkedIn post are fine; voiceover is not required).
+- Q: Is Google Antigravity mandatory?
+  A: No. We collaborated with Google Antigravity, so you are encouraged to use it, but you can use any AI tools like ChatGPT, Claude, Gemini, Cursor, v0, etc.
+- Q: What is the difference between repo link and deployed link?
+  A: Repo link is the GitHub repository with your source code. Deployed link is the live web app on Vercel, Render, Netlify, etc. Both are mandatory.
+- Q: What should be in the LinkedIn post?
+  A: What you built, problem statement addressed, tech stack used, uniqueness of solution, and tagging @MNM. A template is shared in WhatsApp.
+- Q: When will Adaption credits show up?
+  A: Within 2 to 4 working days (up to 5 days). Check the Billing page in your Adaption account.
+- Q: Do I have to use the Adaption credits during the hackathon?
+  A: No, that is completely optional.
+- Q: How many times do I submit?
+  A: Only once, on Hack2skill between 4:30 PM and 5:00 PM IST.
+- Q: What are the job roles at MnM?
+  A: Paid roles in the MnM Core Team through pre-placement interviews for winners and standout coders.
+- Q: If I registered on Unstop, am I eligible?
+  A: You MUST also register on Hack2skill. Without Hack2skill registration, you cannot submit.
+- Q: What if my project is incomplete?
+  A: Incomplete projects without a working deployed link will not qualify for Round 2.
+- Q: What time does the event start?
+  A: Opening meeting at 09:00 AM IST on 15 November 2026. Link shared in WhatsApp.

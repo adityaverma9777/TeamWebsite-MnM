@@ -39,6 +39,12 @@ export default defineConfig({
             res.end(readFileSync(pagePath, 'utf-8'));
             return;
           }
+          if (req.url && (req.url === '/catalystassistance' || req.url.startsWith('/catalystassistance?'))) {
+            const pagePath = resolve(__dirname, 'catalystassistance.html');
+            res.setHeader('Content-Type', 'text/html');
+            res.end(readFileSync(pagePath, 'utf-8'));
+            return;
+          }
           if (req.url && (req.url === '/eternaluniversity' || req.url.startsWith('/eternaluniversity?'))) {
             const pagePath = resolve(__dirname, 'eternaluniversity.html');
             res.setHeader('Content-Type', 'text/html');
@@ -89,6 +95,7 @@ export default defineConfig({
           catalyst: './catalyst.html',
           confirmcatalyst: './confirmcatalyst.html',
           verifycatalyst: './verifycatalyst.html',
+          catalystassistance: './catalystassistance.html',
           eternaluniversity: './eternaluniversity.html',
           communityCatalogue: './community-catalogue.html',
           communitycatalouge: './communitycatalouge.html',
