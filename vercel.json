@@ -61,6 +61,10 @@
       "destination": "/eternaluniversity.html"
     },
     {
+      "source": "/certificates/catalyst2026/:slug",
+      "destination": "/verifycertificate.html?slug=:slug"
+    },
+    {
       "source": "/id/:id",
       "destination": "/idcard.html"
     }

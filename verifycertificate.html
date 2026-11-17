@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificate Verification | Catalyst 2026</title>
+  <link rel="icon" type="image/png" href="/logo.png">
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    body {
+      background: #ffffff;
+      color: #0f172a;
+      font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #64748b;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .back-link:hover {
+      color: #0f172a;
+    }
+    .back-link svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+    .container {
+      flex: 1;
+      width: 100%;
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .content {
+      padding: 40px 0 60px;
+    }
+    .person-name {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 24px;
+      word-break: break-word;
+    }
+    .verified-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #16a34a;
+      margin-bottom: 32px;
+    }
+    .verified-badge svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+    .certs-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+    .cert-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .cert-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: #fafafa;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+    }
+    .cert-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .cert-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+    .cert-icon.participation {
+      background: #f1f5f9;
+      color: #64748b;
+    }
+    .cert-icon.top150 {
+      background: #fef3c7;
+      color: #b45309;
+    }
+    .cert-icon.top10 {
+      background: #dbeafe;
+      color: #2563eb;
+    }
+    .cert-icon.winner {
+      background: #fce7f3;
+      color: #db2777;
+    }
+    .cert-info {
+      min-width: 0;
+    }
+    .cert-title {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    .cert-sub {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.3;
+    }
+    .event-label {
+      margin-top: 32px;
+      font-size: 13px;
+      color: #94a3b8;
+    }
+    .event-label span {
+      color: #0f172a;
+      font-weight: 500;
+    }
+    .error-state {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .error-state h2 {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .error-state p {
+      font-size: 15px;
+      color: #64748b;
+      max-width: 360px;
+    }
+    .loading-state {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .spinner {
+      width: 24px;
+      height: 24px;
+      border: 2.5px solid #e2e8f0;
+      border-top-color: #0f172a;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .hidden {
+      display: none !important;
+    }
+    @media (max-width: 480px) {
+      .content {
+        padding: 28px 0 48px;
+      }
+      .person-name {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      .cert-item {
+        padding: 12px 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="/" class="back-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+    Back to MnM
+  </a>
+  <div class="container">
+    <div id="loading" class="loading-state">
+      <div class="spinner"></div>
+    </div>
+    <div id="found" class="content hidden">
+      <h1 id="name" class="person-name"></h1>
+      <div class="verified-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        Verified Participant
+      </div>
+      <div class="certs-label">Certificates</div>
+      <div id="certs" class="cert-list"></div>
+      <p class="event-label">Event: <span>PromptWars × Catalyst · 15 November 2026</span></p>
+    </div>
+    <div id="notfound" class="error-state hidden">
+      <h2>Not Found</h2>
+      <p>No certificate record found for this link. Check the URL or contact the MnM team.</p>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var slug = params.get('slug');
+      if (!slug) {
+        var parts = window.location.pathname.split('/');
+        slug = parts[parts.length - 1];
+      }
+      if (!slug) {
+        show('notfound');
+        return;
+      }
+      slug = slug.toLowerCase().trim();
+      fetch('/catalyst_certificates.json')
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          var person = data[slug];
+          if (!person) {
+            show('notfound');
+            return;
+          }
+          document.getElementById('name').textContent = person.name;
+          document.title = person.name + ' — Certificate Verification | Catalyst 2026';
+          var certsEl = document.getElementById('certs');
+          var order = ['participation', 'top150', 'top10', 'winner'];
+          var config = {
+            participation: {
+              title: 'Certificate of Participation',
+              sub: 'Catalyst Hackathon 2026',
+              cls: 'participation',
+              icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>'
+            },
+            top150: {
+              title: 'Top 150',
+              sub: 'Based on code analysis score',
+              cls: 'top150',
+              icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>'
+            },
+            top10: {
+              title: 'Top 10',
+              sub: 'Finalist',
+              cls: 'top10',
+              icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>'
+            },
+            winner: {
+              title: '',
+              sub: '',
+              cls: 'winner',
+              icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 010-5H6"/><path d="M18 9h1.5a2.5 2.5 0 000-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 1012 0V2z"/></svg>'
+            }
+          };
+          var rankLabels = { 1: '1st Place', 2: '2nd Place', 3: '3rd Place' };
+          order.forEach(function (tier) {
+            if (person.certificates.indexOf(tier) === -1) return;
+            var c = config[tier];
+            var title = c.title;
+            var sub = c.sub;
+            if (tier === 'winner') {
+              title = rankLabels[person.winner_rank] || 'Winner';
+              sub = 'Catalyst Hackathon 2026';
+            }
+            var el = document.createElement('div');
+            el.className = 'cert-item';
+            el.innerHTML = '<div class="cert-icon ' + c.cls + '">' + c.icon + '</div><div class="cert-info"><div class="cert-title">' + title + '</div><div class="cert-sub">' + sub + '</div></div>';
+            certsEl.appendChild(el);
+          });
+          show('found');
+        })
+        .catch(function () {
+          show('notfound');
+        });
+      function show(id) {
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById(id).classList.remove('hidden');
+      }
+    })();
+  </script>
+</body>
+</html>
