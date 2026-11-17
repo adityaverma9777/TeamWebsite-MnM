@@ -101,7 +101,8 @@ export default defineConfig({
           communitycatalouge: './communitycatalouge.html',
           communitycatalogue: './communitycatalogue.html',
           orbix: './orbix.html',
-          orbixclaim: './orbixclaim.html'
+          orbixclaim: './orbixclaim.html',
+          verifycertificate: './verifycertificate.html'
         }
       }
     },
