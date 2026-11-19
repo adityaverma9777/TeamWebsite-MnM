@@ -678,7 +678,7 @@ body {
 .orb-stat-row {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 48px;
   padding: 32px 0;
   border-bottom: 1px dashed rgba(200,241,53,0.12);
   transition: background 0.3s ease;
@@ -692,7 +692,8 @@ body {
   font-weight: 800;
   color: var(--lime);
   letter-spacing: -0.03em;
-  min-width: 140px;
+  min-width: 190px;
+  flex-shrink: 0;
   line-height: 1;
 }
 
