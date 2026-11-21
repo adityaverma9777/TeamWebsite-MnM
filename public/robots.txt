@@ -1,4 +1,4 @@
-User-agent: *
+﻿User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /admin.html
@@ -17,4 +17,4 @@ Disallow: /admin
 Disallow: /dashboard
 Disallow: /api/
 
-Sitemap: https://mnmworks.xyz/sitemap.xml
+Sitemap: https://makersneedmore.com/sitemap.xml
