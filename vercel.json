@@ -32,54 +32,27 @@
     }
   ],
   "rewrites": [
-    {
-      "source": "/manitya",
-      "destination": "/manitya.html"
-    },
-    {
-      "source": "/orbix",
-      "destination": "/orbix.html"
-    },
-    {
-      "source": "/orbixclaim",
-      "destination": "/orbixclaim.html"
-    },
-    {
-      "source": "/confirmcatalyst",
-      "destination": "/confirmcatalyst.html"
-    },
-    {
-      "source": "/verifycatalyst",
-      "destination": "/verifycatalyst.html"
-    },
-    {
-      "source": "/catalystassistance",
-      "destination": "/catalystassistance.html"
-    },
-    {
-      "source": "/eternaluniversity",
-      "destination": "/eternaluniversity.html"
-    },
-    {
-      "source": "/certificates/catalyst2026/:slug",
-      "destination": "/verifycertificate.html?slug=:slug"
-    },
-    {
-      "source": "/id/:id",
-      "destination": "/idcard.html"
-    },
-    {
-      "source": "/communitycatalouge",
-      "destination": "/communitycatalouge.html"
-    },
-    {
-      "source": "/communitycatalogue",
-      "destination": "/communitycatalouge.html"
-    },
-    {
-      "source": "/community-catalogue",
-      "destination": "/communitycatalouge.html"
-    }
+    { "source": "/about", "destination": "/about.html" },
+    { "source": "/competitions", "destination": "/competitions.html" },
+    { "source": "/contribute", "destination": "/contribute.html" },
+    { "source": "/sponsors", "destination": "/sponsors.html" },
+    { "source": "/founders", "destination": "/founders.html" },
+    { "source": "/careers", "destination": "/careers.html" },
+    { "source": "/morrow", "destination": "/morrow.html" },
+    { "source": "/catalyst", "destination": "/catalyst.html" },
+    { "source": "/verifycertificate", "destination": "/verifycertificate.html" },
+    { "source": "/manitya", "destination": "/manitya.html" },
+    { "source": "/orbix", "destination": "/orbix.html" },
+    { "source": "/orbixclaim", "destination": "/orbixclaim.html" },
+    { "source": "/confirmcatalyst", "destination": "/confirmcatalyst.html" },
+    { "source": "/verifycatalyst", "destination": "/verifycatalyst.html" },
+    { "source": "/catalystassistance", "destination": "/catalystassistance.html" },
+    { "source": "/eternaluniversity", "destination": "/eternaluniversity.html" },
+    { "source": "/communitycatalouge", "destination": "/communitycatalouge.html" },
+    { "source": "/communitycatalogue", "destination": "/communitycatalouge.html" },
+    { "source": "/community-catalogue", "destination": "/communitycatalouge.html" },
+    { "source": "/certificates/catalyst2026/:slug", "destination": "/verifycertificate.html?slug=:slug" },
+    { "source": "/id/:id", "destination": "/idcard.html" }
   ],
   "functions": {
     "api/chat.js": {

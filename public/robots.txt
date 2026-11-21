@@ -1,6 +1,20 @@
 User-agent: *
 Allow: /
+Disallow: /admin
 Disallow: /admin.html
+Disallow: /dashboard
 Disallow: /dashboard.html
+Disallow: /idcard
+Disallow: /api/
+Disallow: /orbixclaim
+Disallow: /confirmcatalyst
+Disallow: /verifycatalyst
+Disallow: /round2morrow
+
+User-agent: Googlebot
+Allow: /
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /api/
 
 Sitemap: https://mnmworks.xyz/sitemap.xml
