@@ -398,6 +398,9 @@ button {
   height: 100%;
   object-fit: cover;
   display: block;
+  transform: scale(1.35);
+  transform-origin: center center;
+  will-change: transform;
 }
 #hero-scratch-canvas {
   position: absolute;
