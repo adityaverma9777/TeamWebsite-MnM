@@ -67,6 +67,18 @@
     {
       "source": "/id/:id",
       "destination": "/idcard.html"
+    },
+    {
+      "source": "/communitycatalouge",
+      "destination": "/communitycatalouge.html"
+    },
+    {
+      "source": "/communitycatalogue",
+      "destination": "/communitycatalouge.html"
+    },
+    {
+      "source": "/community-catalogue",
+      "destination": "/communitycatalouge.html"
     }
   ],
   "functions": {
