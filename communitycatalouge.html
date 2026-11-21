@@ -1,31 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Community Catalogue 2026 — Makers Need More (MnM)</title>
-  <link rel="icon" type="image/png" href="/logo.png">
-  <link rel="canonical" href="https://mnmworks.xyz/communitycatalouge">
-  <meta name="description" content="Explore the official Makers Need More (MnM) Community Catalogue and Prospectus 2026.">
-  <link rel="preconnect" href="https://api.fontshare.com">
-  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,600,700&f[]=commit-mono@400,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Community Catalogue 2026 — Makers Need More (MnM)</title>
+<link rel="icon" type="image/png" href="/logo.png">
+<link rel="canonical" href="https://mnmworks.xyz/communitycatalouge">
+<meta name="description" content="Explore the official Makers Need More (MnM) Community Catalogue and Prospectus 2026.">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,600,700&f[]=commit-mono@400,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--lime:#ea281e;
+--white:#f4f4f2;
+--dim:rgba(244,244,242,0.6);
+--faint:rgba(244,244,242,0.35);
+--bg:#0a0a0c;
+--border:rgba(255,255,255,0.08);
+--nav-h:60px;
+}
+html,body{height:100%;background:var(--bg);color:var(--white);font-family:'Satoshi',-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow:hidden}
+.pdf-nav{
+position:fixed;top:0;left:0;right:0;
+height:var(--nav-h);
+background:rgba(8,8,10,0.94);
+backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+border-bottom:1px solid var(--border);
+display:flex;align-items:center;justify-content:space-between;
+padding:0 24px;z-index:200;gap:12px;
+}
+.nav-left{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.back-btn{
+display:inline-flex;align-items:center;gap:8px;
+font-size:13px;font-weight:500;
+color:rgba(255,255,255,0.75);
+text-decoration:none;
+padding:7px 14px;border-radius:8px;
+background:rgba(255,255,255,0.04);
+border:1px solid var(--border);
+transition:background .2s,color .2s,border-color .2s;
+white-space:nowrap;
+}
+.back-btn:hover{background:rgba(255,255,255,0.09);border-color:rgba(255,255,255,0.18);color:#fff}
+.back-btn svg{flex-shrink:0}
+.nav-logo{width:26px;height:26px;border-radius:50%;object-fit:contain;display:none}
+.nav-center{
+flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;
+text-align:center;min-width:0;
+}
+.nav-title{
+font-family:'Clash Display',sans-serif;
+font-size:15px;font-weight:600;
+color:#fff;letter-spacing:-0.01em;
+white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;
+}
+.nav-sub{
+font-family:'Commit Mono',monospace;
+font-size:10px;color:rgba(255,255,255,0.38);letter-spacing:0.06em;white-space:nowrap;
+}
+.nav-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.page-pill{
+font-family:'Commit Mono',monospace;font-size:11px;
+color:var(--faint);
+padding:5px 10px;border-radius:6px;
+background:rgba(255,255,255,0.03);border:1px solid var(--border);
+white-space:nowrap;
+}
+.page-pill b{color:var(--lime);font-weight:700}
+.dl-btn{
+display:inline-flex;align-items:center;gap:6px;
+font-family:'Commit Mono',monospace;font-size:11px;font-weight:700;
+text-transform:uppercase;letter-spacing:0.07em;
+color:#fff;
+background:var(--lime);
+border:none;padding:8px 16px;border-radius:8px;
+text-decoration:none;cursor:pointer;
+transition:opacity .2s,transform .15s;
+white-space:nowrap;
+}
+.dl-btn:hover{opacity:.87;transform:translateY(-1px)}
+.scroll-area{
+position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;
+overflow-y:auto;overflow-x:hidden;
+background:#111113;
+-webkit-overflow-scrolling:touch;
+scroll-behavior:smooth;
+}
+.pages-wrap{
+max-width:900px;margin:0 auto;
+padding:24px 16px 60px;
+display:flex;flex-direction:column;gap:16px;align-items:center;
+}
+.pdf-page-wrap{
+width:100%;max-width:860px;
+border-radius:4px;overflow:hidden;
+box-shadow:0 8px 48px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.06);
+background:#fff;
+position:relative;
+}
+.pdf-page-wrap canvas{
+position:absolute;top:0;left:0;width:100%;height:100%;display:block;
+}
+.pdf-loader{
+position:absolute;top:0;left:0;right:0;bottom:0;
+display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+background:rgba(17,17,19,.96);z-index:10;
+}
+.pdf-loader.hidden{display:none}
+.spinner{
+width:36px;height:36px;
+border:2px solid rgba(255,255,255,.07);
+border-top-color:var(--lime);
+border-radius:50%;animation:spin .75s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loader-label{
+font-family:'Commit Mono',monospace;font-size:11px;
+color:rgba(255,255,255,.35);letter-spacing:.08em;
+}
+.error-state{
+display:none;flex-direction:column;align-items:center;gap:14px;
+text-align:center;padding:60px 24px;
+}
+.error-state.show{display:flex}
+.error-heading{
+font-family:'Clash Display',sans-serif;font-size:20px;font-weight:600;
+color:var(--white);
+}
+.error-body{
+font-size:14px;color:var(--dim);line-height:1.6;max-width:380px;
+}
+@media(max-width:640px){
+:root{--nav-h:56px}
+.pdf-nav{padding:0 14px}
+.back-label{display:none}
+.nav-logo{display:block}
+.nav-title{font-size:13px}
+.nav-sub{display:none}
+.page-pill{display:none}
+.dl-btn{padding:7px 12px;font-size:10px}
+.pages-wrap{padding:12px 8px 48px;gap:10px}
+}
+@media(max-width:400px){
+.dl-btn span{display:none}
+}
+</style>
 </head>
-<body class="pdf-viewer-page">
-  <header class="pdf-nav-bar">
-    <div class="pdf-nav-left">
-      <a href="/" class="pdf-back-btn">
-        <img src="/logo.png" alt="MnM Logo" class="pdf-nav-logo">
-        <span class="pdf-back-text">&larr; Back to Home</span>
-      </a>
+<body>
+<nav class="pdf-nav">
+  <div class="nav-left">
+    <a href="/" class="back-btn" aria-label="Back to home">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="back-label">Back to Home</span>
+    </a>
+    <img src="/logo.png" alt="MnM" class="nav-logo">
+  </div>
+  <div class="nav-center">
+    <span class="nav-title">Community Catalogue 2026</span>
+    <span class="nav-sub">Makers Need More &middot; Official Prospectus</span>
+  </div>
+  <div class="nav-right">
+    <div class="page-pill" id="page-pill">Page <b id="cur-pg">1</b> / <b id="tot-pg">&mdash;</b></div>
+    <a href="/prospectus-2026.pdf" download="MnM-Community-Catalogue-2026.pdf" class="dl-btn" aria-label="Download PDF">
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+        <path d="M6.5 1v7.5M3.5 6.5L6.5 9.5l3-3M1.5 11.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Download</span>
+    </a>
+  </div>
+</nav>
+<div class="scroll-area" id="scroll-area">
+  <div class="pages-wrap" id="pages-wrap">
+    <div class="pdf-loader" id="main-loader">
+      <div class="spinner"></div>
+      <div class="loader-label">Loading catalogue&hellip;</div>
     </div>
-    <div class="pdf-nav-center">
-      <span class="pdf-doc-title">Community Catalogue 2026</span>
-      <span class="pdf-doc-subtitle">Makers Need More &middot; Official Prospectus</span>
+    <div class="error-state" id="error-state">
+      <div class="error-heading">Could not display catalogue</div>
+      <div class="error-body">Your browser could not render the PDF. Please download it to view offline.</div>
+      <a href="/prospectus-2026.pdf" download="MnM-Community-Catalogue-2026.pdf" class="dl-btn">Download PDF</a>
     </div>
-  </header>
-  <main class="pdf-frame-container">
-    <iframe src="/Makers%20Need%20More%20Prospectus%202026%20final.pdf#toolbar=1&navpanes=0&scrollbar=1" class="pdf-frame" title="Community Catalogue Prospectus 2026"></iframe>
-  </main>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" crossorigin="anonymous"></script>
+<script>
+(function(){
+  var PDFURL='/prospectus-2026.pdf';
+  var scrollArea=document.getElementById('scroll-area');
+  var wrap=document.getElementById('pages-wrap');
+  var loader=document.getElementById('main-loader');
+  var errEl=document.getElementById('error-state');
+  var curPg=document.getElementById('cur-pg');
+  var totPg=document.getElementById('tot-pg');
+  var pageWraps=[];
+  var dpr=Math.min(window.devicePixelRatio||1,2);
+  if(typeof pdfjsLib==='undefined'){showError();return;}
+  pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  function showError(){
+    loader.classList.add('hidden');
+    errEl.classList.add('show');
+  }
+  function targetWidth(){
+    return Math.min(860,window.innerWidth-(window.innerWidth<640?16:32));
+  }
+  async function run(){
+    try{
+      var task=pdfjsLib.getDocument(PDFURL);
+      var pdf=await task.promise;
+      var n=pdf.numPages;
+      totPg.textContent=n;
+      loader.classList.add('hidden');
+      for(var i=1;i<=n;i++){
+        var page=await pdf.getPage(i);
+        var vp1=page.getViewport({scale:1});
+        var tw=targetWidth();
+        var scale=(tw*dpr)/vp1.width;
+        var vp=page.getViewport({scale:scale});
+        var pageWrap=document.createElement('div');
+        pageWrap.className='pdf-page-wrap';
+        pageWrap.dataset.p=i;
+        pageWrap.style.aspectRatio=vp1.width+' / '+vp1.height;
+        var canvas=document.createElement('canvas');
+        canvas.width=Math.round(vp.width);
+        canvas.height=Math.round(vp.height);
+        pageWrap.appendChild(canvas);
+        wrap.appendChild(pageWrap);
+        pageWraps.push(pageWrap);
+        var ctx=canvas.getContext('2d');
+        await page.render({canvasContext:ctx,viewport:vp}).promise;
+      }
+      setupObserver();
+    }catch(e){
+      console.error(e);showError();
+    }
+  }
+  function setupObserver(){
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting)curPg.textContent=en.target.dataset.p;
+      });
+    },{root:scrollArea,threshold:0.3});
+    pageWraps.forEach(function(w){obs.observe(w);});
+  }
+  run();
+})();
+</script>
 </body>
 </html>
