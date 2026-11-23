@@ -4,11 +4,17 @@ declare module 'react' {
   namespace React {
     type ReactNode = any;
     type FC<P = {}> = any;
+    type CSSProperties = any;
+    type PointerEvent<T = any> = any;
+    type MouseEvent<T = any> = any;
+    type KeyboardEvent<T = any> = any;
     function useRef<T = any>(initialValue?: T): { current: T };
     function useState<T = any>(initialState?: T | (() => T)): [T, (newState: T | ((prevState: T) => T)) => void];
     function useEffect(effect: () => void | (() => void), deps?: any[]): void;
+    function useLayoutEffect(effect: () => void | (() => void), deps?: any[]): void;
     function useCallback<T extends (...args: any[]) => any>(callback: T, deps: any[]): T;
     function useMemo<T>(factory: () => T, deps?: any[]): T;
+    function useId(): string;
   }
 }
 declare module 'react-dom';

@@ -3,23 +3,43 @@
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "bundler",
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "jsx": "react-jsx",
     "allowJs": true,
     "checkJs": false,
     "skipLibCheck": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "noImplicitAny": false,
     "strict": false,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
-      "@/components/ui/fuzzy-critter-footer": ["./componentfooter.tsx"],
-      "@/components/ui/doodle-crew-footer": ["./newfooter.tsx"]
+      "@/*": [
+        "./*",
+        "*"
+      ],
+      "@/components/ui/fuzzy-critter-footer": [
+        "./componentfooter",
+        "./components/ui/fuzzy-critter-footer"
+      ],
+      "@/components/ui/doodle-crew-footer": [
+        "./newfooter",
+        "./components/ui/doodle-crew-footer"
+      ]
     }
   },
   "include": [
-    "*.ts",
-    "*.tsx",
-    "*.js",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.d.ts",
     "globals.d.ts"
   ],
   "exclude": [
