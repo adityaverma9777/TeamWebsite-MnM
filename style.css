@@ -5724,7 +5724,7 @@ body.competitions-page #furrow-cursor {
   overflow: hidden;
   width: 100%;
   box-sizing: border-box;
-  padding: 56px clamp(20px, 5vw, 64px) 0;
+  padding: 68px clamp(20px, 5vw, 64px) 0;
   border-top: 1px solid var(--color-border);
   background: var(--color-background);
   color: var(--color-foreground);
@@ -5820,7 +5820,7 @@ body.competitions-page #furrow-cursor {
   display: block;
   left: 50%;
   width: max-content;
-  margin: clamp(36px, 6vw, 90px) 0 0;
+  margin: clamp(48px, 7vw, 110px) 0 0;
   padding: 0 0.065em 0.05em 0;
   transform: translateX(-50%);
   font-size: 22vw;
