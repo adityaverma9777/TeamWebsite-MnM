@@ -9,7 +9,7 @@ import { initCursor } from './cursor.js';
 import { sanityClient } from './sanity.js';
 import imageUrlBuilder from '@sanity/image-url';
 import * as THREE from 'three';
-import { initCritterFooter } from './critter-footer.js';
+import { initDoodleCrewFooter } from './doodle-crew-footer.js';
 
 // Wake up Render backend
 const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
@@ -1563,7 +1563,7 @@ window.addEventListener('load', () => {
   initStackThreeJS();
   initStats();
   initFeatures();
-  initCritterFooter();
+  initDoodleCrewFooter();
 });
 
 

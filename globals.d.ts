@@ -41,6 +41,10 @@ declare module '@/components/ui/fuzzy-critter-footer' {
   const component: any;
   export default component;
 }
+declare module '@/components/ui/doodle-crew-footer' {
+  const component: any;
+  export default component;
+}
 declare namespace JSX {
   interface IntrinsicElements {
     [elemName: string]: any;
