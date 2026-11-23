@@ -346,9 +346,8 @@ export function initDoodleCrewFooter(options = {}) {
     r: 2 + hash(k * 9.4) * 2.6
   }));
 
-  const words = ['Built', 'by', 'students,', 'for', 'students.', 'Where', 'ideas', 'meet', 'execution.'];
   const actionsCount = 2;
-  const tl = timeline(chars.length, placed.length, words.length, actionsCount);
+  const tl = timeline(chars.length, placed.length, 0, actionsCount);
   const hatch = 'url(#' + uid + '-hatch)';
 
   const renderCrewMember = (p, part) => {
@@ -435,8 +434,6 @@ export function initDoodleCrewFooter(options = {}) {
     </div>
   `).join('');
 
-  const wordsHtml = words.map((w, k) => `<span class="dcf-word" style="--d:${tl.word(k)}ms;">${w} </span>`).join('');
-
   const pct = (v, base, span) => (((v - base) / span) * 100).toFixed(3) + '%';
 
   const bubblesHtml = placed.map((p) => `
@@ -508,9 +505,6 @@ export function initDoodleCrewFooter(options = {}) {
       </div>
 
       <div class="dcf-cta">
-        <p class="dcf-tagline">
-          ${wordsHtml}
-        </p>
         <div class="dcf-actions">
           <a class="dcf-btn dcf-pop is-outline" style="--d:${tl.action(0)}ms;" href="https://github.com/MakersNeedMore-MnM" target="_blank" rel="noopener">
             <svg class="dcf-icon" viewBox="-16 -16 32 32" width="18" height="18" aria-hidden="true">${DOODLE_SVGS.star}</svg>
@@ -522,36 +516,14 @@ export function initDoodleCrewFooter(options = {}) {
           </a>
         </div>
       </div>
-    </div>
-
-    <div class="dcf-bar dcf-rise" style="--d:120ms;">
-      <p class="dcf-copy">&copy; 2026 Makers Need More &middot; Non-Profit &middot; Open Source</p>
-      <ul class="dcf-inline dcf-socials">
-        <li><a class="dcf-link" href="https://github.com/MakersNeedMore-MnM" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a class="dcf-link" href="https://www.linkedin.com/company/makersneedmore" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a class="dcf-link" href="mailto:admin@makersneedmore.com">Email Us</a></li>
-      </ul>
-      <button type="button" class="dcf-totop" id="dcf-totop">
-        <span>Back to top</span>
-        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-          <path d="M12 20 C11 14 12.5 9 12 4 M6 10 C8 8 10 6 12 4 C14 6 16 8 18.5 9.5"></path>
-        </svg>
-      </button>
     </div>`;
 
   const worldEl = document.getElementById('dcf-world');
   const svgEl = document.getElementById('dcf-svg');
-  const toTopBtn = document.getElementById('dcf-totop');
   const layerEls = root.querySelectorAll('[data-crew-layer]');
   const doodleEls = root.querySelectorAll('.dcf-doodle');
   const bubbleEls = root.querySelectorAll('.dcf-bubble');
   const hopperEls = root.querySelectorAll('.dcf-hopper');
-
-  if (toTopBtn) {
-    toTopBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
 
   let talkTimer = 0;
   const poke = (idx) => {
