@@ -508,7 +508,7 @@ export function initDoodleCrewFooter(options = {}) {
         <div class="dcf-actions">
           <a class="dcf-btn dcf-pop is-outline" style="--d:${tl.action(0)}ms;" href="https://github.com/MakersNeedMore-MnM" target="_blank" rel="noopener">
             <svg class="dcf-icon" viewBox="-16 -16 32 32" width="18" height="18" aria-hidden="true">${DOODLE_SVGS.star}</svg>
-            <span>Star on GitHub</span>
+            <span>Follow on GitHub</span>
           </a>
           <a class="dcf-btn dcf-pop is-solid" style="--d:${tl.action(1)}ms;" href="/competitions">
             <svg class="dcf-icon" viewBox="-16 -16 32 32" width="18" height="18" aria-hidden="true">${DOODLE_SVGS.bolt}</svg>
