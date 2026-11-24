@@ -1905,7 +1905,7 @@ button {
 }
 @media (max-width: 640px) {
   .site-red-footer {
-    padding: 44px 0 24px;
+    padding: 44px 0 40px;
   }
   .red-footer-container {
     padding: 0 20px;
@@ -6348,6 +6348,16 @@ body.competitions-page #furrow-cursor {
   .dcf-copy {
     width: 100%;
     margin-right: 0;
+  }
+}
+@media (max-width: 768px) {
+  #doodle-footer,
+  .dcf {
+    display: none !important;
+    min-height: 0 !important;
+    height: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
   }
 }
 @media (max-width: 480px) {
